@@ -1,4 +1,5 @@
 import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
+import { NavBar } from './components/NavBar'
 import { HomePage } from './pages/HomePage'
 import { GitHubSignupTutorial } from './pages/GitHubSignupTutorial'
 import { GitHubBasics } from './pages/GitHubBasics'
@@ -8,7 +9,12 @@ import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
 import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
 
 const rootRoute = createRootRoute({
-  component: () => <Outlet />,
+  component: () => (
+    <>
+      <NavBar />
+      <Outlet />
+    </>
+  ),
 })
 
 const homeRoute = createRoute({
