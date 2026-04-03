@@ -111,3 +111,10 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Accessibility: visible focus indicator for keyboard navigation */
+:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
