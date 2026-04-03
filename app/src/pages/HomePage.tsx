@@ -64,6 +64,14 @@ const MODULES = [
     to: '/learn/what-is-ci-cd',
     color: 'cyan',
   },
+  {
+    id: 'meet-the-agents',
+    title: 'Meet the AI agents',
+    description: 'The five agents behind this project — their roles, their loop, and how they coordinate.',
+    icon: '👥',
+    to: '/agents',
+    color: 'violet',
+  },
 ]
 
 const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
@@ -73,7 +81,8 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700',   button: 'bg-teal-600 hover:bg-teal-700 text-white' },
   orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
   indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
-  cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',   button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
+  cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',     button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
+  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
