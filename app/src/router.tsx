@@ -5,6 +5,7 @@ import { GitHubBasics } from './pages/GitHubBasics'
 import { WhatIsAI } from './pages/WhatIsAI'
 import { GenesisSystem } from './pages/GenesisSystem'
 import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
+import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -46,6 +47,12 @@ const whatIsAnAPIRoute = createRoute({
   component: WhatIsAnAPI,
 })
 
+const howThisWasBuiltRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-this-was-built',
+  component: HowThisWasBuilt,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -53,6 +60,7 @@ const routeTree = rootRoute.addChildren([
   whatIsAIRoute,
   genesisSystemRoute,
   whatIsAnAPIRoute,
+  howThisWasBuiltRoute,
 ])
 
 const hashHistory = createHashHistory()
