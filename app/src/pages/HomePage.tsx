@@ -5,7 +5,8 @@ const MODULES = [
   {
     id: 'github-signup',
     title: 'Create your GitHub account',
-    description: 'Step-by-step guide to signing up — takes about 5 minutes.',
+    description: 'Step-by-step guide to signing up for GitHub — your key to the whole project.',
+    readingTime: '5 min',
     icon: '🔑',
     to: '/tutorial/github-signup',
     color: 'blue',
@@ -13,7 +14,8 @@ const MODULES = [
   {
     id: 'github-basics',
     title: 'What is GitHub for?',
-    description: 'Repos, commits, issues, and pull requests — explained simply.',
+    description: 'Repos, commits, issues, and pull requests — explained simply, no coding needed.',
+    readingTime: '4 min',
     icon: '📁',
     to: '/learn/github-basics',
     color: 'green',
@@ -21,7 +23,8 @@ const MODULES = [
   {
     id: 'what-is-ai',
     title: 'What is AI?',
-    description: 'Artificial intelligence explained without jargon.',
+    description: 'Artificial intelligence explained without jargon — plus what Claude can and cannot do.',
+    readingTime: '5 min',
     icon: '🤖',
     to: '/learn/what-is-ai',
     color: 'purple',
@@ -29,7 +32,8 @@ const MODULES = [
   {
     id: 'what-is-api',
     title: 'What is an API?',
-    description: 'How programs talk to each other — in plain English.',
+    description: 'How programs talk to each other — in plain English, with real-world examples.',
+    readingTime: '4 min',
     icon: '🔗',
     to: '/learn/what-is-api',
     color: 'teal',
@@ -37,7 +41,8 @@ const MODULES = [
   {
     id: 'genesis-system',
     title: 'What is the Genesis system?',
-    description: 'The AI team that builds this app — watch it work in real time.',
+    description: 'The AI team that builds this app — see how agents coordinate through GitHub.',
+    readingTime: '4 min',
     icon: '⚙️',
     to: '/learn/genesis-system',
     color: 'orange',
@@ -46,37 +51,40 @@ const MODULES = [
     id: 'how-this-was-built',
     title: 'How this app was built',
     description: 'The full story — how AI planned, coded, and deployed what you are reading.',
-    icon: '&#x1F3D7;&#xFE0F;',
+    readingTime: '5 min',
+    icon: '🏗️',
     to: '/learn/how-this-was-built',
     color: 'indigo',
   },
   {
     id: 'what-is-ci-cd',
-    title: 'What is a CI/CD pipeline?',
-    description: 'How code goes from a developer\'s computer to a live website — automatically.',
-    icon: '&#x1F3ED;',
+    title: 'How does the website update automatically?',
+    description: 'CI/CD explained — how every code change goes live without anyone pressing publish.',
+    readingTime: '4 min',
+    icon: '🏭',
     to: '/learn/what-is-ci-cd',
-    color: 'slate',
+    color: 'cyan',
   },
   {
     id: 'meet-the-agents',
     title: 'Meet the AI agents',
-    description: 'The team behind this app — who they are and how they coordinate.',
-    icon: '&#x1F916;',
+    description: 'The team behind this app — who they are, what they do, and how they coordinate.',
+    readingTime: '4 min',
+    icon: '🤖',
     to: '/learn/meet-the-agents',
     color: 'violet',
   },
 ]
 
-const COLOR_MAP: Record<string, { border: string; badge: string }> = {
-  blue:   { border: 'hover:border-blue-300',   badge: 'bg-blue-100 text-blue-700' },
-  green:  { border: 'hover:border-green-300',  badge: 'bg-green-100 text-green-700' },
-  purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700' },
-  teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700' },
-  orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700' },
-  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700' },
-  slate:  { border: 'hover:border-slate-300',  badge: 'bg-slate-100 text-slate-700' },
-  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700' },
+const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
+  blue:   { border: 'hover:border-blue-300',   badge: 'bg-blue-100 text-blue-700',   button: 'bg-blue-600 hover:bg-blue-700 text-white' },
+  green:  { border: 'hover:border-green-300',  badge: 'bg-green-100 text-green-700', button: 'bg-green-600 hover:bg-green-700 text-white' },
+  purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700', button: 'bg-purple-600 hover:bg-purple-700 text-white' },
+  teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700',   button: 'bg-teal-600 hover:bg-teal-700 text-white' },
+  orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
+  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
+  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
+  cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',   button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -197,6 +205,9 @@ export function HomePage() {
                       <h3 className="font-semibold text-gray-800 text-lg leading-tight">{mod.title}</h3>
                     </div>
                     <p className="text-gray-500 text-sm mt-1">{mod.description}</p>
+                    {'readingTime' in mod && (
+                      <p className="text-gray-400 text-xs mt-1">{(mod as { readingTime: string }).readingTime} read</p>
+                    )}
                   </div>
 
                   {/* Arrow */}
@@ -210,6 +221,60 @@ export function HomePage() {
         <p className="text-gray-400 text-sm text-center">
           Each page ends with a short quiz to check what you learned.
         </p>
+
+        {/* Next steps CTA */}
+        <div className="border-t border-gray-200 pt-6">
+          <Link
+            to="/learn/next-steps"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-md p-6 flex items-center gap-4 transition-colors duration-200"
+          >
+            <span className="text-4xl flex-shrink-0">&#x1F680;</span>
+            <div>
+              <h3 className="font-semibold text-white text-xl leading-tight">Ready to get involved?</h3>
+              <p className="text-emerald-100 text-sm mt-1">After you have gone through the modules, here is how to go from learning to doing.</p>
+            </div>
+            <span className="text-white text-xl flex-shrink-0 ml-auto">&rarr;</span>
+          </Link>
+        </div>
+
+        {/* For Gigi section */}
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 space-y-3">
+          <h2 className="text-lg font-semibold text-amber-800">For Gigi</h2>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            This site was built by the Genesis AI system to help Ronny learn about AI, GitHub, and this project.
+            It updates automatically as new lessons are added.
+          </p>
+          <div className="space-y-2 text-sm text-gray-700">
+            <p>
+              <strong>To invite Ronny to GitHub:</strong>{' '}
+              <Link to="/invite-ronny" className="text-blue-600 hover:underline">
+                see the step-by-step invite guide
+              </Link>{' '}
+              or go directly to{' '}
+              <a
+                href="https://github.com/Sayfan-AI/ronny-learns-ai/settings/access"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                repository settings
+              </a>{' '}
+              and add Ronny as a collaborator.
+            </p>
+            <p>
+              <strong>To give feedback or request changes:</strong> open an issue in the{' '}
+              <a
+                href="https://github.com/Sayfan-AI/ronny-learns-ai/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                GitHub repository
+              </a>.
+              The AI agents monitor issues and will act on your requests automatically.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )

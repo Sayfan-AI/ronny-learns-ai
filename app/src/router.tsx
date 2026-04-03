@@ -1,4 +1,5 @@
 import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
+import { NavBar } from './components/NavBar'
 import { HomePage } from './pages/HomePage'
 import { GitHubSignupTutorial } from './pages/GitHubSignupTutorial'
 import { GitHubBasics } from './pages/GitHubBasics'
@@ -9,9 +10,15 @@ import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
 import { WhatIsCICD } from './pages/WhatIsCICD'
 import { InviteRonny } from './pages/InviteRonny'
 import { MeetTheAgents } from './pages/MeetTheAgents'
+import { NextSteps } from './pages/NextSteps'
 
 const rootRoute = createRootRoute({
-  component: () => <Outlet />,
+  component: () => (
+    <>
+      <NavBar />
+      <Outlet />
+    </>
+  ),
 })
 
 const homeRoute = createRoute({
@@ -74,6 +81,12 @@ const meetTheAgentsRoute = createRoute({
   component: MeetTheAgents,
 })
 
+const nextStepsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/next-steps',
+  component: NextSteps,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -85,6 +98,7 @@ const routeTree = rootRoute.addChildren([
   whatIsCICDRoute,
   inviteRonnyRoute,
   meetTheAgentsRoute,
+  nextStepsRoute,
 ])
 
 const hashHistory = createHashHistory()

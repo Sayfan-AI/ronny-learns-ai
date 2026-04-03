@@ -4,111 +4,149 @@ import { useMarkVisited } from '../hooks/useMarkVisited'
 export function WhatIsCICD() {
   useMarkVisited('what-is-ci-cd')
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
-
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F3ED;</div>
+          <div className="text-6xl">🏭</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
-            What is a CI/CD pipeline?
+            How does the website update automatically?
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            When a developer saves code, how does it become a live website? There is a whole automated process for that.
+            Every time Gigi or the AI makes a change, the website updates on its own — no one clicks &ldquo;publish&rdquo;.
+            Here is how that works.
           </p>
         </div>
 
-        {/* Section 1: The problem */}
+        {/* Section 1: The problem it solves */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F914;</span>
-            <h2 className="text-2xl font-semibold text-gray-700">The problem it solves</h2>
+            <span className="text-4xl">😤</span>
+            <h2 className="text-2xl font-semibold text-gray-700">The old way — before automation</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Imagine you have ten developers all adding code to a project. Every time someone
-            makes a change, someone would need to:
+            Imagine if every time the AI wrote new code, someone had to:
           </p>
-          <ul className="list-none space-y-2 text-gray-600 text-lg">
-            <li className="flex gap-2"><span>1.</span><span>Check that the new code doesn&apos;t break anything</span></li>
-            <li className="flex gap-2"><span>2.</span><span>Build the app (turn code into a runnable website)</span></li>
-            <li className="flex gap-2"><span>3.</span><span>Upload the new version to the web server</span></li>
+          <ul className="list-disc list-inside space-y-2 text-gray-600 text-lg">
+            <li>Manually check it did not break anything</li>
+            <li>Manually run the build process</li>
+            <li>Manually upload the new version to the web</li>
           </ul>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Doing this by hand every time would be exhausting and error-prone. That is exactly what a
-            <strong> CI/CD pipeline</strong> automates.
+            That would mean someone sitting at a computer pressing buttons every single time a tiny change was made.
+            With an AI system making dozens of changes per day, that is not realistic.
           </p>
         </div>
 
         {/* Section 2: The factory analogy */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F6E4;&#xFE0F;</span>
+            <span className="text-4xl">🏭</span>
             <h2 className="text-2xl font-semibold text-gray-700">Think of it like a factory assembly line</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
-            A car factory does not build one car at a time by hand — it has a production line where each
-            station does its job automatically. The same idea applies here:
+            A modern factory does not have a person inspecting every single product by hand and then driving it to the shop.
+            It has an <strong>automated assembly line</strong>:
           </p>
-          <div className="space-y-4">
+          <ul className="list-none space-y-3 text-gray-600 text-lg">
+            <li className="flex gap-3">
+              <span>1️⃣</span>
+              <span>A new product comes off the line</span>
+            </li>
+            <li className="flex gap-3">
+              <span>2️⃣</span>
+              <span>Sensors automatically check for defects</span>
+            </li>
+            <li className="flex gap-3">
+              <span>3️⃣</span>
+              <span>If it passes, it is packaged and shipped automatically</span>
+            </li>
+            <li className="flex gap-3">
+              <span>4️⃣</span>
+              <span>If it fails the check, the line stops and alerts a human</span>
+            </li>
+          </ul>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Software CI/CD works the same way. Every code change goes through an automated assembly line — tested and published without anyone pressing buttons.
+          </p>
+        </div>
+
+        {/* Section 3: What CI/CD stands for */}
+        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">📖</span>
+            <h2 className="text-2xl font-semibold text-gray-700">What CI/CD actually stands for</h2>
+          </div>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            <strong>CI</strong> stands for <strong>Continuous Integration</strong>. It means every change is automatically tested right away — not once a week, but instantly, every single time.
+          </p>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            <strong>CD</strong> stands for <strong>Continuous Deployment</strong>. If the tests pass, the change is automatically published to the live website. No human needed.
+          </p>
+          <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-4">
+            <p className="text-cyan-800 text-base">
+              <strong>Plain English version:</strong> Every time code is saved, it is automatically checked for problems, and if it is fine, the website is updated. Done.
+            </p>
+          </div>
+        </div>
+
+        {/* Section 4: How it works in this project */}
+        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">⚡</span>
+            <h2 className="text-2xl font-semibold text-gray-700">How it works in this project</h2>
+          </div>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            When the AI finishes a task and saves its work to GitHub, here is what happens next — automatically, in about 2 minutes:
+          </p>
+          <div className="space-y-3">
             {[
-              { icon: '&#x2705;', label: 'Check quality', desc: 'Automated tests run to make sure nothing is broken. If they fail, the pipeline stops — no broken code ships.' },
-              { icon: '&#x1F528;', label: 'Build', desc: 'The code is compiled and packaged into the files that make up the website — just like assembling parts into a finished product.' },
-              { icon: '&#x1F680;', label: 'Deploy', desc: 'The finished product is automatically uploaded to the web server and goes live. No one had to press a button.' },
-            ].map((step, i) => (
-              <div key={i} className="flex gap-4 items-start">
-                <span className="text-3xl flex-shrink-0" dangerouslySetInnerHTML={{ __html: step.icon }} />
+              {
+                step: '1',
+                title: 'GitHub spots the change',
+                desc: 'The moment new code is pushed to GitHub, it triggers an automated workflow called a GitHub Action.',
+              },
+              {
+                step: '2',
+                title: 'The code is checked',
+                desc: 'The workflow checks that the code has no obvious errors (lint check) and builds it into a working website.',
+              },
+              {
+                step: '3',
+                title: 'It is published',
+                desc: 'If everything looks good, the updated website is automatically deployed to GitHub Pages — the live website you are reading right now.',
+              },
+              {
+                step: '4',
+                title: 'You see the update',
+                desc: 'A few minutes later, anyone visiting the site sees the new version. No one had to press "publish" or "deploy".',
+              },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-4 items-start">
+                <div className="w-9 h-9 rounded-full bg-cyan-600 text-white font-bold flex items-center justify-center text-base flex-shrink-0 mt-0.5">
+                  {item.step}
+                </div>
                 <div>
-                  <p className="font-semibold text-gray-800 text-lg">{step.label}</p>
-                  <p className="text-gray-600 text-base leading-relaxed">{step.desc}</p>
+                  <p className="font-semibold text-gray-800 text-lg">{item.title}</p>
+                  <p className="text-gray-600 text-base leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Section 3: What CI and CD mean */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        {/* Section 5: Why it matters */}
+        <div className="bg-cyan-50 border border-cyan-200 rounded-2xl p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F4D6;</span>
-            <h2 className="text-2xl font-semibold text-gray-700">What the letters actually mean</h2>
-          </div>
-          <div className="space-y-4">
-            <div className="border-l-4 border-indigo-300 pl-4">
-              <p className="font-semibold text-gray-800 text-lg">CI — Continuous Integration</p>
-              <p className="text-gray-600 leading-relaxed">
-                &ldquo;Integration&rdquo; means bringing pieces together. &ldquo;Continuous&rdquo; means doing it constantly.
-                Every time code is saved, it is automatically tested and merged with the rest of the project.
-                Problems get caught early, not weeks later.
-              </p>
-            </div>
-            <div className="border-l-4 border-indigo-300 pl-4">
-              <p className="font-semibold text-gray-800 text-lg">CD — Continuous Deployment</p>
-              <p className="text-gray-600 leading-relaxed">
-                Once the code passes tests, it is automatically &ldquo;deployed&rdquo; — published to the live website.
-                No waiting, no manual steps. The moment code is merged and passes checks, it goes live.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Section 4: How it works in this project */}
-        <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-8 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F4BB;</span>
-            <h2 className="text-2xl font-semibold text-indigo-800">How it works in this project</h2>
+            <span className="text-4xl">💡</span>
+            <h2 className="text-2xl font-semibold text-cyan-800">Why this matters to you</h2>
           </div>
           <p className="text-gray-700 text-lg leading-relaxed">
-            This very app uses a CI/CD pipeline. Here is what happens every time the AI or Gigi saves code:
+            The AI can work quickly and publish many changes per day because the whole pipeline is automated.
+            There is no bottleneck of someone having to manually review and publish each one.
           </p>
-          <ol className="list-none space-y-2 text-gray-700 text-lg">
-            <li className="flex gap-2"><span>1.</span><span>Code is saved to GitHub (a commit is made)</span></li>
-            <li className="flex gap-2"><span>2.</span><span>GitHub Actions (the pipeline tool) detects the change and starts running</span></li>
-            <li className="flex gap-2"><span>3.</span><span>The app is built (TypeScript is compiled, CSS is processed)</span></li>
-            <li className="flex gap-2"><span>4.</span><span>The built files are uploaded to GitHub Pages (a free web hosting service)</span></li>
-            <li className="flex gap-2"><span>5.</span><span>The live website at <code className="bg-white px-1 rounded text-sm">sayfan-ai.github.io/ronny-learns-ai</code> is updated</span></li>
-          </ol>
           <p className="text-gray-700 text-lg leading-relaxed">
-            This entire process takes a few minutes and happens automatically every time anyone pushes code.
+            If you refresh this page tomorrow, it might look slightly different — because the AI added something new overnight, the CI/CD pipeline checked it, and published it automatically while everyone was asleep.
           </p>
         </div>
 
@@ -120,14 +158,7 @@ export function WhatIsCICD() {
           >
             &larr; Home
           </Link>
-          <Link
-            to="/learn/genesis-system"
-            className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-colors"
-          >
-            The Genesis System &rarr;
-          </Link>
         </div>
-
       </div>
     </div>
   )
