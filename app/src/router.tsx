@@ -11,6 +11,7 @@ import { InviteRonny } from './pages/InviteRonny'
 import { NextSteps } from './pages/NextSteps'
 import { WhatIsCICD } from './pages/WhatIsCICD'
 import { MeetTheAgents } from './pages/MeetTheAgents'
+import { HowToGiveFeedback } from './pages/HowToGiveFeedback'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -87,6 +88,12 @@ const meetTheAgentsRoute = createRoute({
   component: MeetTheAgents,
 })
 
+const howToGiveFeedbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-to-give-feedback',
+  component: HowToGiveFeedback,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -99,6 +106,7 @@ const routeTree = rootRoute.addChildren([
   nextStepsRoute,
   whatIsCICDRoute,
   meetTheAgentsRoute,
+  howToGiveFeedbackRoute,
 ])
 
 const hashHistory = createHashHistory()
