@@ -2,159 +2,138 @@ import { Link } from '@tanstack/react-router'
 
 export function HowToGiveFeedback() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white px-4 py-10">
-      <div className="max-w-2xl mx-auto space-y-8">
-
+    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col items-center px-4 py-16">
+      <div className="max-w-2xl w-full space-y-8">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <Link to="/" className="text-blue-500 hover:underline text-sm">
-            &larr; Back to home
-          </Link>
-          <div className="text-5xl">&#128172;</div>
-          <h1 className="text-3xl font-bold text-gray-800">How to Give Feedback</h1>
-          <p className="text-gray-500 text-lg leading-relaxed">
-            You are not just a reader of this project &mdash; you can talk to the AI system building it. Here is how.
+        <div className="text-center space-y-4">
+          <div className="text-6xl">💬</div>
+          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+            How to give feedback
+          </h1>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            You can actually talk to the AI team building this app — through GitHub.
+            Here&apos;s how to do it, step by step.
           </p>
         </div>
 
-        {/* Why feedback matters */}
-        <div className="bg-green-100 border border-green-300 rounded-2xl p-6 space-y-3">
-          <h2 className="text-xl font-semibold text-green-800">Your voice shapes this project</h2>
-          <p className="text-green-900 leading-relaxed">
-            The genesis system reads messages left in GitHub issues. That means if you leave a comment on an issue, the AI will read it and can act on it &mdash; adding new pages, fixing something confusing, or answering a question.
-          </p>
-          <p className="text-green-900 leading-relaxed">
-            This is not a one-way website. It is a two-way conversation between you and the AI team building it.
-          </p>
-        </div>
-
-        {/* What is a GitHub issue */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">What is a GitHub issue?</h2>
-          <p className="text-gray-600 leading-relaxed">
-            A <strong>GitHub issue</strong> is like a message or a ticket in a shared inbox. Both humans and AI agents read and respond to issues.
-          </p>
-          <p className="text-gray-600 leading-relaxed">
-            Issues are used for everything: reporting a bug, requesting a new feature, asking a question, or just leaving a note. When Gigi has feedback for the AI, she writes a GitHub issue. When the AI completes a task, it closes the issue.
-          </p>
-          <div className="bg-gray-50 rounded-xl p-4">
-            <p className="text-gray-500 text-sm leading-relaxed">
-              Think of it like a to-do list that both humans and AI can read, write on, and check things off. Everything is visible, nothing gets lost.
-            </p>
+        {/* Section 1: Why GitHub */}
+        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">📁</span>
+            <h2 className="text-2xl font-semibold text-gray-700">Why GitHub?</h2>
           </div>
-        </div>
-
-        {/* How to find issues */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Step 1: Find the issues page</h2>
-          <p className="text-gray-600 leading-relaxed">
-            The issues page for this project is on GitHub. You can find it here:
+          <p className="text-gray-600 text-lg leading-relaxed">
+            GitHub is where the AI team keeps all its work. When you open a GitHub issue,
+            the AI agents see it and can respond — just like sending a message to a team
+            that happens to check its inbox automatically.
           </p>
-          <a
-            href="https://github.com/Sayfan-AI/ronny-learns-ai/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block bg-blue-50 border border-blue-200 rounded-xl p-4 hover:bg-blue-100 transition-colors"
-          >
-            <p className="text-blue-700 font-medium">github.com/Sayfan-AI/ronny-learns-ai/issues</p>
-            <p className="text-blue-600 text-sm mt-1">Click to open the issues page in a new tab &rarr;</p>
-          </a>
-          <p className="text-gray-600 leading-relaxed">
-            You will see a list of open and closed issues. Each one is a task, question, or message in the system.
+          <p className="text-gray-600 text-lg leading-relaxed">
+            You don&apos;t need to know how to write code. You just need to know how to open
+            an issue, which is basically like writing a short note.
           </p>
         </div>
 
-        {/* How to comment */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Step 2: Open an issue and leave a comment</h2>
-          <p className="text-gray-600 leading-relaxed">
-            To leave feedback, follow these steps:
+        {/* Section 2: Before you start */}
+        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">✅</span>
+            <h2 className="text-2xl font-semibold text-gray-700">Before you start</h2>
+          </div>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            You&apos;ll need a GitHub account and to be added to the project by Gigi.
+            Once you are, you can open issues, leave comments, and the AI team will
+            see everything.
           </p>
-          <div className="space-y-4">
-            {[
-              { step: 'Go to the issues page (link above)', detail: 'You will see a list of tasks. Click on any one that interests you, or one that is relevant to your feedback.' },
-              { step: 'Scroll to the bottom of the issue', detail: 'Below the description and any existing comments, there is a text box where you can write your message.' },
-              { step: 'Write your feedback', detail: 'Say whatever you want. See some examples below for inspiration. There is no wrong answer.' },
-              { step: 'Click "Comment"', detail: 'That is it. Your message is now part of the project history. The genesis system will read it on its next cycle (usually within a day).' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-green-500 text-white font-bold flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
-                  {i + 1}
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800">{item.step}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mt-1">{item.detail}</p>
-                </div>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            If you don&apos;t have an account yet, the tutorial on the home page walks you
+            through creating one. It only takes a few minutes.
+          </p>
+        </div>
+
+        {/* Section 3: Opening an issue */}
+        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">📝</span>
+            <h2 className="text-2xl font-semibold text-gray-700">How to open an issue</h2>
+          </div>
+          <ol className="space-y-4">
+            <li className="flex items-start gap-3">
+              <span className="bg-teal-200 text-teal-800 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">1</span>
+              <div>
+                <p className="text-gray-700 text-lg font-medium">Go to the project on GitHub</p>
+                <p className="text-gray-600 text-base">Gigi will give you the link. It looks something like: <span className="font-mono text-sm bg-gray-100 px-1.5 py-0.5 rounded">github.com/username/ronny-learns-ai</span></p>
               </div>
-            ))}
-          </div>
-          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
-            <p className="text-yellow-800 text-sm leading-relaxed">
-              <strong>Note:</strong> You need a GitHub account to leave comments. If you do not have one yet, the &ldquo;Start Here&rdquo; tutorial on the home page will walk you through creating one in about 5 minutes.
-            </p>
-          </div>
-        </div>
-
-        {/* Examples of good feedback */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Examples of great feedback</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Not sure what to say? Here are some examples of useful feedback:
-          </p>
-          <div className="space-y-3">
-            {[
-              { type: 'Request a new topic', example: '"I would love a page explaining what a database is."' },
-              { type: 'Report something confusing', example: '"The quiz on the AI page is too hard for a beginner. Can you make the questions simpler?"' },
-              { type: 'Share a thought', example: '"I did not realise the whole website was built by AI. That is mind-blowing."' },
-              { type: 'Ask a question', example: '"When the AI makes a mistake, who fixes it? Does Gigi have to check everything?"' },
-              { type: 'Suggest an improvement', example: '"The home page could have a short video introduction."' },
-            ].map((item, i) => (
-              <div key={i} className="border border-gray-100 rounded-xl p-4 space-y-1">
-                <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">{item.type}</p>
-                <p className="text-gray-700 italic text-sm">{item.example}</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="bg-teal-200 text-teal-800 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">2</span>
+              <div>
+                <p className="text-gray-700 text-lg font-medium">Click on the &ldquo;Issues&rdquo; tab</p>
+                <p className="text-gray-600 text-base">You&apos;ll see a list of open issues — tasks, notes, and questions the AI team has been working on.</p>
               </div>
-            ))}
-          </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="bg-teal-200 text-teal-800 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">3</span>
+              <div>
+                <p className="text-gray-700 text-lg font-medium">Click the green &ldquo;New issue&rdquo; button</p>
+                <p className="text-gray-600 text-base">It&apos;s in the top-right corner of the Issues page.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="bg-teal-200 text-teal-800 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">4</span>
+              <div>
+                <p className="text-gray-700 text-lg font-medium">Give it a short title and write your message</p>
+                <p className="text-gray-600 text-base">For example: &ldquo;Feedback: the AI explanation was really clear!&rdquo; or &ldquo;Suggestion: can we add more examples?&rdquo;</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="bg-teal-200 text-teal-800 rounded-full w-7 h-7 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">5</span>
+              <div>
+                <p className="text-gray-700 text-lg font-medium">Click &ldquo;Submit new issue&rdquo;</p>
+                <p className="text-gray-600 text-base">That&apos;s it. The AI team will see it on their next check.</p>
+              </div>
+            </li>
+          </ol>
         </div>
 
-        {/* Gigi vs Ronny */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-gray-700">Gigi&apos;s role vs Ronny&apos;s role</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="bg-purple-50 rounded-xl p-4 space-y-2">
-              <h3 className="font-semibold text-purple-800">Gigi (the guide)</h3>
-              <p className="text-purple-700 text-sm leading-relaxed">
-                Gigi set up this whole project. She describes the overall direction, approves big changes, and acts as the main human contact for the genesis system. She can override anything the AI does.
-              </p>
+        {/* Section 4: What to write */}
+        <div className="bg-teal-50 border border-teal-200 rounded-2xl p-8 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">💡</span>
+            <h2 className="text-2xl font-semibold text-teal-800">What kinds of things can you say?</h2>
+          </div>
+          <div className="space-y-3 text-gray-700 text-lg">
+            <div className="flex items-start gap-2">
+              <span className="text-teal-600 font-bold">✓</span>
+              <p>Something was confusing: &ldquo;I didn&apos;t understand the part about commits — can it be explained differently?&rdquo;</p>
             </div>
-            <div className="bg-green-50 rounded-xl p-4 space-y-2">
-              <h3 className="font-semibold text-green-800">Ronny (that is you!)</h3>
-              <p className="text-green-700 text-sm leading-relaxed">
-                You are the learner this project was built for. Your feedback about what is confusing, what is interesting, or what you want to learn next directly shapes what the AI builds.
-              </p>
+            <div className="flex items-start gap-2">
+              <span className="text-teal-600 font-bold">✓</span>
+              <p>A suggestion: &ldquo;It would be great to have a short summary at the end of each page.&rdquo;</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-teal-600 font-bold">✓</span>
+              <p>A question: &ldquo;What happens if I make a mistake during the GitHub signup?&rdquo;</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-teal-600 font-bold">✓</span>
+              <p>Positive feedback: &ldquo;The quiz on the AI page was really fun and helpful!&rdquo;</p>
             </div>
           </div>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Both voices matter. But your perspective as a complete beginner is especially valuable &mdash; you will catch things that experts miss.
+          <p className="text-gray-700 text-lg leading-relaxed">
+            There are no wrong things to say. Every piece of feedback helps the AI team
+            make this better for you.
           </p>
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between items-center pt-2">
+        <div className="flex justify-between items-center pt-4">
           <Link
             to="/"
-            className="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
+            className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline"
           >
-            &larr; Home
-          </Link>
-          <Link
-            to="/explore/live-activity"
-            className="px-6 py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold transition-colors"
-          >
-            See Live Activity &rarr;
+            &larr; Back to home
           </Link>
         </div>
-
       </div>
     </div>
   )

@@ -67,10 +67,9 @@ const MODULES = [
   },
   {
     id: 'meet-the-agents',
-    title: 'Meet the AI Agents',
-    description: 'The team behind this project — who they are, what they do, and how the loop works.',
-    readingTime: '5 min',
-    icon: '🤝',
+    title: 'Meet the AI agents',
+    description: 'The five agents behind this project — their roles, their loop, and how they coordinate.',
+    icon: '👥',
     to: '/agents',
     color: 'violet',
   },
@@ -82,9 +81,9 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700', button: 'bg-purple-600 hover:bg-purple-700 text-white' },
   teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700',   button: 'bg-teal-600 hover:bg-teal-700 text-white' },
   orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
-  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
-  cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',   button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
   violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
+  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
+  cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',     button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -141,6 +140,32 @@ export function HomePage() {
             )}
           </div>
         )}
+
+        {/* For Gigi section */}
+        <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6 space-y-3">
+          <p className="text-sm font-semibold text-pink-700 uppercase tracking-wide">For Gigi</p>
+          <p className="text-gray-700 leading-relaxed">
+            This site is a step-by-step guide for Ronny. Share the link and they can work through it
+            at their own pace. Once Ronny has a GitHub account, you can invite them to the project
+            so they can follow along in real time.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/invite-ronny"
+              className="inline-block bg-pink-600 hover:bg-pink-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              How to invite Ronny to GitHub &rarr;
+            </Link>
+            <a
+              href="https://github.com/Sayfan-AI/ronny-learns-ai/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border border-pink-300 text-pink-700 hover:bg-pink-100 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            >
+              Give feedback on GitHub &rarr;
+            </a>
+          </div>
+        </div>
 
         {/* Learning path */}
         <div className="space-y-4">
@@ -209,6 +234,52 @@ export function HomePage() {
             </div>
             <span className="text-white text-xl flex-shrink-0 ml-auto">&rarr;</span>
           </Link>
+        </div>
+
+        {/* Explore section */}
+        <div className="border-t border-gray-200 pt-6 space-y-4">
+          <div className="text-center space-y-1">
+            <h2 className="text-2xl font-semibold text-gray-700">Explore the real thing</h2>
+            <p className="text-gray-500 text-sm">See the AI at work — hands on.</p>
+          </div>
+
+          <div className="space-y-3">
+            <Link
+              to="/explore/live-activity"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-indigo-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">📋</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-800 text-base">Live Activity</h3>
+                <p className="text-gray-500 text-sm">See the real GitHub issues from this project — fetched live right now.</p>
+              </div>
+              <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+
+            <Link
+              to="/explore/how-agents-work"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-violet-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">🔄</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-800 text-base">How the agents work</h3>
+                <p className="text-gray-500 text-sm">The genesis dev loop from trigger to deployed website — with a quiz.</p>
+              </div>
+              <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+
+            <Link
+              to="/explore/your-journey"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-emerald-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">🎉</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-800 text-base">Your learning journey</h3>
+                <p className="text-gray-500 text-sm">A summary of everything you have learned and links to explore the real project.</p>
+              </div>
+              <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+          </div>
         </div>
 
         {/* For Gigi section */}
