@@ -9,6 +9,9 @@ import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
 import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
 import { InviteRonny } from './pages/InviteRonny'
 import { NextSteps } from './pages/NextSteps'
+import { WhatIsCICD } from './pages/WhatIsCICD'
+import { MeetTheAgents } from './pages/MeetTheAgents'
+import { HowToGiveFeedback } from './pages/HowToGiveFeedback'
 import { LiveActivity } from './pages/LiveActivity'
 import { HowAgentsWork } from './pages/HowAgentsWork'
 import { YourJourney } from './pages/YourJourney'
@@ -76,6 +79,24 @@ const nextStepsRoute = createRoute({
   component: NextSteps,
 })
 
+const whatIsCICDRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-ci-cd',
+  component: WhatIsCICD,
+})
+
+const meetTheAgentsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/agents',
+  component: MeetTheAgents,
+})
+
+const howToGiveFeedbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-to-give-feedback',
+  component: HowToGiveFeedback,
+})
+
 const liveActivityRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/explore/live-activity',
@@ -104,6 +125,9 @@ const routeTree = rootRoute.addChildren([
   howThisWasBuiltRoute,
   inviteRonnyRoute,
   nextStepsRoute,
+  whatIsCICDRoute,
+  meetTheAgentsRoute,
+  howToGiveFeedbackRoute,
   liveActivityRoute,
   howAgentsWorkRoute,
   yourJourneyRoute,

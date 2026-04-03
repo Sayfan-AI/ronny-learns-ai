@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: '/learn/what-is-ai', label: 'What is AI?' },
   { to: '/learn/what-is-api', label: 'What is an API?' },
   { to: '/learn/genesis-system', label: 'Genesis system' },
+  { to: '/learn/what-is-ci-cd', label: 'How does it update?' },
 ]
 
 export function NavBar() {
