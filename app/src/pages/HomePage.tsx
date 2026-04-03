@@ -46,19 +46,37 @@ const MODULES = [
     id: 'how-this-was-built',
     title: 'How this app was built',
     description: 'The full story — how AI planned, coded, and deployed what you are reading.',
-    icon: '🏗️',
+    icon: '&#x1F3D7;&#xFE0F;',
     to: '/learn/how-this-was-built',
     color: 'indigo',
   },
+  {
+    id: 'what-is-ci-cd',
+    title: 'What is a CI/CD pipeline?',
+    description: 'How code goes from a developer\'s computer to a live website — automatically.',
+    icon: '&#x1F3ED;',
+    to: '/learn/what-is-ci-cd',
+    color: 'slate',
+  },
+  {
+    id: 'meet-the-agents',
+    title: 'Meet the AI agents',
+    description: 'The team behind this app — who they are and how they coordinate.',
+    icon: '&#x1F916;',
+    to: '/learn/meet-the-agents',
+    color: 'violet',
+  },
 ]
 
-const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
-  blue:   { border: 'hover:border-blue-300',   badge: 'bg-blue-100 text-blue-700',   button: 'bg-blue-600 hover:bg-blue-700 text-white' },
-  green:  { border: 'hover:border-green-300',  badge: 'bg-green-100 text-green-700', button: 'bg-green-600 hover:bg-green-700 text-white' },
-  purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700', button: 'bg-purple-600 hover:bg-purple-700 text-white' },
-  teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700',   button: 'bg-teal-600 hover:bg-teal-700 text-white' },
-  orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
-  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
+const COLOR_MAP: Record<string, { border: string; badge: string }> = {
+  blue:   { border: 'hover:border-blue-300',   badge: 'bg-blue-100 text-blue-700' },
+  green:  { border: 'hover:border-green-300',  badge: 'bg-green-100 text-green-700' },
+  purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700' },
+  teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700' },
+  orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700' },
+  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700' },
+  slate:  { border: 'hover:border-slate-300',  badge: 'bg-slate-100 text-slate-700' },
+  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -115,6 +133,32 @@ export function HomePage() {
             )}
           </div>
         )}
+
+        {/* For Gigi section */}
+        <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6 space-y-3">
+          <p className="text-sm font-semibold text-pink-700 uppercase tracking-wide">For Gigi</p>
+          <p className="text-gray-700 leading-relaxed">
+            This site is a step-by-step guide for Ronny. Share the link and they can work through it
+            at their own pace. Once Ronny has a GitHub account, you can invite them to the project
+            so they can follow along in real time.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/invite-ronny"
+              className="inline-block bg-pink-600 hover:bg-pink-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              How to invite Ronny to GitHub &rarr;
+            </Link>
+            <a
+              href="https://github.com/Sayfan-AI/ronny-learns-ai/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border border-pink-300 text-pink-700 hover:bg-pink-100 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            >
+              Give feedback on GitHub &rarr;
+            </a>
+          </div>
+        </div>
 
         {/* Learning path */}
         <div className="space-y-4">

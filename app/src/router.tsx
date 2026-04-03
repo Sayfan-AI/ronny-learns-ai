@@ -6,6 +6,9 @@ import { WhatIsAI } from './pages/WhatIsAI'
 import { GenesisSystem } from './pages/GenesisSystem'
 import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
 import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
+import { WhatIsCICD } from './pages/WhatIsCICD'
+import { InviteRonny } from './pages/InviteRonny'
+import { MeetTheAgents } from './pages/MeetTheAgents'
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -53,6 +56,24 @@ const howThisWasBuiltRoute = createRoute({
   component: HowThisWasBuilt,
 })
 
+const whatIsCICDRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-ci-cd',
+  component: WhatIsCICD,
+})
+
+const inviteRonnyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/invite-ronny',
+  component: InviteRonny,
+})
+
+const meetTheAgentsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/meet-the-agents',
+  component: MeetTheAgents,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -61,6 +82,9 @@ const routeTree = rootRoute.addChildren([
   genesisSystemRoute,
   whatIsAnAPIRoute,
   howThisWasBuiltRoute,
+  whatIsCICDRoute,
+  inviteRonnyRoute,
+  meetTheAgentsRoute,
 ])
 
 const hashHistory = createHashHistory()
