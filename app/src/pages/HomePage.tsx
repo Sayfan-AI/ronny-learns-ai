@@ -69,6 +69,14 @@ export function HomePage() {
               <h3 className="text-lg font-semibold text-gray-800 mb-1">What is AI?</h3>
               <p className="text-gray-500 text-sm">How AI language models work and how Gigi uses one to build this app.</p>
             </Link>
+            <Link
+              to="/learn/genesis-system"
+              className="block bg-white rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition-shadow border border-gray-100 sm:col-span-2"
+            >
+              <div className="text-3xl mb-2">⚙️</div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">What is the Genesis system?</h3>
+              <p className="text-gray-500 text-sm">The AI team that builds this app &mdash; how it works and how to watch it in real time.</p>
+            </Link>
           </div>
         </div>
       </div>

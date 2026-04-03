@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage'
 import { GitHubSignupTutorial } from './pages/GitHubSignupTutorial'
 import { GitHubBasics } from './pages/GitHubBasics'
 import { WhatIsAI } from './pages/WhatIsAI'
+import { GenesisSystem } from './pages/GenesisSystem'
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -32,7 +33,13 @@ const whatIsAIRoute = createRoute({
   component: WhatIsAI,
 })
 
-const routeTree = rootRoute.addChildren([homeRoute, githubSignupRoute, githubBasicsRoute, whatIsAIRoute])
+const genesisSystemRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/genesis-system',
+  component: GenesisSystem,
+})
+
+const routeTree = rootRoute.addChildren([homeRoute, githubSignupRoute, githubBasicsRoute, whatIsAIRoute, genesisSystemRoute])
 
 const hashHistory = createHashHistory()
 
