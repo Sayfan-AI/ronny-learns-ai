@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-interface QuizQuestion {
+export interface QuizQuestion {
   question: string
   options: string[]
   correctIndex: number
@@ -12,112 +12,120 @@ interface QuizProps {
   title?: string
 }
 
-export function Quiz({ questions, title = 'Quick Check' }: QuizProps) {
-  const [answers, setAnswers] = useState<(number | null)[]>(
-    new Array(questions.length).fill(null)
-  )
-  const [submitted, setSubmitted] = useState(false)
+type AnswerMap = Record<number, number>
 
-  const score = answers.filter((a, i) => a === questions[i].correctIndex).length
+export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
+  const [answers, setAnswers] = useState<AnswerMap>({})
+  const [key, setKey] = useState(0)
 
-  const handleSelect = (questionIndex: number, optionIndex: number) => {
-    if (submitted) return
-    setAnswers(prev => {
-      const next = [...prev]
-      next[questionIndex] = optionIndex
-      return next
-    })
+  const answered = Object.keys(answers).length
+  const total = questions.length
+  const allDone = answered === total
+  const score = allDone
+    ? questions.filter((q, i) => answers[i] === q.correctIndex).length
+    : 0
+
+  function handleSelect(questionIndex: number, optionIndex: number) {
+    if (answers[questionIndex] !== undefined) return
+    setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))
   }
 
-  const allAnswered = answers.every(a => a !== null)
+  function reset() {
+    setAnswers({})
+    setKey((k) => k + 1)
+  }
+
+  function resultMessage() {
+    const pct = score / total
+    if (pct === 1) return 'Perfect score! Great job!'
+    if (pct >= 0.75) return 'Well done! You know your stuff.'
+    if (pct >= 0.5) return 'Good effort! Give it another try to lock it in.'
+    return 'Keep going — you will get there with another read!'
+  }
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-8 space-y-6">
+    <div key={key} className="bg-white rounded-2xl shadow-md p-8 space-y-6">
       <div className="flex items-center gap-3">
-        <span className="text-4xl">?</span>
+        <span className="text-4xl">&#x1F4DD;</span>
         <h2 className="text-2xl font-semibold text-gray-700">{title}</h2>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {questions.map((q, qi) => {
-          const selected = answers[qi]
-          const isCorrect = selected === q.correctIndex
+          const chosen = answers[qi]
+          const hasAnswered = chosen !== undefined
+          const isCorrect = chosen === q.correctIndex
 
           return (
             <div key={qi} className="space-y-3">
-              <p className="text-gray-800 font-medium text-lg">
+              <p className="text-gray-800 text-lg font-medium">
                 {qi + 1}. {q.question}
               </p>
+
               <div className="space-y-2">
                 {q.options.map((option, oi) => {
-                  let bg = 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'
-                  if (selected === oi && !submitted) {
-                    bg = 'bg-blue-50 border-blue-400 text-blue-800'
-                  }
-                  if (submitted) {
-                    if (oi === q.correctIndex) {
-                      bg = 'bg-green-50 border-green-400 text-green-800'
-                    } else if (selected === oi && !isCorrect) {
-                      bg = 'bg-red-50 border-red-400 text-red-800'
-                    } else {
-                      bg = 'bg-gray-50 border-gray-200 text-gray-500'
-                    }
+                  let classes =
+                    'w-full text-left px-5 py-3 rounded-xl border text-base font-medium transition-colors duration-150 '
+
+                  if (!hasAnswered) {
+                    classes += 'border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-300 text-gray-700 cursor-pointer'
+                  } else if (oi === q.correctIndex) {
+                    classes += 'border-green-400 bg-green-50 text-green-800 cursor-default'
+                  } else if (oi === chosen) {
+                    classes += 'border-red-400 bg-red-50 text-red-800 cursor-default'
+                  } else {
+                    classes += 'border-gray-200 bg-gray-50 text-gray-400 cursor-default'
                   }
 
                   return (
                     <button
                       key={oi}
+                      className={classes}
                       onClick={() => handleSelect(qi, oi)}
-                      className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-colors ${bg} ${submitted ? 'cursor-default' : 'cursor-pointer'}`}
+                      disabled={hasAnswered}
                     >
-                      {option}
+                      <span className="flex items-center gap-3">
+                        {hasAnswered && oi === q.correctIndex && (
+                          <span className="text-green-600 font-bold">&#x2713;</span>
+                        )}
+                        {hasAnswered && oi === chosen && oi !== q.correctIndex && (
+                          <span className="text-red-600 font-bold">&#x2717;</span>
+                        )}
+                        {option}
+                      </span>
                     </button>
                   )
                 })}
               </div>
-              {submitted && (
-                <p className={`text-sm px-4 py-2 rounded-lg ${isCorrect ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                  {isCorrect ? 'Correct! ' : 'Not quite. '}
+
+              {hasAnswered && (
+                <div
+                  className={`rounded-xl p-4 text-sm leading-relaxed ${
+                    isCorrect
+                      ? 'bg-green-50 border border-green-200 text-green-800'
+                      : 'bg-amber-50 border border-amber-200 text-amber-800'
+                  }`}
+                >
+                  <strong>{isCorrect ? 'Correct! ' : 'Not quite. '}</strong>
                   {q.explanation}
-                </p>
+                </div>
               )}
             </div>
           )
         })}
       </div>
 
-      {!submitted ? (
-        <button
-          onClick={() => setSubmitted(true)}
-          disabled={!allAnswered}
-          className={`w-full py-3 rounded-xl font-semibold text-lg transition-colors ${
-            allAnswered
-              ? 'bg-blue-600 text-white hover:bg-blue-700'
-              : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-          }`}
-        >
-          {allAnswered ? 'Check my answers' : 'Answer all questions to continue'}
-        </button>
-      ) : (
-        <div className="text-center space-y-3">
-          <div className={`text-5xl font-bold ${score === questions.length ? 'text-green-600' : score >= questions.length / 2 ? 'text-blue-600' : 'text-orange-500'}`}>
-            {score} / {questions.length}
-          </div>
-          <p className="text-gray-600 text-lg">
-            {score === questions.length
-              ? 'Perfect score! You have got it.'
-              : score >= questions.length / 2
-              ? 'Good effort! Review the explanations above.'
-              : 'Keep at it! Read through the explanations above and try again.'}
+      {allDone && (
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 space-y-4 text-center">
+          <p className="text-2xl font-bold text-blue-800">
+            {score} out of {total} correct
           </p>
+          <p className="text-blue-700 text-lg">{resultMessage()}</p>
           <button
-            onClick={() => {
-              setAnswers(new Array(questions.length).fill(null))
-              setSubmitted(false)
-            }}
-            className="text-blue-600 hover:text-blue-800 underline text-sm"
+            onClick={reset}
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors duration-200"
           >
-            Try again
+            Try Again
           </button>
         </div>
       )}

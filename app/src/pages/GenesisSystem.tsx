@@ -1,49 +1,54 @@
 import { Quiz } from '../components/Quiz'
+import type { QuizQuestion } from '../components/Quiz'
 
-const genesisQuizQuestions = [
+const quizQuestions: QuizQuestion[] = [
   {
-    question: 'What is genesis?',
+    question: 'What is the Genesis system?',
     options: [
-      'A music streaming service',
-      'A system where AI agents work as a development team to build software autonomously',
-      'A type of database for storing files',
-      'A tool for designing websites with drag and drop',
+      'A video game Gigi plays in her spare time',
+      'A dev system where AI agents automatically build software together',
+      'A type of programming language',
+      'A website for storing photos',
     ],
     correctIndex: 1,
-    explanation: 'Genesis is a development system where AI agents plan, code, review, and deploy software — working like an automated dev team.',
+    explanation:
+      'Genesis is a system made up of several AI agents that work together like a small development team — planning, building, and publishing software automatically.',
   },
   {
-    question: 'What triggers the agents to do work?',
+    question: 'How do humans communicate with Genesis agents?',
     options: [
-      'Gigi types commands into a terminal every time',
-      'GitHub Actions run on a schedule and in response to events like issue comments',
-      'Someone has to manually start each agent by clicking a button',
-      'The agents run 24/7 continuously with no triggers',
+      'By sending text messages to a phone number',
+      'By calling them on the phone',
+      'Through GitHub issues and comments',
+      'By writing emails to Anthropic',
+    ],
+    correctIndex: 2,
+    explanation:
+      'Everything happens through GitHub. Issues are tasks, comments are messages, and agents post updates as GitHub comments — all in one place.',
+  },
+  {
+    question: 'What triggers the Genesis agents to run?',
+    options: [
+      'Gigi pressing a button every time she wants something done',
+      'Scheduled timers (cron jobs) and events like a new issue being opened',
+      'Random chance — they run whenever they feel like it',
+      'Only when a human approves each step manually',
     ],
     correctIndex: 1,
-    explanation: 'GitHub Actions are automated workflows that run on a timer (every 10 minutes) or when something happens, like a new comment.',
+    explanation:
+      "Agents run automatically — on a schedule (every 10 minutes or so) or when something happens on GitHub like an issue being labeled or closed. No button-pressing required.",
   },
   {
-    question: 'How does genesis track what needs to be done?',
+    question: 'What is the role of the human (Gigi) in the Genesis loop?',
     options: [
-      'A shared spreadsheet that humans update',
-      'A private chat between agents',
-      'GitHub Issues — which both agents and humans can create and comment on',
-      'A paper notebook that Gigi keeps',
+      'To write all the code herself',
+      'Nothing — the AI does everything on its own',
+      'To review progress, provide direction, and unblock things the AI cannot do alone',
+      'To test the app on every device',
     ],
     correctIndex: 2,
-    explanation: 'GitHub Issues serve as the shared task list. Agents create, update, and close issues automatically as work progresses.',
-  },
-  {
-    question: 'What role does Gigi play in the genesis system?',
-    options: [
-      'Gigi writes all the code manually',
-      'Gigi has no role — the AI does everything',
-      'Gigi sets the direction, approves milestones, and handles things the AI cannot do alone',
-      'Gigi only tests the final app after it is done',
-    ],
-    correctIndex: 2,
-    explanation: 'Gigi is the human-in-the-loop — setting goals, reviewing results, and stepping in when the AI hits a wall or needs a decision.',
+    explanation:
+      "Gigi sets the goals, reviews the work, and steps in when the AI is stuck or needs a decision only a human can make. The AI handles the repetitive technical work; Gigi provides judgment and direction.",
   },
 ]
 
@@ -53,7 +58,7 @@ export function GenesisSystem() {
       <div className="max-w-2xl w-full space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="text-6xl">⚙️</div>
+          <div className="text-6xl">&#x2699;&#xFE0F;</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             What is the Genesis system?
           </h1>
@@ -66,7 +71,7 @@ export function GenesisSystem() {
         {/* What is Genesis */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🏗️</span>
+            <span className="text-4xl">&#x1F3D7;&#xFE0F;</span>
             <h2 className="text-2xl font-semibold text-gray-700">What is it?</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -83,13 +88,13 @@ export function GenesisSystem() {
         {/* The agents */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-6">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">👥</span>
+            <span className="text-4xl">&#x1F465;</span>
             <h2 className="text-2xl font-semibold text-gray-700">The agents and their roles</h2>
           </div>
 
           <div className="space-y-4">
             <div className="flex gap-4 items-start">
-              <span className="text-2xl">🗺️</span>
+              <span className="text-2xl">&#x1F5FA;&#xFE0F;</span>
               <div>
                 <p className="font-semibold text-gray-800 text-lg">Project Manager (Orchestrator)</p>
                 <p className="text-gray-600 text-base leading-relaxed">
@@ -99,7 +104,7 @@ export function GenesisSystem() {
               </div>
             </div>
             <div className="flex gap-4 items-start">
-              <span className="text-2xl">👷</span>
+              <span className="text-2xl">&#x1F477;</span>
               <div>
                 <p className="font-semibold text-gray-800 text-lg">Workers</p>
                 <p className="text-gray-600 text-base leading-relaxed">
@@ -109,7 +114,7 @@ export function GenesisSystem() {
               </div>
             </div>
             <div className="flex gap-4 items-start">
-              <span className="text-2xl">💬</span>
+              <span className="text-2xl">&#x1F4AC;</span>
               <div>
                 <p className="font-semibold text-gray-800 text-lg">Human Interaction Agent</p>
                 <p className="text-gray-600 text-base leading-relaxed">
@@ -119,7 +124,7 @@ export function GenesisSystem() {
               </div>
             </div>
             <div className="flex gap-4 items-start">
-              <span className="text-2xl">🔍</span>
+              <span className="text-2xl">&#x1F50D;</span>
               <div>
                 <p className="font-semibold text-gray-800 text-lg">Health Monitor</p>
                 <p className="text-gray-600 text-base leading-relaxed">
@@ -134,7 +139,7 @@ export function GenesisSystem() {
         {/* How they coordinate */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🔗</span>
+            <span className="text-4xl">&#x1F517;</span>
             <h2 className="text-2xl font-semibold text-gray-700">How do they coordinate?</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -142,15 +147,15 @@ export function GenesisSystem() {
           </p>
           <ul className="list-none space-y-3 text-gray-600 text-lg">
             <li className="flex gap-3">
-              <span>📋</span>
+              <span>&#x1F4CB;</span>
               <span><strong>Issues</strong> are tasks. When work is needed, an issue is created. When it&apos;s done, the issue is closed.</span>
             </li>
             <li className="flex gap-3">
-              <span>💾</span>
+              <span>&#x1F4BE;</span>
               <span><strong>Commits</strong> are when code is saved. Each one has a message explaining what changed.</span>
             </li>
             <li className="flex gap-3">
-              <span>⚡</span>
+              <span>&#x26A1;</span>
               <span><strong>GitHub Actions</strong> automatically run the agents on a schedule or when something happens (like an issue being closed).</span>
             </li>
           </ul>
@@ -159,7 +164,7 @@ export function GenesisSystem() {
         {/* Watch it happen */}
         <div className="bg-orange-50 border border-orange-200 rounded-2xl p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">👀</span>
+            <span className="text-4xl">&#x1F440;</span>
             <h2 className="text-2xl font-semibold text-orange-800">Watch it happen in real time</h2>
           </div>
           <p className="text-gray-700 text-lg leading-relaxed">
@@ -182,7 +187,7 @@ export function GenesisSystem() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={genesisQuizQuestions} title="Test your knowledge" />
+        <Quiz questions={quizQuestions} title="Quiz: What is the Genesis system?" />
 
         {/* Back link */}
         <div className="text-center">

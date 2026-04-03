@@ -1,49 +1,54 @@
 import { Quiz } from '../components/Quiz'
+import type { QuizQuestion } from '../components/Quiz'
 
-const aiQuizQuestions = [
+const quizQuestions: QuizQuestion[] = [
   {
     question: 'What does AI stand for?',
     options: [
-      'Automatic Internet',
+      'Automated Instructions',
       'Artificial Intelligence',
-      'Advanced Interface',
-      'Automated Input',
+      'Advanced Internet',
+      'Automatic Input',
     ],
     correctIndex: 1,
-    explanation: 'AI stands for Artificial Intelligence — computer systems that can perform tasks that normally need human thinking.',
+    explanation:
+      'AI stands for Artificial Intelligence — software that has learned patterns from huge amounts of examples.',
   },
   {
-    question: 'How does a large language model (like ChatGPT) work?',
+    question: 'How does an AI language model like Claude learn?',
     options: [
-      'It has a human secretly typing responses behind the scenes',
-      'It looks up answers in a giant encyclopedia',
-      'It learned patterns from huge amounts of text and predicts what to say next',
-      'It connects to the internet and reads news in real time',
+      'A team of experts programs every possible answer by hand',
+      'It searches the internet in real time to find answers',
+      'It learns patterns from enormous amounts of text',
+      'It copies answers from a giant book',
     ],
     correctIndex: 2,
-    explanation: 'Language models learn from enormous amounts of text and use those patterns to generate responses — no human in the loop.',
+    explanation:
+      'AI language models are trained on huge amounts of text. They learn patterns — like a very well-read assistant who has absorbed a whole library.',
   },
   {
-    question: 'What can AI NOT do reliably?',
+    question: 'What is Claude?',
     options: [
-      'Write code',
-      'Summarise a long document',
-      'Always know what is true versus made up',
-      'Answer questions in multiple languages',
-    ],
-    correctIndex: 2,
-    explanation: 'AI can sometimes "hallucinate" — generating confident-sounding but incorrect information. That is why human review matters.',
-  },
-  {
-    question: 'In this project, what does the AI do?',
-    options: [
-      'It replaces Gigi entirely and runs the whole project alone',
-      'It writes code and manages tasks while Gigi provides direction and oversight',
-      'It only answers Ronny\'s questions',
-      'It does nothing — it is just here for show',
+      'A search engine made by Google',
+      'An AI made by Anthropic that helps build this app',
+      'A programming language',
+      'A GitHub tool',
     ],
     correctIndex: 1,
-    explanation: 'The AI does the coding and coordination work, but Gigi sets the direction, reviews quality, and makes final decisions.',
+    explanation:
+      "Claude is an AI assistant made by a company called Anthropic. It's the AI that helps Gigi build this project.",
+  },
+  {
+    question: 'Is AI magic?',
+    options: [
+      'Yes — nobody really understands how it works',
+      'No — it is a program that generates responses based on learned patterns',
+      'Yes — it can do anything a human can do',
+      'No — it is just a very fast search engine',
+    ],
+    correctIndex: 1,
+    explanation:
+      "AI is not magic. It's a program that predicts helpful responses based on patterns it learned from text. Powerful, but not mysterious.",
   },
 ]
 
@@ -53,7 +58,7 @@ export function WhatIsAI() {
       <div className="max-w-2xl w-full space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="text-6xl">🤖</div>
+          <div className="text-6xl">&#x1F916;</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             What is AI?
           </h1>
@@ -66,7 +71,7 @@ export function WhatIsAI() {
         {/* Section 1: What is AI */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🧠</span>
+            <span className="text-4xl">&#x1F9E0;</span>
             <h2 className="text-2xl font-semibold text-gray-700">At the most basic level</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -83,7 +88,7 @@ export function WhatIsAI() {
         {/* Section 2: How language models work */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">📚</span>
+            <span className="text-4xl">&#x1F4DA;</span>
             <h2 className="text-2xl font-semibold text-gray-700">How AI like Claude works</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -105,7 +110,7 @@ export function WhatIsAI() {
         {/* Section 3: What AI can and can't do */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">⚖️</span>
+            <span className="text-4xl">&#x2696;&#xFE0F;</span>
             <h2 className="text-2xl font-semibold text-gray-700">What AI is good at — and not so good at</h2>
           </div>
           <div className="space-y-4">
@@ -133,7 +138,7 @@ export function WhatIsAI() {
         {/* Section 4: How Gigi uses AI */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🛠️</span>
+            <span className="text-4xl">&#x1F6E0;&#xFE0F;</span>
             <h2 className="text-2xl font-semibold text-gray-700">How Gigi uses AI to build this for you</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -156,7 +161,7 @@ export function WhatIsAI() {
         {/* Section 5: Key message */}
         <div className="bg-purple-50 border border-purple-200 rounded-2xl p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">💡</span>
+            <span className="text-4xl">&#x1F4A1;</span>
             <h2 className="text-2xl font-semibold text-purple-800">The key thing to remember</h2>
           </div>
           <p className="text-gray-700 text-lg leading-relaxed">
@@ -172,7 +177,7 @@ export function WhatIsAI() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={aiQuizQuestions} title="Test your knowledge" />
+        <Quiz questions={quizQuestions} title="Quiz: What is AI?" />
 
         {/* Back link */}
         <div className="text-center">
