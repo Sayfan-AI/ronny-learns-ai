@@ -16,6 +16,12 @@ import { LiveActivity } from './pages/LiveActivity'
 import { HowAgentsWork } from './pages/HowAgentsWork'
 import { YourJourney } from './pages/YourJourney'
 import { ProfileSetup } from './pages/ProfileSetup'
+import { VersionControl } from './pages/VersionControl'
+import { PullRequest } from './pages/PullRequest'
+import { MyProgress } from './pages/MyProgress'
+import { FeedbackPage } from './pages/FeedbackPage'
+import { AskPage } from './pages/AskPage'
+import { Certificate } from './pages/Certificate'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -122,6 +128,42 @@ const profileRoute = createRoute({
   component: ProfileSetup,
 })
 
+const versionControlRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-version-control',
+  component: VersionControl,
+})
+
+const pullRequestRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-a-pull-request',
+  component: PullRequest,
+})
+
+const myProgressRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/my-progress',
+  component: MyProgress,
+})
+
+const feedbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/feedback',
+  component: FeedbackPage,
+})
+
+const askRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/ask',
+  component: AskPage,
+})
+
+const certificateRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/certificate',
+  component: Certificate,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -139,6 +181,12 @@ const routeTree = rootRoute.addChildren([
   howAgentsWorkRoute,
   yourJourneyRoute,
   profileRoute,
+  versionControlRoute,
+  pullRequestRoute,
+  myProgressRoute,
+  feedbackRoute,
+  askRoute,
+  certificateRoute,
 ])
 
 const hashHistory = createHashHistory()

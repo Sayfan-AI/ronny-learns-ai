@@ -67,6 +67,24 @@ const MODULES = [
     color: 'cyan',
   },
   {
+    id: 'version-control',
+    title: 'How does version control work?',
+    description: 'Commits, branches, and merges — using everyday analogies like Google Docs history.',
+    readingTime: '4 min',
+    icon: '💾',
+    to: '/learn/what-is-version-control',
+    color: 'sky',
+  },
+  {
+    id: 'pull-request',
+    title: 'What is a pull request?',
+    description: 'How code changes get reviewed and approved before going live — with real examples.',
+    readingTime: '4 min',
+    icon: '📋',
+    to: '/learn/what-is-a-pull-request',
+    color: 'violet',
+  },
+  {
     id: 'meet-the-agents',
     title: 'Meet the AI agents',
     description: 'The five agents behind this project — their roles, their loop, and how they coordinate.',
@@ -85,6 +103,7 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
   indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
   cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',     button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
+  sky:    { border: 'hover:border-sky-300',    badge: 'bg-sky-100 text-sky-700',       button: 'bg-sky-600 hover:bg-sky-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -145,10 +164,22 @@ export function HomePage() {
                 style={{ width: `${(completedCount / MODULES.length) * 100}%` }}
               />
             </div>
-            {completedCount === MODULES.length && (
-              <p className="text-green-700 font-medium text-center">
-                You have visited all the modules. Nice work!
-              </p>
+            {completedCount === MODULES.length ? (
+              <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
+                <p className="text-green-700 font-medium">
+                  You have visited all the modules. Nice work!
+                </p>
+                <Link
+                  to="/certificate"
+                  className="text-sm font-semibold text-amber-600 hover:text-amber-800 underline flex-shrink-0"
+                >
+                  Get your certificate &rarr;
+                </Link>
+              </div>
+            ) : (
+              <Link to="/my-progress" className="text-sm text-blue-500 hover:underline">
+                View detailed progress &rarr;
+              </Link>
             )}
           </div>
         )}
@@ -187,7 +218,7 @@ export function HomePage() {
           <div className="space-y-3">
             {MODULES.map((mod, idx) => {
               const done = visited.has(mod.id)
-              const colors = COLOR_MAP[mod.color]
+              const colors = COLOR_MAP[mod.color] ?? COLOR_MAP['blue']
               return (
                 <Link
                   key={mod.id}
@@ -232,6 +263,48 @@ export function HomePage() {
         <p className="text-gray-400 text-sm text-center">
           Each page ends with a short quiz to check what you learned.
         </p>
+
+        {/* Participate section */}
+        <div className="border-t border-gray-200 pt-6 space-y-3">
+          <h2 className="text-2xl font-semibold text-gray-700 text-center">Get involved</h2>
+          <div className="space-y-3">
+            <Link
+              to="/ask"
+              className="bg-purple-50 border border-purple-200 rounded-xl p-5 hover:bg-purple-100 hover:border-purple-300 transition-all flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">&#x1F914;</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-purple-800 text-base">Ask a question</h3>
+                <p className="text-purple-600 text-sm">Get a plain-language answer to any question about AI, GitHub, or this project.</p>
+              </div>
+              <span className="text-purple-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+
+            <Link
+              to="/feedback"
+              className="bg-blue-50 border border-blue-200 rounded-xl p-5 hover:bg-blue-100 hover:border-blue-300 transition-all flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">&#x1F4AC;</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-blue-800 text-base">Share your thoughts</h3>
+                <p className="text-blue-600 text-sm">Leave feedback or ask something — no GitHub account needed.</p>
+              </div>
+              <span className="text-blue-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+
+            <Link
+              to="/my-progress"
+              className="bg-emerald-50 border border-emerald-200 rounded-xl p-5 hover:bg-emerald-100 hover:border-emerald-300 transition-all flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">&#x1F4AA;</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-emerald-800 text-base">My progress</h3>
+                <p className="text-emerald-600 text-sm">See which modules you have visited and how far you have come.</p>
+              </div>
+              <span className="text-emerald-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+          </div>
+        </div>
 
         {/* Next steps CTA */}
         <div className="border-t border-gray-200 pt-6">
@@ -294,7 +367,7 @@ export function HomePage() {
           </div>
         </div>
 
-        {/* For Gigi section */}
+        {/* For Gigi bottom */}
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 space-y-3">
           <h2 className="text-lg font-semibold text-amber-800">For Gigi</h2>
           <p className="text-gray-700 text-sm leading-relaxed">

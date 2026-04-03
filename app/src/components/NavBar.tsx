@@ -10,6 +10,9 @@ const NAV_LINKS = [
   { to: '/learn/what-is-api', label: 'What is an API?' },
   { to: '/learn/genesis-system', label: 'Genesis system' },
   { to: '/learn/what-is-ci-cd', label: 'How does it update?' },
+  { to: '/ask', label: 'Ask a question' },
+  { to: '/feedback', label: 'Give feedback' },
+  { to: '/my-progress', label: 'My progress' },
 ]
 
 export function NavBar() {
@@ -26,7 +29,7 @@ export function NavBar() {
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
         {/* Logo / brand */}
-        <Link to="/" className="font-bold text-blue-700 text-lg tracking-tight hover:text-blue-900 transition-colors">
+        <Link to="/" className="font-bold text-blue-700 text-lg tracking-tight hover:text-blue-900 transition-colors flex-shrink-0">
           Ronny Learns AI
         </Link>
 
@@ -50,9 +53,14 @@ export function NavBar() {
           </Link>
         )}
 
-        {/* Desktop links */}
+        {/* Desktop: key links only to avoid overflow */}
         <div className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
+          {[
+            { to: '/', label: 'Home' },
+            { to: '/ask', label: 'Ask' },
+            { to: '/feedback', label: 'Feedback' },
+            { to: '/my-progress', label: 'My progress' },
+          ].map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -85,7 +93,7 @@ export function NavBar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile dropdown — all links */}
       {open && (
         <div className="md:hidden border-t border-gray-100 bg-white px-4 pb-3 space-y-1">
           {NAV_LINKS.map((link) => (
