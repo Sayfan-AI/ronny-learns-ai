@@ -30,6 +30,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ steps.app-token.outputs.token }}
+          allowed_bots: "genesis-dev-bot[bot]"
           prompt: |
             Run the orchestrator agent defined in .claude/agents/orchestrator.md.
             This is a scheduled run — assess project state and advance work.

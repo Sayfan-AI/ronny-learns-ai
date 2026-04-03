@@ -30,6 +30,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ steps.app-token.outputs.token }}
+          allowed_bots: "genesis-dev-bot[bot]"
           prompt: |
             Run the evolver agent defined in .claude/agents/evolver.md.
             This is a scheduled review cycle — review recent system behavior and apply improvements.
