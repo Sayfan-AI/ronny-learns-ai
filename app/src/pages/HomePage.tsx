@@ -70,10 +70,21 @@ export function HomePage() {
             </Link>
 
             <Link
+              to="/learn/what-is-api"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md hover:border-teal-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-4xl">&#128101;</span>
+              <div>
+                <h3 className="font-semibold text-gray-800 text-lg">What is an API?</h3>
+                <p className="text-gray-500">How programs talk to each other — and how this project is held together.</p>
+              </div>
+            </Link>
+
+            <Link
               to="/learn/genesis-system"
               className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md hover:border-orange-200 transition-all duration-200 flex items-center gap-4"
             >
-              <span className="text-4xl">⚙️</span>
+              <span className="text-4xl">&#9881;&#65039;</span>
               <div>
                 <h3 className="font-semibold text-gray-800 text-lg">What is the Genesis system?</h3>
                 <p className="text-gray-500">The AI team that builds this app — how it works and how to watch it in real time.</p>
