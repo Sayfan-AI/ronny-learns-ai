@@ -1,50 +1,55 @@
 import { Quiz } from '../components/Quiz'
+import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 
-const githubQuizQuestions = [
+const quizQuestions: QuizQuestion[] = [
+  {
+    question: 'What is GitHub?',
+    options: [
+      'A messaging app for developers',
+      'A website for storing and sharing code',
+      'A type of programming language',
+      'An email service for teams',
+    ],
+    correctIndex: 1,
+    explanation:
+      "GitHub is a website where developers store code, track changes, and collaborate on projects. It's like a shared folder — but very smart.",
+  },
   {
     question: 'What is a repository (repo)?',
     options: [
-      'A place where you store passwords',
-      'A smart project folder that tracks every change ever made',
-      'A type of programming language',
-      'A message you send to a teammate',
-    ],
-    correctIndex: 1,
-    explanation: 'A repository is like a project folder that remembers every change — you can always go back to any earlier version.',
-  },
-  {
-    question: 'What is a commit?',
-    options: [
-      'A type of bug in the code',
-      'A meeting between developers',
-      'A save point that records a change to the project',
-      'A way to delete files permanently',
+      'A type of commit message',
+      'A private chat between team members',
+      'A project folder that stores all files and remembers every change',
+      'A way to deploy an app to the web',
     ],
     correctIndex: 2,
-    explanation: 'A commit is like a save point in a video game — it captures what changed and lets you go back if needed.',
+    explanation:
+      'A repository is like a project folder that remembers every change ever made. This very app lives in a repo on GitHub.',
   },
   {
-    question: 'What are GitHub Issues used for?',
+    question: 'What does a "commit" mean on GitHub?',
     options: [
-      'Reporting bugs in the GitHub website itself',
-      'Tracking tasks, ideas, and things that need to be fixed in a project',
-      'Sending private messages to other users',
-      'Storing images and videos',
-    ],
-    correctIndex: 1,
-    explanation: 'Issues are like a shared to-do list for a project — anyone can create one to flag a problem or suggest something new.',
-  },
-  {
-    question: 'What is a pull request?',
-    options: [
-      'A request to download GitHub onto your computer',
-      'A way to delete someone else\'s code',
-      'A proposal to add changes that others can review before they go live',
-      'A notification that someone viewed your profile',
+      'Deleting a file permanently',
+      'Sending a message to a teammate',
+      'Saving a snapshot of your changes with a description',
+      'Publishing the app to the internet',
     ],
     correctIndex: 2,
-    explanation: 'A pull request lets you propose a change and get it reviewed before it affects the main project — a safety check.',
+    explanation:
+      'A commit is like a save point in a video game. It captures your changes and includes a short message explaining what changed.',
+  },
+  {
+    question: 'Why do developers use pull requests?',
+    options: [
+      'To download files from the internet',
+      'To propose changes so others can review them before they go live',
+      'To delete old commits',
+      'To send emails to the team',
+    ],
+    correctIndex: 1,
+    explanation:
+      "Pull requests let someone propose a change and have teammates check it before it's added to the project — avoiding accidental mistakes.",
   },
 ]
 
@@ -55,7 +60,7 @@ export function GitHubBasics() {
       <div className="max-w-2xl w-full space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="text-6xl">📁</div>
+          <div className="text-6xl">&#x1F4C1;</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             What is GitHub actually for?
           </h1>
@@ -68,7 +73,7 @@ export function GitHubBasics() {
         {/* Section 1: Repositories */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">📦</span>
+            <span className="text-4xl">&#x1F4E6;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Repositories (repos)</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -85,7 +90,7 @@ export function GitHubBasics() {
         {/* Section 2: Commits */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">💾</span>
+            <span className="text-4xl">&#x1F4BE;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Commits — save points</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -102,7 +107,7 @@ export function GitHubBasics() {
         {/* Section 3: Issues */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">✅</span>
+            <span className="text-4xl">&#x2705;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Issues — the to-do list</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -119,7 +124,7 @@ export function GitHubBasics() {
         {/* Section 4: Pull Requests */}
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🔀</span>
+            <span className="text-4xl">&#x1F500;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Pull requests — proposing changes</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -136,7 +141,7 @@ export function GitHubBasics() {
         {/* Section 5: Why it matters */}
         <div className="bg-green-50 border border-green-200 rounded-2xl p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">🔗</span>
+            <span className="text-4xl">&#x1F517;</span>
             <h2 className="text-2xl font-semibold text-green-800">Why does this matter to you?</h2>
           </div>
           <p className="text-gray-700 text-lg leading-relaxed">
@@ -155,7 +160,7 @@ export function GitHubBasics() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={githubQuizQuestions} title="Test your knowledge" />
+        <Quiz questions={quizQuestions} title="Quiz: What is GitHub for?" />
 
         {/* Back link */}
         <div className="text-center">

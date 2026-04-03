@@ -1,51 +1,56 @@
 import { Link } from '@tanstack/react-router'
 import { Quiz } from '../components/Quiz'
+import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 
-const apiQuizQuestions = [
+const quizQuestions: QuizQuestion[] = [
   {
     question: 'What does API stand for?',
     options: [
-      'Automatic Program Installer',
+      'Automated Program Installer',
       'Application Programming Interface',
-      'Advanced Page Index',
-      'App Performance Indicator',
+      'Advanced Page Integration',
+      'Automatic Protocol Interface',
     ],
     correctIndex: 1,
-    explanation: 'API stands for Application Programming Interface — it is the messenger that lets programs talk to each other.',
+    explanation:
+      'API stands for Application Programming Interface — a messenger that lets two programs talk to each other.',
   },
   {
-    question: 'In the restaurant analogy, what does the API represent?',
+    question: 'Which analogy best describes what an API does?',
     options: [
-      'The customer',
-      'The kitchen',
-      'The waiter',
-      'The menu',
+      'A librarian who stores books for you',
+      'A waiter who takes your order to the kitchen and brings your food back',
+      'A chef who cooks your meal',
+      'A cashier who collects payment',
+    ],
+    correctIndex: 1,
+    explanation:
+      "An API works like a waiter — you (the app) ask for something, the waiter (API) takes it to the kitchen (another service), and brings back the result. You never go to the kitchen yourself.",
+  },
+  {
+    question: 'What does an API allow programs to do?',
+    options: [
+      'Share a single password between apps',
+      'Run faster on older computers',
+      'Talk to each other and share data or features',
+      'Store files offline without internet',
     ],
     correctIndex: 2,
-    explanation: 'The API is like the waiter — it takes your request, passes it to the kitchen (the other system), and brings back the result.',
+    explanation:
+      "APIs are the invisible pipes that connect programs. They let one app use features built by another — like using Google Maps inside Airbnb.",
   },
   {
-    question: 'Which of these is a real example of an API being used?',
+    question: 'Why do developers use APIs instead of building everything themselves?',
     options: [
-      'Typing a document in a word processor',
-      'A weather app fetching today\'s forecast from a weather service',
-      'Printing a file to a local printer',
-      'Moving a file between two folders on your computer',
+      'Because APIs are always free',
+      'To use features that others have already built without rebuilding them from scratch',
+      'Because APIs work faster than local code',
+      'To avoid writing any code at all',
     ],
     correctIndex: 1,
-    explanation: 'A weather app uses an API to ask a weather service for data — then shows that data to you. Classic API usage.',
-  },
-  {
-    question: 'Does genesis use APIs?',
-    options: [
-      'No, genesis works entirely offline without any external services',
-      'Yes — it uses APIs to interact with GitHub, Claude, and the deployment system',
-      'Only sometimes, when the internet is available',
-      'APIs are only for human users, not for AI systems',
-    ],
-    correctIndex: 1,
-    explanation: 'Genesis uses APIs constantly — to read and create GitHub issues, to ask Claude to write code, and to deploy the app.',
+    explanation:
+      "APIs let you stand on others' shoulders. Instead of building a weather service, mapping system, or login system from scratch, you just ask the expert service via their API.",
   },
 ]
 
@@ -99,7 +104,7 @@ export function WhatIsAnAPI() {
               },
               {
                 title: 'Google Maps in other apps',
-                body: 'When you use an app like Airbnb or Uber and see a map, that map comes from Google Maps via an API. The Airbnb app asks Google\'s API for a map of a location, and Google sends one back.',
+                body: "When you use an app like Airbnb or Uber and see a map, that map comes from Google Maps via an API. The Airbnb app asks Google's API for a map of a location, and Google sends one back.",
               },
               {
                 title: 'Logging in with Google',
@@ -129,7 +134,7 @@ export function WhatIsAnAPI() {
             {[
               {
                 label: 'Claude AI API',
-                desc: 'Claude (the AI) is not installed on Gigi\'s computer. It lives on Anthropic\'s servers. When genesis needs Claude to do something — write code, plan a task, draft a message — it sends a request via the Anthropic API. Claude reads it, generates a response, and sends it back.',
+                desc: "Claude (the AI) is not installed on Gigi's computer. It lives on Anthropic's servers. When genesis needs Claude to do something — write code, plan a task, draft a message — it sends a request via the Anthropic API. Claude reads it, generates a response, and sends it back.",
               },
               {
                 label: 'GitHub API',
@@ -161,7 +166,7 @@ export function WhatIsAnAPI() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={apiQuizQuestions} title="Test your knowledge" />
+        <Quiz questions={quizQuestions} title="Quiz: What is an API?" />
 
         {/* Navigation */}
         <div className="flex justify-between items-center pt-2">
