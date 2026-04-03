@@ -5,7 +5,8 @@ const MODULES = [
   {
     id: 'github-signup',
     title: 'Create your GitHub account',
-    description: 'Step-by-step guide to signing up — takes about 5 minutes.',
+    description: 'Step-by-step guide to signing up for GitHub — your key to the whole project.',
+    readingTime: '5 min',
     icon: '🔑',
     to: '/tutorial/github-signup',
     color: 'blue',
@@ -13,7 +14,8 @@ const MODULES = [
   {
     id: 'github-basics',
     title: 'What is GitHub for?',
-    description: 'Repos, commits, issues, and pull requests — explained simply.',
+    description: 'Repos, commits, issues, and pull requests — explained simply, no coding needed.',
+    readingTime: '4 min',
     icon: '📁',
     to: '/learn/github-basics',
     color: 'green',
@@ -21,7 +23,8 @@ const MODULES = [
   {
     id: 'what-is-ai',
     title: 'What is AI?',
-    description: 'Artificial intelligence explained without jargon.',
+    description: 'Artificial intelligence explained without jargon — plus what Claude can and cannot do.',
+    readingTime: '5 min',
     icon: '🤖',
     to: '/learn/what-is-ai',
     color: 'purple',
@@ -29,7 +32,8 @@ const MODULES = [
   {
     id: 'what-is-api',
     title: 'What is an API?',
-    description: 'How programs talk to each other — in plain English.',
+    description: 'How programs talk to each other — in plain English, with real-world examples.',
+    readingTime: '4 min',
     icon: '🔗',
     to: '/learn/what-is-api',
     color: 'teal',
@@ -37,7 +41,8 @@ const MODULES = [
   {
     id: 'genesis-system',
     title: 'What is the Genesis system?',
-    description: 'The AI team that builds this app — watch it work in real time.',
+    description: 'The AI team that builds this app — see how agents coordinate through GitHub.',
+    readingTime: '4 min',
     icon: '⚙️',
     to: '/learn/genesis-system',
     color: 'orange',
@@ -46,6 +51,7 @@ const MODULES = [
     id: 'how-this-was-built',
     title: 'How this app was built',
     description: 'The full story — how AI planned, coded, and deployed what you are reading.',
+    readingTime: '5 min',
     icon: '🏗️',
     to: '/learn/how-this-was-built',
     color: 'indigo',
@@ -153,6 +159,9 @@ export function HomePage() {
                       <h3 className="font-semibold text-gray-800 text-lg leading-tight">{mod.title}</h3>
                     </div>
                     <p className="text-gray-500 text-sm mt-1">{mod.description}</p>
+                    {'readingTime' in mod && (
+                      <p className="text-gray-400 text-xs mt-1">{(mod as { readingTime: string }).readingTime} read</p>
+                    )}
                   </div>
 
                   {/* Arrow */}
