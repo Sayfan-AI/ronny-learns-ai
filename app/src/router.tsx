@@ -1,4 +1,4 @@
-import { createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router'
+import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
 import { HomePage } from './pages/HomePage'
 import { GitHubSignupTutorial } from './pages/GitHubSignupTutorial'
 
@@ -20,7 +20,9 @@ const githubSignupRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([homeRoute, githubSignupRoute])
 
-export const router = createRouter({ routeTree })
+const hashHistory = createHashHistory()
+
+export const router = createRouter({ routeTree, history: hashHistory })
 
 declare module '@tanstack/react-router' {
   interface Register {
