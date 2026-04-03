@@ -39,46 +39,52 @@ export function HomePage() {
           Start Here: Create Your GitHub Account &rarr;
         </Link>
 
-        <p className="text-gray-400 text-sm">
-          Don&apos;t worry &mdash; we&apos;ll explain everything along the way.
-        </p>
-
-        {/* Divider */}
+        {/* Learn more section */}
         <div className="border-t border-gray-200" />
 
-        {/* Learn more section */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-700">Want to learn more?</h2>
-          <p className="text-gray-600 text-lg">
-            Explore these short guides at your own pace:
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-4 text-left">
+          <h2 className="text-2xl font-semibold text-gray-700 text-center">Learn the basics</h2>
+          <p className="text-gray-500 text-center">Curious about how all this works? Start here.</p>
+
+          <div className="grid gap-4">
             <Link
               to="/learn/github-basics"
-              className="block bg-white rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition-shadow border border-gray-100"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md hover:border-green-200 transition-all duration-200 flex items-center gap-4"
             >
-              <div className="text-3xl mb-2">📁</div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">What is GitHub for?</h3>
-              <p className="text-gray-500 text-sm">Repos, commits, issues, and pull requests &mdash; explained simply.</p>
+              <span className="text-4xl">📁</span>
+              <div>
+                <h3 className="font-semibold text-gray-800 text-lg">What is GitHub for?</h3>
+                <p className="text-gray-500">Repos, commits, issues, and pull requests — explained simply.</p>
+              </div>
             </Link>
+
             <Link
               to="/learn/what-is-ai"
-              className="block bg-white rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition-shadow border border-gray-100"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md hover:border-purple-200 transition-all duration-200 flex items-center gap-4"
             >
-              <div className="text-3xl mb-2">🤖</div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">What is AI?</h3>
-              <p className="text-gray-500 text-sm">How AI language models work and how Gigi uses one to build this app.</p>
+              <span className="text-4xl">🤖</span>
+              <div>
+                <h3 className="font-semibold text-gray-800 text-lg">What is AI?</h3>
+                <p className="text-gray-500">Artificial intelligence explained without jargon — what it can and can't do.</p>
+              </div>
             </Link>
+
             <Link
               to="/learn/genesis-system"
-              className="block bg-white rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition-shadow border border-gray-100 sm:col-span-2"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md hover:border-orange-200 transition-all duration-200 flex items-center gap-4"
             >
-              <div className="text-3xl mb-2">⚙️</div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">What is the Genesis system?</h3>
-              <p className="text-gray-500 text-sm">The AI team that builds this app &mdash; how it works and how to watch it in real time.</p>
+              <span className="text-4xl">⚙️</span>
+              <div>
+                <h3 className="font-semibold text-gray-800 text-lg">What is the Genesis system?</h3>
+                <p className="text-gray-500">The AI team that builds this app — how it works and how to watch it in real time.</p>
+              </div>
             </Link>
           </div>
         </div>
+
+        <p className="text-gray-400 text-sm">
+          Don&apos;t worry &mdash; we&apos;ll explain everything along the way.
+        </p>
       </div>
     </div>
   )

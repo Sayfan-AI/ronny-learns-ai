@@ -39,7 +39,13 @@ const genesisSystemRoute = createRoute({
   component: GenesisSystem,
 })
 
-const routeTree = rootRoute.addChildren([homeRoute, githubSignupRoute, githubBasicsRoute, whatIsAIRoute, genesisSystemRoute])
+const routeTree = rootRoute.addChildren([
+  homeRoute,
+  githubSignupRoute,
+  githubBasicsRoute,
+  whatIsAIRoute,
+  genesisSystemRoute,
+])
 
 const hashHistory = createHashHistory()
 
