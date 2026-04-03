@@ -1,4 +1,52 @@
 import { Link } from '@tanstack/react-router'
+import { Quiz } from '../components/Quiz'
+
+const apiQuizQuestions = [
+  {
+    question: 'What does API stand for?',
+    options: [
+      'Automatic Program Installer',
+      'Application Programming Interface',
+      'Advanced Page Index',
+      'App Performance Indicator',
+    ],
+    correctIndex: 1,
+    explanation: 'API stands for Application Programming Interface — it is the messenger that lets programs talk to each other.',
+  },
+  {
+    question: 'In the restaurant analogy, what does the API represent?',
+    options: [
+      'The customer',
+      'The kitchen',
+      'The waiter',
+      'The menu',
+    ],
+    correctIndex: 2,
+    explanation: 'The API is like the waiter — it takes your request, passes it to the kitchen (the other system), and brings back the result.',
+  },
+  {
+    question: 'Which of these is a real example of an API being used?',
+    options: [
+      'Typing a document in a word processor',
+      'A weather app fetching today\'s forecast from a weather service',
+      'Printing a file to a local printer',
+      'Moving a file between two folders on your computer',
+    ],
+    correctIndex: 1,
+    explanation: 'A weather app uses an API to ask a weather service for data — then shows that data to you. Classic API usage.',
+  },
+  {
+    question: 'Does genesis use APIs?',
+    options: [
+      'No, genesis works entirely offline without any external services',
+      'Yes — it uses APIs to interact with GitHub, Claude, and the deployment system',
+      'Only sometimes, when the internet is available',
+      'APIs are only for human users, not for AI systems',
+    ],
+    correctIndex: 1,
+    explanation: 'Genesis uses APIs constantly — to read and create GitHub issues, to ask Claude to write code, and to deploy the app.',
+  },
+]
 
 export function WhatIsAnAPI() {
   return (
@@ -109,6 +157,9 @@ export function WhatIsAnAPI() {
             When genesis does something on GitHub, it is using an API. When it asks Claude to write code, it is using an API. When the app gets deployed to the web, that uses an API too. APIs are the invisible pipes that make it all work together.
           </p>
         </div>
+
+        {/* Quiz */}
+        <Quiz questions={apiQuizQuestions} title="Test your knowledge" />
 
         {/* Navigation */}
         <div className="flex justify-between items-center pt-2">

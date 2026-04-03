@@ -1,3 +1,52 @@
+import { Quiz } from '../components/Quiz'
+
+const aiQuizQuestions = [
+  {
+    question: 'What does AI stand for?',
+    options: [
+      'Automatic Internet',
+      'Artificial Intelligence',
+      'Advanced Interface',
+      'Automated Input',
+    ],
+    correctIndex: 1,
+    explanation: 'AI stands for Artificial Intelligence — computer systems that can perform tasks that normally need human thinking.',
+  },
+  {
+    question: 'How does a large language model (like ChatGPT) work?',
+    options: [
+      'It has a human secretly typing responses behind the scenes',
+      'It looks up answers in a giant encyclopedia',
+      'It learned patterns from huge amounts of text and predicts what to say next',
+      'It connects to the internet and reads news in real time',
+    ],
+    correctIndex: 2,
+    explanation: 'Language models learn from enormous amounts of text and use those patterns to generate responses — no human in the loop.',
+  },
+  {
+    question: 'What can AI NOT do reliably?',
+    options: [
+      'Write code',
+      'Summarise a long document',
+      'Always know what is true versus made up',
+      'Answer questions in multiple languages',
+    ],
+    correctIndex: 2,
+    explanation: 'AI can sometimes "hallucinate" — generating confident-sounding but incorrect information. That is why human review matters.',
+  },
+  {
+    question: 'In this project, what does the AI do?',
+    options: [
+      'It replaces Gigi entirely and runs the whole project alone',
+      'It writes code and manages tasks while Gigi provides direction and oversight',
+      'It only answers Ronny\'s questions',
+      'It does nothing — it is just here for show',
+    ],
+    correctIndex: 1,
+    explanation: 'The AI does the coding and coordination work, but Gigi sets the direction, reviews quality, and makes final decisions.',
+  },
+]
+
 export function WhatIsAI() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center px-4 py-16">
@@ -121,6 +170,9 @@ export function WhatIsAI() {
             not unnecessary.
           </p>
         </div>
+
+        {/* Quiz */}
+        <Quiz questions={aiQuizQuestions} title="Test your knowledge" />
 
         {/* Back link */}
         <div className="text-center">

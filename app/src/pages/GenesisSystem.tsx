@@ -1,3 +1,52 @@
+import { Quiz } from '../components/Quiz'
+
+const genesisQuizQuestions = [
+  {
+    question: 'What is genesis?',
+    options: [
+      'A music streaming service',
+      'A system where AI agents work as a development team to build software autonomously',
+      'A type of database for storing files',
+      'A tool for designing websites with drag and drop',
+    ],
+    correctIndex: 1,
+    explanation: 'Genesis is a development system where AI agents plan, code, review, and deploy software — working like an automated dev team.',
+  },
+  {
+    question: 'What triggers the agents to do work?',
+    options: [
+      'Gigi types commands into a terminal every time',
+      'GitHub Actions run on a schedule and in response to events like issue comments',
+      'Someone has to manually start each agent by clicking a button',
+      'The agents run 24/7 continuously with no triggers',
+    ],
+    correctIndex: 1,
+    explanation: 'GitHub Actions are automated workflows that run on a timer (every 10 minutes) or when something happens, like a new comment.',
+  },
+  {
+    question: 'How does genesis track what needs to be done?',
+    options: [
+      'A shared spreadsheet that humans update',
+      'A private chat between agents',
+      'GitHub Issues — which both agents and humans can create and comment on',
+      'A paper notebook that Gigi keeps',
+    ],
+    correctIndex: 2,
+    explanation: 'GitHub Issues serve as the shared task list. Agents create, update, and close issues automatically as work progresses.',
+  },
+  {
+    question: 'What role does Gigi play in the genesis system?',
+    options: [
+      'Gigi writes all the code manually',
+      'Gigi has no role — the AI does everything',
+      'Gigi sets the direction, approves milestones, and handles things the AI cannot do alone',
+      'Gigi only tests the final app after it is done',
+    ],
+    correctIndex: 2,
+    explanation: 'Gigi is the human-in-the-loop — setting goals, reviewing results, and stepping in when the AI hits a wall or needs a decision.',
+  },
+]
+
 export function GenesisSystem() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white flex flex-col items-center px-4 py-16">
@@ -131,6 +180,9 @@ export function GenesisSystem() {
             everything. No login needed to browse.
           </p>
         </div>
+
+        {/* Quiz */}
+        <Quiz questions={genesisQuizQuestions} title="Test your knowledge" />
 
         {/* Back link */}
         <div className="text-center">

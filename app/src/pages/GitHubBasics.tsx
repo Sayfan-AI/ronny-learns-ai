@@ -1,3 +1,52 @@
+import { Quiz } from '../components/Quiz'
+
+const githubQuizQuestions = [
+  {
+    question: 'What is a repository (repo)?',
+    options: [
+      'A place where you store passwords',
+      'A smart project folder that tracks every change ever made',
+      'A type of programming language',
+      'A message you send to a teammate',
+    ],
+    correctIndex: 1,
+    explanation: 'A repository is like a project folder that remembers every change — you can always go back to any earlier version.',
+  },
+  {
+    question: 'What is a commit?',
+    options: [
+      'A type of bug in the code',
+      'A meeting between developers',
+      'A save point that records a change to the project',
+      'A way to delete files permanently',
+    ],
+    correctIndex: 2,
+    explanation: 'A commit is like a save point in a video game — it captures what changed and lets you go back if needed.',
+  },
+  {
+    question: 'What are GitHub Issues used for?',
+    options: [
+      'Reporting bugs in the GitHub website itself',
+      'Tracking tasks, ideas, and things that need to be fixed in a project',
+      'Sending private messages to other users',
+      'Storing images and videos',
+    ],
+    correctIndex: 1,
+    explanation: 'Issues are like a shared to-do list for a project — anyone can create one to flag a problem or suggest something new.',
+  },
+  {
+    question: 'What is a pull request?',
+    options: [
+      'A request to download GitHub onto your computer',
+      'A way to delete someone else\'s code',
+      'A proposal to add changes that others can review before they go live',
+      'A notification that someone viewed your profile',
+    ],
+    correctIndex: 2,
+    explanation: 'A pull request lets you propose a change and get it reviewed before it affects the main project — a safety check.',
+  },
+]
+
 export function GitHubBasics() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex flex-col items-center px-4 py-16">
@@ -102,6 +151,9 @@ export function GitHubBasics() {
             Now you know the full picture!
           </p>
         </div>
+
+        {/* Quiz */}
+        <Quiz questions={githubQuizQuestions} title="Test your knowledge" />
 
         {/* Back link */}
         <div className="text-center">
