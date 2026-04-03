@@ -9,6 +9,7 @@ import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
 import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
 import { InviteRonny } from './pages/InviteRonny'
 import { NextSteps } from './pages/NextSteps'
+import { WhatIsCICD } from './pages/WhatIsCICD'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -73,6 +74,12 @@ const nextStepsRoute = createRoute({
   component: NextSteps,
 })
 
+const whatIsCICDRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-ci-cd',
+  component: WhatIsCICD,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -83,6 +90,7 @@ const routeTree = rootRoute.addChildren([
   howThisWasBuiltRoute,
   inviteRonnyRoute,
   nextStepsRoute,
+  whatIsCICDRoute,
 ])
 
 const hashHistory = createHashHistory()
