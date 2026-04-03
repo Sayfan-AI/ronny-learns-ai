@@ -42,6 +42,35 @@ export function HomePage() {
         <p className="text-gray-400 text-sm">
           Don&apos;t worry &mdash; we&apos;ll explain everything along the way.
         </p>
+
+        {/* Divider */}
+        <div className="border-t border-gray-200" />
+
+        {/* Learn more section */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-gray-700">Want to learn more?</h2>
+          <p className="text-gray-600 text-lg">
+            Explore these short guides at your own pace:
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              to="/learn/github-basics"
+              className="block bg-white rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition-shadow border border-gray-100"
+            >
+              <div className="text-3xl mb-2">📁</div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">What is GitHub for?</h3>
+              <p className="text-gray-500 text-sm">Repos, commits, issues, and pull requests &mdash; explained simply.</p>
+            </Link>
+            <Link
+              to="/learn/what-is-ai"
+              className="block bg-white rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition-shadow border border-gray-100"
+            >
+              <div className="text-3xl mb-2">🤖</div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">What is AI?</h3>
+              <p className="text-gray-500 text-sm">How AI language models work and how Gigi uses one to build this app.</p>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )

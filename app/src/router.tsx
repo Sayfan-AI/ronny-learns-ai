@@ -1,6 +1,8 @@
 import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
 import { HomePage } from './pages/HomePage'
 import { GitHubSignupTutorial } from './pages/GitHubSignupTutorial'
+import { GitHubBasics } from './pages/GitHubBasics'
+import { WhatIsAI } from './pages/WhatIsAI'
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -18,7 +20,19 @@ const githubSignupRoute = createRoute({
   component: GitHubSignupTutorial,
 })
 
-const routeTree = rootRoute.addChildren([homeRoute, githubSignupRoute])
+const githubBasicsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/github-basics',
+  component: GitHubBasics,
+})
+
+const whatIsAIRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-ai',
+  component: WhatIsAI,
+})
+
+const routeTree = rootRoute.addChildren([homeRoute, githubSignupRoute, githubBasicsRoute, whatIsAIRoute])
 
 const hashHistory = createHashHistory()
 
