@@ -31,6 +31,15 @@ const MODULES = [
     color: 'purple',
   },
   {
+    id: 'what-is-ml',
+    title: 'What is machine learning?',
+    description: 'How computers learn from examples instead of rules — with everyday analogies and real-world uses.',
+    readingTime: '6 min',
+    icon: '📊',
+    to: '/learn/what-is-machine-learning',
+    color: 'emerald',
+  },
+  {
     id: 'what-is-api',
     title: 'What is an API?',
     description: 'How programs talk to each other — in plain English, with real-world examples.',
@@ -103,7 +112,8 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
   indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
   cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',     button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
-  sky:    { border: 'hover:border-sky-300',    badge: 'bg-sky-100 text-sky-700',       button: 'bg-sky-600 hover:bg-sky-700 text-white' },
+  sky:     { border: 'hover:border-sky-300',     badge: 'bg-sky-100 text-sky-700',       button: 'bg-sky-600 hover:bg-sky-700 text-white' },
+  emerald: { border: 'hover:border-emerald-300', badge: 'bg-emerald-100 text-emerald-700', button: 'bg-emerald-600 hover:bg-emerald-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'

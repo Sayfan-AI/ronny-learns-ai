@@ -22,6 +22,7 @@ import { MyProgress } from './pages/MyProgress'
 import { FeedbackPage } from './pages/FeedbackPage'
 import { AskPage } from './pages/AskPage'
 import { Certificate } from './pages/Certificate'
+import { WhatIsML } from './pages/WhatIsML'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -164,6 +165,12 @@ const certificateRoute = createRoute({
   component: Certificate,
 })
 
+const whatIsMLRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/what-is-machine-learning',
+  component: WhatIsML,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -187,6 +194,7 @@ const routeTree = rootRoute.addChildren([
   feedbackRoute,
   askRoute,
   certificateRoute,
+  whatIsMLRoute,
 ])
 
 const hashHistory = createHashHistory()
