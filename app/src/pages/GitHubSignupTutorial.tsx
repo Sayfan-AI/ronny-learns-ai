@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
+import { useMarkVisited } from '../hooks/useMarkVisited'
 
 interface Step {
   title: string
@@ -120,6 +121,7 @@ const steps: Step[] = [
 ]
 
 export function GitHubSignupTutorial() {
+  useMarkVisited('github-signup')
   const [currentStep, setCurrentStep] = useState(0)
   const step = steps[currentStep]
   const totalSteps = steps.length

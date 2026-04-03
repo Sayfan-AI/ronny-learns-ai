@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { Quiz } from '../components/Quiz'
+import { useMarkVisited } from '../hooks/useMarkVisited'
 
 const apiQuizQuestions = [
   {
@@ -49,6 +50,7 @@ const apiQuizQuestions = [
 ]
 
 export function WhatIsAnAPI() {
+  useMarkVisited('what-is-api')
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white px-4 py-10">
       <div className="max-w-2xl mx-auto space-y-8">

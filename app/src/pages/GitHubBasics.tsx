@@ -1,4 +1,5 @@
 import { Quiz } from '../components/Quiz'
+import { useMarkVisited } from '../hooks/useMarkVisited'
 
 const githubQuizQuestions = [
   {
@@ -48,6 +49,7 @@ const githubQuizQuestions = [
 ]
 
 export function GitHubBasics() {
+  useMarkVisited('github-basics')
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
