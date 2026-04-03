@@ -166,6 +166,37 @@ export function HomePage() {
         <p className="text-gray-400 text-sm text-center">
           Each page ends with a short quiz to check what you learned.
         </p>
+
+        {/* Next steps CTA */}
+        <div className="border-t border-gray-200 pt-6">
+          <Link
+            to="/learn/next-steps"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-md p-6 flex items-center gap-4 transition-colors duration-200"
+          >
+            <span className="text-4xl flex-shrink-0">&#x1F680;</span>
+            <div>
+              <h3 className="font-semibold text-white text-xl leading-tight">Ready to get involved?</h3>
+              <p className="text-emerald-100 text-sm mt-1">After you have gone through the modules, here is how to go from learning to doing.</p>
+            </div>
+            <span className="text-white text-xl flex-shrink-0 ml-auto">&rarr;</span>
+          </Link>
+        </div>
+
+        {/* For Gigi section */}
+        <div className="border-t border-gray-200 pt-4 space-y-2">
+          <p className="text-xs text-gray-400 text-center uppercase tracking-wide font-semibold">For Gigi</p>
+          <Link
+            to="/invite-ronny"
+            className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-indigo-200 transition-all duration-200 flex items-center gap-4"
+          >
+            <span className="text-3xl flex-shrink-0">&#x1F4E9;</span>
+            <div>
+              <h3 className="font-semibold text-gray-800 text-base">How to invite Ronny to GitHub</h3>
+              <p className="text-gray-500 text-sm">Step-by-step guide to adding Ronny as a collaborator on this project.</p>
+            </div>
+            <span className="text-gray-400 text-xl flex-shrink-0 ml-auto">&rarr;</span>
+          </Link>
+        </div>
       </div>
     </div>
   )
