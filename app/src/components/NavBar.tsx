@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from '@tanstack/react-router'
+import { useProfile } from '../hooks/useProfile'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -14,6 +15,7 @@ const NAV_LINKS = [
 export function NavBar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const { profile } = useProfile()
 
   function isActive(to: string) {
     if (to === '/') return location.pathname === '/'
@@ -27,6 +29,26 @@ export function NavBar() {
         <Link to="/" className="font-bold text-blue-700 text-lg tracking-tight hover:text-blue-900 transition-colors">
           Ronny Learns AI
         </Link>
+
+        {/* Profile greeting (desktop) */}
+        {profile && (
+          <Link
+            to="/profile"
+            className="hidden md:flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            title="Edit your profile"
+          >
+            <span className="text-xl">{profile.avatar}</span>
+            <span className="font-medium">Hi, {profile.name}!</span>
+          </Link>
+        )}
+        {!profile && (
+          <Link
+            to="/profile"
+            className="hidden md:flex items-center gap-1 text-xs text-blue-500 hover:text-blue-700 transition-colors font-medium"
+          >
+            Set your name &rarr;
+          </Link>
+        )}
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1">

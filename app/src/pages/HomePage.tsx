@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
+import { useProfile } from '../hooks/useProfile'
 
 const MODULES = [
   {
@@ -98,25 +99,36 @@ function loadVisited(): Set<string> {
 
 export function HomePage() {
   const [visited, setVisited] = useState<Set<string>>(new Set())
+  const { profile } = useProfile()
 
   useEffect(() => {
     setVisited(loadVisited())
   }, [])
 
   const completedCount = MODULES.filter(m => visited.has(m.id)).length
+  const displayName = profile?.name || 'Ronny'
+  const avatar = profile?.avatar || '👋'
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="text-6xl">👋</div>
+          <div className="text-6xl">{avatar}</div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
-            Hi Ronny! Welcome to your AI learning journey.
+            Hi {displayName}! Welcome to your AI learning journey.
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
             Follow the steps below to learn about GitHub and AI — no experience needed.
           </p>
+          {!profile && (
+            <Link
+              to="/profile"
+              className="inline-block text-sm text-blue-500 hover:text-blue-700 underline"
+            >
+              Personalise this app with your name &rarr;
+            </Link>
+          )}
         </div>
 
         {/* Progress bar */}

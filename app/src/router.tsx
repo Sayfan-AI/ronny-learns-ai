@@ -15,6 +15,7 @@ import { HowToGiveFeedback } from './pages/HowToGiveFeedback'
 import { LiveActivity } from './pages/LiveActivity'
 import { HowAgentsWork } from './pages/HowAgentsWork'
 import { YourJourney } from './pages/YourJourney'
+import { ProfileSetup } from './pages/ProfileSetup'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -115,6 +116,12 @@ const yourJourneyRoute = createRoute({
   component: YourJourney,
 })
 
+const profileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/profile',
+  component: ProfileSetup,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -131,6 +138,7 @@ const routeTree = rootRoute.addChildren([
   liveActivityRoute,
   howAgentsWorkRoute,
   yourJourneyRoute,
+  profileRoute,
 ])
 
 const hashHistory = createHashHistory()
