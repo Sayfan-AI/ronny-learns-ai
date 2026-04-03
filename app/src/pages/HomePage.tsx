@@ -236,6 +236,52 @@ export function HomePage() {
           </Link>
         </div>
 
+        {/* Explore section */}
+        <div className="border-t border-gray-200 pt-6 space-y-4">
+          <div className="text-center space-y-1">
+            <h2 className="text-2xl font-semibold text-gray-700">Explore the real thing</h2>
+            <p className="text-gray-500 text-sm">See the AI at work — hands on.</p>
+          </div>
+
+          <div className="space-y-3">
+            <Link
+              to="/explore/live-activity"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-indigo-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">📋</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-800 text-base">Live Activity</h3>
+                <p className="text-gray-500 text-sm">See the real GitHub issues from this project — fetched live right now.</p>
+              </div>
+              <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+
+            <Link
+              to="/explore/how-agents-work"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-violet-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">🔄</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-800 text-base">How the agents work</h3>
+                <p className="text-gray-500 text-sm">The genesis dev loop from trigger to deployed website — with a quiz.</p>
+              </div>
+              <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+
+            <Link
+              to="/explore/your-journey"
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-emerald-200 transition-all duration-200 flex items-center gap-4"
+            >
+              <span className="text-3xl flex-shrink-0">🎉</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-800 text-base">Your learning journey</h3>
+                <p className="text-gray-500 text-sm">A summary of everything you have learned and links to explore the real project.</p>
+              </div>
+              <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+          </div>
+        </div>
+
         {/* For Gigi section */}
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 space-y-3">
           <h2 className="text-lg font-semibold text-amber-800">For Gigi</h2>
