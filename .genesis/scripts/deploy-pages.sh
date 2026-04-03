@@ -33,8 +33,13 @@ git init
 git config user.email "claude[bot]@users.noreply.github.com"
 git config user.name "claude[bot]"
 
-# Use the same remote URL as the main repo (includes token)
-REMOTE_URL=$(git -C "$REPO_ROOT" remote get-url origin)
+# Use GIT_REMOTE_OVERRIDE if set (e.g. from CI with an app token),
+# otherwise fall back to the remote URL from the main repo checkout.
+if [[ -n "${GIT_REMOTE_OVERRIDE:-}" ]]; then
+  REMOTE_URL="$GIT_REMOTE_OVERRIDE"
+else
+  REMOTE_URL=$(git -C "$REPO_ROOT" remote get-url origin)
+fi
 git remote add origin "$REMOTE_URL"
 
 git checkout -b gh-pages
