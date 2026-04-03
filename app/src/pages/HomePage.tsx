@@ -201,19 +201,42 @@ export function HomePage() {
         </div>
 
         {/* For Gigi section */}
-        <div className="border-t border-gray-200 pt-4 space-y-2">
-          <p className="text-xs text-gray-400 text-center uppercase tracking-wide font-semibold">For Gigi</p>
-          <Link
-            to="/invite-ronny"
-            className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md hover:border-indigo-200 transition-all duration-200 flex items-center gap-4"
-          >
-            <span className="text-3xl flex-shrink-0">&#x1F4E9;</span>
-            <div>
-              <h3 className="font-semibold text-gray-800 text-base">How to invite Ronny to GitHub</h3>
-              <p className="text-gray-500 text-sm">Step-by-step guide to adding Ronny as a collaborator on this project.</p>
-            </div>
-            <span className="text-gray-400 text-xl flex-shrink-0 ml-auto">&rarr;</span>
-          </Link>
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 space-y-3">
+          <h2 className="text-lg font-semibold text-amber-800">For Gigi</h2>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            This site was built by the Genesis AI system to help Ronny learn about AI, GitHub, and this project.
+            It updates automatically as new lessons are added.
+          </p>
+          <div className="space-y-2 text-sm text-gray-700">
+            <p>
+              <strong>To invite Ronny to GitHub:</strong>{' '}
+              <Link to="/invite-ronny" className="text-blue-600 hover:underline">
+                see the step-by-step invite guide
+              </Link>{' '}
+              or go directly to{' '}
+              <a
+                href="https://github.com/Sayfan-AI/ronny-learns-ai/settings/access"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                repository settings
+              </a>{' '}
+              and add Ronny as a collaborator.
+            </p>
+            <p>
+              <strong>To give feedback or request changes:</strong> open an issue in the{' '}
+              <a
+                href="https://github.com/Sayfan-AI/ronny-learns-ai/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                GitHub repository
+              </a>.
+              The AI agents monitor issues and will act on your requests automatically.
+            </p>
+          </div>
         </div>
       </div>
     </div>
