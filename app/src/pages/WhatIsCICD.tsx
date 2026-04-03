@@ -1,6 +1,8 @@
 import { Link } from '@tanstack/react-router'
+import { useMarkVisited } from '../hooks/useMarkVisited'
 
 export function WhatIsCICD() {
+  useMarkVisited('what-is-ci-cd')
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">

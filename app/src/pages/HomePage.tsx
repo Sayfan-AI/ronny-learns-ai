@@ -61,6 +61,7 @@ const MODULES = [
     id: 'what-is-ci-cd',
     title: 'How does the website update automatically?',
     description: 'CI/CD explained — how every code change goes live without anyone pressing publish.',
+    readingTime: '4 min',
     icon: '🏭',
     to: '/learn/what-is-ci-cd',
     color: 'cyan',
@@ -81,9 +82,9 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700', button: 'bg-purple-600 hover:bg-purple-700 text-white' },
   teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700',   button: 'bg-teal-600 hover:bg-teal-700 text-white' },
   orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
+  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
   indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
   cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',     button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
-  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -151,6 +152,32 @@ export function HomePage() {
             )}
           </div>
         )}
+
+        {/* For Gigi section */}
+        <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6 space-y-3">
+          <p className="text-sm font-semibold text-pink-700 uppercase tracking-wide">For Gigi</p>
+          <p className="text-gray-700 leading-relaxed">
+            This site is a step-by-step guide for Ronny. Share the link and they can work through it
+            at their own pace. Once Ronny has a GitHub account, you can invite them to the project
+            so they can follow along in real time.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/invite-ronny"
+              className="inline-block bg-pink-600 hover:bg-pink-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              How to invite Ronny to GitHub &rarr;
+            </Link>
+            <a
+              href="https://github.com/Sayfan-AI/ronny-learns-ai/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border border-pink-300 text-pink-700 hover:bg-pink-100 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            >
+              Give feedback on GitHub &rarr;
+            </a>
+          </div>
+        </div>
 
         {/* Learning path */}
         <div className="space-y-4">

@@ -7,10 +7,10 @@ import { WhatIsAI } from './pages/WhatIsAI'
 import { GenesisSystem } from './pages/GenesisSystem'
 import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
 import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
-import { InviteRonny } from './pages/InviteRonny'
-import { NextSteps } from './pages/NextSteps'
 import { WhatIsCICD } from './pages/WhatIsCICD'
+import { InviteRonny } from './pages/InviteRonny'
 import { MeetTheAgents } from './pages/MeetTheAgents'
+import { NextSteps } from './pages/NextSteps'
 import { HowToGiveFeedback } from './pages/HowToGiveFeedback'
 import { LiveActivity } from './pages/LiveActivity'
 import { HowAgentsWork } from './pages/HowAgentsWork'
@@ -68,28 +68,28 @@ const howThisWasBuiltRoute = createRoute({
   component: HowThisWasBuilt,
 })
 
-const inviteRonnyRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/invite-ronny',
-  component: InviteRonny,
-})
-
-const nextStepsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/next-steps',
-  component: NextSteps,
-})
-
 const whatIsCICDRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-ci-cd',
   component: WhatIsCICD,
 })
 
+const inviteRonnyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/invite-ronny',
+  component: InviteRonny,
+})
+
 const meetTheAgentsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/agents',
   component: MeetTheAgents,
+})
+
+const nextStepsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/next-steps',
+  component: NextSteps,
 })
 
 const howToGiveFeedbackRoute = createRoute({
@@ -130,10 +130,10 @@ const routeTree = rootRoute.addChildren([
   genesisSystemRoute,
   whatIsAnAPIRoute,
   howThisWasBuiltRoute,
-  inviteRonnyRoute,
-  nextStepsRoute,
   whatIsCICDRoute,
+  inviteRonnyRoute,
   meetTheAgentsRoute,
+  nextStepsRoute,
   howToGiveFeedbackRoute,
   liveActivityRoute,
   howAgentsWorkRoute,
