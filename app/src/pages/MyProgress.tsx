@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -27,12 +27,8 @@ function loadVisited(): Set<string> {
 }
 
 export function MyProgress() {
-  const [visited, setVisited] = useState<Set<string>>(new Set())
+  const [visited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
-
-  useEffect(() => {
-    setVisited(loadVisited())
-  }, [])
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length

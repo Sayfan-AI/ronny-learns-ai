@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 
 const MODULES = [
@@ -118,12 +118,8 @@ function loadVisited(): Set<string> {
 }
 
 export function HomePage() {
-  const [visited, setVisited] = useState<Set<string>>(new Set())
+  const [visited, setVisited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
-
-  useEffect(() => {
-    setVisited(loadVisited())
-  }, [])
 
   const completedCount = MODULES.filter(m => visited.has(m.id)).length
   const displayName = profile?.name || 'Ronny'
