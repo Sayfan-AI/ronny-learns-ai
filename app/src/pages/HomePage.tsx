@@ -42,6 +42,14 @@ const MODULES = [
     to: '/learn/genesis-system',
     color: 'orange',
   },
+  {
+    id: 'how-this-was-built',
+    title: 'How this app was built',
+    description: 'The full story — how AI planned, coded, and deployed what you are reading.',
+    icon: '🏗️',
+    to: '/learn/how-this-was-built',
+    color: 'indigo',
+  },
 ]
 
 const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
@@ -50,6 +58,7 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   purple: { border: 'hover:border-purple-300', badge: 'bg-purple-100 text-purple-700', button: 'bg-purple-600 hover:bg-purple-700 text-white' },
   teal:   { border: 'hover:border-teal-300',   badge: 'bg-teal-100 text-teal-700',   button: 'bg-teal-600 hover:bg-teal-700 text-white' },
   orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
+  indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
