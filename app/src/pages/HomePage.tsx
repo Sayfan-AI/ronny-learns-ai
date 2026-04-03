@@ -60,9 +60,19 @@ const MODULES = [
     id: 'what-is-ci-cd',
     title: 'How does the website update automatically?',
     description: 'CI/CD explained — how every code change goes live without anyone pressing publish.',
+    readingTime: '4 min',
     icon: '🏭',
     to: '/learn/what-is-ci-cd',
     color: 'cyan',
+  },
+  {
+    id: 'meet-the-agents',
+    title: 'Meet the AI Agents',
+    description: 'The team behind this project — who they are, what they do, and how the loop works.',
+    readingTime: '5 min',
+    icon: '🤝',
+    to: '/agents',
+    color: 'violet',
   },
 ]
 
@@ -74,6 +84,7 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   orange: { border: 'hover:border-orange-300', badge: 'bg-orange-100 text-orange-700', button: 'bg-orange-600 hover:bg-orange-700 text-white' },
   indigo: { border: 'hover:border-indigo-300', badge: 'bg-indigo-100 text-indigo-700', button: 'bg-indigo-600 hover:bg-indigo-700 text-white' },
   cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',   button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
+  violet: { border: 'hover:border-violet-300', badge: 'bg-violet-100 text-violet-700', button: 'bg-violet-600 hover:bg-violet-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
