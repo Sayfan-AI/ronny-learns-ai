@@ -9,6 +9,9 @@ import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
 import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
 import { InviteRonny } from './pages/InviteRonny'
 import { NextSteps } from './pages/NextSteps'
+import { LiveActivity } from './pages/LiveActivity'
+import { HowAgentsWork } from './pages/HowAgentsWork'
+import { YourJourney } from './pages/YourJourney'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -73,6 +76,24 @@ const nextStepsRoute = createRoute({
   component: NextSteps,
 })
 
+const liveActivityRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/explore/live-activity',
+  component: LiveActivity,
+})
+
+const howAgentsWorkRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/explore/how-agents-work',
+  component: HowAgentsWork,
+})
+
+const yourJourneyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/explore/your-journey',
+  component: YourJourney,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -83,6 +104,9 @@ const routeTree = rootRoute.addChildren([
   howThisWasBuiltRoute,
   inviteRonnyRoute,
   nextStepsRoute,
+  liveActivityRoute,
+  howAgentsWorkRoute,
+  yourJourneyRoute,
 ])
 
 const hashHistory = createHashHistory()
