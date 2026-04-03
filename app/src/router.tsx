@@ -11,6 +11,7 @@ import { WhatIsCICD } from './pages/WhatIsCICD'
 import { InviteRonny } from './pages/InviteRonny'
 import { MeetTheAgents } from './pages/MeetTheAgents'
 import { NextSteps } from './pages/NextSteps'
+import { HowToGiveFeedback } from './pages/HowToGiveFeedback'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -77,7 +78,7 @@ const inviteRonnyRoute = createRoute({
 
 const meetTheAgentsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/meet-the-agents',
+  path: '/agents',
   component: MeetTheAgents,
 })
 
@@ -85,6 +86,12 @@ const nextStepsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/next-steps',
   component: NextSteps,
+})
+
+const howToGiveFeedbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-to-give-feedback',
+  component: HowToGiveFeedback,
 })
 
 const routeTree = rootRoute.addChildren([
@@ -99,6 +106,7 @@ const routeTree = rootRoute.addChildren([
   inviteRonnyRoute,
   meetTheAgentsRoute,
   nextStepsRoute,
+  howToGiveFeedbackRoute,
 ])
 
 const hashHistory = createHashHistory()

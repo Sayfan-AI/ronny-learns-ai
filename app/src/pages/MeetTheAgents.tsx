@@ -1,141 +1,169 @@
 import { Link } from '@tanstack/react-router'
-import { useMarkVisited } from '../hooks/useMarkVisited'
+
+const agents = [
+  {
+    emoji: '&#x1F5FA;&#xFE0F;',
+    name: 'The Orchestrator',
+    role: 'Project Manager',
+    analogy: 'Think of a skilled project manager who checks the to-do list every few minutes, decides what is most important right now, and hands the task to the right person. The Orchestrator does exactly that — automatically.',
+    does: [
+      'Reads all open GitHub Issues to understand what work is waiting',
+      'Decides which task to tackle next based on priority and dependencies',
+      'Launches the right Worker agent for each task',
+      'Checks if a milestone is done and plans what comes next',
+    ],
+  },
+  {
+    emoji: '&#x1F477;',
+    name: 'Worker Agents',
+    role: 'The Builders',
+    analogy: 'Like a skilled contractor who is given a blueprint and goes off to build it — no micromanagement needed. A fresh Worker is dispatched for every task.',
+    does: [
+      'Reads the task description from a GitHub Issue',
+      'Writes or edits the code needed to complete the task',
+      'Verifies the build passes (no errors)',
+      'Commits the changes and marks the issue as done',
+    ],
+  },
+  {
+    emoji: '&#x1F4AC;',
+    name: 'Human Interaction Agent',
+    role: 'The Communicator',
+    analogy: 'Like a very polite assistant who only interrupts you when something genuinely requires your attention — and always explains clearly what is needed and why.',
+    does: [
+      'Writes updates and status reports as GitHub Issues',
+      'Asks Gigi for help when the AI is blocked or needs a decision',
+      'Translates technical problems into plain language',
+      'Closes issues once the human has responded and the problem is unblocked',
+    ],
+  },
+  {
+    emoji: '&#x1F9EC;',
+    name: 'The Evolver',
+    role: 'Self-Improver',
+    analogy: 'Like a consultant who watches the whole team work and occasionally says "we should do this differently" — and then actually makes the change.',
+    does: [
+      'Reviews how the system is working and spots inefficiencies',
+      'Proposes and implements improvements to the agents themselves',
+      'Updates the rules and guides the agents follow',
+      'Escalates big changes that need human approval',
+    ],
+  },
+  {
+    emoji: '&#x1F50D;',
+    name: 'Health Monitor',
+    role: 'The Watchdog',
+    analogy: 'Like a quality inspector who walks the factory floor looking for anything that has stalled, looped, or gone wrong — and raises the alarm when needed.',
+    does: [
+      'Watches for signs that agents are stuck or repeating the same work',
+      'Checks that progress is being made on milestones',
+      'Escalates to Gigi if something has been broken for too long',
+      'Keeps the whole system honest and forward-moving',
+    ],
+  },
+]
 
 export function MeetTheAgents() {
-  useMarkVisited('meet-the-agents')
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
 
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F916;</div>
+          <div className="text-6xl">&#x1F465;</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             Meet the AI agents
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            This app was not built by a single person sitting at a keyboard. A team of AI agents
-            built it together — automatically. Here is who they are.
+            This app was built by a team — but not a human one. Here are the five AI
+            agents that planned, built, and deployed everything you have read.
           </p>
         </div>
 
-        {/* The dev loop overview */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        {/* The loop diagram */}
+        <div className="bg-white rounded-2xl shadow-md p-8 space-y-5">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F504;</span>
-            <h2 className="text-2xl font-semibold text-gray-700">The genesis development loop</h2>
+            <span className="text-4xl">&#x1F501;</span>
+            <h2 className="text-2xl font-semibold text-gray-700">How the loop works</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Every 10 minutes (or when something happens on GitHub), a loop runs automatically:
+            Every few minutes (or whenever something happens on GitHub), this cycle runs:
           </p>
-          <div className="bg-violet-50 rounded-xl p-4 space-y-2">
+          <div className="space-y-3">
             {[
-              'A trigger fires (a timer, or an event like an issue being closed)',
-              'The Orchestrator wakes up, reads the current state, and decides what to do',
-              'A Worker is sent to build the next feature or fix the next bug',
-              'The Worker commits code to GitHub, which deploys the updated app',
-              'The cycle repeats',
-            ].map((step, i) => (
-              <div key={i} className="flex gap-3 items-start text-violet-900">
-                <span className="font-bold flex-shrink-0">{i + 1}.</span>
-                <span className="text-base leading-relaxed">{step}</span>
+              { step: 'Trigger', desc: 'A timer fires, or a GitHub event happens (like an issue being labeled)' },
+              { step: 'Orchestrator assesses', desc: 'It reads the open issues, decides what to work on, and dispatches a Worker' },
+              { step: 'Worker builds', desc: 'The Worker reads the task, writes the code, and commits it to GitHub' },
+              { step: 'GitHub deploys', desc: 'The new code is automatically built and published to the website' },
+              { step: 'Human reviews (optionally)', desc: 'Gigi checks in when asked, or when something is blocked' },
+              { step: 'Repeat', desc: 'The loop runs again — the project keeps advancing, around the clock' },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 items-start">
+                <div className="w-8 h-8 rounded-full bg-violet-600 text-white font-bold flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+                  {i + 1}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-800">{item.step}: </span>
+                  <span className="text-gray-600">{item.desc}</span>
+                </div>
               </div>
             ))}
           </div>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Gigi does not press a button to start any of this. It runs around the clock.
-          </p>
         </div>
 
-        {/* The agents */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-6">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F465;</span>
-            <h2 className="text-2xl font-semibold text-gray-700">The team</h2>
-          </div>
-
-          {[
-            {
-              icon: '&#x1F5FA;&#xFE0F;',
-              name: 'The Orchestrator',
-              analogy: 'Like a project manager',
-              desc: 'Checks what is open, decides what to tackle next, and dispatches the right agent for each job. It reads all the GitHub issues, decides which ones are ready to work on, and sends a Worker to handle them.',
-            },
-            {
-              icon: '&#x1F477;',
-              name: 'Workers',
-              analogy: 'Like a builder or developer',
-              desc: 'Workers write the actual code, create files, update pages, and push changes to GitHub. Each task gets its own fresh Worker. The Worker you are reading about right now wrote this very page.',
-            },
-            {
-              icon: '&#x1F4AC;',
-              name: 'Human Interaction Agent',
-              analogy: 'Like a messenger or reporter',
-              desc: 'When the AI hits a wall — needs access to something, needs Gigi to make a decision, or has something important to report — this agent opens a GitHub issue and writes a clear, human-readable message. It speaks on behalf of the whole system.',
-            },
-            {
-              icon: '&#x1F50D;',
-              name: 'Health Monitor',
-              analogy: 'Like a doctor for the dev system',
-              desc: 'Watches for signs of trouble: agents stuck in loops, tasks not progressing, the same work being repeated. If something looks wrong, it escalates to Gigi.',
-            },
-            {
-              icon: '&#x1F9EC;',
-              name: 'Evolver',
-              analogy: 'Like a systems architect',
-              desc: 'Responsible for improving the dev system itself — writing better agent instructions, designing new tools, and making the whole operation smarter over time.',
-            },
-          ].map((agent, i) => (
-            <div key={i} className="flex gap-4 items-start border-b border-gray-100 pb-5 last:border-0 last:pb-0">
-              <span className="text-3xl flex-shrink-0" dangerouslySetInnerHTML={{ __html: agent.icon }} />
-              <div className="space-y-1">
-                <p className="font-semibold text-gray-800 text-lg">{agent.name}</p>
-                <p className="text-sm text-violet-700 font-medium">{agent.analogy}</p>
-                <p className="text-gray-600 text-base leading-relaxed">{agent.desc}</p>
+        {/* Agent cards */}
+        <div className="space-y-5">
+          <h2 className="text-2xl font-semibold text-gray-700 text-center">The team</h2>
+          {agents.map((agent, i) => (
+            <div key={i} className="bg-white rounded-2xl shadow-md p-7 space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl" dangerouslySetInnerHTML={{ __html: agent.emoji }} />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-800">{agent.name}</h3>
+                  <p className="text-violet-600 font-medium text-sm">{agent.role}</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-lg leading-relaxed italic border-l-4 border-violet-200 pl-4">
+                {agent.analogy}
+              </p>
+              <div>
+                <p className="font-semibold text-gray-700 mb-2">What it actually does:</p>
+                <ul className="space-y-1">
+                  {agent.does.map((item, j) => (
+                    <li key={j} className="flex gap-2 text-gray-600">
+                      <span className="text-violet-400 flex-shrink-0">&#x2022;</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
         </div>
 
-        {/* What coordinates them */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F517;</span>
-            <h2 className="text-2xl font-semibold text-gray-700">What coordinates them all: GitHub</h2>
-          </div>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            All these agents share the same workspace: GitHub. They do not have a private channel
-            or a group chat. Everything happens in public, on GitHub:
-          </p>
-          <ul className="list-none space-y-2 text-gray-600 text-lg">
-            <li className="flex gap-3"><span>&#x1F4CB;</span><span><strong>Issues</strong> = tasks to do</span></li>
-            <li className="flex gap-3"><span>&#x1F4BE;</span><span><strong>Commits</strong> = work done</span></li>
-            <li className="flex gap-3"><span>&#x1F4AC;</span><span><strong>Issue comments</strong> = updates and messages</span></li>
-            <li className="flex gap-3"><span>&#x26A1;</span><span><strong>GitHub Actions</strong> = the timer that kicks everything off</span></li>
-          </ul>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            And now that you have a GitHub account, you can watch it all happening in real time.
-          </p>
-        </div>
-
-        {/* Call to action */}
+        {/* You are part of this */}
         <div className="bg-violet-50 border border-violet-200 rounded-2xl p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F440;</span>
-            <h2 className="text-2xl font-semibold text-violet-800">Watch the team work right now</h2>
+            <span className="text-4xl">&#x1F91D;</span>
+            <h2 className="text-2xl font-semibold text-violet-800">You are now part of this team</h2>
           </div>
           <p className="text-gray-700 text-lg leading-relaxed">
-            Every issue on the GitHub repo is a real task that was opened, worked on, and closed
-            by one of these agents. You can read them, see the code that was written, and follow
-            the history of how this whole app came to be.
+            By reading this app, you have seen the results of these agents working together.
+            Every page, every quiz, every update happened automatically — with Gigi setting
+            the direction and the agents doing the building.
+          </p>
+          <p className="text-gray-700 text-lg leading-relaxed">
+            When you get your GitHub account and join the repository, you will be able
+            to open issues, leave comments, and watch the agents respond in real time.
+            You become part of the coordination layer that makes this whole system work.
           </p>
           <a
             href="https://github.com/Sayfan-AI/ronny-learns-ai/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-violet-600 hover:bg-violet-700 text-white text-lg font-semibold px-6 py-3 rounded-xl shadow transition-colors duration-200"
+            className="inline-block bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200"
           >
-            See all issues on GitHub &rarr;
+            See the agents&rsquo; work on GitHub &rarr;
           </a>
         </div>
 
@@ -146,12 +174,6 @@ export function MeetTheAgents() {
             className="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
           >
             &larr; Home
-          </Link>
-          <Link
-            to="/learn/genesis-system"
-            className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold transition-colors"
-          >
-            The Genesis System &rarr;
           </Link>
         </div>
 
