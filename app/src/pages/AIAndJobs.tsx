@@ -22,6 +22,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'AI excels at processing large amounts of repetitive data — sorting, categorising, finding patterns, flagging anomalies. It is much weaker at tasks that require genuine human judgment, empathy, adaptability, or physical dexterity in unpredictable environments.',
+    hint: 'AI is essentially a very fast pattern-matcher — think about what it does best with large amounts of data.',
   },
   {
     question: 'True or false: AI will definitely replace all knowledge workers within 10 years.',
@@ -32,6 +33,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'Predictions of total job replacement have been made about every major technology wave — from the printing press to computers. The reality has consistently been that technology changes the mix of tasks in jobs and creates new roles, rather than simply eliminating all existing work.',
+    hint: 'Think about what happened when previous technologies like computers arrived — did they eliminate all office jobs?',
   },
   {
     question: 'What is one new type of job that AI has created?',
@@ -44,6 +46,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'AI has created new roles that did not exist before: AI trainers, prompt engineers, AI ethicists, model safety testers, and data reviewers. These jobs involve human judgment and expertise that AI itself cannot provide.',
+    hint: 'New technology usually creates jobs related to building, maintaining, and improving that technology.',
   },
   {
     question: 'How do many radiologists use AI today?',
@@ -56,6 +59,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'In many hospitals, AI tools scan medical images and highlight areas that may be worth closer attention. The radiologist then applies their expertise to the flagged areas. This makes the radiologist more thorough and efficient — it does not replace them.',
+    hint: 'Think about how a tool can assist an expert rather than replace them.',
   },
 ]
 

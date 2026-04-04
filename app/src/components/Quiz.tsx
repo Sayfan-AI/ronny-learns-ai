@@ -9,6 +9,8 @@ export interface QuizQuestion {
   options: string[]
   correctIndex: number
   explanation: string
+  /** Optional one-sentence hint shown on demand before answering */
+  hint?: string
 }
 
 interface QuizProps {
@@ -20,6 +22,7 @@ interface QuizProps {
 }
 
 type AnswerMap = Record<number, number>
+type HintMap = Record<number, boolean>
 
 const PERSONAL_BEST_KEY = 'ronny-quiz-personal-best'
 
@@ -46,6 +49,7 @@ function savePersonalBest(lessonId: string, pct: number): void {
 
 export function Quiz({ questions, title = 'Test your knowledge', lessonId, lessonTitle }: QuizProps) {
   const [answers, setAnswers] = useState<AnswerMap>({})
+  const [hints, setHints] = useState<HintMap>({})
   const [key, setKey] = useState(0)
   const [personalBest, setPersonalBest] = useState<number | null>(null)
 
@@ -141,8 +145,13 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
     }
   }
 
+  function toggleHint(questionIndex: number) {
+    setHints((prev) => ({ ...prev, [questionIndex]: !prev[questionIndex] }))
+  }
+
   function reset() {
     setAnswers({})
+    setHints({})
     setKey((k) => k + 1)
   }
 
@@ -174,12 +183,30 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
           const chosen = answers[qi]
           const hasAnswered = chosen !== undefined
           const isCorrect = chosen === q.correctIndex
+          const hintVisible = hints[qi] ?? false
 
           return (
             <div key={qi} className="space-y-3">
               <p className="text-gray-800 text-base sm:text-lg font-medium">
                 {qi + 1}. {q.question}
               </p>
+
+              {/* Hint button — only shown before answering and only if a hint exists */}
+              {!hasAnswered && q.hint && (
+                <div>
+                  <button
+                    onClick={() => toggleHint(qi)}
+                    className="text-xs text-gray-500 hover:text-blue-600 underline underline-offset-2 transition-colors"
+                  >
+                    {hintVisible ? 'Hide hint' : 'Show hint'}
+                  </button>
+                  {hintVisible && (
+                    <p className="mt-1.5 text-xs text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 leading-relaxed">
+                      <span className="font-semibold">Hint: </span>{q.hint}
+                    </p>
+                  )}
+                </div>
+              )}
 
               <div className="space-y-2">
                 {q.options.map((option, oi) => {

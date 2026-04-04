@@ -57,6 +57,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-gaming',          title: 'AI and gaming',                            to: '/learn/ai-and-gaming' },
   { id: 'ai-and-journalism',      title: 'AI and journalism',                        to: '/learn/ai-and-journalism' },
   { id: 'ai-and-fashion',         title: 'AI and fashion',                           to: '/learn/ai-and-fashion' },
+  { id: 'ai-and-agriculture',     title: 'AI and agriculture',                       to: '/learn/ai-and-agriculture' },
+  { id: 'ai-and-mental-wellbeing-at-work', title: 'AI and mental wellbeing at work', to: '/learn/ai-and-mental-wellbeing-at-work' },
 ]
 
 interface QuizScoreEntry {
@@ -217,6 +219,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-climate-change',      icon: '🌍', title: 'AI and climate change',                    to: '/learn/ai-and-climate-change' },
       { id: 'ai-and-robotics',            icon: '🤖', title: 'AI and robotics',                            to: '/learn/ai-and-robotics' },
       { id: 'ai-and-fashion',             icon: '👗', title: 'AI and fashion',                              to: '/learn/ai-and-fashion' },
+      { id: 'ai-and-agriculture',         icon: '🌾', title: 'AI and agriculture',                          to: '/learn/ai-and-agriculture' },
     ],
   },
   {
@@ -244,6 +247,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-music',          icon: '🎵', title: 'AI and music',                            to: '/learn/ai-and-music' },
       { id: 'ai-and-gaming',         icon: '🎮', title: 'AI and gaming',                           to: '/learn/ai-and-gaming' },
       { id: 'ai-and-journalism',     icon: '📰', title: 'AI and journalism',                       to: '/learn/ai-and-journalism' },
+      { id: 'ai-and-mental-wellbeing-at-work', icon: '🧘', title: 'AI and mental wellbeing at work', to: '/learn/ai-and-mental-wellbeing-at-work' },
     ],
   },
   {
@@ -297,6 +301,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-climate-change': 6, 'ai-and-music': 5,
   'ai-and-robotics': 5, 'ai-and-gaming': 5,
   'ai-and-journalism': 6, 'ai-and-fashion': 5,
+  'ai-and-agriculture': 5, 'ai-and-mental-wellbeing-at-work': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -325,6 +330,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-climate-change': 'AI in the real world', 'ai-and-music': 'AI and society',
   'ai-and-robotics': 'AI in the real world', 'ai-and-gaming': 'AI and society',
   'ai-and-journalism': 'AI and society', 'ai-and-fashion': 'AI in the real world',
+  'ai-and-agriculture': 'AI in the real world', 'ai-and-mental-wellbeing-at-work': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }

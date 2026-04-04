@@ -61,6 +61,7 @@ const STAGES: Stage[] = [
       { id: 'ai-and-sport',         icon: '&#x26BD;',  title: 'AI and sport',                           path: '/learn/ai-and-sport',                    difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-transport',     icon: '&#x1F697;', title: 'AI and transport',                       path: '/learn/ai-and-transport',                difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'ai-and-art',           icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                   path: '/learn/ai-and-art',                      difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'ai-and-agriculture',   icon: '&#x1F33E;', title: 'AI and agriculture',                path: '/learn/ai-and-agriculture',              difficulty: 'Beginner',     readingTime: '5 min' },
     ],
   },
   {
@@ -82,6 +83,7 @@ const STAGES: Stage[] = [
       { id: 'ai-and-money',         icon: '&#x1F4B0;', title: 'AI and money',                           path: '/learn/ai-and-money',              difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-democracy',     icon: '&#x1F3DB;&#xFE0F;', title: 'AI and democracy',               path: '/learn/ai-and-democracy',          difficulty: 'Intermediate', readingTime: '7 min' },
       { id: 'ai-and-language',      icon: '&#x1F5E3;&#xFE0F;', title: 'AI and language',                path: '/learn/ai-and-language',           difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-mental-wellbeing-at-work', icon: '&#x1F9D8;', title: 'AI and mental wellbeing at work', path: '/learn/ai-and-mental-wellbeing-at-work', difficulty: 'Intermediate', readingTime: '6 min' },
     ],
   },
   {

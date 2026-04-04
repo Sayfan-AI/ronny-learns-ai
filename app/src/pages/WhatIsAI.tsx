@@ -21,6 +21,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'AI stands for Artificial Intelligence — software that has learned patterns from huge amounts of examples.',
+    hint: 'Think about what makes a computer seem "intelligent" — it\'s not natural like human intelligence.',
   },
   {
     question: 'How does an AI language model like Claude learn?',
@@ -33,6 +34,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'AI language models are trained on huge amounts of text. They learn patterns — like a very well-read assistant who has absorbed a whole library.',
+    hint: 'It\'s similar to how a person learns language — by reading and absorbing a huge amount of it.',
   },
   {
     question: 'What is Claude?',
@@ -45,6 +47,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Claude is an AI assistant made by a company called Anthropic. It's the AI that helps Gigi build this project.",
+    hint: 'This app was built using Claude — who made it?',
   },
   {
     question: 'Is AI magic?',
@@ -57,6 +60,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "AI is not magic. It's a program that predicts helpful responses based on patterns it learned from text. Powerful, but not mysterious.",
+    hint: 'Scientists and engineers built AI — they understand how it works.',
   },
 ]
 

@@ -21,6 +21,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'The Associated Press partnered with Automated Insights to use AI that turns structured data — company earnings figures, sports box scores — into readable short articles. This frees human journalists to focus on investigative reporting and deeper stories. The AP now publishes thousands of AI-generated earnings reports per quarter that would have been impossible for its human team to write.',
+    hint: 'Think about the kind of repetitive, data-heavy stories that are hard to write at scale — financial reports, sports results.',
   },
   {
     question: 'What is a "deepfake" in the context of journalism?',
@@ -33,6 +34,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'Deepfakes use AI (specifically generative adversarial networks) to create convincing video or audio of real people. In 2023, a deepfake video of Ukrainian president Zelensky appeared to show him telling troops to surrender — it was quickly debunked, but spread rapidly before corrections could catch up. Deepfakes pose a serious threat to trust in video evidence.',
+    hint: '"Deep" comes from deep learning, and "fake" means it\'s not real — but it looks convincing.',
   },
   {
     question: 'What does an automated fact-checking tool like ClaimBuster do?',
@@ -45,6 +47,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'ClaimBuster, developed at the University of Texas, uses natural language processing to scan political speeches, debates, and news in real time. It flags statements that are check-worthy — factual claims that can be verified against data. It does not verify the claims itself; it helps human fact-checkers find what to investigate. Full Fact in the UK uses similar technology to monitor what politicians say during debates.',
+    hint: 'ClaimBuster helps human fact-checkers — it identifies what needs checking, not what is true.',
   },
   {
     question: 'Which of the following is a warning sign that a news article might have been written entirely by AI?',
@@ -57,6 +60,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'AI-generated articles often have a distinctive style: very smooth, slightly generic prose with no specific sourcing, no named journalist, no strong point of view, and sometimes odd factual errors mixed with plausible-sounding content. Legitimate news organisations have editorial standards, named reporters, and specific sourcing. If an article reads very fluently but has no clear origin or quotes, treat it with extra scepticism.',
+    hint: 'Real journalism has real journalists — named people who can be held accountable for what they wrote.',
   },
   {
     question: 'What approach have news organisations like the BBC and The Guardian taken to AI-generated content?',
@@ -69,6 +73,7 @@ const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Major news organisations have not banned AI but have set clear boundaries. The BBC, Guardian, and New York Times have published policies that permit AI for specific tasks like transcription, research assistance, or generating first drafts of data-heavy stories — but require human editorial oversight before publication. Several now label AI-assisted content. The concern is not AI assistance itself, but AI replacing human editorial judgment and accountability.',
+    hint: 'Most organisations find a middle ground — neither banning nor unrestricted use.',
   },
 ]
 
