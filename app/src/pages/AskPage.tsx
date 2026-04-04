@@ -6,6 +6,7 @@ interface QA {
   keywords: string[]
   question: string
   answer: string
+  followUps?: string[]
 }
 
 const QA_BANK: QA[] = [
@@ -13,55 +14,85 @@ const QA_BANK: QA[] = [
     keywords: ['what is ai', 'what is artificial intelligence', 'ai is', 'how does ai work', 'explain ai'],
     question: 'What is AI?',
     answer:
-      'AI stands for Artificial Intelligence. It means computer programs that can do tasks that usually require human-like thinking — such as understanding language, recognising pictures, or making decisions. AI does this by learning from huge amounts of examples (called training data) rather than following rigid step-by-step rules. Claude, the AI that helps build this website, is a language model: it was trained on billions of sentences and learned to predict what a helpful response looks like.',
+      'AI stands for Artificial Intelligence. It means computer programs that can do tasks that usually require human-like thinking — such as understanding language, recognising pictures, or making decisions.\n\nAI does this by **learning from huge amounts of examples** (called training data) rather than following rigid step-by-step rules.\n\nClaude, the AI that helps build this website, is a language model: it was trained on billions of sentences and learned to predict what a helpful response looks like.',
+    followUps: ['What is machine learning?', 'What is a neural network?', 'How was Claude trained?'],
   },
   {
     keywords: ['what is github', 'github is', 'explain github', 'why github', 'what does github do'],
     question: 'What is GitHub?',
     answer:
-      'GitHub is a website where developers (and AI agents!) store, share, and track changes to code. Think of it as Google Drive for code, with a very powerful version history. Every change is recorded as a "commit" — you can see who changed what and go back to any earlier version. GitHub also has "issues" (a to-do list), "pull requests" (proposals for changes), and automated workflows. The people who built this site use GitHub for all of it.',
+      'GitHub is a website where developers (and AI agents!) store, share, and track changes to code. Think of it as **Google Drive for code**, with a very powerful version history.\n\nEvery change is recorded as a "commit" — you can see who changed what and go back to any earlier version.\n\nGitHub also has:\n- **Issues** — a to-do list for the project\n- **Pull requests** — proposals for new changes\n- **Workflows** — automated tasks that run on every change\n\nThe people who built this site use GitHub for all of it.',
+    followUps: ['What is a commit?', 'What is a pull request?', 'What is a branch?'],
   },
   {
     keywords: ['what is an api', 'api is', 'explain api', 'how does an api work', 'apis'],
     question: 'What is an API?',
     answer:
-      'API stands for Application Programming Interface. It is a way for two different programs to talk to each other. Think of a restaurant: you (the customer) are one program, the kitchen is another, and the waiter is the API. You tell the waiter what you want, the waiter tells the kitchen, the kitchen makes the food, and the waiter brings it back to you. You never go into the kitchen directly. In this app, when the Live Activity page fetches the list of GitHub issues, it uses the GitHub API — it sends a request and GitHub sends back the data.',
+      'API stands for **Application Programming Interface**. It is a way for two different programs to talk to each other.\n\nThink of a restaurant:\n- You (the customer) are one program\n- The kitchen is another program\n- The waiter is the API\n\nYou tell the waiter what you want, the waiter tells the kitchen, the kitchen makes the food, and the waiter brings it back. You never go into the kitchen directly.\n\nIn this app, when the Live Activity page fetches GitHub issues, it uses the GitHub API — it sends a request and GitHub sends back the data.',
+    followUps: ['What is GitHub?', 'How does the website update automatically?', 'What is the Genesis system?'],
   },
   {
     keywords: ['genesis', 'genesis system', 'what is genesis', 'explain genesis', 'how does genesis work'],
     question: 'What is the Genesis system?',
     answer:
-      'Genesis is a system that uses AI agents to build software automatically. Instead of a human sitting at a computer writing every line of code, a team of AI agents handles it: one agent plans the work, another writes the code, another reviews quality, and another handles communication. They coordinate through GitHub — creating issues, opening pull requests, and responding to feedback. This entire website was built by Genesis agents with very little human input.',
+      'Genesis is a system that uses **AI agents to build software automatically**.\n\nInstead of a human sitting at a computer writing every line of code, a team of AI agents handles it:\n- One agent **plans the work**\n- Another **writes the code**\n- Another **reviews quality**\n- Another **handles communication**\n\nThey coordinate through GitHub — creating issues, opening pull requests, and responding to feedback. This entire website was built by Genesis agents with very little human input.',
+    followUps: ['Who made this website?', 'How does the website update automatically?', 'What is a pull request?'],
   },
   {
     keywords: ['how does this website update', 'update itself', 'how does it deploy', 'automatic update', 'ci cd', 'pipeline'],
     question: 'How does this website update automatically?',
     answer:
-      'This website uses something called a CI/CD pipeline. "CI" stands for Continuous Integration and "CD" stands for Continuous Deployment. Here is what happens: whenever an AI agent finishes a new feature and merges it into the main branch on GitHub, an automated workflow kicks off. It builds the app, runs some checks, and if everything looks good, it publishes the new version to the live website — all within minutes, with no one pressing "publish".',
+      'This website uses something called a **CI/CD pipeline**.\n\n- **CI** stands for Continuous Integration\n- **CD** stands for Continuous Deployment\n\nHere is what happens:\n1. An AI agent finishes a new feature\n2. It merges the code into the main branch on GitHub\n3. An automated workflow kicks off automatically\n4. It builds the app and runs some checks\n5. If everything looks good, it **publishes the new version to the live website** — all within minutes, with no one pressing "publish".',
+    followUps: ['What is GitHub?', 'What is a pull request?', 'What is the Genesis system?'],
   },
   {
     keywords: ['who made this', 'who built this', 'who created this', 'who wrote this'],
     question: 'Who made this website?',
     answer:
-      'This website was built almost entirely by AI agents — specifically by the Genesis system created by Gigi (Yosi Sayfan). The agents planned the features, wrote the code, ran the tests, and deployed each update. Gigi oversees the system and can give feedback through GitHub issues. Ronny (that is you!) is learning about the system by using the very thing the system built.',
+      'This website was built almost entirely by **AI agents** — specifically by the Genesis system created by **Gigi (Yosi Sayfan)**.\n\nThe agents:\n- Planned the features\n- Wrote the code\n- Ran the tests\n- Deployed each update\n\nGigi oversees the system and can give feedback through GitHub issues.\n\nRonny (that is you!) is learning about the system by using the very thing the system built.',
+    followUps: ['What is the Genesis system?', 'How does the website update automatically?', 'What is AI?'],
   },
   {
     keywords: ['what is a commit', 'commits', 'explain commit', 'how do commits work'],
     question: 'What is a commit?',
     answer:
-      'A commit is a saved snapshot of a project at a specific moment. Every time a developer (or an AI agent) saves a set of changes, they create a commit with a short message describing what changed — like "Added the feedback page" or "Fixed the quiz timer". Commits are stored permanently, so you can always go back to any earlier version of the project. Think of commits as checkpoints in a video game.',
+      'A commit is a **saved snapshot of a project** at a specific moment.\n\nEvery time a developer (or an AI agent) saves a set of changes, they create a commit with a short message describing what changed — like "Added the feedback page" or "Fixed the quiz timer".\n\nCommits are stored permanently, so you can always go back to any earlier version of the project.\n\n**Think of commits as checkpoints in a video game** — you can always reload from any earlier save.',
+    followUps: ['What is a branch?', 'What is a pull request?', 'What is GitHub?'],
   },
   {
     keywords: ['what is a pull request', 'pull request', 'pr is', 'explain pull request'],
     question: 'What is a pull request?',
     answer:
-      'A pull request (often called a PR) is a proposal to merge changes from one branch into another. When an AI agent finishes working on a new feature, it opens a pull request on GitHub that says "here are my changes — please review and merge them". Automated checks run to make sure nothing is broken, and if all passes, the changes are merged into the main codebase. Then the CI/CD pipeline deploys the update to the live website.',
+      'A pull request (often called a **PR**) is a proposal to merge changes from one branch into another.\n\nWhen an AI agent finishes working on a new feature, it opens a pull request on GitHub that says "here are my changes — please review and merge them".\n\nAutomated checks run to make sure nothing is broken, and if all passes, the changes are **merged into the main codebase**. Then the CI/CD pipeline deploys the update to the live website.',
+    followUps: ['What is a branch?', 'What is a commit?', 'How does the website update automatically?'],
   },
   {
     keywords: ['what is a branch', 'branches', 'explain branch', 'branching'],
     question: 'What is a branch?',
     answer:
-      'A branch is a separate copy of a project where you can make changes without affecting the original. Imagine making a copy of a document to try a completely different introduction — you can experiment freely, and only replace the original if you are happy with the result. In this project, every new feature is developed on its own branch. Once finished and reviewed, it gets merged back into the "main" branch — which is what you see on the live website.',
+      'A branch is a **separate copy of a project** where you can make changes without affecting the original.\n\nImagine making a copy of a document to try a completely different introduction — you can experiment freely, and only replace the original if you are happy with the result.\n\nIn this project, every new feature is developed on its own branch. Once finished and reviewed, it gets **merged back into the "main" branch** — which is what you see on the live website.',
+    followUps: ['What is a commit?', 'What is a pull request?', 'What is GitHub?'],
+  },
+  {
+    keywords: ['what is a neural network', 'neural network', 'neurons', 'how do neural networks work'],
+    question: 'What is a neural network?',
+    answer:
+      'A neural network is a computer system loosely inspired by the human brain.\n\nIt is made up of **layers of simple units called neurons**. Each neuron:\n- Receives numbers as inputs\n- Multiplies each by a "weight" (importance score)\n- Adds them up and passes a result to the next layer\n\nThe network learns by adjusting these weights based on millions of examples — getting a little better each time it makes a mistake.\n\n**Modern AI (including Claude) is built on neural networks.**',
+    followUps: ['What is machine learning?', 'How do language models work?', 'What is AI?'],
+  },
+  {
+    keywords: ['what is machine learning', 'machine learning', 'ml is', 'how does machine learning work'],
+    question: 'What is machine learning?',
+    answer:
+      'Machine learning is a way of **teaching computers by example** instead of writing explicit rules.\n\nTraditional programming: you write rules.\nMachine learning: you provide examples and the program figures out the rules itself.\n\nFor instance, instead of programming every rule for "what is spam email", you show the program thousands of spam emails and thousands of normal emails — and it learns to tell them apart.\n\nThis is how most modern AI works, including image recognition, voice assistants, and language models.',
+    followUps: ['What is a neural network?', 'How do language models work?', 'What is AI?'],
+  },
+  {
+    keywords: ['how was claude trained', 'how did claude learn', 'claude training', 'rlhf', 'constitutional ai'],
+    question: 'How was Claude trained?',
+    answer:
+      'Claude was trained by Anthropic in several stages:\n\n1. **Pre-training** — Claude read billions of pages of text and learned to predict the next word. This gave it general knowledge and language ability.\n\n2. **RLHF (Reinforcement Learning from Human Feedback)** — human raters compared pairs of Claude responses and said which was better. Claude was trained to produce the kinds of answers humans rated highly.\n\n3. **Constitutional AI** — Anthropic gave Claude a set of principles and had it critique and revise its own responses against those principles. This makes Claude helpful without being harmful.',
+    followUps: ['What is machine learning?', 'How do language models work?', 'What is AI?'],
   },
 ]
 
@@ -89,6 +120,8 @@ function findAnswer(query: string): QA | null {
     commit: ['commit', 'snapshot', 'save', 'history'],
     pr: ['pull', 'pr', 'merge', 'proposal'],
     branch: ['branch', 'branches', 'copy', 'feature'],
+    neural: ['neural', 'neuron', 'network', 'deep', 'learning'],
+    ml: ['machine', 'learning', 'train', 'training', 'model'],
   }
 
   const scores: Record<string, number> = {}
@@ -113,23 +146,93 @@ function findAnswer(query: string): QA | null {
     commit: 'what is a commit',
     pr: 'what is a pull request',
     branch: 'what is a branch',
+    neural: 'what is a neural network',
+    ml: 'what is machine learning',
   }
 
   const matchKw = topicMap[best[0]]
   return QA_BANK.find(e => e.keywords.includes(matchKw)) ?? null
 }
 
+/** Render text with **bold** and newlines */
+function MarkdownText({ text }: { text: string }) {
+  const lines = text.split('\n')
+  return (
+    <div className="space-y-2">
+      {lines.map((line, i) => {
+        if (line === '') return <div key={i} className="h-1" />
+        // Parse **bold**
+        const parts = line.split(/\*\*(.+?)\*\*/g)
+        const rendered = parts.map((part, j) =>
+          j % 2 === 1 ? <strong key={j}>{part}</strong> : <span key={j}>{part}</span>
+        )
+        // Detect list items
+        if (line.startsWith('- ')) {
+          const content = line.slice(2)
+          const contentParts = content.split(/\*\*(.+?)\*\*/g)
+          const contentRendered = contentParts.map((part, j) =>
+            j % 2 === 1 ? <strong key={j}>{part}</strong> : <span key={j}>{part}</span>
+          )
+          return (
+            <div key={i} className="flex gap-2">
+              <span className="text-purple-400 flex-shrink-0">•</span>
+              <span>{contentRendered}</span>
+            </div>
+          )
+        }
+        // Detect numbered list items
+        const numMatch = line.match(/^(\d+)\. (.+)$/)
+        if (numMatch) {
+          const numContent = numMatch[2]
+          const numParts = numContent.split(/\*\*(.+?)\*\*/g)
+          const numRendered = numParts.map((part, j) =>
+            j % 2 === 1 ? <strong key={j}>{part}</strong> : <span key={j}>{part}</span>
+          )
+          return (
+            <div key={i} className="flex gap-2">
+              <span className="text-purple-500 font-bold flex-shrink-0 min-w-[1.5rem]">{numMatch[1]}.</span>
+              <span>{numRendered}</span>
+            </div>
+          )
+        }
+        return <p key={i}>{rendered}</p>
+      })}
+    </div>
+  )
+}
+
+const MAX_HISTORY = 3
+
 export function AskPage() {
   const [query, setQuery] = useState('')
   const [result, setResult] = useState<QA | null | 'not-found'>(null)
+  const [loading, setLoading] = useState(false)
+  const [history, setHistory] = useState<string[]>([])
   const resultRef = useRef<HTMLDivElement>(null)
 
   function handleAsk(e: React.FormEvent) {
     e.preventDefault()
-    const found = findAnswer(query)
-    setResult(found ?? 'not-found')
+    if (!query.trim()) return
+    askQuestion(query)
+  }
+
+  function askQuestion(q: string) {
+    setQuery(q)
+    setLoading(true)
+    setResult(null)
     recordQuestionAsked()
-    setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+
+    // Simulate a brief thinking delay for UX
+    setTimeout(() => {
+      const found = findAnswer(q)
+      setResult(found ?? 'not-found')
+      setLoading(false)
+      setHistory(prev => {
+        const next = [q, ...prev.filter(h => h !== q)].slice(0, MAX_HISTORY)
+        return next
+      })
+      setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+    }, 800)
   }
 
   const suggestions = [
@@ -139,8 +242,8 @@ export function AskPage() {
     'What is the Genesis system?',
     'How does this website update?',
     'Who made this?',
-    'What is a commit?',
-    'What is a pull request?',
+    'What is a neural network?',
+    'What is machine learning?',
   ]
 
   return (
@@ -177,10 +280,10 @@ export function AskPage() {
           />
           <button
             type="submit"
-            disabled={!query.trim()}
+            disabled={!query.trim() || loading}
             className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors text-lg"
           >
-            Ask &rarr;
+            {loading ? 'Thinking...' : 'Ask \u2192'}
           </button>
         </form>
 
@@ -191,8 +294,9 @@ export function AskPage() {
             {suggestions.map((s) => (
               <button
                 key={s}
-                onClick={() => { setQuery(s); setResult(null) }}
-                className="px-3 py-1.5 rounded-full border border-purple-200 text-purple-700 text-sm hover:bg-purple-50 transition-colors"
+                onClick={() => askQuestion(s)}
+                disabled={loading}
+                className="px-3 py-1.5 rounded-full border border-purple-200 text-purple-700 text-sm hover:bg-purple-50 transition-colors disabled:opacity-50"
               >
                 {s}
               </button>
@@ -200,8 +304,39 @@ export function AskPage() {
           </div>
         </div>
 
+        {/* Recent questions */}
+        {history.length > 0 && (
+          <div className="space-y-2">
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Recent questions</p>
+            <div className="space-y-1">
+              {history.map((h) => (
+                <button
+                  key={h}
+                  onClick={() => askQuestion(h)}
+                  disabled={loading}
+                  className="w-full text-left px-3 py-2 rounded-lg border border-gray-100 text-gray-600 text-sm hover:bg-gray-50 transition-colors disabled:opacity-50 flex items-center gap-2"
+                >
+                  <span className="text-gray-400">&#x1F550;</span>
+                  {h}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Loading state */}
+        {loading && (
+          <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-4">
+            <span className="text-2xl">&#x1F916;</span>
+            <div>
+              <p className="font-semibold text-gray-700">Claude is thinking</p>
+              <p className="text-gray-500 text-sm animate-pulse">&#x2022; &#x2022; &#x2022;</p>
+            </div>
+          </div>
+        )}
+
         {/* Answer */}
-        {result !== null && (
+        {!loading && result !== null && (
           <div ref={resultRef}>
             {result === 'not-found' ? (
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 space-y-3">
@@ -224,7 +359,28 @@ export function AskPage() {
                   <span className="text-2xl flex-shrink-0">&#x1F4A1;</span>
                   <h2 className="text-xl font-bold text-gray-800">{result.question}</h2>
                 </div>
-                <p className="text-gray-600 leading-relaxed">{result.answer}</p>
+                <div className="text-gray-600 leading-relaxed text-base">
+                  <MarkdownText text={result.answer} />
+                </div>
+
+                {/* Follow-up suggestions */}
+                {result.followUps && result.followUps.length > 0 && (
+                  <div className="border-t border-gray-100 pt-4 space-y-2">
+                    <p className="text-sm font-semibold text-gray-500">You might also want to ask:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {result.followUps.map((fu) => (
+                        <button
+                          key={fu}
+                          onClick={() => askQuestion(fu)}
+                          className="px-3 py-1.5 rounded-full border border-blue-200 text-blue-700 text-sm hover:bg-blue-50 transition-colors"
+                        >
+                          {fu}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="border-t border-gray-100 pt-4 flex gap-3">
                   <button
                     onClick={() => { setQuery(''); setResult(null) }}

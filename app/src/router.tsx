@@ -24,6 +24,9 @@ import { AskPage } from './pages/AskPage'
 import { Certificate } from './pages/Certificate'
 import { WhatIsML } from './pages/WhatIsML'
 import { HowAITrainingWorks } from './pages/HowAITrainingWorks'
+import { NeuralNetwork } from './pages/NeuralNetwork'
+import { LanguageModels } from './pages/LanguageModels'
+import { AIHistory } from './pages/AIHistory'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -178,6 +181,24 @@ const howAITrainingWorksRoute = createRoute({
   component: HowAITrainingWorks,
 })
 
+const neuralNetworkRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/neural-network',
+  component: NeuralNetwork,
+})
+
+const languageModelsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/language-models',
+  component: LanguageModels,
+})
+
+const aiHistoryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/ai-history',
+  component: AIHistory,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -203,6 +224,9 @@ const routeTree = rootRoute.addChildren([
   certificateRoute,
   whatIsMLRoute,
   howAITrainingWorksRoute,
+  neuralNetworkRoute,
+  languageModelsRoute,
+  aiHistoryRoute,
 ])
 
 const hashHistory = createHashHistory()

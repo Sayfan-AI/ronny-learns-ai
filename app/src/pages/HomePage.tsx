@@ -2,6 +2,44 @@ import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 
+const AI_FACTS = [
+  'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
+  'Google Translate processes over 100 billion words every single day.',
+  'AlphaFold, an AI by DeepMind, solved a 50-year-old biology problem by predicting the shapes of nearly all known proteins.',
+  'The word "robot" comes from the Czech word "robota", meaning forced labour or drudgery.',
+  'GPT-4 was trained on roughly 1 trillion words of text — more than any human could read in thousands of lifetimes.',
+  'Chess computers first beat a reigning world champion in 1997. The game of Go fell 19 years later, in 2016.',
+  'Siri was originally built as a standalone app before Apple acquired the company in 2010 for a reported $200 million.',
+  'The term "Artificial Intelligence" was coined in 1956 at a summer workshop at Dartmouth College, USA.',
+  'A modern smartphone has more computing power than the computers used to send astronauts to the Moon in 1969.',
+  'Netflix estimates its recommendation algorithm saves the company over $1 billion per year by keeping subscribers engaged.',
+  'AI can now detect certain cancers from medical scans as accurately as experienced doctors — sometimes more accurately.',
+  'The first industrial robot, Unimate, started working on a General Motors assembly line in 1961.',
+  'Claude processes your message and generates a full response in a matter of seconds — yet the underlying maths involves billions of calculations.',
+  'Spam filters powered by machine learning now catch over 99.9% of spam before it reaches your inbox.',
+  'OpenAI\'s ChatGPT reached 100 million users in just 2 months — faster than any consumer app in history.',
+  'An AI called DALL-E can generate a photorealistic image from a text description in seconds — a task that would take a human artist hours.',
+  'The largest AI models today have more "parameters" (internal numbers) than there are synapses in a human brain.',
+  'Waymo\'s self-driving cars have driven over 20 million autonomous miles on public roads.',
+  'AI is used to discover new antibiotics — it found a new one called Halicin in 2020 that works against drug-resistant bacteria.',
+  'YouTube\'s recommendation algorithm drives over 70% of the total watch time on the platform.',
+  'Alan Turing, who proposed the Turing Test in 1950, is widely regarded as the father of theoretical computer science and AI.',
+  'Voice recognition accuracy has gone from around 80% in 2010 to over 99% today, thanks to deep learning.',
+  'An AI system called Libratus won $1.8 million from professional poker players in a 20-day tournament in 2017.',
+  'The human brain has roughly 86 billion neurons — a large AI model has a comparable number of parameters, but works very differently.',
+  'Anthropic, the company that built Claude, was founded in 2021 by former members of OpenAI.',
+  'AI can compose music, write poetry, and generate art — but it has no feelings about any of it.',
+  'The first commercially successful AI product was a spam filter — long before chatbots or image generators.',
+  'DeepMind\'s AlphaCode AI can write competitive programming solutions at the level of a typical human software engineer.',
+  'Amazon\'s Alexa was launched in 2014 alongside the Echo speaker — it was one of the first AI assistants to live in a dedicated home device.',
+  'AI weather models can now predict the weather 10 days ahead as accurately as traditional forecasts did just 5 days ahead a decade ago.',
+]
+
+function getTodaysFact(): string {
+  const dayIndex = Math.floor(Date.now() / 86400000) % AI_FACTS.length
+  return AI_FACTS[dayIndex]
+}
+
 const MODULES = [
   {
     id: 'github-signup',
@@ -47,6 +85,24 @@ const MODULES = [
     icon: '🧪',
     to: '/learn/how-ai-training-works',
     color: 'violet',
+  },
+  {
+    id: 'neural-network',
+    title: 'What is a neural network?',
+    description: 'The brain-inspired technology behind modern AI — neurons, weights, layers, and why cats need millions of photos.',
+    readingTime: '6 min',
+    icon: '🧠',
+    to: '/learn/neural-network',
+    color: 'pink',
+  },
+  {
+    id: 'language-models',
+    title: 'How do language models like Claude work?',
+    description: 'Tokens, context windows, predicting the next word, and how RLHF makes Claude safe and helpful.',
+    readingTime: '7 min',
+    icon: '💬',
+    to: '/learn/language-models',
+    color: 'indigo',
   },
   {
     id: 'what-is-api',
@@ -110,6 +166,15 @@ const MODULES = [
     to: '/agents',
     color: 'violet',
   },
+  {
+    id: 'ai-history',
+    title: 'The history of AI',
+    description: 'From the Turing Test in 1950 to ChatGPT in 2022 — the key milestones that shaped artificial intelligence.',
+    readingTime: '5 min',
+    icon: '⏳',
+    to: '/ai-history',
+    color: 'amber',
+  },
 ]
 
 const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
@@ -123,6 +188,8 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   cyan:   { border: 'hover:border-cyan-300',   badge: 'bg-cyan-100 text-cyan-700',     button: 'bg-cyan-600 hover:bg-cyan-700 text-white' },
   sky:     { border: 'hover:border-sky-300',     badge: 'bg-sky-100 text-sky-700',       button: 'bg-sky-600 hover:bg-sky-700 text-white' },
   emerald: { border: 'hover:border-emerald-300', badge: 'bg-emerald-100 text-emerald-700', button: 'bg-emerald-600 hover:bg-emerald-700 text-white' },
+  pink:    { border: 'hover:border-pink-300',    badge: 'bg-pink-100 text-pink-700',       button: 'bg-pink-600 hover:bg-pink-700 text-white' },
+  amber:   { border: 'hover:border-amber-300',   badge: 'bg-amber-100 text-amber-700',     button: 'bg-amber-600 hover:bg-amber-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -143,6 +210,7 @@ export function HomePage() {
   const completedCount = MODULES.filter(m => visited.has(m.id)).length
   const displayName = profile?.name || 'Ronny'
   const avatar = profile?.avatar || '👋'
+  const todaysFact = getTodaysFact()
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
@@ -164,6 +232,15 @@ export function HomePage() {
               Personalise this app with your name &rarr;
             </Link>
           )}
+        </div>
+
+        {/* Today's AI Fact */}
+        <div className="bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl p-4 flex items-start gap-3">
+          <span className="text-2xl flex-shrink-0">&#x1F4A1;</span>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-violet-600 uppercase tracking-wide mb-1">Today&apos;s AI fact</p>
+            <p className="text-gray-700 text-sm leading-relaxed">{todaysFact}</p>
+          </div>
         </div>
 
         {/* Progress bar */}
