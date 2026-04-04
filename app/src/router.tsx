@@ -1,37 +1,63 @@
+import { lazy, Suspense } from 'react'
 import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
 import { NavBar } from './components/NavBar'
-import { HomePage } from './pages/HomePage'
-import { GitHubSignupTutorial } from './pages/GitHubSignupTutorial'
-import { GitHubBasics } from './pages/GitHubBasics'
-import { WhatIsAI } from './pages/WhatIsAI'
-import { GenesisSystem } from './pages/GenesisSystem'
-import { WhatIsAnAPI } from './pages/WhatIsAnAPI'
-import { HowThisWasBuilt } from './pages/HowThisWasBuilt'
-import { WhatIsCICD } from './pages/WhatIsCICD'
-import { InviteRonny } from './pages/InviteRonny'
-import { MeetTheAgents } from './pages/MeetTheAgents'
-import { NextSteps } from './pages/NextSteps'
-import { HowToGiveFeedback } from './pages/HowToGiveFeedback'
-import { LiveActivity } from './pages/LiveActivity'
-import { HowAgentsWork } from './pages/HowAgentsWork'
-import { YourJourney } from './pages/YourJourney'
-import { ProfileSetup } from './pages/ProfileSetup'
-import { VersionControl } from './pages/VersionControl'
-import { PullRequest } from './pages/PullRequest'
-import { MyProgress } from './pages/MyProgress'
-import { FeedbackPage } from './pages/FeedbackPage'
-import { AskPage } from './pages/AskPage'
-import { Certificate } from './pages/Certificate'
-import { WhatIsML } from './pages/WhatIsML'
-import { HowAITrainingWorks } from './pages/HowAITrainingWorks'
-import { NeuralNetwork } from './pages/NeuralNetwork'
-import { LanguageModels } from './pages/LanguageModels'
-import { AIHistory } from './pages/AIHistory'
-import { AIEverydayLife } from './pages/AIEverydayLife'
-import { AIProsAndCons } from './pages/AIProsAndCons'
-import { Glossary } from './pages/Glossary'
-import { LearningRecap } from './pages/LearningRecap'
-import { QuizReview } from './pages/QuizReview'
+
+// Lazy-loaded page components — each becomes its own JS chunk
+const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
+const GitHubSignupTutorial = lazy(() => import('./pages/GitHubSignupTutorial').then(m => ({ default: m.GitHubSignupTutorial })))
+const GitHubBasics = lazy(() => import('./pages/GitHubBasics').then(m => ({ default: m.GitHubBasics })))
+const WhatIsAI = lazy(() => import('./pages/WhatIsAI').then(m => ({ default: m.WhatIsAI })))
+const GenesisSystem = lazy(() => import('./pages/GenesisSystem').then(m => ({ default: m.GenesisSystem })))
+const WhatIsAnAPI = lazy(() => import('./pages/WhatIsAnAPI').then(m => ({ default: m.WhatIsAnAPI })))
+const HowThisWasBuilt = lazy(() => import('./pages/HowThisWasBuilt').then(m => ({ default: m.HowThisWasBuilt })))
+const WhatIsCICD = lazy(() => import('./pages/WhatIsCICD').then(m => ({ default: m.WhatIsCICD })))
+const InviteRonny = lazy(() => import('./pages/InviteRonny').then(m => ({ default: m.InviteRonny })))
+const MeetTheAgents = lazy(() => import('./pages/MeetTheAgents').then(m => ({ default: m.MeetTheAgents })))
+const NextSteps = lazy(() => import('./pages/NextSteps').then(m => ({ default: m.NextSteps })))
+const HowToGiveFeedback = lazy(() => import('./pages/HowToGiveFeedback').then(m => ({ default: m.HowToGiveFeedback })))
+const LiveActivity = lazy(() => import('./pages/LiveActivity').then(m => ({ default: m.LiveActivity })))
+const HowAgentsWork = lazy(() => import('./pages/HowAgentsWork').then(m => ({ default: m.HowAgentsWork })))
+const YourJourney = lazy(() => import('./pages/YourJourney').then(m => ({ default: m.YourJourney })))
+const ProfileSetup = lazy(() => import('./pages/ProfileSetup').then(m => ({ default: m.ProfileSetup })))
+const VersionControl = lazy(() => import('./pages/VersionControl').then(m => ({ default: m.VersionControl })))
+const PullRequest = lazy(() => import('./pages/PullRequest').then(m => ({ default: m.PullRequest })))
+const MyProgress = lazy(() => import('./pages/MyProgress').then(m => ({ default: m.MyProgress })))
+const FeedbackPage = lazy(() => import('./pages/FeedbackPage').then(m => ({ default: m.FeedbackPage })))
+const AskPage = lazy(() => import('./pages/AskPage').then(m => ({ default: m.AskPage })))
+const Certificate = lazy(() => import('./pages/Certificate').then(m => ({ default: m.Certificate })))
+const WhatIsML = lazy(() => import('./pages/WhatIsML').then(m => ({ default: m.WhatIsML })))
+const HowAITrainingWorks = lazy(() => import('./pages/HowAITrainingWorks').then(m => ({ default: m.HowAITrainingWorks })))
+const NeuralNetwork = lazy(() => import('./pages/NeuralNetwork').then(m => ({ default: m.NeuralNetwork })))
+const LanguageModels = lazy(() => import('./pages/LanguageModels').then(m => ({ default: m.LanguageModels })))
+const AIHistory = lazy(() => import('./pages/AIHistory').then(m => ({ default: m.AIHistory })))
+const AIEverydayLife = lazy(() => import('./pages/AIEverydayLife').then(m => ({ default: m.AIEverydayLife })))
+const AIProsAndCons = lazy(() => import('./pages/AIProsAndCons').then(m => ({ default: m.AIProsAndCons })))
+const Glossary = lazy(() => import('./pages/Glossary').then(m => ({ default: m.Glossary })))
+const LearningRecap = lazy(() => import('./pages/LearningRecap').then(m => ({ default: m.LearningRecap })))
+const QuizReview = lazy(() => import('./pages/QuizReview').then(m => ({ default: m.QuizReview })))
+
+// Loading fallback shown while a page chunk is being fetched
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-[40vh]" aria-busy="true" aria-label="Loading page">
+      <div className="text-center">
+        <div className="inline-block w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-3" />
+        <p className="text-gray-500 text-sm">Loading...</p>
+      </div>
+    </div>
+  )
+}
+
+// Wrap a lazy component in Suspense
+function withSuspense(Component: React.ComponentType) {
+  return function SuspenseWrapper() {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <Component />
+      </Suspense>
+    )
+  }
+}
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -54,193 +80,193 @@ const rootRoute = createRootRoute({
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: HomePage,
+  component: withSuspense(HomePage),
 })
 
 const githubSignupRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/tutorial/github-signup',
-  component: GitHubSignupTutorial,
+  component: withSuspense(GitHubSignupTutorial),
 })
 
 const githubBasicsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/github-basics',
-  component: GitHubBasics,
+  component: withSuspense(GitHubBasics),
 })
 
 const whatIsAIRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-ai',
-  component: WhatIsAI,
+  component: withSuspense(WhatIsAI),
 })
 
 const genesisSystemRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/genesis-system',
-  component: GenesisSystem,
+  component: withSuspense(GenesisSystem),
 })
 
 const whatIsAnAPIRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-api',
-  component: WhatIsAnAPI,
+  component: withSuspense(WhatIsAnAPI),
 })
 
 const howThisWasBuiltRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/how-this-was-built',
-  component: HowThisWasBuilt,
+  component: withSuspense(HowThisWasBuilt),
 })
 
 const whatIsCICDRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-ci-cd',
-  component: WhatIsCICD,
+  component: withSuspense(WhatIsCICD),
 })
 
 const inviteRonnyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/invite-ronny',
-  component: InviteRonny,
+  component: withSuspense(InviteRonny),
 })
 
 const meetTheAgentsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/agents',
-  component: MeetTheAgents,
+  component: withSuspense(MeetTheAgents),
 })
 
 const nextStepsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/next-steps',
-  component: NextSteps,
+  component: withSuspense(NextSteps),
 })
 
 const howToGiveFeedbackRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/how-to-give-feedback',
-  component: HowToGiveFeedback,
+  component: withSuspense(HowToGiveFeedback),
 })
 
 const liveActivityRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/explore/live-activity',
-  component: LiveActivity,
+  component: withSuspense(LiveActivity),
 })
 
 const howAgentsWorkRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/explore/how-agents-work',
-  component: HowAgentsWork,
+  component: withSuspense(HowAgentsWork),
 })
 
 const yourJourneyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/explore/your-journey',
-  component: YourJourney,
+  component: withSuspense(YourJourney),
 })
 
 const profileRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/profile',
-  component: ProfileSetup,
+  component: withSuspense(ProfileSetup),
 })
 
 const versionControlRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-version-control',
-  component: VersionControl,
+  component: withSuspense(VersionControl),
 })
 
 const pullRequestRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-a-pull-request',
-  component: PullRequest,
+  component: withSuspense(PullRequest),
 })
 
 const myProgressRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/my-progress',
-  component: MyProgress,
+  component: withSuspense(MyProgress),
 })
 
 const feedbackRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/feedback',
-  component: FeedbackPage,
+  component: withSuspense(FeedbackPage),
 })
 
 const askRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/ask',
-  component: AskPage,
+  component: withSuspense(AskPage),
 })
 
 const certificateRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/certificate',
-  component: Certificate,
+  component: withSuspense(Certificate),
 })
 
 const whatIsMLRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/what-is-machine-learning',
-  component: WhatIsML,
+  component: withSuspense(WhatIsML),
 })
 
 const howAITrainingWorksRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/how-ai-training-works',
-  component: HowAITrainingWorks,
+  component: withSuspense(HowAITrainingWorks),
 })
 
 const neuralNetworkRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/neural-network',
-  component: NeuralNetwork,
+  component: withSuspense(NeuralNetwork),
 })
 
 const languageModelsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/language-models',
-  component: LanguageModels,
+  component: withSuspense(LanguageModels),
 })
 
 const aiHistoryRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/ai-history',
-  component: AIHistory,
+  component: withSuspense(AIHistory),
 })
 
 const aiEverydayLifeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-everyday-life',
-  component: AIEverydayLife,
+  component: withSuspense(AIEverydayLife),
 })
 
 const aiProsAndConsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-pros-and-cons',
-  component: AIProsAndCons,
+  component: withSuspense(AIProsAndCons),
 })
 
 const glossaryRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/glossary',
-  component: Glossary,
+  component: withSuspense(Glossary),
 })
 
 const learningRecapRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learning-recap',
-  component: LearningRecap,
+  component: withSuspense(LearningRecap),
 })
 
 const quizReviewRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/quiz-review',
-  component: QuizReview,
+  component: withSuspense(QuizReview),
 })
 
 const routeTree = rootRoute.addChildren([
