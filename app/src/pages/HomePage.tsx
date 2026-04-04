@@ -41,6 +41,8 @@ function getTodaysFact(): string {
   return AI_FACTS[dayIndex]
 }
 
+type Difficulty = 'Beginner' | 'Intermediate' | 'Advanced'
+
 interface Module {
   id: string
   title: string
@@ -49,6 +51,7 @@ interface Module {
   icon: string
   to: string
   color: string
+  difficulty?: Difficulty
 }
 
 interface ModuleGroup {
@@ -68,6 +71,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🔑',
         to: '/tutorial/github-signup',
         color: 'blue',
+        difficulty: 'Beginner',
       },
       {
         id: 'github-basics',
@@ -77,6 +81,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '📁',
         to: '/learn/github-basics',
         color: 'green',
+        difficulty: 'Beginner',
       },
       {
         id: 'what-is-api',
@@ -86,6 +91,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🔗',
         to: '/learn/what-is-api',
         color: 'teal',
+        difficulty: 'Intermediate',
       },
     ],
   },
@@ -100,6 +106,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🤖',
         to: '/learn/what-is-ai',
         color: 'purple',
+        difficulty: 'Beginner',
       },
       {
         id: 'what-is-ml',
@@ -109,6 +116,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '📊',
         to: '/learn/what-is-machine-learning',
         color: 'emerald',
+        difficulty: 'Intermediate',
       },
       {
         id: 'how-ai-training-works',
@@ -118,6 +126,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🧪',
         to: '/learn/how-ai-training-works',
         color: 'violet',
+        difficulty: 'Intermediate',
       },
       {
         id: 'neural-network',
@@ -127,6 +136,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🧠',
         to: '/learn/neural-network',
         color: 'pink',
+        difficulty: 'Advanced',
       },
       {
         id: 'language-models',
@@ -136,6 +146,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '💬',
         to: '/learn/language-models',
         color: 'indigo',
+        difficulty: 'Advanced',
       },
       {
         id: 'how-chatbots-work',
@@ -145,6 +156,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '💬',
         to: '/learn/how-chatbots-work',
         color: 'cyan',
+        difficulty: 'Beginner',
       },
       {
         id: 'ai-history',
@@ -154,6 +166,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '⏳',
         to: '/ai-history',
         color: 'amber',
+        difficulty: 'Beginner',
       },
       {
         id: 'ai-everyday-life',
@@ -163,6 +176,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🌍',
         to: '/learn/ai-everyday-life',
         color: 'sky',
+        difficulty: 'Beginner',
       },
     ],
   },
@@ -177,6 +191,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '⚖️',
         to: '/learn/ai-pros-and-cons',
         color: 'orange',
+        difficulty: 'Beginner',
       },
       {
         id: 'ai-bias',
@@ -186,6 +201,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '⚖️',
         to: '/learn/ai-bias',
         color: 'orange',
+        difficulty: 'Intermediate',
       },
       {
         id: 'ai-safety',
@@ -195,6 +211,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🛡️',
         to: '/learn/ai-safety',
         color: 'teal',
+        difficulty: 'Intermediate',
       },
       {
         id: 'prompt-engineering',
@@ -204,6 +221,27 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '✏️',
         to: '/learn/prompt-engineering',
         color: 'violet',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'trusting-ai',
+        title: 'Can I trust what AI says?',
+        description: 'Hallucinations, out-of-date info, bias — how to use AI wisely and know when to verify.',
+        readingTime: '5 min',
+        icon: '🔍',
+        to: '/learn/trusting-ai',
+        color: 'amber',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-jobs',
+        title: 'AI and jobs — what is really changing?',
+        description: 'A grounded look at what AI automates, what it assists, what it cannot replace, and what new roles it creates.',
+        readingTime: '6 min',
+        icon: '💼',
+        to: '/learn/ai-and-jobs',
+        color: 'emerald',
+        difficulty: 'Beginner',
       },
     ],
   },
@@ -218,6 +256,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '⚙️',
         to: '/learn/genesis-system',
         color: 'orange',
+        difficulty: 'Beginner',
       },
       {
         id: 'how-this-was-built',
@@ -227,6 +266,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🏗️',
         to: '/learn/how-this-was-built',
         color: 'indigo',
+        difficulty: 'Intermediate',
       },
       {
         id: 'what-is-ci-cd',
@@ -236,6 +276,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🏭',
         to: '/learn/what-is-ci-cd',
         color: 'cyan',
+        difficulty: 'Advanced',
       },
       {
         id: 'version-control',
@@ -245,6 +286,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '💾',
         to: '/learn/what-is-version-control',
         color: 'sky',
+        difficulty: 'Advanced',
       },
       {
         id: 'pull-request',
@@ -254,6 +296,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '📋',
         to: '/learn/what-is-a-pull-request',
         color: 'violet',
+        difficulty: 'Advanced',
       },
       {
         id: 'meet-the-agents',
@@ -262,6 +305,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '👥',
         to: '/agents',
         color: 'violet',
+        difficulty: 'Beginner',
       },
     ],
   },
@@ -286,6 +330,7 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
+const QUIZ_KEY = 'ronny-quiz-completed'
 
 function loadVisited(): Set<string> {
   try {
@@ -296,11 +341,44 @@ function loadVisited(): Set<string> {
   }
 }
 
+function loadQuizCompleted(): Set<string> {
+  try {
+    const raw = localStorage.getItem(QUIZ_KEY)
+    return new Set(raw ? JSON.parse(raw) : [])
+  } catch {
+    return new Set()
+  }
+}
+
+// Lesson-eligible modules for "Lesson of the day" (educational lessons only, not utility pages)
+const LESSON_POOL = MODULES.filter(m =>
+  !['meet-the-agents'].includes(m.id) && m.readingTime !== undefined
+)
+
+function getLessonOfTheDay(quizCompleted: Set<string>): Module | null {
+  if (LESSON_POOL.length === 0) return null
+  const dayIndex = Math.floor(Date.now() / 86400000)
+  // Find the first uncompleted lesson starting from today's index
+  for (let offset = 0; offset < LESSON_POOL.length; offset++) {
+    const candidate = LESSON_POOL[(dayIndex + offset) % LESSON_POOL.length]
+    if (!quizCompleted.has(candidate.id)) return candidate
+  }
+  return null // all completed
+}
+
+const DIFFICULTY_STYLES: Record<Difficulty, string> = {
+  Beginner:     'bg-green-100 text-green-700',
+  Intermediate: 'bg-amber-100 text-amber-700',
+  Advanced:     'bg-red-100 text-red-700',
+}
+
 export function HomePage() {
   const [visited, setVisited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
 
-  const completedCount = MODULES.filter(m => visited.has(m.id)).length
+  const quizCompleted = loadQuizCompleted()
+  const quizCompletedCount = MODULES.filter(m => quizCompleted.has(m.id)).length
+  const lessonOfTheDay = getLessonOfTheDay(quizCompleted)
   const displayName = profile?.name || 'Ronny'
   const avatar = profile?.avatar || '👋'
   const todaysFact = getTodaysFact()
@@ -339,43 +417,82 @@ export function HomePage() {
           </div>
         </div>
 
-        {/* Progress bar */}
-        {completedCount > 0 && (
-          <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="font-semibold text-gray-700">Your progress</span>
-              <span className="text-sm text-gray-500">{completedCount} of {MODULES.length} modules visited</span>
-            </div>
+        {/* Quiz completion progress bar — always shown */}
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="font-semibold text-gray-700">Your learning progress</span>
+            <span className="text-sm text-gray-500">{quizCompletedCount} of {MODULES.length} lessons completed</span>
+          </div>
+          <div
+            className="w-full bg-gray-100 rounded-full h-3"
+            role="progressbar"
+            aria-valuenow={quizCompletedCount}
+            aria-valuemin={0}
+            aria-valuemax={MODULES.length}
+            aria-label={`${quizCompletedCount} of ${MODULES.length} lessons completed`}
+          >
             <div
-              className="w-full bg-gray-100 rounded-full h-3"
-              role="progressbar"
-              aria-valuenow={completedCount}
-              aria-valuemin={0}
-              aria-valuemax={MODULES.length}
-              aria-label={`${completedCount} of ${MODULES.length} modules visited`}
-            >
-              <div
-                className="bg-blue-500 h-3 rounded-full transition-all duration-500"
-                style={{ width: `${(completedCount / MODULES.length) * 100}%` }}
-              />
-            </div>
-            {completedCount === MODULES.length ? (
-              <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
-                <p className="text-green-700 font-medium">
-                  You have visited all the modules. Nice work!
-                </p>
-                <Link
-                  to="/certificate"
-                  className="text-sm font-semibold text-amber-600 hover:text-amber-800 underline flex-shrink-0"
-                >
-                  Get your certificate &rarr;
-                </Link>
-              </div>
-            ) : (
-              <Link to="/my-progress" className="text-sm text-blue-500 hover:underline">
-                View detailed progress &rarr;
+              className="bg-blue-500 h-3 rounded-full transition-all duration-500"
+              style={{ width: quizCompletedCount > 0 ? `${(quizCompletedCount / MODULES.length) * 100}%` : '2px' }}
+            />
+          </div>
+          {quizCompletedCount === 0 ? (
+            <p className="text-sm text-gray-400">Start with a lesson below and complete its quiz to track your progress!</p>
+          ) : quizCompletedCount === MODULES.length ? (
+            <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
+              <p className="text-green-700 font-medium">
+                You have completed all the lessons. Amazing work!
+              </p>
+              <Link
+                to="/certificate"
+                className="text-sm font-semibold text-amber-600 hover:text-amber-800 underline flex-shrink-0"
+              >
+                Get your certificate &rarr;
               </Link>
-            )}
+            </div>
+          ) : (
+            <Link to="/my-progress" className="text-sm text-blue-500 hover:underline">
+              View detailed progress &rarr;
+            </Link>
+          )}
+        </div>
+
+        {/* Lesson of the day */}
+        {lessonOfTheDay ? (
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-4 sm:p-5 space-y-3">
+            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Lesson of the day</p>
+            <Link
+              to={lessonOfTheDay.to as '/'}
+              onClick={() => {
+                const next = new Set(visited)
+                next.add(lessonOfTheDay.id)
+                setVisited(next)
+                localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
+              }}
+              className="flex items-center gap-4 group"
+            >
+              <span className="text-3xl flex-shrink-0">{lessonOfTheDay.icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-blue-800 group-hover:underline text-base leading-tight">{lessonOfTheDay.title}</p>
+                <p className="text-blue-600 text-sm mt-0.5 leading-relaxed">{lessonOfTheDay.description}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  {lessonOfTheDay.readingTime && (
+                    <span className="text-blue-400 text-xs">{lessonOfTheDay.readingTime} read</span>
+                  )}
+                  {lessonOfTheDay.difficulty && (
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[lessonOfTheDay.difficulty]}`}>
+                      {lessonOfTheDay.difficulty}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <span className="text-blue-400 text-xl flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </Link>
+          </div>
+        ) : (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center space-y-1">
+            <p className="text-emerald-800 font-semibold">You have completed all the lessons!</p>
+            <p className="text-emerald-600 text-sm">Head to My Progress to see your achievements and certificate.</p>
           </div>
         )}
 
@@ -450,9 +567,16 @@ export function HomePage() {
                       <div className="flex-1 min-w-0">
                         <h4 className="font-semibold text-gray-800 text-sm sm:text-base leading-tight">{mod.title}</h4>
                         <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{mod.description}</p>
-                        {mod.readingTime && (
-                          <p className="text-gray-400 text-xs mt-0.5">{mod.readingTime} read</p>
-                        )}
+                        <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                          {mod.readingTime && (
+                            <span className="text-gray-400 text-xs">{mod.readingTime} read</span>
+                          )}
+                          {mod.difficulty && (
+                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[mod.difficulty]}`}>
+                              {mod.difficulty}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       {/* Arrow */}
