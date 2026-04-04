@@ -42,6 +42,8 @@ const AIBias = lazy(() => import('./pages/AIBias').then(m => ({ default: m.AIBia
 const HowChatbotsWork = lazy(() => import('./pages/HowChatbotsWork').then(m => ({ default: m.HowChatbotsWork })))
 const TrustingAI = lazy(() => import('./pages/TrustingAI').then(m => ({ default: m.TrustingAI })))
 const AIAndJobs = lazy(() => import('./pages/AIAndJobs').then(m => ({ default: m.AIAndJobs })))
+const AIAndCreativity = lazy(() => import('./pages/AIAndCreativity').then(m => ({ default: m.AIAndCreativity })))
+const AIInHealthcare = lazy(() => import('./pages/AIInHealthcare').then(m => ({ default: m.AIInHealthcare })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -313,6 +315,18 @@ const aiAndJobsRoute = createRoute({
   component: withSuspense(AIAndJobs),
 })
 
+const aiAndCreativityRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-creativity',
+  component: withSuspense(AIAndCreativity),
+})
+
+const aiInHealthcareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-in-healthcare',
+  component: withSuspense(AIInHealthcare),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -352,6 +366,8 @@ const routeTree = rootRoute.addChildren([
   howChatbotsWorkRoute,
   trustingAIRoute,
   aiAndJobsRoute,
+  aiAndCreativityRoute,
+  aiInHealthcareRoute,
 ])
 
 const hashHistory = createHashHistory()

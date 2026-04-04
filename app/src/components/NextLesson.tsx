@@ -23,6 +23,8 @@ export const LESSON_ORDER: Array<{ id: string; icon: string; title: string; path
   { id: 'how-chatbots-work',  icon: '&#x1F4AC;', title: 'How do chatbots work?',           path: '/learn/how-chatbots-work' },
   { id: 'trusting-ai',        icon: '&#x1F50D;', title: 'Can I trust what AI says?',       path: '/learn/trusting-ai' },
   { id: 'ai-and-jobs',        icon: '&#x1F4BC;', title: 'AI and jobs — what is really changing?', path: '/learn/ai-and-jobs' },
+  { id: 'ai-and-creativity',  icon: '&#x1F3A8;', title: 'AI and creativity',                path: '/learn/ai-and-creativity' },
+  { id: 'ai-in-healthcare',   icon: '&#x1FA7A;', title: 'AI in healthcare',                 path: '/learn/ai-in-healthcare' },
   { id: 'how-this-was-built', icon: '&#x1F528;', title: 'How this app was built',          path: '/learn/how-this-was-built' },
   { id: 'meet-the-agents',    icon: '&#x1F4BC;', title: 'Meet the agents',                 path: '/agents' },
   { id: 'what-is-ci-cd',      icon: '&#x1F680;', title: 'What is CI/CD?',                  path: '/learn/what-is-ci-cd' },

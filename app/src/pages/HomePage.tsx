@@ -243,6 +243,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'emerald',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-creativity',
+        title: 'AI and creativity — art, music, and writing',
+        description: 'How AI tools help with creative work, and why human creativity still matters more than ever.',
+        readingTime: '6 min',
+        icon: '🎨',
+        to: '/learn/ai-and-creativity',
+        color: 'purple',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-in-healthcare',
+        title: 'AI in healthcare',
+        description: 'How AI is helping doctors diagnose diseases, discover drugs, and personalise treatment.',
+        readingTime: '6 min',
+        icon: '🩺',
+        to: '/learn/ai-in-healthcare',
+        color: 'teal',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -331,6 +351,9 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
 
 const VISITED_KEY = 'ronny-visited-modules'
 const QUIZ_KEY = 'ronny-quiz-completed'
+const BOOKMARKS_KEY = 'ronny-bookmarks'
+const SCORES_KEY = 'ronny-quiz-scores'
+const COMPLETION_ORDER_KEY = 'ronny-completion-order'
 
 function loadVisited(): Set<string> {
   try {
@@ -347,6 +370,48 @@ function loadQuizCompleted(): Set<string> {
     return new Set(raw ? JSON.parse(raw) : [])
   } catch {
     return new Set()
+  }
+}
+
+function loadBookmarks(): Set<string> {
+  try {
+    const raw = localStorage.getItem(BOOKMARKS_KEY)
+    return new Set(raw ? JSON.parse(raw) : [])
+  } catch {
+    return new Set()
+  }
+}
+
+function saveBookmarks(bookmarks: Set<string>) {
+  try {
+    localStorage.setItem(BOOKMARKS_KEY, JSON.stringify([...bookmarks]))
+  } catch {
+    // ignore
+  }
+}
+
+function loadScores(): Record<string, { score: number; total: number }> {
+  try {
+    const raw = localStorage.getItem(SCORES_KEY)
+    return raw ? JSON.parse(raw) : {}
+  } catch {
+    return {}
+  }
+}
+
+/** Returns up to N most recently completed lesson IDs in reverse-completion order */
+function loadRecentlyCompleted(quizCompleted: Set<string>, max: number): string[] {
+  try {
+    const raw = localStorage.getItem(COMPLETION_ORDER_KEY)
+    const ordered: string[] = raw ? JSON.parse(raw) : []
+    // Return only IDs still in quizCompleted, most-recent first, up to max
+    const recent: string[] = []
+    for (let i = ordered.length - 1; i >= 0 && recent.length < max; i--) {
+      if (quizCompleted.has(ordered[i])) recent.push(ordered[i])
+    }
+    return recent
+  } catch {
+    return []
   }
 }
 
@@ -374,6 +439,7 @@ const DIFFICULTY_STYLES: Record<Difficulty, string> = {
 
 export function HomePage() {
   const [visited, setVisited] = useState<Set<string>>(loadVisited)
+  const [bookmarks, setBookmarks] = useState<Set<string>>(loadBookmarks)
   const { profile } = useProfile()
 
   const quizCompleted = loadQuizCompleted()
@@ -382,6 +448,25 @@ export function HomePage() {
   const displayName = profile?.name || 'Ronny'
   const avatar = profile?.avatar || '👋'
   const todaysFact = getTodaysFact()
+  const scores = loadScores()
+
+  const recentlyCompletedIds = loadRecentlyCompleted(quizCompleted, 3)
+  const recentlyCompletedModules = recentlyCompletedIds
+    .map(id => MODULES.find(m => m.id === id))
+    .filter((m): m is Module => m !== undefined)
+
+  const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
+
+  function toggleBookmark(id: string) {
+    const next = new Set(bookmarks)
+    if (next.has(id)) {
+      next.delete(id)
+    } else {
+      next.add(id)
+    }
+    setBookmarks(next)
+    saveBookmarks(next)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
@@ -496,6 +581,64 @@ export function HomePage() {
           </div>
         )}
 
+        {/* Recently completed */}
+        {recentlyCompletedModules.length > 0 && (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 space-y-3">
+            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide">Recently completed</p>
+            <div className="space-y-2">
+              {recentlyCompletedModules.map(mod => {
+                const modScore = scores[mod.id]
+                return (
+                  <Link
+                    key={mod.id}
+                    to={mod.to as '/'}
+                    className="flex items-center gap-3 group"
+                  >
+                    <span className="text-2xl flex-shrink-0">{mod.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-emerald-800 text-sm group-hover:underline leading-tight">{mod.title}</p>
+                      {modScore && (
+                        <p className="text-xs text-emerald-600 mt-0.5">
+                          Quiz score: {modScore.score}/{modScore.total} ({Math.round((modScore.score / modScore.total) * 100)}%)
+                        </p>
+                      )}
+                    </div>
+                    <span className="text-emerald-400 text-base flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Bookmarked lessons */}
+        {bookmarkedModules.length > 0 && (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 space-y-3">
+            <p className="text-xs font-semibold text-amber-600 uppercase tracking-wide">Saved for later</p>
+            <div className="space-y-2">
+              {bookmarkedModules.map(mod => (
+                <div key={mod.id} className="flex items-center gap-3 group">
+                  <Link
+                    to={mod.to as '/'}
+                    className="flex items-center gap-3 flex-1 min-w-0"
+                  >
+                    <span className="text-2xl flex-shrink-0">{mod.icon}</span>
+                    <p className="font-semibold text-amber-800 text-sm group-hover:underline leading-tight flex-1 min-w-0">{mod.title}</p>
+                  </Link>
+                  <button
+                    onClick={() => toggleBookmark(mod.id)}
+                    className="text-amber-500 hover:text-amber-700 transition-colors flex-shrink-0 text-lg"
+                    aria-label={`Remove bookmark for ${mod.title}`}
+                    title="Remove bookmark"
+                  >
+                    &#x2605;
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* For Gigi section */}
         <div className="bg-pink-50 border border-pink-200 rounded-2xl p-4 sm:p-6 space-y-3">
           <p className="text-sm font-semibold text-pink-700 uppercase tracking-wide">For Gigi</p>
@@ -541,47 +684,76 @@ export function HomePage() {
               <div className="space-y-2">
                 {group.modules.map((mod) => {
                   const done = visited.has(mod.id)
+                  const isBookmarked = bookmarks.has(mod.id)
+                  const modScore = scores[mod.id]
                   const colors = COLOR_MAP[mod.color] ?? COLOR_MAP['blue']
                   return (
-                    <Link
+                    <div
                       key={mod.id}
-                      to={mod.to}
-                      onClick={() => {
-                        const next = new Set(visited)
-                        next.add(mod.id)
-                        setVisited(next)
-                        localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
-                      }}
-                      className={`bg-white rounded-xl shadow-sm border-2 transition-all duration-200 p-4 sm:p-5 flex items-center gap-3 sm:gap-4 ${
+                      className={`bg-white rounded-xl shadow-sm border-2 transition-all duration-200 flex items-center gap-3 sm:gap-4 ${
                         done ? 'border-green-300' : `border-gray-100 ${colors.border}`
                       }`}
                     >
-                      {/* Done indicator */}
-                      <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${
-                        done ? 'bg-green-500 text-white' : colors.badge
-                      }`}>
-                        {done ? '✓' : mod.icon}
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-gray-800 text-sm sm:text-base leading-tight">{mod.title}</h4>
-                        <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{mod.description}</p>
-                        <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                          {mod.readingTime && (
-                            <span className="text-gray-400 text-xs">{mod.readingTime} read</span>
-                          )}
-                          {mod.difficulty && (
-                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[mod.difficulty]}`}>
-                              {mod.difficulty}
-                            </span>
-                          )}
+                      <Link
+                        to={mod.to}
+                        onClick={() => {
+                          const next = new Set(visited)
+                          next.add(mod.id)
+                          setVisited(next)
+                          localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
+                        }}
+                        className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0 p-4 sm:p-5"
+                      >
+                        {/* Done indicator */}
+                        <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${
+                          done ? 'bg-green-500 text-white' : colors.badge
+                        }`}>
+                          {done ? '✓' : mod.icon}
                         </div>
-                      </div>
 
-                      {/* Arrow */}
-                      <span className="text-gray-400 text-lg sm:text-xl flex-shrink-0">&rarr;</span>
-                    </Link>
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-gray-800 text-sm sm:text-base leading-tight">{mod.title}</h4>
+                          <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{mod.description}</p>
+                          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                            {mod.readingTime && (
+                              <span className="text-gray-400 text-xs">{mod.readingTime} read</span>
+                            )}
+                            {mod.difficulty && (
+                              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[mod.difficulty]}`}>
+                                {mod.difficulty}
+                              </span>
+                            )}
+                            {modScore && (
+                              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                                modScore.score / modScore.total >= 0.8
+                                  ? 'bg-green-100 text-green-700'
+                                  : modScore.score / modScore.total >= 0.5
+                                  ? 'bg-amber-100 text-amber-700'
+                                  : 'bg-red-100 text-red-700'
+                              }`}>
+                                {Math.round((modScore.score / modScore.total) * 100)}%
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Arrow */}
+                        <span className="text-gray-400 text-lg sm:text-xl flex-shrink-0">&rarr;</span>
+                      </Link>
+
+                      {/* Bookmark toggle */}
+                      <button
+                        onClick={() => toggleBookmark(mod.id)}
+                        className={`pr-4 flex-shrink-0 text-xl transition-colors ${
+                          isBookmarked ? 'text-amber-400 hover:text-amber-600' : 'text-gray-200 hover:text-amber-300'
+                        }`}
+                        aria-label={isBookmarked ? `Remove bookmark for ${mod.title}` : `Bookmark ${mod.title}`}
+                        title={isBookmarked ? 'Remove bookmark' : 'Save for later'}
+                      >
+                        {isBookmarked ? '★' : '☆'}
+                      </button>
+                    </div>
                   )
                 })}
               </div>

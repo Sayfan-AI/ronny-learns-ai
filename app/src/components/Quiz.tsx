@@ -47,11 +47,32 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
           completed.push(lessonId)
           localStorage.setItem('ronny-quiz-completed', JSON.stringify(completed))
         }
+        // Track completion order for "recently completed" feature
+        const orderRaw = localStorage.getItem('ronny-completion-order')
+        const order: string[] = orderRaw ? JSON.parse(orderRaw) : []
+        // Remove existing entry (if retaken) then push to end (most recent)
+        const filtered = order.filter((id) => id !== lessonId)
+        filtered.push(lessonId)
+        localStorage.setItem('ronny-completion-order', JSON.stringify(filtered))
       } catch {
         // ignore storage errors
       }
     }
   }, [allDone, lessonId])
+
+  // Persist quiz score per lesson so home page cards can display it
+  useEffect(() => {
+    if (allDone && lessonId && total > 0) {
+      try {
+        const raw = localStorage.getItem('ronny-quiz-scores')
+        const scores: Record<string, { score: number; total: number }> = raw ? JSON.parse(raw) : {}
+        scores[lessonId] = { score, total }
+        localStorage.setItem('ronny-quiz-scores', JSON.stringify(scores))
+      } catch {
+        // ignore storage errors
+      }
+    }
+  }, [allDone, lessonId, score, total])
 
   function handleSelect(questionIndex: number, optionIndex: number) {
     if (answers[questionIndex] !== undefined) return
