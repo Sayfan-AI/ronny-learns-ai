@@ -47,6 +47,9 @@ const AIInHealthcare = lazy(() => import('./pages/AIInHealthcare').then(m => ({ 
 const AIAndEnvironment = lazy(() => import('./pages/AIAndEnvironment').then(m => ({ default: m.AIAndEnvironment })))
 const AIAndPrivacy = lazy(() => import('./pages/AIAndPrivacy').then(m => ({ default: m.AIAndPrivacy })))
 const AIAndEducation = lazy(() => import('./pages/AIAndEducation').then(m => ({ default: m.AIAndEducation })))
+const AIAndMisinformation = lazy(() => import('./pages/AIAndMisinformation').then(m => ({ default: m.AIAndMisinformation })))
+const AIAndMentalHealth = lazy(() => import('./pages/AIAndMentalHealth').then(m => ({ default: m.AIAndMentalHealth })))
+const FutureOfAI = lazy(() => import('./pages/FutureOfAI').then(m => ({ default: m.FutureOfAI })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -348,6 +351,24 @@ const aiAndEducationRoute = createRoute({
   component: withSuspense(AIAndEducation),
 })
 
+const aiAndMisinformationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-misinformation',
+  component: withSuspense(AIAndMisinformation),
+})
+
+const aiAndMentalHealthRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-mental-health',
+  component: withSuspense(AIAndMentalHealth),
+})
+
+const futureOfAIRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/future-of-ai',
+  component: withSuspense(FutureOfAI),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -392,6 +413,9 @@ const routeTree = rootRoute.addChildren([
   aiAndEnvironmentRoute,
   aiAndPrivacyRoute,
   aiAndEducationRoute,
+  aiAndMisinformationRoute,
+  aiAndMentalHealthRoute,
+  futureOfAIRoute,
 ])
 
 const hashHistory = createHashHistory()

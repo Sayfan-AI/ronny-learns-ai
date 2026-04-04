@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 import { SearchBar } from '../components/SearchBar'
 import { useStreak } from '../hooks/useStreak'
+import { getRecommendations, type Recommendation } from '../hooks/useRecommendations'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -294,6 +295,36 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'sky',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-misinformation',
+        title: 'AI and misinformation — deepfakes, fake news, and what to watch out for',
+        description: 'How AI creates convincing deepfakes and fake news, how to spot them, and how to fact-check effectively.',
+        readingTime: '6 min',
+        icon: '🔎',
+        to: '/learn/ai-and-misinformation',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-mental-health',
+        title: 'AI and your mental health — chatbots, therapy apps, and digital wellbeing',
+        description: 'AI companion and therapy apps — their real benefits, risks, and how to use them wisely.',
+        readingTime: '6 min',
+        icon: '🧠',
+        to: '/learn/ai-and-mental-health',
+        color: 'violet',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'future-of-ai',
+        title: 'What does the future of AI look like?',
+        description: 'Near-term trends, the AGI debate, what experts actually think, and how to stay informed.',
+        readingTime: '7 min',
+        icon: '🔭',
+        to: '/learn/future-of-ai',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -378,6 +409,7 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   emerald: { border: 'hover:border-emerald-300', badge: 'bg-emerald-100 text-emerald-700', button: 'bg-emerald-600 hover:bg-emerald-700 text-white' },
   pink:    { border: 'hover:border-pink-300',    badge: 'bg-pink-100 text-pink-700',       button: 'bg-pink-600 hover:bg-pink-700 text-white' },
   amber:   { border: 'hover:border-amber-300',   badge: 'bg-amber-100 text-amber-700',     button: 'bg-amber-600 hover:bg-amber-700 text-white' },
+  red:     { border: 'hover:border-red-300',     badge: 'bg-red-100 text-red-700',         button: 'bg-red-600 hover:bg-red-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -488,6 +520,7 @@ export function HomePage() {
     .filter((m): m is Module => m !== undefined)
 
   const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
+  const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
 
   function toggleBookmark(id: string) {
     const next = new Set(bookmarks)
@@ -591,6 +624,42 @@ export function HomePage() {
                   <span className="ml-1 text-orange-500">That is your best yet!</span>
                 )}
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* Personalised recommendations */}
+        {recommendations.length > 0 && (
+          <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-5 space-y-4">
+            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Up next for you</p>
+            <div className="space-y-2">
+              {recommendations.map(rec => (
+                <Link
+                  key={rec.id}
+                  to={rec.path as '/'}
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors group"
+                  onClick={() => {
+                    const next = new Set(visited)
+                    next.add(rec.id)
+                    setVisited(next)
+                    localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
+                  }}
+                >
+                  <span
+                    className="text-2xl flex-shrink-0"
+                    dangerouslySetInnerHTML={{ __html: rec.icon }}
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-gray-800 group-hover:text-blue-700 text-sm leading-tight transition-colors">
+                      {rec.title}
+                    </p>
+                    <span className={`inline-block mt-0.5 text-xs px-2 py-0.5 rounded-full font-medium ${DIFFICULTY_STYLES[rec.difficulty]}`}>
+                      {rec.difficulty}
+                    </span>
+                  </div>
+                  <span className="text-gray-400 text-base flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </Link>
+              ))}
             </div>
           </div>
         )}

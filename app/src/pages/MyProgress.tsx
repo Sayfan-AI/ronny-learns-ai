@@ -21,27 +21,68 @@ async function shareProgress(completedCount: number, total: number) {
 
 const VISITED_KEY = 'ronny-visited-modules'
 
-const ALL_MODULES = [
-  { id: 'github-signup',    icon: '🔑', title: 'Create your GitHub account',           to: '/tutorial/github-signup' },
-  { id: 'github-basics',    icon: '📁', title: 'What is GitHub for?',                  to: '/learn/github-basics' },
-  { id: 'what-is-ai',       icon: '🤖', title: 'What is AI?',                          to: '/learn/what-is-ai' },
-  { id: 'what-is-api',      icon: '🔗', title: 'What is an API?',                      to: '/learn/what-is-api' },
-  { id: 'genesis-system',   icon: '⚙️',  title: 'What is the Genesis system?',         to: '/learn/genesis-system' },
-  { id: 'how-this-was-built', icon: '🏗️', title: 'How this app was built',             to: '/learn/how-this-was-built' },
-  { id: 'what-is-ci-cd',    icon: '🏭', title: 'How does the website update?',         to: '/learn/what-is-ci-cd' },
-  { id: 'version-control',  icon: '💾', title: 'How does version control work?',       to: '/learn/what-is-version-control' },
-  { id: 'pull-request',     icon: '📋', title: 'What is a pull request?',              to: '/learn/what-is-a-pull-request' },
-  { id: 'meet-the-agents',  icon: '👥', title: 'Meet the AI agents',                  to: '/agents' },
-  { id: 'ai-everyday-life', icon: '🌍', title: 'AI in everyday life',                 to: '/learn/ai-everyday-life' },
-  { id: 'ai-pros-and-cons', icon: '⚖️', title: 'AI: the good and the bad',            to: '/learn/ai-pros-and-cons' },
-  { id: 'what-is-ml',       icon: '📊', title: 'What is machine learning?',           to: '/learn/what-is-machine-learning' },
-  { id: 'how-ai-training-works', icon: '🏋️', title: 'How does AI training work?',   to: '/learn/how-ai-training-works' },
-  { id: 'neural-network',   icon: '🧠', title: 'What is a neural network?',           to: '/learn/neural-network' },
-  { id: 'language-models',  icon: '💬', title: 'How do language models work?',        to: '/learn/language-models' },
-  { id: 'ai-history',       icon: '📜', title: 'AI history timeline',                 to: '/ai-history' },
-  { id: 'prompt-engineering', icon: '✏️', title: 'What is prompt engineering?',      to: '/learn/prompt-engineering' },
-  { id: 'ai-safety',        icon: '🛡️', title: 'AI safety and alignment',            to: '/learn/ai-safety' },
+interface ModuleEntry { id: string; icon: string; title: string; to: string }
+
+interface SectionGroup {
+  heading: string
+  modules: ModuleEntry[]
+}
+
+const SECTION_GROUPS: SectionGroup[] = [
+  {
+    heading: 'Getting started',
+    modules: [
+      { id: 'github-signup',    icon: '🔑', title: 'Create your GitHub account',        to: '/tutorial/github-signup' },
+      { id: 'github-basics',    icon: '📁', title: 'What is GitHub for?',               to: '/learn/github-basics' },
+      { id: 'what-is-api',      icon: '🔗', title: 'What is an API?',                   to: '/learn/what-is-api' },
+    ],
+  },
+  {
+    heading: 'Understanding AI',
+    modules: [
+      { id: 'what-is-ai',            icon: '🤖', title: 'What is AI?',                              to: '/learn/what-is-ai' },
+      { id: 'what-is-ml',            icon: '📊', title: 'What is machine learning?',               to: '/learn/what-is-machine-learning' },
+      { id: 'how-ai-training-works', icon: '🏋️', title: 'How does AI training work?',             to: '/learn/how-ai-training-works' },
+      { id: 'neural-network',        icon: '🧠', title: 'What is a neural network?',               to: '/learn/neural-network' },
+      { id: 'language-models',       icon: '💬', title: 'How do language models work?',            to: '/learn/language-models' },
+      { id: 'how-chatbots-work',     icon: '💬', title: 'How do chatbots work?',                   to: '/learn/how-chatbots-work' },
+      { id: 'ai-history',            icon: '📜', title: 'AI history timeline',                     to: '/ai-history' },
+      { id: 'ai-everyday-life',      icon: '🌍', title: 'AI in everyday life',                     to: '/learn/ai-everyday-life' },
+    ],
+  },
+  {
+    heading: 'AI and society',
+    modules: [
+      { id: 'ai-pros-and-cons',      icon: '⚖️', title: 'AI: the good and the bad',               to: '/learn/ai-pros-and-cons' },
+      { id: 'ai-bias',               icon: '⚖️', title: 'What is AI bias?',                        to: '/learn/ai-bias' },
+      { id: 'ai-safety',             icon: '🛡️', title: 'AI safety and alignment',                to: '/learn/ai-safety' },
+      { id: 'prompt-engineering',    icon: '✏️', title: 'What is prompt engineering?',            to: '/learn/prompt-engineering' },
+      { id: 'trusting-ai',           icon: '🔍', title: 'Can I trust what AI says?',              to: '/learn/trusting-ai' },
+      { id: 'ai-and-jobs',           icon: '💼', title: 'AI and jobs',                             to: '/learn/ai-and-jobs' },
+      { id: 'ai-and-creativity',     icon: '🎨', title: 'AI and creativity',                       to: '/learn/ai-and-creativity' },
+      { id: 'ai-in-healthcare',      icon: '🩺', title: 'AI in healthcare',                        to: '/learn/ai-in-healthcare' },
+      { id: 'ai-and-environment',    icon: '🌱', title: 'AI and the environment',                  to: '/learn/ai-and-environment' },
+      { id: 'ai-and-privacy',        icon: '🔒', title: 'AI and privacy',                          to: '/learn/ai-and-privacy' },
+      { id: 'ai-and-education',      icon: '🎓', title: 'AI and education',                        to: '/learn/ai-and-education' },
+      { id: 'ai-and-misinformation', icon: '🔎', title: 'AI and misinformation',                  to: '/learn/ai-and-misinformation' },
+      { id: 'ai-and-mental-health',  icon: '🧠', title: 'AI and your mental health',              to: '/learn/ai-and-mental-health' },
+      { id: 'future-of-ai',          icon: '🔭', title: 'What does the future of AI look like?', to: '/learn/future-of-ai' },
+    ],
+  },
+  {
+    heading: 'How software is built',
+    modules: [
+      { id: 'genesis-system',    icon: '⚙️',  title: 'What is the Genesis system?',   to: '/learn/genesis-system' },
+      { id: 'how-this-was-built', icon: '🏗️', title: 'How this app was built',        to: '/learn/how-this-was-built' },
+      { id: 'what-is-ci-cd',     icon: '🏭', title: 'How does the website update?',  to: '/learn/what-is-ci-cd' },
+      { id: 'version-control',   icon: '💾', title: 'How does version control work?', to: '/learn/what-is-version-control' },
+      { id: 'pull-request',      icon: '📋', title: 'What is a pull request?',        to: '/learn/what-is-a-pull-request' },
+      { id: 'meet-the-agents',   icon: '👥', title: 'Meet the AI agents',             to: '/agents' },
+    ],
+  },
 ]
+
+const ALL_MODULES: ModuleEntry[] = SECTION_GROUPS.flatMap(g => g.modules)
 
 function loadVisited(): Set<string> {
   try {
@@ -140,6 +181,42 @@ export function MyProgress() {
           </div>
         </div>
 
+        {/* Section progress visualisation */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-5">
+          <h2 className="text-xl font-semibold text-gray-700">Your learning path</h2>
+          {SECTION_GROUPS.map(group => {
+            const groupTotal = group.modules.length
+            const groupDone = group.modules.filter(m => visited.has(m.id)).length
+            const groupPct = Math.round((groupDone / groupTotal) * 100)
+            const sectionComplete = groupDone === groupTotal
+            return (
+              <div key={group.heading} className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-gray-700 text-sm">{group.heading}</span>
+                  {sectionComplete ? (
+                    <span className="flex items-center gap-1 text-emerald-600 text-sm font-semibold">
+                      <span>&#x2713;</span> Section complete!
+                    </span>
+                  ) : groupDone === 0 ? (
+                    <span className="text-gray-400 text-xs">Not started yet</span>
+                  ) : (
+                    <span className="text-gray-500 text-xs">{groupDone} / {groupTotal}</span>
+                  )}
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-2.5">
+                  <div
+                    className={`h-2.5 rounded-full transition-all duration-700 ${sectionComplete ? 'bg-emerald-500' : 'bg-blue-500'}`}
+                    style={{ width: `${groupPct}%` }}
+                  />
+                </div>
+                {!sectionComplete && groupDone > 0 && (
+                  <p className="text-gray-400 text-xs">{groupPct}% complete</p>
+                )}
+              </div>
+            )
+          })}
+        </div>
+
         {/* Streak card */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-3">
           <div className="flex items-center gap-3">
@@ -187,34 +264,39 @@ export function MyProgress() {
         </div>
 
         {/* Module list */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-3">
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-5">
           <h2 className="text-xl font-semibold text-gray-700">All modules</h2>
-          <div className="space-y-2">
-            {ALL_MODULES.map((mod) => {
-              const done = visited.has(mod.id)
-              return (
-                <Link
-                  key={mod.id}
-                  to={mod.to}
-                  className={`flex items-center gap-4 p-3 rounded-xl border transition-all duration-150 ${
-                    done
-                      ? 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100'
-                      : 'border-gray-100 bg-gray-50 hover:bg-gray-100'
-                  }`}
-                >
-                  <span className="text-2xl flex-shrink-0">{mod.icon}</span>
-                  <span className={`flex-1 font-medium leading-tight ${done ? 'text-emerald-800' : 'text-gray-600'}`}>
-                    {mod.title}
-                  </span>
-                  {done ? (
-                    <span className="text-emerald-500 font-bold text-xl flex-shrink-0">&#x2713;</span>
-                  ) : (
-                    <span className="text-gray-300 text-xl flex-shrink-0">&#x25CB;</span>
-                  )}
-                </Link>
-              )
-            })}
-          </div>
+          {SECTION_GROUPS.map(group => (
+            <div key={group.heading} className="space-y-2">
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">{group.heading}</p>
+              <div className="space-y-1.5">
+                {group.modules.map((mod) => {
+                  const done = visited.has(mod.id)
+                  return (
+                    <Link
+                      key={mod.id}
+                      to={mod.to}
+                      className={`flex items-center gap-4 p-3 rounded-xl border transition-all duration-150 ${
+                        done
+                          ? 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100'
+                          : 'border-gray-100 bg-gray-50 hover:bg-gray-100'
+                      }`}
+                    >
+                      <span className="text-2xl flex-shrink-0">{mod.icon}</span>
+                      <span className={`flex-1 font-medium leading-tight text-sm ${done ? 'text-emerald-800' : 'text-gray-600'}`}>
+                        {mod.title}
+                      </span>
+                      {done ? (
+                        <span className="text-emerald-500 font-bold text-xl flex-shrink-0">&#x2713;</span>
+                      ) : (
+                        <span className="text-gray-300 text-xl flex-shrink-0">&#x25CB;</span>
+                      )}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* What's next */}
