@@ -68,8 +68,10 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-elderly-care',    title: 'AI and elderly care',                      to: '/learn/ai-and-elderly-care' },
   { id: 'ai-and-insurance',       title: 'AI and insurance',                         to: '/learn/ai-and-insurance' },
   { id: 'ai-and-policing',        title: 'AI and policing',                          to: '/learn/ai-and-policing' },
-  { id: 'ai-and-the-nhs',        title: 'AI and the NHS',                           to: '/learn/ai-and-the-nhs' },
-  { id: 'ai-and-hiring',         title: 'AI and hiring',                            to: '/learn/ai-and-hiring' },
+  { id: 'ai-and-the-nhs',             title: 'AI and the NHS',                      to: '/learn/ai-and-the-nhs' },
+  { id: 'ai-and-hiring',              title: 'AI and hiring',                       to: '/learn/ai-and-hiring' },
+  { id: 'ai-and-customer-service',    title: 'AI and customer service',             to: '/learn/ai-and-customer-service' },
+  { id: 'ai-and-weather',             title: 'AI and the weather',                  to: '/learn/ai-and-weather' },
 ]
 
 interface QuizScoreEntry {
@@ -240,6 +242,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-policing',            icon: '⚖️', title: 'AI and policing',                              to: '/learn/ai-and-policing' },
       { id: 'ai-and-the-nhs',            icon: '🏥', title: 'AI and the NHS',                               to: '/learn/ai-and-the-nhs' },
       { id: 'ai-and-hiring',             icon: '💼', title: 'AI and hiring',                                to: '/learn/ai-and-hiring' },
+      { id: 'ai-and-customer-service',   icon: '💬', title: 'AI and customer service',                      to: '/learn/ai-and-customer-service' },
+      { id: 'ai-and-weather',            icon: '⛅', title: 'AI and the weather',                           to: '/learn/ai-and-weather' },
     ],
   },
   {
@@ -328,6 +332,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-energy': 5, 'ai-and-elderly-care': 6,
   'ai-and-insurance': 5, 'ai-and-policing': 6,
   'ai-and-the-nhs': 5, 'ai-and-hiring': 6,
+  'ai-and-customer-service': 5, 'ai-and-weather': 5,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -362,6 +367,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-energy': 'AI in the real world', 'ai-and-elderly-care': 'AI in the real world',
   'ai-and-insurance': 'AI and society', 'ai-and-policing': 'AI and society',
   'ai-and-the-nhs': 'AI in the real world', 'ai-and-hiring': 'AI and society',
+  'ai-and-customer-service': 'AI in the real world', 'ai-and-weather': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -558,6 +564,7 @@ export function MyProgress() {
       return isNaN(n) ? 0 : n
     } catch { return 0 }
   })
+  const [selectedTopicFilter, setSelectedTopicFilter] = useState<string>('All')
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -1093,9 +1100,17 @@ export function MyProgress() {
         {/* My notes */}
         {noteEntries.length > 0 && (
           <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-            <h2 className="text-xl font-semibold text-gray-700">My notes</h2>
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-xl font-semibold text-gray-700">My notes</h2>
+              <Link
+                to="/my-notes"
+                className="text-sm text-yellow-700 hover:text-yellow-800 underline underline-offset-2 font-medium"
+              >
+                View all notes &#x2192;
+              </Link>
+            </div>
             <div className="space-y-2">
-              {noteEntries.map(mod => (
+              {noteEntries.slice(0, 3).map(mod => (
                 <Link
                   key={mod.id}
                   to={mod.to}
@@ -1109,6 +1124,14 @@ export function MyProgress() {
                   <span className="text-yellow-400 flex-shrink-0">&#x2192;</span>
                 </Link>
               ))}
+              {noteEntries.length > 3 && (
+                <Link
+                  to="/my-notes"
+                  className="block text-center text-sm text-yellow-700 hover:text-yellow-800 py-2 rounded-xl bg-yellow-50 border border-yellow-100 hover:bg-yellow-100 transition-colors"
+                >
+                  + {noteEntries.length - 3} more note{noteEntries.length - 3 !== 1 ? 's' : ''} &mdash; view all
+                </Link>
+              )}
             </div>
           </div>
         )}
@@ -1187,37 +1210,72 @@ export function MyProgress() {
         {/* Module list */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-5">
           <h2 className="text-xl font-semibold text-gray-700">All modules</h2>
-          {SECTION_GROUPS.map(group => (
-            <div key={group.heading} className="space-y-2">
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">{group.heading}</p>
-              <div className="space-y-1.5">
-                {group.modules.map((mod) => {
-                  const done = visited.has(mod.id)
-                  return (
-                    <Link
-                      key={mod.id}
-                      to={mod.to}
-                      className={`flex items-center gap-4 p-3 rounded-xl border transition-all duration-150 ${
-                        done
-                          ? 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100'
-                          : 'border-gray-100 bg-gray-50 hover:bg-gray-100'
-                      }`}
-                    >
-                      <span className="text-2xl flex-shrink-0">{mod.icon}</span>
-                      <span className={`flex-1 font-medium leading-tight text-sm ${done ? 'text-emerald-800' : 'text-gray-600'}`}>
-                        {mod.title}
-                      </span>
-                      {done ? (
-                        <span className="text-emerald-500 font-bold text-xl flex-shrink-0">&#x2713;</span>
-                      ) : (
-                        <span className="text-gray-300 text-xl flex-shrink-0">&#x25CB;</span>
-                      )}
-                    </Link>
-                  )
-                })}
+
+          {/* Topic filter pills */}
+          {completedCount > 0 && (() => {
+            const allTopics = ['All', ...Array.from(new Set(Object.values(TOPIC_GROUPS)))]
+            return (
+              <div className="flex flex-wrap gap-2">
+                {allTopics.map(topic => (
+                  <button
+                    key={topic}
+                    onClick={() => setSelectedTopicFilter(topic)}
+                    className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+                      selectedTopicFilter === topic
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700'
+                    }`}
+                  >
+                    {topic}
+                  </button>
+                ))}
               </div>
-            </div>
-          ))}
+            )
+          })()}
+
+          {SECTION_GROUPS.map(group => {
+            const filteredModules = selectedTopicFilter === 'All'
+              ? group.modules
+              : group.modules.filter(m => TOPIC_GROUPS[m.id] === selectedTopicFilter)
+            if (filteredModules.length === 0) return null
+            return (
+              <div key={group.heading} className="space-y-2">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">{group.heading}</p>
+                <div className="space-y-1.5">
+                  {filteredModules.map((mod) => {
+                    const done = visited.has(mod.id)
+                    return (
+                      <Link
+                        key={mod.id}
+                        to={mod.to}
+                        className={`flex items-center gap-4 p-3 rounded-xl border transition-all duration-150 ${
+                          done
+                            ? 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100'
+                            : 'border-gray-100 bg-gray-50 hover:bg-gray-100'
+                        }`}
+                      >
+                        <span className="text-2xl flex-shrink-0">{mod.icon}</span>
+                        <span className={`flex-1 font-medium leading-tight text-sm ${done ? 'text-emerald-800' : 'text-gray-600'}`}>
+                          {mod.title}
+                        </span>
+                        {done ? (
+                          <span className="text-emerald-500 font-bold text-xl flex-shrink-0">&#x2713;</span>
+                        ) : (
+                          <span className="text-gray-300 text-xl flex-shrink-0">&#x25CB;</span>
+                        )}
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+
+          {/* Empty state for filtered view */}
+          {completedCount > 0 && selectedTopicFilter !== 'All' &&
+            SECTION_GROUPS.every(g => g.modules.every(m => TOPIC_GROUPS[m.id] !== selectedTopicFilter)) && (
+            <p className="text-gray-400 text-sm text-center py-4">No lessons in this topic yet.</p>
+          )}
         </div>
 
         {/* What's next */}
