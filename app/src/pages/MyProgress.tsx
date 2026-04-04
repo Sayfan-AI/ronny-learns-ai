@@ -62,6 +62,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-for-accessibility',       icon: '♿', title: 'AI for accessibility',                    to: '/learn/ai-for-accessibility' },
       { id: 'ai-and-scientific-research', icon: '🔬', title: 'AI and scientific research',             to: '/learn/ai-and-scientific-research' },
       { id: 'ai-productivity-tools',      icon: '⚡', title: 'AI and your productivity',               to: '/learn/ai-productivity-tools' },
+      { id: 'ai-and-food',                icon: '🌿', title: 'AI and food',                              to: '/learn/ai-and-food' },
+      { id: 'ai-and-sport',               icon: '⚽', title: 'AI and sport',                             to: '/learn/ai-and-sport' },
     ],
   },
   {
@@ -134,6 +136,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-mental-health': 6, 'future-of-ai': 7, 'ai-laws-and-rights': 7,
   'ai-and-copyright': 6, 'how-to-use-ai-safely': 5,
   'ai-and-money': 6, 'ai-and-democracy': 7, 'ai-and-language': 5,
+  'ai-and-food': 5, 'ai-and-sport': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -156,6 +159,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'future-of-ai': 'AI and society', 'ai-laws-and-rights': 'AI and society',
   'ai-and-copyright': 'AI and society', 'how-to-use-ai-safely': 'AI and society',
   'ai-and-money': 'AI and society', 'ai-and-democracy': 'AI and society', 'ai-and-language': 'AI and society',
+  'ai-and-food': 'AI in the real world', 'ai-and-sport': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -213,6 +217,56 @@ function computeStats(visited: Set<string>): StatsResult {
   return { totalReadingMinutes, quizAccuracyPct, favouriteTopic }
 }
 
+function buildProgressSummary(
+  completedCount: number,
+  total: number,
+  streak: number,
+  favouriteTopic: string | null,
+): string {
+  if (completedCount === 0) {
+    return "You have not completed any lessons yet — but you are here, and that counts. Pick any lesson below to get started!"
+  }
+
+  const parts: string[] = []
+
+  // Completion sentence
+  if (completedCount === total) {
+    parts.push(`You have completed all ${total} lessons — that is a remarkable achievement.`)
+  } else {
+    parts.push(`You have completed ${completedCount} of ${total} lessons.`)
+  }
+
+  // Favourite topic
+  if (favouriteTopic) {
+    parts.push(`Your most-explored topic is ${favouriteTopic}.`)
+  }
+
+  // Streak
+  if (streak >= 7) {
+    parts.push(`You are on a ${streak}-day learning streak — incredible dedication!`)
+  } else if (streak >= 3) {
+    parts.push(`You are on a ${streak}-day learning streak — keep it going!`)
+  } else if (streak === 2) {
+    parts.push(`You have visited 2 days in a row — you are building a habit!`)
+  } else if (streak === 1) {
+    parts.push(`You visited today — come back tomorrow to start a streak.`)
+  }
+
+  // Encouragement for partial completion
+  if (completedCount > 0 && completedCount < total) {
+    const pct = Math.round((completedCount / total) * 100)
+    if (pct >= 75) {
+      parts.push(`You are nearly there — just ${total - completedCount} lesson${total - completedCount === 1 ? '' : 's'} to go.`)
+    } else if (pct >= 50) {
+      parts.push(`You are over halfway through the curriculum. Nice work!`)
+    } else if (pct >= 25) {
+      parts.push(`You are making real progress.`)
+    }
+  }
+
+  return parts.join(' ')
+}
+
 export function MyProgress() {
   const [visited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
@@ -230,6 +284,8 @@ export function MyProgress() {
   const revisitedCount = ALL_MODULES.filter(m => (visitCounts[m.id] ?? 0) >= 2).length
 
   const stats = computeStats(visited)
+
+  const progressSummary = buildProgressSummary(completedCount, total, streak.current, stats.favouriteTopic)
 
   const allNotes = loadAllNotes()
   const noteEntries = ALL_MODULES.filter(m => allNotes[m.id])
@@ -277,6 +333,12 @@ export function MyProgress() {
               </p>
             </>
           )}
+        </div>
+
+        {/* How am I doing? summary card */}
+        <div className="bg-white rounded-2xl shadow-sm border-l-4 border-indigo-400 p-5 space-y-2">
+          <p className="font-semibold text-gray-800 text-base">How am I doing?</p>
+          <p className="text-gray-700 leading-relaxed text-sm">{progressSummary}</p>
         </div>
 
         {/* Progress bar */}

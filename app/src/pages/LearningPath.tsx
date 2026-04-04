@@ -57,6 +57,8 @@ const STAGES: Stage[] = [
       { id: 'ai-for-accessibility',icon: '&#x267F;',  title: 'AI for accessibility',                   path: '/learn/ai-for-accessibility',           difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'ai-and-scientific-research', icon: '&#x1F52C;', title: 'AI and scientific research',      path: '/learn/ai-and-scientific-research',      difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-productivity-tools', icon: '&#x26A1;', title: 'AI and your productivity',              path: '/learn/ai-productivity-tools',           difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-food',          icon: '&#x1F33F;', title: 'AI and food',                            path: '/learn/ai-and-food',                     difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-sport',         icon: '&#x26BD;',  title: 'AI and sport',                           path: '/learn/ai-and-sport',                    difficulty: 'Intermediate', readingTime: '6 min' },
     ],
   },
   {

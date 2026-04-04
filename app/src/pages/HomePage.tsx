@@ -5,6 +5,7 @@ import { SearchBar } from '../components/SearchBar'
 import { useStreak } from '../hooks/useStreak'
 import { getRecommendations, type Recommendation } from '../hooks/useRecommendations'
 import { useWeeklyHighlight } from '../hooks/useWeeklyHighlight'
+import { useDailyReminder } from '../hooks/useDailyReminder'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -376,6 +377,36 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'green',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-money',
+        title: 'AI and money — banking, fraud detection, and robo-advisors',
+        description: 'How AI spots fraud in milliseconds, what robo-advisors do, AI credit scoring, and your rights when an algorithm says no.',
+        readingTime: '6 min',
+        icon: '💰',
+        to: '/learn/ai-and-money',
+        color: 'emerald',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-democracy',
+        title: 'AI and democracy — surveillance, voting, and public trust',
+        description: 'Election micro-targeting, deepfakes in campaigns, facial recognition in public spaces, and predictive policing.',
+        readingTime: '7 min',
+        icon: '🏛️',
+        to: '/learn/ai-and-democracy',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-language',
+        title: 'AI and language — translation, speech, and breaking barriers',
+        description: "How neural machine translation works, Google Translate's 2016 breakthrough, text-to-speech, and AI for endangered languages.",
+        readingTime: '5 min',
+        icon: '🗣️',
+        to: '/learn/ai-and-language',
+        color: 'purple',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -410,6 +441,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-productivity-tools',
         color: 'amber',
         difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-food',
+        title: 'AI and food — smart farming, supply chains, and what is in your meal',
+        description: 'How AI reduces pesticide use on farms, cuts supermarket waste, detects food fraud, and powers food delivery apps.',
+        readingTime: '5 min',
+        icon: '🌿',
+        to: '/learn/ai-and-food',
+        color: 'green',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-sport',
+        title: 'AI and sport — performance analytics, injury prevention, and fan experience',
+        description: 'GPS vests, expected goals, Hawk-Eye officiating, injury prediction, and personalised training plans.',
+        readingTime: '6 min',
+        icon: '⚽',
+        to: '/learn/ai-and-sport',
+        color: 'sky',
+        difficulty: 'Intermediate',
       },
     ],
   },
@@ -593,6 +644,8 @@ export function HomePage() {
   const { streak, bestStreak } = useStreak()
   const weeklyHighlight = useWeeklyHighlight()
 
+  const { show: showReminder, dismiss: dismissReminder } = useDailyReminder()
+
   const quizCompleted = loadQuizCompleted()
   const quizCompletedCount = MODULES.filter(m => quizCompleted.has(m.id)).length
   const lessonOfTheDay = getLessonOfTheDay(quizCompleted)
@@ -649,6 +702,25 @@ export function HomePage() {
             )}
           </div>
         </div>
+
+        {/* Daily reminder banner */}
+        {showReminder && (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3">
+            <span className="text-2xl flex-shrink-0">&#x1F4DA;</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-amber-800 text-sm leading-snug">
+                Welcome back! You have not visited in a while &mdash; ready to learn something new today?
+              </p>
+            </div>
+            <button
+              onClick={dismissReminder}
+              className="text-amber-600 hover:text-amber-800 text-sm font-semibold flex-shrink-0 transition-colors"
+              aria-label="Dismiss reminder"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
 
         {/* Search */}
         <SearchBar />
