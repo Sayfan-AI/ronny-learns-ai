@@ -63,6 +63,8 @@ const STAGES: Stage[] = [
       { id: 'ai-and-art',           icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                   path: '/learn/ai-and-art',                      difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-agriculture',   icon: '&#x1F33E;', title: 'AI and agriculture',                path: '/learn/ai-and-agriculture',              difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'ai-and-retail',        icon: '&#x1F6CD;&#xFE0F;', title: 'AI and retail',            path: '/learn/ai-and-retail',                   difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-travel',        icon: '&#x2708;&#xFE0F;', title: 'AI and travel',             path: '/learn/ai-and-travel',                   difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-housing',       icon: '&#x1F3E0;', title: 'AI and housing',               path: '/learn/ai-and-housing',                  difficulty: 'Intermediate', readingTime: '6 min' },
     ],
   },
   {

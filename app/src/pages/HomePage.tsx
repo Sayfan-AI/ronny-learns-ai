@@ -604,6 +604,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'yellow',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-travel',
+        title: 'AI and travel — smart airports, personalised holidays, and the future of getting away',
+        description: 'How AI predicts flight prices, personalises hotel recommendations, powers airport facial recognition, and plans your itinerary.',
+        readingTime: '5 min',
+        icon: '✈️',
+        to: '/learn/ai-and-travel',
+        color: 'blue',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-housing',
+        title: 'AI and housing — property search, smart homes, and automated valuations',
+        description: 'How AI helps you find a home, estimates property values, collects data through smart home devices, and makes mortgage decisions.',
+        readingTime: '6 min',
+        icon: '🏠',
+        to: '/learn/ai-and-housing',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -805,6 +825,7 @@ export function HomePage() {
   const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
   const weeklyGoalData = loadWeeklyGoal()
+  const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
 
   function toggleBookmark(id: string) {
     const next = new Set(bookmarks)
@@ -1212,7 +1233,29 @@ export function HomePage() {
             <p className="text-gray-500 text-sm">Grouped by topic — start anywhere, or work through in order.</p>
           </div>
 
-          {MODULE_GROUPS.map((group) => (
+          {/* Difficulty filter */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            {(['All', 'Beginner', 'Intermediate', 'Advanced'] as const).map(level => (
+              <button
+                key={level}
+                onClick={() => setDifficultyFilter(level)}
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors min-h-[36px] ${
+                  difficultyFilter === level
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+
+          {MODULE_GROUPS.map((group) => {
+            const filteredModules = difficultyFilter === 'All'
+              ? group.modules
+              : group.modules.filter(m => m.difficulty === difficultyFilter)
+            if (filteredModules.length === 0) return null
+            return (
             <section key={group.heading} className="space-y-2">
               <div className="flex items-center gap-3">
                 <div className="h-px flex-1 bg-gray-200" />
@@ -1222,7 +1265,7 @@ export function HomePage() {
                 <div className="h-px flex-1 bg-gray-200" />
               </div>
               <div className="space-y-2">
-                {group.modules.map((mod) => {
+                {filteredModules.map((mod) => {
                   const done = visited.has(mod.id)
                   const isBookmarked = bookmarks.has(mod.id)
                   const modScore = scores[mod.id]
@@ -1298,7 +1341,8 @@ export function HomePage() {
                 })}
               </div>
             </section>
-          ))}
+          )
+          })}
         </div>
 
         <p className="text-gray-400 text-sm text-center">

@@ -76,6 +76,22 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
     }
   }, [allDone, score, total])
 
+  // Record quiz streak — how many consecutive lesson quizzes completed
+  useEffect(() => {
+    if (allDone && lessonId) {
+      try {
+        const lastLesson = localStorage.getItem('ronny-quiz-streak-last-lesson')
+        const countRaw = localStorage.getItem('ronny-quiz-streak-count')
+        const count = countRaw ? parseInt(countRaw, 10) : 0
+        const newCount = isNaN(count) ? 1 : (lastLesson && lastLesson !== lessonId ? count + 1 : count)
+        localStorage.setItem('ronny-quiz-streak-count', String(Math.max(1, newCount)))
+        localStorage.setItem('ronny-quiz-streak-last-lesson', lessonId)
+      } catch {
+        // ignore
+      }
+    }
+  }, [allDone, lessonId])
+
   // Record that this lesson quiz was completed (any score) for the CompletedBadge
   useEffect(() => {
     if (allDone && lessonId) {

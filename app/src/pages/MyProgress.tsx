@@ -62,6 +62,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-mental-wellbeing-at-work', title: 'AI and mental wellbeing at work', to: '/learn/ai-and-mental-wellbeing-at-work' },
   { id: 'ai-and-retail',          title: 'AI and retail',                            to: '/learn/ai-and-retail' },
   { id: 'ai-and-children',        title: 'AI and children',                          to: '/learn/ai-and-children' },
+  { id: 'ai-and-travel',          title: 'AI and travel',                            to: '/learn/ai-and-travel' },
+  { id: 'ai-and-housing',         title: 'AI and housing',                           to: '/learn/ai-and-housing' },
 ]
 
 interface QuizScoreEntry {
@@ -224,6 +226,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-fashion',             icon: '👗', title: 'AI and fashion',                              to: '/learn/ai-and-fashion' },
       { id: 'ai-and-agriculture',         icon: '🌾', title: 'AI and agriculture',                          to: '/learn/ai-and-agriculture' },
       { id: 'ai-and-retail',              icon: '🛍️', title: 'AI and retail',                                to: '/learn/ai-and-retail' },
+      { id: 'ai-and-travel',              icon: '✈️', title: 'AI and travel',                                to: '/learn/ai-and-travel' },
+      { id: 'ai-and-housing',             icon: '🏠', title: 'AI and housing',                               to: '/learn/ai-and-housing' },
     ],
   },
   {
@@ -308,6 +312,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-journalism': 6, 'ai-and-fashion': 5,
   'ai-and-agriculture': 5, 'ai-and-mental-wellbeing-at-work': 6,
   'ai-and-retail': 5, 'ai-and-children': 6,
+  'ai-and-travel': 5, 'ai-and-housing': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -338,6 +343,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-journalism': 'AI and society', 'ai-and-fashion': 'AI in the real world',
   'ai-and-agriculture': 'AI in the real world', 'ai-and-mental-wellbeing-at-work': 'AI and society',
   'ai-and-retail': 'AI in the real world', 'ai-and-children': 'AI and society',
+  'ai-and-travel': 'AI in the real world', 'ai-and-housing': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -463,6 +469,13 @@ export function MyProgress() {
   const [exportStatus, setExportStatus] = useState<'idle' | 'copied' | 'downloaded'>('idle')
   const [showAllTimeline, setShowAllTimeline] = useState(false)
   const [lessonTimestamps] = useState<Record<string, string>>(() => loadLessonTimestamps())
+  const [quizStreak] = useState<number>(() => {
+    try {
+      const raw = localStorage.getItem('ronny-quiz-streak-count')
+      const n = raw ? parseInt(raw, 10) : 0
+      return isNaN(n) ? 0 : n
+    } catch { return 0 }
+  })
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -808,6 +821,26 @@ export function MyProgress() {
                 <span className="text-gray-500 text-sm font-medium">lesson{revisitedCount !== 1 ? 's' : ''} revisited</span>
               </div>
               <p className="text-gray-400 text-xs mt-0.5">You looked twice &mdash; that is how real learning works</p>
+            </div>
+          </div>
+        )}
+
+        {/* Quiz streak */}
+        {quizStreak >= 2 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-5">
+            <div className="text-4xl flex-shrink-0">&#x1F9E0;</div>
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-violet-600">{quizStreak}</span>
+                <span className="text-gray-500 text-sm font-medium">quiz{quizStreak !== 1 ? 'zes' : ''} in a row</span>
+              </div>
+              <p className="text-gray-400 text-xs mt-0.5">
+                {quizStreak >= 10
+                  ? 'Remarkable quiz focus — keep going!'
+                  : quizStreak >= 5
+                  ? 'Impressive focus — you are on a roll!'
+                  : 'Great start — see how long you can keep it up!'}
+              </p>
             </div>
           </div>
         )}

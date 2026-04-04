@@ -66,6 +66,8 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'ai-and-mental-wellbeing-at-work', icon: '&#x1F9D8;', title: 'AI and mental wellbeing at work', path: '/learn/ai-and-mental-wellbeing-at-work', difficulty: 'Intermediate' },
   { id: 'ai-and-retail',        icon: '&#x1F6CD;&#xFE0F;', title: 'AI and retail',              path: '/learn/ai-and-retail',                difficulty: 'Beginner' },
   { id: 'ai-and-children',      icon: '&#x1F9D2;', title: 'AI and children',                    path: '/learn/ai-and-children',              difficulty: 'Intermediate' },
+  { id: 'ai-and-travel',        icon: '&#x2708;&#xFE0F;', title: 'AI and travel',              path: '/learn/ai-and-travel',                difficulty: 'Beginner' },
+  { id: 'ai-and-housing',       icon: '&#x1F3E0;', title: 'AI and housing',                     path: '/learn/ai-and-housing',               difficulty: 'Intermediate' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -126,6 +128,8 @@ const RELATED: Record<string, string[]> = {
   'ai-and-mental-wellbeing-at-work': ['ai-and-mental-health', 'ai-and-jobs', 'ai-and-privacy'],
   'ai-and-retail':         ['ai-and-jobs', 'ai-and-privacy', 'ai-everyday-life'],
   'ai-and-children':       ['ai-and-education', 'ai-and-privacy', 'ai-and-mental-health'],
+  'ai-and-travel':         ['ai-and-transport', 'ai-and-privacy', 'ai-everyday-life'],
+  'ai-and-housing':        ['ai-and-privacy', 'ai-and-jobs', 'ai-and-money'],
   'ai-and-copyright':      ['ai-and-laws-and-rights', 'ai-bias', 'ai-and-privacy'],
 }
 
