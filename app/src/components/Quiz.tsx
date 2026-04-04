@@ -37,6 +37,22 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
     }
   }, [allDone, score, total])
 
+  // Record that this lesson quiz was completed (any score) for the CompletedBadge
+  useEffect(() => {
+    if (allDone && lessonId) {
+      try {
+        const raw = localStorage.getItem('ronny-quiz-completed')
+        const completed: string[] = raw ? JSON.parse(raw) : []
+        if (!completed.includes(lessonId)) {
+          completed.push(lessonId)
+          localStorage.setItem('ronny-quiz-completed', JSON.stringify(completed))
+        }
+      } catch {
+        // ignore storage errors
+      }
+    }
+  }, [allDone, lessonId])
+
   function handleSelect(questionIndex: number, optionIndex: number) {
     if (answers[questionIndex] !== undefined) return
     setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))

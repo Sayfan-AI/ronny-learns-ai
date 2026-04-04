@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -93,6 +94,10 @@ export function WhatIsML() {
             You have heard &ldquo;AI&rdquo; &mdash; but what about &ldquo;machine learning&rdquo;?
             They are closely related, and once you understand the idea it becomes surprisingly simple.
           </p>
+          <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 text-sm px-4 py-2 rounded-full">
+            <span>About 6 min read</span>
+          </div>
+          <CompletedBadge lessonId="what-is-ml" />
         </div>
 
         {/* Section 1: The core idea */}

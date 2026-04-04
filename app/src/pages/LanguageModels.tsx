@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -68,6 +69,10 @@ export function LanguageModels() {
             Claude can write code, answer questions, and tell stories &mdash; all from the same
             surprisingly simple idea: predicting the next word.
           </p>
+          <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 text-sm px-4 py-2 rounded-full">
+            <span>About 7 min read</span>
+          </div>
+          <CompletedBadge lessonId="language-models" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">

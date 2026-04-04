@@ -3,6 +3,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -70,6 +71,10 @@ export function WhatIsAnAPI() {
           <p className="text-gray-500 text-lg leading-relaxed">
             APIs are how programs talk to each other. Here is what that actually means in plain language.
           </p>
+          <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 text-sm px-4 py-2 rounded-full">
+            <span>About 4 min read</span>
+          </div>
+          <CompletedBadge lessonId="what-is-api" />
         </div>
 
         {/* The waiter analogy */}

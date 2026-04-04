@@ -41,178 +41,234 @@ function getTodaysFact(): string {
   return AI_FACTS[dayIndex]
 }
 
-const MODULES = [
+interface Module {
+  id: string
+  title: string
+  description: string
+  readingTime?: string
+  icon: string
+  to: string
+  color: string
+}
+
+interface ModuleGroup {
+  heading: string
+  modules: Module[]
+}
+
+const MODULE_GROUPS: ModuleGroup[] = [
   {
-    id: 'github-signup',
-    title: 'Create your GitHub account',
-    description: 'Step-by-step guide to signing up for GitHub — your key to the whole project.',
-    readingTime: '5 min',
-    icon: '🔑',
-    to: '/tutorial/github-signup',
-    color: 'blue',
+    heading: 'Getting started',
+    modules: [
+      {
+        id: 'github-signup',
+        title: 'Create your GitHub account',
+        description: 'Step-by-step guide to signing up for GitHub — your key to the whole project.',
+        readingTime: '5 min',
+        icon: '🔑',
+        to: '/tutorial/github-signup',
+        color: 'blue',
+      },
+      {
+        id: 'github-basics',
+        title: 'What is GitHub for?',
+        description: 'Repos, commits, issues, and pull requests — explained simply, no coding needed.',
+        readingTime: '4 min',
+        icon: '📁',
+        to: '/learn/github-basics',
+        color: 'green',
+      },
+      {
+        id: 'what-is-api',
+        title: 'What is an API?',
+        description: 'How programs talk to each other — in plain English, with real-world examples.',
+        readingTime: '4 min',
+        icon: '🔗',
+        to: '/learn/what-is-api',
+        color: 'teal',
+      },
+    ],
   },
   {
-    id: 'github-basics',
-    title: 'What is GitHub for?',
-    description: 'Repos, commits, issues, and pull requests — explained simply, no coding needed.',
-    readingTime: '4 min',
-    icon: '📁',
-    to: '/learn/github-basics',
-    color: 'green',
+    heading: 'Understanding AI',
+    modules: [
+      {
+        id: 'what-is-ai',
+        title: 'What is AI?',
+        description: 'Artificial intelligence explained without jargon — plus what Claude can and cannot do.',
+        readingTime: '5 min',
+        icon: '🤖',
+        to: '/learn/what-is-ai',
+        color: 'purple',
+      },
+      {
+        id: 'what-is-ml',
+        title: 'What is machine learning?',
+        description: 'How computers learn from examples instead of rules — with everyday analogies and real-world uses.',
+        readingTime: '6 min',
+        icon: '📊',
+        to: '/learn/what-is-machine-learning',
+        color: 'emerald',
+      },
+      {
+        id: 'how-ai-training-works',
+        title: 'How does AI training work?',
+        description: 'Datasets, weights, loss functions, and RLHF — all explained in plain language, no maths required.',
+        readingTime: '7 min',
+        icon: '🧪',
+        to: '/learn/how-ai-training-works',
+        color: 'violet',
+      },
+      {
+        id: 'neural-network',
+        title: 'What is a neural network?',
+        description: 'The brain-inspired technology behind modern AI — neurons, weights, layers, and why cats need millions of photos.',
+        readingTime: '6 min',
+        icon: '🧠',
+        to: '/learn/neural-network',
+        color: 'pink',
+      },
+      {
+        id: 'language-models',
+        title: 'How do language models like Claude work?',
+        description: 'Tokens, context windows, predicting the next word, and how RLHF makes Claude safe and helpful.',
+        readingTime: '7 min',
+        icon: '💬',
+        to: '/learn/language-models',
+        color: 'indigo',
+      },
+      {
+        id: 'how-chatbots-work',
+        title: 'How do chatbots work?',
+        description: 'Rule-based vs. AI chatbots, context windows, hallucination, and when to trust your chatbot.',
+        readingTime: '6 min',
+        icon: '💬',
+        to: '/learn/how-chatbots-work',
+        color: 'cyan',
+      },
+      {
+        id: 'ai-history',
+        title: 'The history of AI',
+        description: 'From the Turing Test in 1950 to ChatGPT in 2022 — the key milestones that shaped artificial intelligence.',
+        readingTime: '5 min',
+        icon: '⏳',
+        to: '/ai-history',
+        color: 'amber',
+      },
+      {
+        id: 'ai-everyday-life',
+        title: 'AI in everyday life',
+        description: 'Search engines, recommendations, voice assistants, spam filters — AI is already all around you.',
+        readingTime: '5 min',
+        icon: '🌍',
+        to: '/learn/ai-everyday-life',
+        color: 'sky',
+      },
+    ],
   },
   {
-    id: 'what-is-ai',
-    title: 'What is AI?',
-    description: 'Artificial intelligence explained without jargon — plus what Claude can and cannot do.',
-    readingTime: '5 min',
-    icon: '🤖',
-    to: '/learn/what-is-ai',
-    color: 'purple',
+    heading: 'AI and society',
+    modules: [
+      {
+        id: 'ai-pros-and-cons',
+        title: 'AI: the good and the bad',
+        description: 'A balanced, honest look at what AI can do for us — and the real risks worth understanding.',
+        readingTime: '6 min',
+        icon: '⚖️',
+        to: '/learn/ai-pros-and-cons',
+        color: 'orange',
+      },
+      {
+        id: 'ai-bias',
+        title: 'What is AI bias?',
+        description: 'How AI systems pick up unfair patterns from training data — and real-world examples that show why it matters.',
+        readingTime: '6 min',
+        icon: '⚖️',
+        to: '/learn/ai-bias',
+        color: 'orange',
+      },
+      {
+        id: 'ai-safety',
+        title: 'AI safety and alignment',
+        description: 'Why making AI do what we actually want matters, and what Anthropic does to keep Claude safe.',
+        readingTime: '6 min',
+        icon: '🛡️',
+        to: '/learn/ai-safety',
+        color: 'teal',
+      },
+      {
+        id: 'prompt-engineering',
+        title: 'What is prompt engineering?',
+        description: 'How to write better prompts to get clearer, more useful answers from AI — with before and after examples.',
+        readingTime: '6 min',
+        icon: '✏️',
+        to: '/learn/prompt-engineering',
+        color: 'violet',
+      },
+    ],
   },
   {
-    id: 'what-is-ml',
-    title: 'What is machine learning?',
-    description: 'How computers learn from examples instead of rules — with everyday analogies and real-world uses.',
-    readingTime: '6 min',
-    icon: '📊',
-    to: '/learn/what-is-machine-learning',
-    color: 'emerald',
-  },
-  {
-    id: 'how-ai-training-works',
-    title: 'How does AI training work?',
-    description: 'Datasets, weights, loss functions, and RLHF — all explained in plain language, no maths required.',
-    readingTime: '7 min',
-    icon: '🧪',
-    to: '/learn/how-ai-training-works',
-    color: 'violet',
-  },
-  {
-    id: 'neural-network',
-    title: 'What is a neural network?',
-    description: 'The brain-inspired technology behind modern AI — neurons, weights, layers, and why cats need millions of photos.',
-    readingTime: '6 min',
-    icon: '🧠',
-    to: '/learn/neural-network',
-    color: 'pink',
-  },
-  {
-    id: 'language-models',
-    title: 'How do language models like Claude work?',
-    description: 'Tokens, context windows, predicting the next word, and how RLHF makes Claude safe and helpful.',
-    readingTime: '7 min',
-    icon: '💬',
-    to: '/learn/language-models',
-    color: 'indigo',
-  },
-  {
-    id: 'what-is-api',
-    title: 'What is an API?',
-    description: 'How programs talk to each other — in plain English, with real-world examples.',
-    readingTime: '4 min',
-    icon: '🔗',
-    to: '/learn/what-is-api',
-    color: 'teal',
-  },
-  {
-    id: 'genesis-system',
-    title: 'What is the Genesis system?',
-    description: 'The AI team that builds this app — see how agents coordinate through GitHub.',
-    readingTime: '4 min',
-    icon: '⚙️',
-    to: '/learn/genesis-system',
-    color: 'orange',
-  },
-  {
-    id: 'how-this-was-built',
-    title: 'How this app was built',
-    description: 'The full story — how AI planned, coded, and deployed what you are reading.',
-    readingTime: '5 min',
-    icon: '🏗️',
-    to: '/learn/how-this-was-built',
-    color: 'indigo',
-  },
-  {
-    id: 'what-is-ci-cd',
-    title: 'How does the website update automatically?',
-    description: 'CI/CD explained — how every code change goes live without anyone pressing publish.',
-    readingTime: '4 min',
-    icon: '🏭',
-    to: '/learn/what-is-ci-cd',
-    color: 'cyan',
-  },
-  {
-    id: 'version-control',
-    title: 'How does version control work?',
-    description: 'Commits, branches, and merges — using everyday analogies like Google Docs history.',
-    readingTime: '4 min',
-    icon: '💾',
-    to: '/learn/what-is-version-control',
-    color: 'sky',
-  },
-  {
-    id: 'pull-request',
-    title: 'What is a pull request?',
-    description: 'How code changes get reviewed and approved before going live — with real examples.',
-    readingTime: '4 min',
-    icon: '📋',
-    to: '/learn/what-is-a-pull-request',
-    color: 'violet',
-  },
-  {
-    id: 'meet-the-agents',
-    title: 'Meet the AI agents',
-    description: 'The five agents behind this project — their roles, their loop, and how they coordinate.',
-    icon: '👥',
-    to: '/agents',
-    color: 'violet',
-  },
-  {
-    id: 'ai-history',
-    title: 'The history of AI',
-    description: 'From the Turing Test in 1950 to ChatGPT in 2022 — the key milestones that shaped artificial intelligence.',
-    readingTime: '5 min',
-    icon: '⏳',
-    to: '/ai-history',
-    color: 'amber',
-  },
-  {
-    id: 'ai-everyday-life',
-    title: 'AI in everyday life',
-    description: 'Search engines, recommendations, voice assistants, spam filters — AI is already all around you.',
-    readingTime: '5 min',
-    icon: '🌍',
-    to: '/learn/ai-everyday-life',
-    color: 'sky',
-  },
-  {
-    id: 'ai-pros-and-cons',
-    title: 'AI: the good and the bad',
-    description: 'A balanced, honest look at what AI can do for us — and the real risks worth understanding.',
-    readingTime: '6 min',
-    icon: '⚖️',
-    to: '/learn/ai-pros-and-cons',
-    color: 'orange',
-  },
-  {
-    id: 'prompt-engineering',
-    title: 'What is prompt engineering?',
-    description: 'How to write better prompts to get clearer, more useful answers from AI — with before and after examples.',
-    readingTime: '6 min',
-    icon: '✏️',
-    to: '/learn/prompt-engineering',
-    color: 'violet',
-  },
-  {
-    id: 'ai-safety',
-    title: 'AI safety and alignment',
-    description: 'Why making AI do what we actually want matters, and what Anthropic does to keep Claude safe.',
-    readingTime: '6 min',
-    icon: '🛡️',
-    to: '/learn/ai-safety',
-    color: 'teal',
+    heading: 'How software is built',
+    modules: [
+      {
+        id: 'genesis-system',
+        title: 'What is the Genesis system?',
+        description: 'The AI team that builds this app — see how agents coordinate through GitHub.',
+        readingTime: '4 min',
+        icon: '⚙️',
+        to: '/learn/genesis-system',
+        color: 'orange',
+      },
+      {
+        id: 'how-this-was-built',
+        title: 'How this app was built',
+        description: 'The full story — how AI planned, coded, and deployed what you are reading.',
+        readingTime: '5 min',
+        icon: '🏗️',
+        to: '/learn/how-this-was-built',
+        color: 'indigo',
+      },
+      {
+        id: 'what-is-ci-cd',
+        title: 'How does the website update automatically?',
+        description: 'CI/CD explained — how every code change goes live without anyone pressing publish.',
+        readingTime: '4 min',
+        icon: '🏭',
+        to: '/learn/what-is-ci-cd',
+        color: 'cyan',
+      },
+      {
+        id: 'version-control',
+        title: 'How does version control work?',
+        description: 'Commits, branches, and merges — using everyday analogies like Google Docs history.',
+        readingTime: '4 min',
+        icon: '💾',
+        to: '/learn/what-is-version-control',
+        color: 'sky',
+      },
+      {
+        id: 'pull-request',
+        title: 'What is a pull request?',
+        description: 'How code changes get reviewed and approved before going live — with real examples.',
+        readingTime: '4 min',
+        icon: '📋',
+        to: '/learn/what-is-a-pull-request',
+        color: 'violet',
+      },
+      {
+        id: 'meet-the-agents',
+        title: 'Meet the AI agents',
+        description: 'The five agents behind this project — their roles, their loop, and how they coordinate.',
+        icon: '👥',
+        to: '/agents',
+        color: 'violet',
+      },
+    ],
   },
 ]
+
+// Flat list of all modules for progress counting
+const MODULES: Module[] = MODULE_GROUPS.flatMap(g => g.modules)
 
 const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
   blue:   { border: 'hover:border-blue-300',   badge: 'bg-blue-100 text-blue-700',   button: 'bg-blue-600 hover:bg-blue-700 text-white' },
@@ -349,58 +405,68 @@ export function HomePage() {
           </div>
         </div>
 
-        {/* Learning path */}
-        <div className="space-y-4">
-          <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 text-center">Your learning path</h2>
-          <p className="text-gray-500 text-center text-sm">Start at the top and work your way down.</p>
-
-          <div className="space-y-3">
-            {MODULES.map((mod, idx) => {
-              const done = visited.has(mod.id)
-              const colors = COLOR_MAP[mod.color] ?? COLOR_MAP['blue']
-              return (
-                <Link
-                  key={mod.id}
-                  to={mod.to}
-                  onClick={() => {
-                    const next = new Set(visited)
-                    next.add(mod.id)
-                    setVisited(next)
-                    localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
-                  }}
-                  className={`bg-white rounded-xl shadow-sm border-2 transition-all duration-200 p-4 sm:p-5 flex items-center gap-3 sm:gap-4 ${
-                    done ? 'border-green-300' : `border-gray-100 ${colors.border}`
-                  }`}
-                >
-                  {/* Step number / check */}
-                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0 ${
-                    done ? 'bg-green-500 text-white' : colors.badge
-                  }`}>
-                    {done ? '✓' : idx + 1}
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl sm:text-2xl">{mod.icon}</span>
-                      <h3 className="font-semibold text-gray-800 text-base sm:text-lg leading-tight">{mod.title}</h3>
-                    </div>
-                    <p className="text-gray-500 text-xs sm:text-sm mt-1">{mod.description}</p>
-                    {'readingTime' in mod && (
-                      <p className="text-gray-400 text-xs mt-1">{(mod as { readingTime: string }).readingTime} read</p>
-                    )}
-                  </div>
-
-                  {/* Arrow */}
-                  <span className="text-gray-400 text-lg sm:text-xl flex-shrink-0">&rarr;</span>
-                </Link>
-              )
-            })}
+        {/* Learning path — grouped by theme */}
+        <div className="space-y-6">
+          <div className="text-center space-y-1">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-700">Your learning path</h2>
+            <p className="text-gray-500 text-sm">Grouped by topic — start anywhere, or work through in order.</p>
           </div>
+
+          {MODULE_GROUPS.map((group) => (
+            <section key={group.heading} className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-gray-200" />
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest px-2 whitespace-nowrap">
+                  {group.heading}
+                </h3>
+                <div className="h-px flex-1 bg-gray-200" />
+              </div>
+              <div className="space-y-2">
+                {group.modules.map((mod) => {
+                  const done = visited.has(mod.id)
+                  const colors = COLOR_MAP[mod.color] ?? COLOR_MAP['blue']
+                  return (
+                    <Link
+                      key={mod.id}
+                      to={mod.to}
+                      onClick={() => {
+                        const next = new Set(visited)
+                        next.add(mod.id)
+                        setVisited(next)
+                        localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
+                      }}
+                      className={`bg-white rounded-xl shadow-sm border-2 transition-all duration-200 p-4 sm:p-5 flex items-center gap-3 sm:gap-4 ${
+                        done ? 'border-green-300' : `border-gray-100 ${colors.border}`
+                      }`}
+                    >
+                      {/* Done indicator */}
+                      <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${
+                        done ? 'bg-green-500 text-white' : colors.badge
+                      }`}>
+                        {done ? '✓' : mod.icon}
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-gray-800 text-sm sm:text-base leading-tight">{mod.title}</h4>
+                        <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{mod.description}</p>
+                        {mod.readingTime && (
+                          <p className="text-gray-400 text-xs mt-0.5">{mod.readingTime} read</p>
+                        )}
+                      </div>
+
+                      {/* Arrow */}
+                      <span className="text-gray-400 text-lg sm:text-xl flex-shrink-0">&rarr;</span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </section>
+          ))}
         </div>
 
         <p className="text-gray-400 text-sm text-center">
-          Each page ends with a short quiz to check what you learned.
+          Most lessons include a short quiz at the end to check what you learned.
         </p>
 
         {/* Participate section */}

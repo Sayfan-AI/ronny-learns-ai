@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -69,6 +70,10 @@ export function WhatIsAI() {
             You&apos;ve probably heard the word &ldquo;AI&rdquo; a lot lately. Let&apos;s demystify it.
             It&apos;s not magic — and it&apos;s not as scary as it sounds.
           </p>
+          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-sm px-4 py-2 rounded-full">
+            <span>About 5 min read</span>
+          </div>
+          <CompletedBadge lessonId="what-is-ai" />
         </div>
 
         {/* Section 1: What is AI */}

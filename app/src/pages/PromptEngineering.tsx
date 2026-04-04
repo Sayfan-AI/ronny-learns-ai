@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -73,6 +74,7 @@ export function PromptEngineering() {
           <div className="inline-flex items-center gap-2 bg-violet-100 text-violet-700 text-sm px-4 py-2 rounded-full">
             <span>About 6 min read</span>
           </div>
+          <CompletedBadge lessonId="prompt-engineering" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-violet-100 p-6 space-y-4">

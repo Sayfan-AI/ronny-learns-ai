@@ -19,6 +19,8 @@ export const LESSON_ORDER: Array<{ id: string; icon: string; title: string; path
   { id: 'ai-pros-and-cons',   icon: '&#x2696;&#xFE0F;', title: 'AI: the good and the bad', path: '/learn/ai-pros-and-cons' },
   { id: 'prompt-engineering', icon: '&#x270F;&#xFE0F;', title: 'What is prompt engineering?', path: '/learn/prompt-engineering' },
   { id: 'ai-safety',          icon: '&#x1F6E1;&#xFE0F;', title: 'AI safety and alignment', path: '/learn/ai-safety' },
+  { id: 'ai-bias',            icon: '&#x2696;&#xFE0F;', title: 'What is AI bias?',          path: '/learn/ai-bias' },
+  { id: 'how-chatbots-work',  icon: '&#x1F4AC;', title: 'How do chatbots work?',           path: '/learn/how-chatbots-work' },
   { id: 'how-this-was-built', icon: '&#x1F528;', title: 'How this app was built',          path: '/learn/how-this-was-built' },
   { id: 'meet-the-agents',    icon: '&#x1F4BC;', title: 'Meet the agents',                 path: '/agents' },
   { id: 'what-is-ci-cd',      icon: '&#x1F680;', title: 'What is CI/CD?',                  path: '/learn/what-is-ci-cd' },

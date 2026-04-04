@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -105,6 +106,10 @@ export function HowAITrainingWorks() {
             You have heard that AIs &ldquo;learn&rdquo; &mdash; but what does that actually mean?
             Here is the full story, told without any jargon.
           </p>
+          <div className="inline-flex items-center gap-2 bg-violet-100 text-violet-700 text-sm px-4 py-2 rounded-full">
+            <span>About 7 min read</span>
+          </div>
+          <CompletedBadge lessonId="how-ai-training-works" />
         </div>
 
         {/* Section 1: What training means */}

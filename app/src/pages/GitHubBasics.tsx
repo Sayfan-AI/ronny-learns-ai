@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -69,6 +70,10 @@ export function GitHubBasics() {
             You have a GitHub account now. But what do people actually use it for?
             Let&apos;s break it down — no jargon, promise.
           </p>
+          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full">
+            <span>About 4 min read</span>
+          </div>
+          <CompletedBadge lessonId="github-basics" />
         </div>
 
         {/* Section 1: Repositories */}

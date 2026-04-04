@@ -38,6 +38,8 @@ const LearningRecap = lazy(() => import('./pages/LearningRecap').then(m => ({ de
 const QuizReview = lazy(() => import('./pages/QuizReview').then(m => ({ default: m.QuizReview })))
 const PromptEngineering = lazy(() => import('./pages/PromptEngineering').then(m => ({ default: m.PromptEngineering })))
 const AISafety = lazy(() => import('./pages/AISafety').then(m => ({ default: m.AISafety })))
+const AIBias = lazy(() => import('./pages/AIBias').then(m => ({ default: m.AIBias })))
+const HowChatbotsWork = lazy(() => import('./pages/HowChatbotsWork').then(m => ({ default: m.HowChatbotsWork })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -285,6 +287,18 @@ const aiSafetyRoute = createRoute({
   component: withSuspense(AISafety),
 })
 
+const aiBiasRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-bias',
+  component: withSuspense(AIBias),
+})
+
+const howChatbotsWorkRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-chatbots-work',
+  component: withSuspense(HowChatbotsWork),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -320,6 +334,8 @@ const routeTree = rootRoute.addChildren([
   quizReviewRoute,
   promptEngineeringRoute,
   aiSafetyRoute,
+  aiBiasRoute,
+  howChatbotsWorkRoute,
 ])
 
 const hashHistory = createHashHistory()

@@ -2,6 +2,7 @@ import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { CompletedBadge } from '../components/CompletedBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -56,6 +57,10 @@ export function AIProsAndCons() {
             AI is one of the most powerful technologies ever created. Like any powerful tool,
             it can do tremendous good &mdash; and it comes with real risks worth understanding.
           </p>
+          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 text-sm px-4 py-2 rounded-full">
+            <span>About 6 min read</span>
+          </div>
+          <CompletedBadge lessonId="ai-pros-and-cons" />
         </div>
 
         {/* Benefits */}
