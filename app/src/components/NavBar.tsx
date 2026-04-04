@@ -5,6 +5,7 @@ import { useDarkMode } from '../hooks/useDarkMode'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
+  { to: '/learning-path', label: 'Learning path' },
   { to: '/tutorial/github-signup', label: 'GitHub signup' },
   { to: '/learn/github-basics', label: 'GitHub basics' },
   { to: '/learn/what-is-ai', label: 'What is AI?' },
@@ -68,8 +69,8 @@ export function NavBar() {
         <div className="hidden md:flex items-center gap-1">
           {[
             { to: '/', label: 'Home' },
+            { to: '/learning-path', label: 'Learning path' },
             { to: '/ask', label: 'Ask' },
-            { to: '/feedback', label: 'Feedback' },
             { to: '/my-progress', label: 'My progress' },
           ].map((link) => (
             <Link

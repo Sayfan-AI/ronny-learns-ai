@@ -4,6 +4,7 @@ import { useProfile } from '../hooks/useProfile'
 import { SearchBar } from '../components/SearchBar'
 import { useStreak } from '../hooks/useStreak'
 import { getRecommendations, type Recommendation } from '../hooks/useRecommendations'
+import { useWeeklyHighlight } from '../hooks/useWeeklyHighlight'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -325,6 +326,51 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'indigo',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-in-your-apps',
+        title: 'AI in the apps you already use',
+        description: 'Google Search, Maps, Spotify, Netflix, autocorrect, spam filters — AI at work in your daily apps.',
+        readingTime: '5 min',
+        icon: '📱',
+        to: '/learn/ai-in-your-apps',
+        color: 'blue',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-laws-and-rights',
+        title: 'AI, laws, and your rights',
+        description: 'The EU AI Act explained, AI copyright, and your rights when AI makes decisions about you.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/learn/ai-laws-and-rights',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-social-media',
+        title: 'AI and social media',
+        description: 'How recommendation algorithms decide what you see — and what you can do about it.',
+        readingTime: '6 min',
+        icon: '📲',
+        to: '/learn/ai-and-social-media',
+        color: 'blue',
+        difficulty: 'Beginner',
+      },
+    ],
+  },
+  {
+    heading: 'AI in the real world',
+    modules: [
+      {
+        id: 'ai-for-accessibility',
+        title: 'AI for accessibility',
+        description: 'How AI helps people with disabilities — captions, image descriptions, voice control, and more.',
+        readingTime: '5 min',
+        icon: '♿',
+        to: '/learn/ai-for-accessibility',
+        color: 'teal',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -505,6 +551,7 @@ export function HomePage() {
   const [bookmarks, setBookmarks] = useState<Set<string>>(loadBookmarks)
   const { profile } = useProfile()
   const { streak, bestStreak } = useStreak()
+  const weeklyHighlight = useWeeklyHighlight()
 
   const quizCompleted = loadQuizCompleted()
   const quizCompletedCount = MODULES.filter(m => quizCompleted.has(m.id)).length
@@ -545,14 +592,22 @@ export function HomePage() {
           <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             Follow the steps below to learn about GitHub and AI — no experience needed.
           </p>
-          {!profile && (
+          <div className="flex flex-wrap justify-center gap-3">
             <Link
-              to="/profile"
-              className="inline-block text-sm text-blue-500 hover:text-blue-700 underline"
+              to="/learning-path"
+              className="inline-block text-sm bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl transition-colors"
             >
-              Personalise this app with your name &rarr;
+              See the full learning path &rarr;
             </Link>
-          )}
+            {!profile && (
+              <Link
+                to="/profile"
+                className="inline-block text-sm text-blue-500 hover:text-blue-700 underline py-2"
+              >
+                Personalise this app with your name &rarr;
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Search */}
@@ -625,6 +680,41 @@ export function HomePage() {
                 )}
               </p>
             </div>
+          </div>
+        )}
+
+        {/* Weekly highlight */}
+        {weeklyHighlight && (
+          <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-4 sm:p-5 space-y-3">
+            <p className="text-xs font-semibold text-amber-600 uppercase tracking-wide">This week &mdash; try something new</p>
+            <Link
+              to={weeklyHighlight.path as '/'}
+              onClick={() => {
+                const next = new Set(visited)
+                next.add(weeklyHighlight.id)
+                setVisited(next)
+                localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
+              }}
+              className="flex items-center gap-4 group"
+            >
+              <span
+                className="text-3xl flex-shrink-0"
+                dangerouslySetInnerHTML={{ __html: weeklyHighlight.icon }}
+              />
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-amber-800 group-hover:underline text-base leading-tight">
+                  {weeklyHighlight.title}
+                </p>
+                <p className="text-amber-700 text-sm mt-0.5 leading-relaxed">{weeklyHighlight.description}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-amber-500 text-xs">{weeklyHighlight.readingTime} read</span>
+                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[weeklyHighlight.difficulty]}`}>
+                    {weeklyHighlight.difficulty}
+                  </span>
+                </div>
+              </div>
+              <span className="text-amber-400 text-xl flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </Link>
           </div>
         )}
 
