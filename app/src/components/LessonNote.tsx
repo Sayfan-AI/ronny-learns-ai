@@ -29,13 +29,15 @@ function saveNote(lessonId: string, text: string) {
 
 interface LessonNoteProps {
   lessonId: string
+  lessonTitle?: string
 }
 
-export function LessonNote({ lessonId }: LessonNoteProps) {
+export function LessonNote({ lessonId, lessonTitle }: LessonNoteProps) {
   const existingNote = loadNote(lessonId)
   const [open, setOpen] = useState(existingNote.length > 0)
   const [text, setText] = useState(existingNote)
   const [saved, setSaved] = useState(false)
+  const [copied, setCopied] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -52,6 +54,17 @@ export function LessonNote({ lessonId }: LessonNoteProps) {
 
   function handleOpen() {
     setOpen(true)
+  }
+
+  async function handleCopy() {
+    try {
+      const content = lessonTitle ? `${lessonTitle}\n\n${text}` : text
+      await navigator.clipboard.writeText(content)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // clipboard unavailable — do nothing
+    }
   }
 
   if (!open) {
@@ -74,9 +87,20 @@ export function LessonNote({ lessonId }: LessonNoteProps) {
 
   return (
     <div className="bg-yellow-50 border border-yellow-100 rounded-2xl p-5 space-y-3">
-      <div>
-        <p className="font-semibold text-yellow-800 text-sm">My note for this lesson</p>
-        <p className="text-yellow-600 text-xs mt-0.5">Your notes are saved on this device only</p>
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className="font-semibold text-yellow-800 text-sm">My note for this lesson</p>
+          <p className="text-yellow-600 text-xs mt-0.5">Your notes are saved on this device only</p>
+        </div>
+        {text.trim() && (
+          <button
+            onClick={handleCopy}
+            className="text-xs text-yellow-700 hover:text-yellow-900 border border-yellow-300 hover:border-yellow-500 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex-shrink-0"
+            aria-label="Copy notes to clipboard"
+          >
+            {copied ? '&#x2713; Copied!' : 'Copy notes'}
+          </button>
+        )}
       </div>
       <textarea
         ref={textareaRef}

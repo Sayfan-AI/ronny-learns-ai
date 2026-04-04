@@ -68,6 +68,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-elderly-care',    title: 'AI and elderly care',                      to: '/learn/ai-and-elderly-care' },
   { id: 'ai-and-insurance',       title: 'AI and insurance',                         to: '/learn/ai-and-insurance' },
   { id: 'ai-and-policing',        title: 'AI and policing',                          to: '/learn/ai-and-policing' },
+  { id: 'ai-and-the-nhs',        title: 'AI and the NHS',                           to: '/learn/ai-and-the-nhs' },
+  { id: 'ai-and-hiring',         title: 'AI and hiring',                            to: '/learn/ai-and-hiring' },
 ]
 
 interface QuizScoreEntry {
@@ -236,6 +238,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-elderly-care',        icon: '🧓', title: 'AI and elderly care',                          to: '/learn/ai-and-elderly-care' },
       { id: 'ai-and-insurance',           icon: '🛡️', title: 'AI and insurance',                             to: '/learn/ai-and-insurance' },
       { id: 'ai-and-policing',            icon: '⚖️', title: 'AI and policing',                              to: '/learn/ai-and-policing' },
+      { id: 'ai-and-the-nhs',            icon: '🏥', title: 'AI and the NHS',                               to: '/learn/ai-and-the-nhs' },
+      { id: 'ai-and-hiring',             icon: '💼', title: 'AI and hiring',                                to: '/learn/ai-and-hiring' },
     ],
   },
   {
@@ -323,6 +327,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-travel': 5, 'ai-and-housing': 6,
   'ai-and-energy': 5, 'ai-and-elderly-care': 6,
   'ai-and-insurance': 5, 'ai-and-policing': 6,
+  'ai-and-the-nhs': 5, 'ai-and-hiring': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -356,6 +361,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-travel': 'AI in the real world', 'ai-and-housing': 'AI in the real world',
   'ai-and-energy': 'AI in the real world', 'ai-and-elderly-care': 'AI in the real world',
   'ai-and-insurance': 'AI and society', 'ai-and-policing': 'AI and society',
+  'ai-and-the-nhs': 'AI in the real world', 'ai-and-hiring': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -463,6 +469,69 @@ function buildProgressSummary(
   return parts.join(' ')
 }
 
+// Lessons marked Beginner — used for 'What to learn next' suggestions
+const BEGINNER_IDS = new Set([
+  'github-signup', 'github-basics', 'what-is-api', 'what-is-ai', 'ai-everyday-life',
+  'ai-in-your-apps', 'ai-and-creativity', 'ai-productivity-tools', 'how-to-use-ai-safely',
+  'ai-and-language', 'ai-and-food', 'ai-and-transport', 'ai-and-cybersecurity',
+  'ai-and-climate-change', 'ai-and-music', 'ai-and-robotics', 'ai-and-gaming',
+  'ai-and-fashion', 'ai-and-agriculture', 'ai-and-retail', 'ai-and-travel',
+  'ai-and-energy', 'ai-and-insurance', 'ai-and-the-nhs',
+  'genesis-system', 'how-this-was-built', 'what-is-ci-cd', 'version-control',
+])
+
+interface NextLessonSuggestion {
+  id: string
+  title: string
+  to: string
+  difficulty: string
+}
+
+function buildWhatToLearnNext(
+  visited: Set<string>,
+  timestamps: Record<string, string>,
+): NextLessonSuggestion[] {
+  const unvisited = ALL_MODULES.filter(m => !visited.has(m.id))
+  if (unvisited.length === 0) return []
+
+  const suggestions: NextLessonSuggestion[] = []
+  const usedIds = new Set<string>()
+
+  function toSuggestion(m: { id: string; title: string; to: string }): NextLessonSuggestion {
+    return { id: m.id, title: m.title, to: m.to, difficulty: BEGINNER_IDS.has(m.id) ? 'Beginner' : 'Intermediate' }
+  }
+
+  // 1. Most recently visited lesson that is not yet completed (continue where you left off)
+  const visitedButUnfinished = ALL_MODULES.filter(m => !visited.has(m.id) && timestamps[m.id])
+  if (visitedButUnfinished.length > 0) {
+    const sorted = [...visitedButUnfinished].sort((a, b) => {
+      const tA = timestamps[a.id] ?? ''
+      const tB = timestamps[b.id] ?? ''
+      return tB.localeCompare(tA)
+    })
+    const pick = sorted[0]
+    suggestions.push(toSuggestion(pick))
+    usedIds.add(pick.id)
+  }
+
+  // 2. A beginner pick
+  const beginnerUnvisited = unvisited.filter(m => BEGINNER_IDS.has(m.id) && !usedIds.has(m.id))
+  if (beginnerUnvisited.length > 0) {
+    const pick = beginnerUnvisited[Math.floor(Math.random() * beginnerUnvisited.length)]
+    suggestions.push(toSuggestion(pick))
+    usedIds.add(pick.id)
+  }
+
+  // 3. Any random uncompleted lesson
+  const remaining = unvisited.filter(m => !usedIds.has(m.id))
+  if (remaining.length > 0 && suggestions.length < 3) {
+    const pick = remaining[Math.floor(Math.random() * remaining.length)]
+    suggestions.push(toSuggestion(pick))
+  }
+
+  return suggestions.slice(0, 3)
+}
+
 export function MyProgress() {
   const [visited] = useState<Set<string>>(loadVisited)
   const { profile, setProfile } = useProfile()
@@ -481,6 +550,7 @@ export function MyProgress() {
   const [exportStatus, setExportStatus] = useState<'idle' | 'copied' | 'downloaded'>('idle')
   const [showAllTimeline, setShowAllTimeline] = useState(false)
   const [lessonTimestamps] = useState<Record<string, string>>(() => loadLessonTimestamps())
+  const [whatToLearnNext] = useState<NextLessonSuggestion[]>(() => buildWhatToLearnNext(loadVisited(), loadLessonTimestamps()))
   const [quizStreak] = useState<number>(() => {
     try {
       const raw = localStorage.getItem('ronny-quiz-streak-count')
@@ -672,6 +742,32 @@ export function MyProgress() {
         <div className="bg-white rounded-2xl shadow-sm border-l-4 border-indigo-400 p-5 space-y-2">
           <p className="font-semibold text-gray-800 text-base">How am I doing?</p>
           <p className="text-gray-700 leading-relaxed text-sm">{progressSummary}</p>
+        </div>
+
+        {/* What to learn next */}
+        <div className="bg-indigo-50 rounded-2xl border border-indigo-100 p-5 space-y-3">
+          <p className="font-semibold text-indigo-900 text-base">What to learn next</p>
+          {whatToLearnNext.length === 0 ? (
+            <p className="text-indigo-700 text-sm leading-relaxed">
+              You have completed every lesson! Why not revisit a favourite, or try the Surprise me button on the home page?
+            </p>
+          ) : (
+            <ul className="space-y-2">
+              {whatToLearnNext.map(s => (
+                <li key={s.id}>
+                  <Link
+                    to={s.to as '/'}
+                    className="flex items-center justify-between gap-3 bg-white rounded-xl px-4 py-3 border border-indigo-100 hover:border-indigo-300 hover:bg-white/80 transition-colors group"
+                  >
+                    <span className="text-gray-800 text-sm font-medium group-hover:text-indigo-700 leading-tight">{s.title}</span>
+                    <span className={`flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full ${s.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                      {s.difficulty}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         {/* Weekly learning goal */}

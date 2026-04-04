@@ -72,6 +72,8 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'ai-and-elderly-care',  icon: '&#x1F9D3;', title: 'AI and elderly care',                path: '/learn/ai-and-elderly-care',          difficulty: 'Intermediate' },
   { id: 'ai-and-insurance',     icon: '&#x1F6E1;&#xFE0F;', title: 'AI and insurance',           path: '/learn/ai-and-insurance',             difficulty: 'Beginner' },
   { id: 'ai-and-policing',      icon: '&#x2696;&#xFE0F;', title: 'AI and policing',             path: '/learn/ai-and-policing',              difficulty: 'Intermediate' },
+  { id: 'ai-and-the-nhs',      icon: '&#x1F3E5;', title: 'AI and the NHS',                     path: '/learn/ai-and-the-nhs',               difficulty: 'Beginner' },
+  { id: 'ai-and-hiring',       icon: '&#x1F4BC;', title: 'AI and hiring',                      path: '/learn/ai-and-hiring',                difficulty: 'Intermediate' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -138,6 +140,8 @@ const RELATED: Record<string, string[]> = {
   'ai-and-elderly-care':   ['ai-in-healthcare', 'ai-and-privacy', 'ai-and-mental-health'],
   'ai-and-insurance':      ['ai-and-privacy', 'ai-bias', 'ai-laws-and-rights'],
   'ai-and-policing':       ['ai-bias', 'ai-and-misinformation', 'ai-laws-and-rights'],
+  'ai-and-the-nhs':        ['ai-in-healthcare', 'ai-and-privacy', 'ai-and-scientific-research'],
+  'ai-and-hiring':         ['ai-bias', 'ai-and-jobs', 'ai-and-privacy'],
   'ai-and-copyright':      ['ai-and-laws-and-rights', 'ai-bias', 'ai-and-privacy'],
 }
 
