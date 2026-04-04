@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -276,6 +277,7 @@ export function WhatIsML() {
 
         {/* Rating */}
         <LessonRating lessonId="what-is-ml" />
+        <ReviewLaterButton lessonId="what-is-ml" />
 
         <RelatedLessons currentId="what-is-ml" />
 

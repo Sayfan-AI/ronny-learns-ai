@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -262,6 +263,7 @@ export function LanguageModels() {
 
         {/* Rating */}
         <LessonRating lessonId="language-models" />
+        <ReviewLaterButton lessonId="language-models" />
 
         <RelatedLessons currentId="language-models" />
 

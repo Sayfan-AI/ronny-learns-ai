@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -191,6 +192,7 @@ export function AIProductivityTools() {
 
         {/* Rating */}
         <LessonRating lessonId="ai-productivity-tools" />
+        <ReviewLaterButton lessonId="ai-productivity-tools" />
 
         {/* Quiz */}
         <section className="space-y-4">

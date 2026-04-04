@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -208,6 +209,7 @@ export function AIEverydayLife() {
 
         {/* Rating */}
         <LessonRating lessonId="ai-everyday-life" />
+        <ReviewLaterButton lessonId="ai-everyday-life" />
 
         <RelatedLessons currentId="ai-everyday-life" />
 

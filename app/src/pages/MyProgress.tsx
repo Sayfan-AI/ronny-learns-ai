@@ -5,6 +5,7 @@ import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
 import { computeBadges, type Badge } from '../hooks/useBadges'
 import { loadVisitCounts } from '../hooks/useLessonVisit'
 import { loadAllNotes } from '../components/LessonNote'
+import { loadAllReviewLater } from '../hooks/useReviewLater'
 
 const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
 
@@ -82,6 +83,9 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-laws-and-rights',    icon: '⚖️', title: 'AI, laws, and your rights',             to: '/learn/ai-laws-and-rights' },
       { id: 'ai-and-copyright',      icon: '⚖️', title: 'AI and the law',                         to: '/learn/ai-and-copyright' },
       { id: 'how-to-use-ai-safely',  icon: '🛡️', title: 'How to use AI safely',                  to: '/learn/how-to-use-ai-safely' },
+      { id: 'ai-and-money',          icon: '💰', title: 'AI and money',                            to: '/learn/ai-and-money' },
+      { id: 'ai-and-democracy',      icon: '🏛️', title: 'AI and democracy',                       to: '/learn/ai-and-democracy' },
+      { id: 'ai-and-language',       icon: '🗣️', title: 'AI and language',                        to: '/learn/ai-and-language' },
     ],
   },
   {
@@ -129,6 +133,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-education': 6, 'ai-and-social-media': 6, 'ai-and-misinformation': 6,
   'ai-and-mental-health': 6, 'future-of-ai': 7, 'ai-laws-and-rights': 7,
   'ai-and-copyright': 6, 'how-to-use-ai-safely': 5,
+  'ai-and-money': 6, 'ai-and-democracy': 7, 'ai-and-language': 5,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -150,6 +155,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-misinformation': 'AI and society', 'ai-and-mental-health': 'AI and society',
   'future-of-ai': 'AI and society', 'ai-laws-and-rights': 'AI and society',
   'ai-and-copyright': 'AI and society', 'how-to-use-ai-safely': 'AI and society',
+  'ai-and-money': 'AI and society', 'ai-and-democracy': 'AI and society', 'ai-and-language': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -227,6 +233,9 @@ export function MyProgress() {
 
   const allNotes = loadAllNotes()
   const noteEntries = ALL_MODULES.filter(m => allNotes[m.id])
+
+  const reviewLaterIds = loadAllReviewLater()
+  const reviewEntries = ALL_MODULES.filter(m => reviewLaterIds.includes(m.id))
 
   async function handleShare() {
     await shareProgress(completedCount, total)
@@ -464,6 +473,34 @@ export function MyProgress() {
             </div>
           </div>
         )}
+
+        {/* Review list */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">&#x1F514;</span>
+            <h2 className="text-xl font-semibold text-gray-700">Review list</h2>
+          </div>
+          {reviewEntries.length === 0 ? (
+            <p className="text-gray-400 text-sm leading-relaxed">
+              No lessons marked for review yet. Tap the &ldquo;Review later&rdquo; button on any lesson to
+              add it here so you can come back to it easily.
+            </p>
+          ) : (
+            <div className="space-y-2">
+              {reviewEntries.map(mod => (
+                <Link
+                  key={mod.id}
+                  to={mod.to}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-orange-50 border border-orange-100 hover:bg-orange-100 transition-colors"
+                >
+                  <span className="text-xl flex-shrink-0">{mod.icon}</span>
+                  <span className="flex-1 font-semibold text-orange-800 text-sm leading-tight">{mod.title}</span>
+                  <span className="text-orange-400 flex-shrink-0">&#x2192;</span>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Module list */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-5">

@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -308,6 +309,7 @@ export function AIForAccessibility() {
 
         {/* Rating */}
         <LessonRating lessonId="ai-for-accessibility" />
+        <ReviewLaterButton lessonId="ai-for-accessibility" />
 
         <RelatedLessons currentId="ai-for-accessibility" />
 

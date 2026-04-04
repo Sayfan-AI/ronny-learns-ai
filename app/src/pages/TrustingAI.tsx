@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -217,6 +218,7 @@ export function TrustingAI() {
 
         {/* Rating */}
         <LessonRating lessonId="trusting-ai" />
+        <ReviewLaterButton lessonId="trusting-ai" />
 
         <RelatedLessons currentId="trusting-ai" />
 

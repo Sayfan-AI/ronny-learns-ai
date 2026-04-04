@@ -46,6 +46,9 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'what-is-ci-cd',        icon: '&#x1F680;', title: 'How does the website update automatically?', path: '/learn/what-is-ci-cd',           difficulty: 'Advanced' },
   { id: 'version-control',      icon: '&#x1F4BE;', title: 'How does version control work?',          path: '/learn/what-is-version-control',     difficulty: 'Advanced' },
   { id: 'pull-request',         icon: '&#x1F501;', title: 'What is a pull request?',                 path: '/learn/what-is-a-pull-request',      difficulty: 'Advanced' },
+  { id: 'ai-and-money',         icon: '&#x1F4B0;', title: 'AI and money',                            path: '/learn/ai-and-money',                difficulty: 'Intermediate' },
+  { id: 'ai-and-democracy',     icon: '&#x1F3DB;&#xFE0F;', title: 'AI and democracy',               path: '/learn/ai-and-democracy',            difficulty: 'Intermediate' },
+  { id: 'ai-and-language',      icon: '&#x1F5E3;&#xFE0F;', title: 'AI and language',                path: '/learn/ai-and-language',             difficulty: 'Beginner' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -87,6 +90,9 @@ const RELATED: Record<string, string[]> = {
   'what-is-ci-cd':         ['version-control', 'pull-request', 'how-this-was-built'],
   'version-control':       ['pull-request', 'github-basics', 'what-is-ci-cd'],
   'pull-request':          ['version-control', 'github-basics', 'what-is-ci-cd'],
+  'ai-and-money':          ['ai-bias', 'ai-and-privacy', 'trusting-ai'],
+  'ai-and-democracy':      ['ai-and-misinformation', 'ai-bias', 'ai-and-privacy'],
+  'ai-and-language':       ['ai-for-accessibility', 'ai-in-your-apps', 'how-chatbots-work'],
 }
 
 const DIFFICULTY_COLOURS: Record<string, string> = {

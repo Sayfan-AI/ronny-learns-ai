@@ -61,6 +61,9 @@ const AIAndScientificResearch = lazy(() => import('./pages/AIAndScientificResear
 const AIProductivityTools = lazy(() => import('./pages/AIProductivityTools').then(m => ({ default: m.AIProductivityTools })))
 const AIAndCopyright = lazy(() => import('./pages/AIAndCopyright').then(m => ({ default: m.AIAndCopyright })))
 const HowToUseAISafely = lazy(() => import('./pages/HowToUseAISafely').then(m => ({ default: m.HowToUseAISafely })))
+const AIAndMoney = lazy(() => import('./pages/AIAndMoney').then(m => ({ default: m.AIAndMoney })))
+const AIAndDemocracy = lazy(() => import('./pages/AIAndDemocracy').then(m => ({ default: m.AIAndDemocracy })))
+const AIAndLanguage = lazy(() => import('./pages/AIAndLanguage').then(m => ({ default: m.AIAndLanguage })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -441,6 +444,24 @@ const howToUseAISafelyRoute = createRoute({
   component: withSuspense(HowToUseAISafely),
 })
 
+const aiAndMoneyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-money',
+  component: withSuspense(AIAndMoney),
+})
+
+const aiAndDemocracyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-democracy',
+  component: withSuspense(AIAndDemocracy),
+})
+
+const aiAndLanguageRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-language',
+  component: withSuspense(AIAndLanguage),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -498,6 +519,9 @@ const routeTree = rootRoute.addChildren([
   aiProductivityToolsRoute,
   aiAndCopyrightRoute,
   howToUseAISafelyRoute,
+  aiAndMoneyRoute,
+  aiAndDemocracyRoute,
+  aiAndLanguageRoute,
 ])
 
 const hashHistory = createHashHistory()

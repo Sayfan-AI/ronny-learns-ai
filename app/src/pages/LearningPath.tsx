@@ -75,6 +75,9 @@ const STAGES: Stage[] = [
       { id: 'ai-and-copyright',     icon: '&#x2696;&#xFE0F;', title: 'AI and the law',                  path: '/learn/ai-and-copyright',          difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'how-to-use-ai-safely', icon: '&#x1F6E1;&#xFE0F;', title: 'How to use AI safely',           path: '/learn/how-to-use-ai-safely',      difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'future-of-ai',         icon: '&#x1F52D;', title: 'What does the future of AI look like?',  path: '/learn/future-of-ai',              difficulty: 'Intermediate', readingTime: '7 min' },
+      { id: 'ai-and-money',         icon: '&#x1F4B0;', title: 'AI and money',                           path: '/learn/ai-and-money',              difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'ai-and-democracy',     icon: '&#x1F3DB;&#xFE0F;', title: 'AI and democracy',               path: '/learn/ai-and-democracy',          difficulty: 'Intermediate', readingTime: '7 min' },
+      { id: 'ai-and-language',      icon: '&#x1F5E3;&#xFE0F;', title: 'AI and language',                path: '/learn/ai-and-language',           difficulty: 'Beginner',     readingTime: '5 min' },
     ],
   },
   {
@@ -97,6 +100,14 @@ const STAGES: Stage[] = [
 ]
 
 const ALL_LESSONS = STAGES.flatMap(s => s.lessons)
+
+function parseMinutes(readingTime?: string): number {
+  if (!readingTime) return 0
+  const match = readingTime.match(/(\d+)/)
+  return match ? parseInt(match[1], 10) : 0
+}
+
+const TOTAL_MINUTES = ALL_LESSONS.reduce((sum, l) => sum + parseMinutes(l.readingTime), 0)
 
 const DIFFICULTY_STYLES: Record<Difficulty, string> = {
   Beginner:     'bg-green-100 text-green-700',
@@ -135,6 +146,10 @@ export function LearningPath() {
   const totalLessons = ALL_LESSONS.length
   const completedCount = ALL_LESSONS.filter(l => completed.has(l.id)).length
   const firstUncompleted = getFirstUncompleted(completed)
+  const completedMinutes = ALL_LESSONS
+    .filter(l => completed.has(l.id))
+    .reduce((sum, l) => sum + parseMinutes(l.readingTime), 0)
+  const remainingMinutes = TOTAL_MINUTES - completedMinutes
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white flex flex-col items-center px-4 py-16">
@@ -190,6 +205,36 @@ export function LearningPath() {
               </Link>
             </div>
           )}
+        </div>
+
+        {/* Time summary */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-2xl font-extrabold text-emerald-600">
+                {completedMinutes >= 60
+                  ? `${(completedMinutes / 60).toFixed(1)}h`
+                  : `${completedMinutes}m`}
+              </p>
+              <p className="text-xs text-gray-500 mt-0.5 leading-tight">learning completed</p>
+            </div>
+            <div>
+              <p className="text-2xl font-extrabold text-blue-600">
+                {remainingMinutes >= 60
+                  ? `${(remainingMinutes / 60).toFixed(1)}h`
+                  : `${remainingMinutes}m`}
+              </p>
+              <p className="text-xs text-gray-500 mt-0.5 leading-tight">remaining</p>
+            </div>
+            <div>
+              <p className="text-2xl font-extrabold text-gray-700">
+                {TOTAL_MINUTES >= 60
+                  ? `${(TOTAL_MINUTES / 60).toFixed(1)}h`
+                  : `${TOTAL_MINUTES}m`}
+              </p>
+              <p className="text-xs text-gray-500 mt-0.5 leading-tight">total content</p>
+            </div>
+          </div>
         </div>
 
         {/* Stages */}
