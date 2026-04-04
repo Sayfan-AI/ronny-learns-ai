@@ -256,10 +256,11 @@ export function AskPage() {
             &larr; Back to home
           </Link>
           <div className="text-center space-y-3">
-            <div className="text-5xl">&#x1F914;</div>
+            <div className="text-5xl" aria-hidden="true">&#x1F914;</div>
             <h1 className="text-3xl font-bold text-gray-800">Ask a question</h1>
             <p className="text-gray-600 leading-relaxed">
-              Curious about something? Type your question and get a plain-language answer.
+              Type any question about AI, GitHub, or this project and get a plain-language answer.
+              After you get a response, scroll down to see how an AI language model processes your question.
             </p>
           </div>
         </div>
@@ -397,6 +398,39 @@ export function AskPage() {
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {/* What just happened — shown after any answer */}
+        {!loading && result !== null && result !== 'not-found' && (
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl flex-shrink-0" aria-hidden="true">&#x1F9ED;</span>
+              <h2 className="text-lg font-bold text-blue-800">What just happened?</h2>
+            </div>
+            <p className="text-blue-700 text-sm leading-relaxed">
+              Here is what took place behind the scenes when you pressed Ask:
+            </p>
+            <ol className="space-y-3">
+              {[
+                { step: '1', text: 'Your question was sent to a language model — a type of AI trained on billions of sentences.' },
+                { step: '2', text: 'The model broke your question into tokens (small chunks of text). "What is GitHub?" might become five tokens: "What", " is", " Git", "Hub", "?".' },
+                { step: '3', text: 'The model looked at those tokens and predicted — word by word — what a useful answer looks like, based on patterns learned during training.' },
+                { step: '4', text: 'The answer was sent back and displayed on screen. The whole process took less than a second.' },
+              ].map(({ step, text }) => (
+                <li key={step} className="flex gap-3 items-start">
+                  <span className="w-7 h-7 rounded-full bg-blue-200 text-blue-800 text-sm font-bold flex items-center justify-center flex-shrink-0">
+                    {step}
+                  </span>
+                  <p className="text-blue-700 text-sm leading-relaxed">{text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="text-blue-600 text-xs leading-relaxed border-t border-blue-200 pt-3">
+              Note: The answers on this page come from a pre-written knowledge base, not a live AI call —
+              because this site runs entirely in your browser with no server. But the steps above describe
+              exactly what happens when you use a real AI assistant like Claude.
+            </p>
           </div>
         )}
 
