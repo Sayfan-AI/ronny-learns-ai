@@ -6,6 +6,7 @@ import { useDarkMode } from '../hooks/useDarkMode'
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/learning-path', label: 'Learning path' },
+  { to: '/collections', label: 'Collections' },
   { to: '/tutorial/github-signup', label: 'GitHub signup' },
   { to: '/learn/github-basics', label: 'GitHub basics' },
   { to: '/learn/what-is-ai', label: 'What is AI?' },
@@ -70,6 +71,7 @@ export function NavBar() {
           {[
             { to: '/', label: 'Home' },
             { to: '/learning-path', label: 'Learning path' },
+            { to: '/collections', label: 'Collections' },
             { to: '/ask', label: 'Ask' },
             { to: '/my-progress', label: 'My progress' },
           ].map((link) => (

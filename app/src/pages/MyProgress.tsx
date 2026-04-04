@@ -11,6 +11,83 @@ import { loadWeeklyGoal, saveWeeklyGoal, type WeeklyGoalData } from '../hooks/us
 import { StreakCalendar } from '../components/StreakCalendar'
 import { useLearningCalendar } from '../hooks/useLearningCalendar'
 
+// Lessons that have quizzes (ordered as they appear in the curriculum)
+const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
+  { id: 'what-is-ai',             title: 'What is AI?',                               to: '/learn/what-is-ai' },
+  { id: 'what-is-ml',             title: 'What is machine learning?',                 to: '/learn/what-is-machine-learning' },
+  { id: 'how-ai-training-works',  title: 'How does AI training work?',                to: '/learn/how-ai-training-works' },
+  { id: 'neural-network',         title: 'What is a neural network?',                 to: '/learn/neural-network' },
+  { id: 'language-models',        title: 'How do language models work?',              to: '/learn/language-models' },
+  { id: 'how-chatbots-work',      title: 'How do chatbots work?',                     to: '/learn/how-chatbots-work' },
+  { id: 'ai-everyday-life',       title: 'AI in everyday life',                       to: '/learn/ai-everyday-life' },
+  { id: 'ai-pros-and-cons',       title: 'AI: the good and the bad',                  to: '/learn/ai-pros-and-cons' },
+  { id: 'ai-bias',                title: 'What is AI bias?',                          to: '/learn/ai-bias' },
+  { id: 'ai-safety',              title: 'AI safety and alignment',                   to: '/learn/ai-safety' },
+  { id: 'prompt-engineering',     title: 'What is prompt engineering?',               to: '/learn/prompt-engineering' },
+  { id: 'trusting-ai',            title: 'Can I trust what AI says?',                 to: '/learn/trusting-ai' },
+  { id: 'ai-and-jobs',            title: 'AI and jobs',                               to: '/learn/ai-and-jobs' },
+  { id: 'ai-and-creativity',      title: 'AI and creativity',                         to: '/learn/ai-and-creativity' },
+  { id: 'ai-in-healthcare',       title: 'AI in healthcare',                          to: '/learn/ai-in-healthcare' },
+  { id: 'ai-and-environment',     title: 'AI and the environment',                    to: '/learn/ai-and-environment' },
+  { id: 'ai-and-privacy',         title: 'AI and privacy',                            to: '/learn/ai-and-privacy' },
+  { id: 'ai-and-education',       title: 'AI and education',                          to: '/learn/ai-and-education' },
+  { id: 'ai-and-misinformation',  title: 'AI and misinformation',                    to: '/learn/ai-and-misinformation' },
+  { id: 'ai-and-mental-health',   title: 'AI and mental health',                     to: '/learn/ai-and-mental-health' },
+  { id: 'future-of-ai',           title: 'What does the future of AI look like?',    to: '/learn/future-of-ai' },
+  { id: 'ai-in-your-apps',        title: 'AI in the apps you already use',           to: '/learn/ai-in-your-apps' },
+  { id: 'ai-laws-and-rights',     title: 'AI, laws, and your rights',                to: '/learn/ai-laws-and-rights' },
+  { id: 'ai-and-social-media',    title: 'AI and social media',                      to: '/learn/ai-and-social-media' },
+  { id: 'ai-for-accessibility',   title: 'AI for accessibility',                     to: '/learn/ai-for-accessibility' },
+  { id: 'ai-and-scientific-research', title: 'AI and scientific research',           to: '/learn/ai-and-scientific-research' },
+  { id: 'ai-productivity-tools',  title: 'AI and your productivity',                 to: '/learn/ai-productivity-tools' },
+  { id: 'ai-and-copyright',       title: 'AI and the law',                           to: '/learn/ai-and-copyright' },
+  { id: 'how-to-use-ai-safely',   title: 'How to use AI safely',                     to: '/learn/how-to-use-ai-safely' },
+  { id: 'ai-and-money',           title: 'AI and money',                             to: '/learn/ai-and-money' },
+  { id: 'ai-and-democracy',       title: 'AI and democracy',                         to: '/learn/ai-and-democracy' },
+  { id: 'ai-and-language',        title: 'AI and language',                          to: '/learn/ai-and-language' },
+  { id: 'ai-and-food',            title: 'AI and food',                              to: '/learn/ai-and-food' },
+  { id: 'ai-and-sport',           title: 'AI and sport',                             to: '/learn/ai-and-sport' },
+  { id: 'ai-and-transport',       title: 'AI and transport',                         to: '/learn/ai-and-transport' },
+  { id: 'ai-and-art',             title: 'AI and art',                               to: '/learn/ai-and-art' },
+  { id: 'ai-and-cybersecurity',   title: 'AI and cybersecurity',                     to: '/learn/ai-and-cybersecurity' },
+  { id: 'ai-and-space',           title: 'AI and space',                             to: '/learn/ai-and-space' },
+  { id: 'ai-and-climate-change',  title: 'AI and climate change',                   to: '/learn/ai-and-climate-change' },
+  { id: 'ai-and-music',           title: 'AI and music',                             to: '/learn/ai-and-music' },
+  { id: 'ai-and-robotics',        title: 'AI and robotics',                          to: '/learn/ai-and-robotics' },
+  { id: 'ai-and-gaming',          title: 'AI and gaming',                            to: '/learn/ai-and-gaming' },
+]
+
+interface QuizScoreEntry {
+  id: string
+  title: string
+  to: string
+  score: number
+  total: number
+  pct: number
+}
+
+function loadQuizScores(): { attempted: QuizScoreEntry[]; unattempted: Array<{ id: string; title: string; to: string }> } {
+  let scores: Record<string, { score: number; total: number }> = {}
+  try {
+    const raw = localStorage.getItem('ronny-quiz-scores')
+    if (raw) scores = JSON.parse(raw)
+  } catch {
+    // ignore
+  }
+  const attempted: QuizScoreEntry[] = []
+  const unattempted: Array<{ id: string; title: string; to: string }> = []
+  for (const lesson of LESSONS_WITH_QUIZZES) {
+    const s = scores[lesson.id]
+    if (s) {
+      attempted.push({ ...lesson, score: s.score, total: s.total, pct: s.total > 0 ? Math.round((s.score / s.total) * 100) : 0 })
+    } else {
+      unattempted.push(lesson)
+    }
+  }
+  attempted.sort((a, b) => b.pct - a.pct)
+  return { attempted, unattempted }
+}
+
 const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
 
 async function shareProgress(completedCount: number, total: number) {
@@ -73,6 +150,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-cybersecurity',       icon: '🔒', title: 'AI and cybersecurity',                     to: '/learn/ai-and-cybersecurity' },
       { id: 'ai-and-space',               icon: '🚀', title: 'AI and space',                             to: '/learn/ai-and-space' },
       { id: 'ai-and-climate-change',      icon: '🌍', title: 'AI and climate change',                    to: '/learn/ai-and-climate-change' },
+      { id: 'ai-and-robotics',            icon: '🤖', title: 'AI and robotics',                            to: '/learn/ai-and-robotics' },
     ],
   },
   {
@@ -98,6 +176,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-democracy',      icon: '🏛️', title: 'AI and democracy',                       to: '/learn/ai-and-democracy' },
       { id: 'ai-and-language',       icon: '🗣️', title: 'AI and language',                        to: '/learn/ai-and-language' },
       { id: 'ai-and-music',          icon: '🎵', title: 'AI and music',                            to: '/learn/ai-and-music' },
+      { id: 'ai-and-gaming',         icon: '🎮', title: 'AI and gaming',                           to: '/learn/ai-and-gaming' },
     ],
   },
   {
@@ -149,6 +228,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-food': 5, 'ai-and-sport': 6, 'ai-and-transport': 5, 'ai-and-art': 6,
   'ai-and-cybersecurity': 5, 'ai-and-space': 6,
   'ai-and-climate-change': 6, 'ai-and-music': 5,
+  'ai-and-robotics': 5, 'ai-and-gaming': 5,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -175,6 +255,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-transport': 'AI in the real world', 'ai-and-art': 'AI in the real world',
   'ai-and-cybersecurity': 'AI in the real world', 'ai-and-space': 'AI in the real world',
   'ai-and-climate-change': 'AI in the real world', 'ai-and-music': 'AI and society',
+  'ai-and-robotics': 'AI in the real world', 'ai-and-gaming': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -295,6 +376,8 @@ export function MyProgress() {
   const [editingName, setEditingName] = useState(false)
   const [nameInput, setNameInput] = useState('')
   const nameInputRef = useRef<HTMLInputElement>(null)
+  const [showAllQuizScores, setShowAllQuizScores] = useState(false)
+  const [quizScoreData] = useState(() => loadQuizScores())
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -675,6 +758,64 @@ export function MyProgress() {
             ))}
           </div>
         </div>
+
+        {/* Quiz scores */}
+        {quizScoreData.attempted.length > 0 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-700">My quiz scores</h2>
+                <p className="text-gray-400 text-xs mt-0.5">Best scores across all lessons</p>
+              </div>
+              <span className="text-sm text-gray-400">{quizScoreData.attempted.length} of {LESSONS_WITH_QUIZZES.length} attempted</span>
+            </div>
+            <div className="space-y-2">
+              {(showAllQuizScores ? quizScoreData.attempted : quizScoreData.attempted.slice(0, 10)).map(entry => (
+                <Link
+                  key={entry.id}
+                  to={entry.to}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-blue-50 hover:border-blue-100 transition-colors"
+                >
+                  <span className={`text-xl flex-shrink-0 ${entry.pct === 100 ? 'text-amber-500' : entry.pct >= 75 ? 'text-emerald-500' : 'text-blue-500'}`}>
+                    {entry.pct === 100 ? '&#x1F3C6;' : entry.pct >= 75 ? '&#x2713;' : '&#x1F4DD;'}
+                  </span>
+                  <span className="flex-1 font-medium text-gray-700 text-sm leading-tight truncate">{entry.title}</span>
+                  <span className={`flex-shrink-0 text-sm font-bold px-2 py-0.5 rounded-full ${
+                    entry.pct === 100 ? 'bg-amber-100 text-amber-700' :
+                    entry.pct >= 75 ? 'bg-emerald-100 text-emerald-700' :
+                    'bg-blue-100 text-blue-700'
+                  }`}>
+                    {entry.score}/{entry.total}
+                  </span>
+                </Link>
+              ))}
+              {!showAllQuizScores && quizScoreData.attempted.length > 10 && (
+                <button
+                  onClick={() => setShowAllQuizScores(true)}
+                  className="w-full text-center text-blue-500 hover:underline text-sm py-2"
+                >
+                  Show all {quizScoreData.attempted.length} scores
+                </button>
+              )}
+              {quizScoreData.unattempted.length > 0 && showAllQuizScores && (
+                <div className="pt-2 border-t border-gray-100 space-y-2">
+                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Not yet attempted</p>
+                  {quizScoreData.unattempted.map(entry => (
+                    <Link
+                      key={entry.id}
+                      to={entry.to}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-gray-100 transition-colors opacity-60"
+                    >
+                      <span className="text-xl flex-shrink-0 text-gray-300">&#x25CB;</span>
+                      <span className="flex-1 font-medium text-gray-500 text-sm leading-tight truncate">{entry.title}</span>
+                      <span className="flex-shrink-0 text-xs text-gray-400">Not tried yet</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* My notes */}
         {noteEntries.length > 0 && (
