@@ -23,6 +23,7 @@ import { FeedbackPage } from './pages/FeedbackPage'
 import { AskPage } from './pages/AskPage'
 import { Certificate } from './pages/Certificate'
 import { WhatIsML } from './pages/WhatIsML'
+import { HowAITrainingWorks } from './pages/HowAITrainingWorks'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -171,6 +172,12 @@ const whatIsMLRoute = createRoute({
   component: WhatIsML,
 })
 
+const howAITrainingWorksRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-ai-training-works',
+  component: HowAITrainingWorks,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -195,6 +202,7 @@ const routeTree = rootRoute.addChildren([
   askRoute,
   certificateRoute,
   whatIsMLRoute,
+  howAITrainingWorksRoute,
 ])
 
 const hashHistory = createHashHistory()

@@ -40,6 +40,15 @@ const MODULES = [
     color: 'emerald',
   },
   {
+    id: 'how-ai-training-works',
+    title: 'How does AI training work?',
+    description: 'Datasets, weights, loss functions, and RLHF — all explained in plain language, no maths required.',
+    readingTime: '7 min',
+    icon: '🧪',
+    to: '/learn/how-ai-training-works',
+    color: 'violet',
+  },
+  {
     id: 'what-is-api',
     title: 'What is an API?',
     description: 'How programs talk to each other — in plain English, with real-world examples.',
