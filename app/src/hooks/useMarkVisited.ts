@@ -47,9 +47,12 @@ function recordStreakVisit() {
   }
 }
 
+const TIMESTAMPS_KEY = 'ronny-lesson-timestamps'
+
 /**
  * Records this module key as visited in localStorage when the page mounts.
- * Also records a streak visit for the day.
+ * Also records a streak visit for the day, and stores a completion timestamp
+ * (on first visit) in ronny-lesson-timestamps.
  * Works whether the user arrived via the home page or a direct link.
  */
 export function useMarkVisited(moduleKey: string) {
@@ -60,10 +63,35 @@ export function useMarkVisited(moduleKey: string) {
       if (!visited.includes(moduleKey)) {
         visited.push(moduleKey)
         localStorage.setItem(VISITED_KEY, JSON.stringify(visited))
+
+        // Record timestamp for the learning timeline (first visit only)
+        try {
+          const tsRaw = localStorage.getItem(TIMESTAMPS_KEY)
+          const timestamps: Record<string, string> = tsRaw ? JSON.parse(tsRaw) : {}
+          if (!timestamps[moduleKey]) {
+            timestamps[moduleKey] = new Date().toISOString()
+            localStorage.setItem(TIMESTAMPS_KEY, JSON.stringify(timestamps))
+          }
+        } catch {
+          // ignore
+        }
       }
     } catch {
       // ignore storage errors (e.g. private browsing restrictions)
     }
     recordStreakVisit()
   }, [moduleKey])
+}
+
+/**
+ * Loads lesson completion timestamps from localStorage.
+ * Returns a map of lessonId -> ISO date string.
+ */
+export function loadLessonTimestamps(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem(TIMESTAMPS_KEY)
+    return raw ? JSON.parse(raw) : {}
+  } catch {
+    return {}
+  }
 }

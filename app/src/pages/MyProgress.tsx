@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { useState, useRef, useCallback } from 'react'
+import { loadLessonTimestamps } from '../hooks/useMarkVisited'
 import { useProfile } from '../hooks/useProfile'
 import { useAchievements } from '../hooks/useAchievements'
 import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
@@ -59,6 +60,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-fashion',         title: 'AI and fashion',                           to: '/learn/ai-and-fashion' },
   { id: 'ai-and-agriculture',     title: 'AI and agriculture',                       to: '/learn/ai-and-agriculture' },
   { id: 'ai-and-mental-wellbeing-at-work', title: 'AI and mental wellbeing at work', to: '/learn/ai-and-mental-wellbeing-at-work' },
+  { id: 'ai-and-retail',          title: 'AI and retail',                            to: '/learn/ai-and-retail' },
+  { id: 'ai-and-children',        title: 'AI and children',                          to: '/learn/ai-and-children' },
 ]
 
 interface QuizScoreEntry {
@@ -220,6 +223,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-robotics',            icon: '🤖', title: 'AI and robotics',                            to: '/learn/ai-and-robotics' },
       { id: 'ai-and-fashion',             icon: '👗', title: 'AI and fashion',                              to: '/learn/ai-and-fashion' },
       { id: 'ai-and-agriculture',         icon: '🌾', title: 'AI and agriculture',                          to: '/learn/ai-and-agriculture' },
+      { id: 'ai-and-retail',              icon: '🛍️', title: 'AI and retail',                                to: '/learn/ai-and-retail' },
     ],
   },
   {
@@ -248,6 +252,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-gaming',         icon: '🎮', title: 'AI and gaming',                           to: '/learn/ai-and-gaming' },
       { id: 'ai-and-journalism',     icon: '📰', title: 'AI and journalism',                       to: '/learn/ai-and-journalism' },
       { id: 'ai-and-mental-wellbeing-at-work', icon: '🧘', title: 'AI and mental wellbeing at work', to: '/learn/ai-and-mental-wellbeing-at-work' },
+      { id: 'ai-and-children',          icon: '🧒', title: 'AI and children',                            to: '/learn/ai-and-children' },
     ],
   },
   {
@@ -302,6 +307,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-robotics': 5, 'ai-and-gaming': 5,
   'ai-and-journalism': 6, 'ai-and-fashion': 5,
   'ai-and-agriculture': 5, 'ai-and-mental-wellbeing-at-work': 6,
+  'ai-and-retail': 5, 'ai-and-children': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -331,6 +337,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-robotics': 'AI in the real world', 'ai-and-gaming': 'AI and society',
   'ai-and-journalism': 'AI and society', 'ai-and-fashion': 'AI in the real world',
   'ai-and-agriculture': 'AI in the real world', 'ai-and-mental-wellbeing-at-work': 'AI and society',
+  'ai-and-retail': 'AI in the real world', 'ai-and-children': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -454,6 +461,8 @@ export function MyProgress() {
   const [showAllQuizScores, setShowAllQuizScores] = useState(false)
   const [quizScoreData] = useState(() => loadQuizScores())
   const [exportStatus, setExportStatus] = useState<'idle' | 'copied' | 'downloaded'>('idle')
+  const [showAllTimeline, setShowAllTimeline] = useState(false)
+  const [lessonTimestamps] = useState<Record<string, string>>(() => loadLessonTimestamps())
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -473,6 +482,16 @@ export function MyProgress() {
 
   const reviewLaterIds = loadAllReviewLater()
   const reviewEntries = ALL_MODULES.filter(m => reviewLaterIds.includes(m.id))
+
+  // Learning timeline: completed lessons sorted by timestamp, most recent first
+  const timelineEntries = ALL_MODULES
+    .filter(m => lessonTimestamps[m.id])
+    .sort((a, b) => {
+      const tA = lessonTimestamps[a.id] ?? ''
+      const tB = lessonTimestamps[b.id] ?? ''
+      return tB.localeCompare(tA)
+    })
+  const TIMELINE_PREVIEW = 8
 
   async function handleShare() {
     await shareProgress(completedCount, total)
@@ -952,6 +971,49 @@ export function MyProgress() {
             </div>
           </div>
         )}
+
+        {/* Learning timeline */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">&#x1F4C5;</span>
+            <h2 className="text-xl font-semibold text-gray-700">My learning timeline</h2>
+          </div>
+          {timelineEntries.length === 0 ? (
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Complete your first lesson to start your timeline!
+            </p>
+          ) : (
+            <>
+              <div className="space-y-2">
+                {(showAllTimeline ? timelineEntries : timelineEntries.slice(0, TIMELINE_PREVIEW)).map(mod => {
+                  const ts = lessonTimestamps[mod.id]
+                  const dateLabel = ts
+                    ? new Date(ts).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+                    : ''
+                  return (
+                    <Link
+                      key={mod.id}
+                      to={mod.to}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-indigo-50 border border-indigo-100 hover:bg-indigo-100 transition-colors"
+                    >
+                      <span className="text-xl flex-shrink-0">{mod.icon}</span>
+                      <span className="flex-1 font-medium text-indigo-800 text-sm leading-tight">{mod.title}</span>
+                      <span className="flex-shrink-0 text-xs text-indigo-500 whitespace-nowrap">{dateLabel}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+              {!showAllTimeline && timelineEntries.length > TIMELINE_PREVIEW && (
+                <button
+                  onClick={() => setShowAllTimeline(true)}
+                  className="w-full text-center text-indigo-500 hover:underline text-sm py-2"
+                >
+                  Show all {timelineEntries.length} completed lessons
+                </button>
+              )}
+            </>
+          )}
+        </div>
 
         {/* Review list */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">

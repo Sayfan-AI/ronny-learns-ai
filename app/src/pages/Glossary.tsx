@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 
 interface GlossaryEntry {
@@ -159,15 +159,162 @@ const ENTRIES: GlossaryEntry[] = [
   },
 ]
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
+function FlashcardMode({ onExit }: { onExit: () => void }) {
+  const [deck] = useState<GlossaryEntry[]>(() => shuffleArray(ENTRIES))
+  const [index, setIndex] = useState(0)
+  const [revealed, setRevealed] = useState(false)
+
+  const current = deck[index]
+
+  const handleReveal = useCallback(() => setRevealed(true), [])
+
+  const handlePrev = useCallback(() => {
+    setIndex(i => Math.max(0, i - 1))
+    setRevealed(false)
+  }, [])
+
+  const handleNext = useCallback(() => {
+    setIndex(i => Math.min(deck.length - 1, i + 1))
+    setRevealed(false)
+  }, [deck.length])
+
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        if (!revealed) {
+          handleReveal()
+        } else {
+          handleNext()
+        }
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev()
+      } else if (e.key === 'Escape') {
+        onExit()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [revealed, handleReveal, handleNext, handlePrev, onExit])
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white flex flex-col items-center px-4 py-16">
+      <div className="max-w-2xl w-full space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-gray-800">&#x1F9E0; Flashcard mode</h1>
+          <button
+            onClick={onExit}
+            className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-semibold transition-colors"
+          >
+            &#x2715; Exit flashcards
+          </button>
+        </div>
+
+        <p className="text-gray-500 text-sm text-center">
+          Term {index + 1} of {deck.length}
+        </p>
+
+        {/* Progress bar */}
+        <div className="w-full bg-gray-100 rounded-full h-2">
+          <div
+            className="bg-violet-500 h-2 rounded-full transition-all duration-300"
+            style={{ width: `${((index + 1) / deck.length) * 100}%` }}
+          />
+        </div>
+
+        {/* Card */}
+        <div
+          className="bg-white rounded-2xl shadow-md border border-violet-100 p-8 min-h-[260px] flex flex-col items-center justify-center text-center space-y-6 cursor-pointer select-none"
+          onClick={!revealed ? handleReveal : undefined}
+          role="button"
+          tabIndex={0}
+          aria-label={revealed ? `Definition: ${current.definition}` : `Term: ${current.term}. Click to reveal definition.`}
+          onKeyDown={e => { if (e.key === 'Enter' && !revealed) handleReveal() }}
+        >
+          <p className="text-xs font-semibold text-violet-400 uppercase tracking-widest">
+            {revealed ? 'Definition' : 'Term'}
+          </p>
+          {!revealed ? (
+            <h2 className="text-3xl font-bold text-gray-800">{current.term}</h2>
+          ) : (
+            <>
+              <h2 className="text-xl font-bold text-violet-700">{current.term}</h2>
+              <p className="text-gray-700 text-base leading-relaxed">{current.definition}</p>
+              {current.lessonPath && (
+                <a
+                  href={`#${current.lessonPath}`}
+                  className="text-sm text-violet-600 hover:text-violet-800 underline"
+                  onClick={e => e.stopPropagation()}
+                >
+                  {current.lessonLabel} &rarr;
+                </a>
+              )}
+            </>
+          )}
+          {!revealed && (
+            <p className="text-gray-400 text-sm">Tap to reveal definition</p>
+          )}
+        </div>
+
+        {/* Controls */}
+        {!revealed ? (
+          <div className="flex justify-center">
+            <button
+              onClick={handleReveal}
+              className="px-8 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold transition-colors min-h-[44px]"
+            >
+              Reveal definition
+            </button>
+          </div>
+        ) : (
+          <div className="flex justify-between gap-4">
+            <button
+              onClick={handlePrev}
+              disabled={index === 0}
+              className="flex-1 px-4 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed text-gray-700 font-semibold text-sm transition-colors min-h-[44px]"
+            >
+              &larr; Previous
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={index === deck.length - 1}
+              className="flex-1 px-4 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-sm transition-colors min-h-[44px]"
+            >
+              Next &rarr;
+            </button>
+          </div>
+        )}
+
+        <p className="text-center text-gray-400 text-xs">
+          Keyboard: Space or &rarr; to advance &middot; &larr; for previous &middot; Esc to exit
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export function Glossary() {
   useMarkVisited('glossary')
   const [search, setSearch] = useState('')
+  const [flashcardMode, setFlashcardMode] = useState(false)
 
   const filtered = ENTRIES.filter(
     e =>
       e.term.toLowerCase().includes(search.toLowerCase()) ||
       e.definition.toLowerCase().includes(search.toLowerCase())
   )
+
+  if (flashcardMode) {
+    return <FlashcardMode onExit={() => setFlashcardMode(false)} />
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white flex flex-col items-center px-4 py-16">
@@ -181,6 +328,12 @@ export function Glossary() {
             Plain-language definitions for every term used across the lessons.
             Search for any word below.
           </p>
+          <button
+            onClick={() => setFlashcardMode(true)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors min-h-[44px]"
+          >
+            <span>&#x1F9E0;</span> Flashcard mode
+          </button>
         </div>
 
         {/* Search */}
@@ -207,7 +360,7 @@ export function Glossary() {
 
         {filtered.length === 0 && (
           <div className="text-center py-12 text-gray-500 text-lg">
-            No terms match "{search}". Try a different word.
+            No terms match &ldquo;{search}&rdquo;. Try a different word.
           </div>
         )}
 
