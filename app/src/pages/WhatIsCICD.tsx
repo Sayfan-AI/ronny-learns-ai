@@ -1,9 +1,12 @@
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
 
 export function WhatIsCICD() {
   useMarkVisited('what-is-ci-cd')
+  useLessonVisit('what-is-ci-cd')
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
@@ -161,6 +164,8 @@ export function WhatIsCICD() {
         </div>
 
         {/* Next lesson */}
+        <LessonNote lessonId="what-is-ci-cd" />
+
         <RelatedLessons currentId="what-is-ci-cd" />
 
         <NextLesson currentId="what-is-ci-cd" />

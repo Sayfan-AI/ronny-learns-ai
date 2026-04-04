@@ -1,5 +1,7 @@
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
 
 interface TimelineEvent {
@@ -77,6 +79,7 @@ const EVENTS: TimelineEvent[] = [
 
 export function AIHistory() {
   useMarkVisited('ai-history')
+  useLessonVisit('ai-history')
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
@@ -142,6 +145,8 @@ export function AIHistory() {
         </div>
 
         {/* Next lesson */}
+        <LessonNote lessonId="ai-history" />
+
         <RelatedLessons currentId="ai-history" />
 
         <NextLesson currentId="ai-history" />

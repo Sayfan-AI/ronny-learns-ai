@@ -1,7 +1,9 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 
@@ -58,6 +60,7 @@ const quizQuestions: QuizQuestion[] = [
 
 export function GenesisSystem() {
   useMarkVisited('genesis-system')
+  useLessonVisit('genesis-system')
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
       <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
@@ -199,6 +202,8 @@ export function GenesisSystem() {
         <Quiz questions={quizQuestions} title="Quiz: What is the Genesis system?" lessonId="genesis-system" lessonTitle="What is the Genesis system?" />
 
         {/* Next lesson */}
+        <LessonNote lessonId="genesis-system" />
+
         <RelatedLessons currentId="genesis-system" />
 
         <NextLesson currentId="genesis-system" />

@@ -50,6 +50,9 @@ const AIAndEducation = lazy(() => import('./pages/AIAndEducation').then(m => ({ 
 const AIAndMisinformation = lazy(() => import('./pages/AIAndMisinformation').then(m => ({ default: m.AIAndMisinformation })))
 const AIAndMentalHealth = lazy(() => import('./pages/AIAndMentalHealth').then(m => ({ default: m.AIAndMentalHealth })))
 const FutureOfAI = lazy(() => import('./pages/FutureOfAI').then(m => ({ default: m.FutureOfAI })))
+const AIInYourApps = lazy(() => import('./pages/AIInYourApps').then(m => ({ default: m.AIInYourApps })))
+const AILawsAndRights = lazy(() => import('./pages/AILawsAndRights').then(m => ({ default: m.AILawsAndRights })))
+const KnowledgeCheck = lazy(() => import('./pages/KnowledgeCheck').then(m => ({ default: m.KnowledgeCheck })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -369,6 +372,24 @@ const futureOfAIRoute = createRoute({
   component: withSuspense(FutureOfAI),
 })
 
+const aiInYourAppsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-in-your-apps',
+  component: withSuspense(AIInYourApps),
+})
+
+const aiLawsAndRightsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-laws-and-rights',
+  component: withSuspense(AILawsAndRights),
+})
+
+const knowledgeCheckRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/knowledge-check',
+  component: withSuspense(KnowledgeCheck),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -416,6 +437,9 @@ const routeTree = rootRoute.addChildren([
   aiAndMisinformationRoute,
   aiAndMentalHealthRoute,
   futureOfAIRoute,
+  aiInYourAppsRoute,
+  aiLawsAndRightsRoute,
+  knowledgeCheckRoute,
 ])
 
 const hashHistory = createHashHistory()

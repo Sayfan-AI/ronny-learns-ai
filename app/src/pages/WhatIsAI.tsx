@@ -1,7 +1,9 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 
@@ -58,6 +60,7 @@ const quizQuestions: QuizQuestion[] = [
 
 export function WhatIsAI() {
   useMarkVisited('what-is-ai')
+  useLessonVisit('what-is-ai')
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
       <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
@@ -189,6 +192,8 @@ export function WhatIsAI() {
         <Quiz questions={quizQuestions} title="Quiz: What is AI?" lessonId="what-is-ai" lessonTitle="What is AI?" />
 
         {/* Next lesson */}
+        <LessonNote lessonId="what-is-ai" />
+
         <RelatedLessons currentId="what-is-ai" />
 
         <NextLesson currentId="what-is-ai" />

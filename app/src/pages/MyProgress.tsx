@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
 import { computeBadges, type Badge } from '../hooks/useBadges'
+import { loadVisitCounts } from '../hooks/useLessonVisit'
+import { loadAllNotes } from '../components/LessonNote'
 
 const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
 
@@ -48,6 +50,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'how-chatbots-work',     icon: '💬', title: 'How do chatbots work?',                   to: '/learn/how-chatbots-work' },
       { id: 'ai-history',            icon: '📜', title: 'AI history timeline',                     to: '/ai-history' },
       { id: 'ai-everyday-life',      icon: '🌍', title: 'AI in everyday life',                     to: '/learn/ai-everyday-life' },
+      { id: 'ai-in-your-apps',       icon: '📱', title: 'AI in the apps you already use',          to: '/learn/ai-in-your-apps' },
     ],
   },
   {
@@ -67,6 +70,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-misinformation', icon: '🔎', title: 'AI and misinformation',                  to: '/learn/ai-and-misinformation' },
       { id: 'ai-and-mental-health',  icon: '🧠', title: 'AI and your mental health',              to: '/learn/ai-and-mental-health' },
       { id: 'future-of-ai',          icon: '🔭', title: 'What does the future of AI look like?', to: '/learn/future-of-ai' },
+      { id: 'ai-laws-and-rights',    icon: '⚖️', title: 'AI, laws, and your rights',             to: '/learn/ai-laws-and-rights' },
     ],
   },
   {
@@ -113,6 +117,12 @@ export function MyProgress() {
   const pct = Math.round((completedCount / total) * 100)
   const allDone = completedCount === total
   const displayName = profile?.name || 'Ronny'
+
+  const visitCounts = loadVisitCounts()
+  const revisitedCount = ALL_MODULES.filter(m => (visitCounts[m.id] ?? 0) >= 2).length
+
+  const allNotes = loadAllNotes()
+  const noteEntries = ALL_MODULES.filter(m => allNotes[m.id])
 
   async function handleShare() {
     await shareProgress(completedCount, total)
@@ -235,6 +245,20 @@ export function MyProgress() {
           )}
         </div>
 
+        {/* Revisit stat */}
+        {revisitedCount > 0 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-5">
+            <div className="text-4xl flex-shrink-0">&#x1F501;</div>
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-blue-600">{revisitedCount}</span>
+                <span className="text-gray-500 text-sm font-medium">lesson{revisitedCount !== 1 ? 's' : ''} revisited</span>
+              </div>
+              <p className="text-gray-400 text-xs mt-0.5">You looked twice &mdash; that is how real learning works</p>
+            </div>
+          </div>
+        )}
+
         {/* Badges */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
           <h2 className="text-xl font-semibold text-gray-700">Your badges</h2>
@@ -262,6 +286,29 @@ export function MyProgress() {
             ))}
           </div>
         </div>
+
+        {/* My notes */}
+        {noteEntries.length > 0 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+            <h2 className="text-xl font-semibold text-gray-700">My notes</h2>
+            <div className="space-y-2">
+              {noteEntries.map(mod => (
+                <Link
+                  key={mod.id}
+                  to={mod.to}
+                  className="flex items-start gap-3 p-4 rounded-xl bg-yellow-50 border border-yellow-100 hover:bg-yellow-100 transition-colors"
+                >
+                  <span className="text-xl flex-shrink-0 mt-0.5">{mod.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-yellow-800 text-sm">{mod.title}</p>
+                    <p className="text-yellow-600 text-xs mt-0.5 truncate">{allNotes[mod.id]?.slice(0, 100)}{(allNotes[mod.id]?.length ?? 0) > 100 ? '...' : ''}</p>
+                  </div>
+                  <span className="text-yellow-400 flex-shrink-0">&#x2192;</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Module list */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-5">
@@ -303,6 +350,18 @@ export function MyProgress() {
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
           <h2 className="text-xl font-semibold text-gray-700">What would you like to do next?</h2>
           <div className="space-y-3">
+            <Link
+              to="/quiz/knowledge-check"
+              className="flex items-center gap-4 p-4 rounded-xl bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 transition-colors"
+            >
+              <span className="text-3xl flex-shrink-0">&#x1F9E0;</span>
+              <div>
+                <p className="font-semibold text-indigo-800">Test your knowledge</p>
+                <p className="text-indigo-600 text-sm">10 questions across the whole course &mdash; see how much you have taken in.</p>
+              </div>
+              <span className="text-indigo-400 ml-auto flex-shrink-0">&rarr;</span>
+            </Link>
+
             <Link
               to="/feedback"
               className="flex items-center gap-4 p-4 rounded-xl bg-blue-50 border border-blue-200 hover:bg-blue-100 transition-colors"

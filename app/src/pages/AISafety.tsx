@@ -1,7 +1,9 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 
@@ -58,6 +60,7 @@ const quizQuestions: QuizQuestion[] = [
 
 export function AISafety() {
   useMarkVisited('ai-safety')
+  useLessonVisit('ai-safety')
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
@@ -206,6 +209,8 @@ export function AISafety() {
           lessonTitle="AI safety and alignment"
           questions={quizQuestions}
         />
+
+        <LessonNote lessonId="ai-safety" />
 
         <RelatedLessons currentId="ai-safety" />
 

@@ -2,7 +2,9 @@ import { Link } from '@tanstack/react-router'
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 
@@ -59,6 +61,7 @@ const quizQuestions: QuizQuestion[] = [
 
 export function WhatIsAnAPI() {
   useMarkVisited('what-is-api')
+  useLessonVisit('what-is-api')
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white px-4 py-10">
       <div className="max-w-2xl mx-auto space-y-8">
@@ -176,6 +179,8 @@ export function WhatIsAnAPI() {
         <Quiz questions={quizQuestions} title="Quiz: What is an API?" lessonId="what-is-api" lessonTitle="What is an API?" />
 
         {/* Next lesson */}
+        <LessonNote lessonId="what-is-api" />
+
         <RelatedLessons currentId="what-is-api" />
 
         <NextLesson currentId="what-is-api" />

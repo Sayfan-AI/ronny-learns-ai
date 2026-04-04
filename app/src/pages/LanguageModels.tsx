@@ -1,7 +1,9 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 
@@ -58,6 +60,7 @@ const quizQuestions: QuizQuestion[] = [
 
 export function LanguageModels() {
   useMarkVisited('language-models')
+  useLessonVisit('language-models')
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
@@ -254,6 +257,8 @@ export function LanguageModels() {
         <Quiz questions={quizQuestions} title="Quiz: How do language models work?" lessonId="language-models" lessonTitle="How do language models work?" />
 
         {/* Next lesson */}
+        <LessonNote lessonId="language-models" />
+
         <RelatedLessons currentId="language-models" />
 
         <NextLesson currentId="language-models" />

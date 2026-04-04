@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
+import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
 
 interface Step {
@@ -124,6 +126,7 @@ const steps: Step[] = [
 
 export function GitHubSignupTutorial() {
   useMarkVisited('github-signup')
+  useLessonVisit('github-signup')
   const [currentStep, setCurrentStep] = useState(0)
   const step = steps[currentStep]
   const totalSteps = steps.length
@@ -226,6 +229,8 @@ export function GitHubSignupTutorial() {
         </div>
 
         {/* Next lesson */}
+        <LessonNote lessonId="github-signup" />
+
         <RelatedLessons currentId="github-signup" />
 
         <NextLesson currentId="github-signup" />
