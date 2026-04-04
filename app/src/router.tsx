@@ -36,8 +36,17 @@ import { QuizReview } from './pages/QuizReview'
 const rootRoute = createRootRoute({
   component: () => (
     <>
+      {/* Skip to main content — keyboard navigation helper */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:text-blue-700 focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-md focus:border focus:border-blue-300"
+      >
+        Skip to main content
+      </a>
       <NavBar />
-      <Outlet />
+      <main id="main-content">
+        <Outlet />
+      </main>
     </>
   ),
 })

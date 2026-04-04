@@ -236,7 +236,7 @@ export function HomePage() {
       <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
         {/* Header */}
         <div className="text-center space-y-3 sm:space-y-4">
-          <div className="text-5xl sm:text-6xl">{avatar}</div>
+          <div className="text-5xl sm:text-6xl" aria-hidden="true">{avatar}</div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
             Hi {displayName}! Welcome to your AI learning journey.
           </h1>
@@ -272,7 +272,14 @@ export function HomePage() {
               <span className="font-semibold text-gray-700">Your progress</span>
               <span className="text-sm text-gray-500">{completedCount} of {MODULES.length} modules visited</span>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-3">
+            <div
+              className="w-full bg-gray-100 rounded-full h-3"
+              role="progressbar"
+              aria-valuenow={completedCount}
+              aria-valuemin={0}
+              aria-valuemax={MODULES.length}
+              aria-label={`${completedCount} of ${MODULES.length} modules visited`}
+            >
               <div
                 className="bg-blue-500 h-3 rounded-full transition-all duration-500"
                 style={{ width: `${(completedCount / MODULES.length) * 100}%` }}

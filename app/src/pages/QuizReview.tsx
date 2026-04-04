@@ -114,7 +114,7 @@ export function QuizReview() {
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white flex flex-col items-center px-4 py-16">
       <div className="max-w-2xl w-full space-y-8">
         <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F4DD;</div>
+          <div className="text-6xl" aria-hidden="true">&#x1F4DD;</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             Quiz review
           </h1>
@@ -125,7 +125,7 @@ export function QuizReview() {
 
         {wrongAnswers.length === 0 && (
           <div className="bg-white rounded-2xl shadow-md p-8 text-center space-y-4">
-            <div className="text-5xl">&#x1F389;</div>
+            <div className="text-5xl" aria-hidden="true">&#x1F389;</div>
             <h2 className="text-2xl font-bold text-gray-700">Nothing to review yet!</h2>
             <p className="text-gray-500 leading-relaxed">
               When you answer a quiz question incorrectly, it will appear here so

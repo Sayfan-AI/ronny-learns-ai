@@ -189,7 +189,14 @@ export function LearningRecap() {
             <span className="text-gray-700 font-semibold text-lg">Overall progress</span>
             <span className="text-gray-500 text-sm">{completedCount} of {total} lessons visited</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-4">
+          <div
+            className="w-full bg-gray-200 rounded-full h-4"
+            role="progressbar"
+            aria-valuenow={completedCount}
+            aria-valuemin={0}
+            aria-valuemax={total}
+            aria-label={`${completedCount} of ${total} lessons visited`}
+          >
             <div
               className="bg-indigo-500 h-4 rounded-full transition-all duration-500"
               style={{ width: `${total > 0 ? (completedCount / total) * 100 : 0}%` }}

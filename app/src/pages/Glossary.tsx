@@ -187,10 +187,11 @@ export function Glossary() {
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">&#x1F50D;</span>
           <input
-            type="text"
+            type="search"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search terms and definitions..."
+            aria-label="Search glossary terms and definitions"
             className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-300 shadow-sm text-lg focus:outline-none focus:ring-2 focus:ring-violet-400 bg-white"
           />
           {search && (
