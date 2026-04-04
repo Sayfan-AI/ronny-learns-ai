@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
 import { NavBar } from './components/NavBar'
+import { WelcomeTour } from './components/WelcomeTour'
 
 // Lazy-loaded page components — each becomes its own JS chunk
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -70,6 +71,7 @@ const rootRoute = createRootRoute({
         Skip to main content
       </a>
       <NavBar />
+      <WelcomeTour />
       <main id="main-content">
         <Outlet />
       </main>

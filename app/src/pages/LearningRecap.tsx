@@ -78,12 +78,20 @@ const GROUPS: Group[] = [
   },
 ]
 
-const COLOR_MAP: Record<string, { bg: string; border: string; label: string; check: string }> = {
-  blue:    { bg: 'bg-blue-50',    border: 'border-blue-200',    label: 'text-blue-700',    check: 'text-blue-500' },
-  purple:  { bg: 'bg-purple-50',  border: 'border-purple-200',  label: 'text-purple-700',  check: 'text-purple-500' },
-  pink:    { bg: 'bg-pink-50',    border: 'border-pink-200',    label: 'text-pink-700',    check: 'text-pink-500' },
-  sky:     { bg: 'bg-sky-50',     border: 'border-sky-200',     label: 'text-sky-700',     check: 'text-sky-500' },
-  emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', label: 'text-emerald-700', check: 'text-emerald-500' },
+const COLOR_MAP: Record<string, { bg: string; border: string; label: string; check: string; badge: string; badgeBorder: string; badgeText: string }> = {
+  blue:    { bg: 'bg-blue-50',    border: 'border-blue-200',    label: 'text-blue-700',    check: 'text-blue-500',    badge: 'bg-blue-100',    badgeBorder: 'border-blue-300',    badgeText: 'text-blue-800' },
+  purple:  { bg: 'bg-purple-50',  border: 'border-purple-200',  label: 'text-purple-700',  check: 'text-purple-500',  badge: 'bg-purple-100',  badgeBorder: 'border-purple-300',  badgeText: 'text-purple-800' },
+  pink:    { bg: 'bg-pink-50',    border: 'border-pink-200',    label: 'text-pink-700',    check: 'text-pink-500',    badge: 'bg-pink-100',    badgeBorder: 'border-pink-300',    badgeText: 'text-pink-800' },
+  sky:     { bg: 'bg-sky-50',     border: 'border-sky-200',     label: 'text-sky-700',     check: 'text-sky-500',     badge: 'bg-sky-100',     badgeBorder: 'border-sky-300',     badgeText: 'text-sky-800' },
+  emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', label: 'text-emerald-700', check: 'text-emerald-500', badge: 'bg-emerald-100', badgeBorder: 'border-emerald-300', badgeText: 'text-emerald-800' },
+}
+
+const GROUP_ICONS: Record<string, string> = {
+  'Getting started': '🔑',
+  'AI basics': '🤖',
+  'AI in depth': '🧠',
+  'AI and the world': '🌍',
+  'How this works': '⚙️',
 }
 
 function buildPlainTextSummary(visited: Set<string>, groups: Group[], name: string): string {
@@ -209,16 +217,64 @@ export function LearningRecap() {
           )}
         </div>
 
+        {/* Topic completion badges summary */}
+        {GROUPS.some(g => g.lessons.every(l => visited.has(l.id))) && (
+          <div className="bg-white rounded-2xl shadow-md p-6 print:hidden">
+            <h2 className="text-lg font-bold text-gray-800 mb-4">Topic badges earned</h2>
+            <div className="flex flex-wrap gap-3">
+              {GROUPS.map(group => {
+                const colors = COLOR_MAP[group.color]
+                const allDone = group.lessons.every(l => visited.has(l.id))
+                if (!allDone) return null
+                return (
+                  <div
+                    key={group.label}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full border ${colors.badge} ${colors.badgeBorder} ${colors.badgeText} font-semibold text-sm`}
+                  >
+                    <span aria-hidden="true">{GROUP_ICONS[group.label] ?? '⭐'}</span>
+                    {group.label}
+                    <span aria-hidden="true">&#x2705;</span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Groups */}
         {GROUPS.map(group => {
           const colors = COLOR_MAP[group.color]
           const groupCompleted = group.lessons.filter(l => visited.has(l.id)).length
+          const allDone = groupCompleted === group.lessons.length
           return (
-            <div key={group.label} className={`${colors.bg} border ${colors.border} rounded-2xl p-6 space-y-4`}>
+            <div key={group.label} className={`${colors.bg} border ${allDone ? colors.badgeBorder : colors.border} rounded-2xl p-6 space-y-4`}>
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <h2 className={`text-xl font-bold ${colors.label}`}>{group.label}</h2>
+                <div className="flex items-center gap-2">
+                  <span aria-hidden="true" className="text-xl">{GROUP_ICONS[group.label] ?? '📘'}</span>
+                  <h2 className={`text-xl font-bold ${colors.label}`}>{group.label}</h2>
+                  {allDone && (
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold ${colors.badge} ${colors.badgeText} border ${colors.badgeBorder}`}>
+                      Complete &#x2705;
+                    </span>
+                  )}
+                </div>
                 <span className="text-sm text-gray-500">{groupCompleted}/{group.lessons.length} visited</span>
               </div>
+              {!allDone && (
+                <div
+                  className="w-full bg-gray-200 rounded-full h-2"
+                  role="progressbar"
+                  aria-valuenow={groupCompleted}
+                  aria-valuemin={0}
+                  aria-valuemax={group.lessons.length}
+                  aria-label={`${groupCompleted} of ${group.lessons.length} lessons in ${group.label} visited`}
+                >
+                  <div
+                    className={`h-2 rounded-full transition-all duration-500 ${colors.badge.replace('bg-', 'bg-').replace('-100', '-400')}`}
+                    style={{ width: `${(groupCompleted / group.lessons.length) * 100}%` }}
+                  />
+                </div>
+              )}
               <div className="grid gap-3">
                 {group.lessons.map(lesson => {
                   const done = visited.has(lesson.id)
