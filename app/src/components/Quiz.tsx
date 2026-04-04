@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { recordPerfectQuiz } from '../hooks/useBadges'
 
 export interface QuizQuestion {
   question: string
@@ -25,6 +26,13 @@ export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
     ? questions.filter((q, i) => answers[i] === q.correctIndex).length
     : 0
 
+  // Record a perfect quiz score in localStorage for the badge system
+  useEffect(() => {
+    if (allDone && score === total && total > 0) {
+      recordPerfectQuiz()
+    }
+  }, [allDone, score, total])
+
   function handleSelect(questionIndex: number, optionIndex: number) {
     if (answers[questionIndex] !== undefined) return
     setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))
@@ -44,10 +52,10 @@ export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
   }
 
   return (
-    <div key={key} className="bg-white rounded-2xl shadow-md p-8 space-y-6">
+    <div key={key} className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-6">
       <div className="flex items-center gap-3">
         <span className="text-4xl">&#x1F4DD;</span>
-        <h2 className="text-2xl font-semibold text-gray-700">{title}</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-700">{title}</h2>
       </div>
 
       <div className="space-y-8">
@@ -58,14 +66,14 @@ export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
 
           return (
             <div key={qi} className="space-y-3">
-              <p className="text-gray-800 text-lg font-medium">
+              <p className="text-gray-800 text-base sm:text-lg font-medium">
                 {qi + 1}. {q.question}
               </p>
 
               <div className="space-y-2">
                 {q.options.map((option, oi) => {
                   let classes =
-                    'w-full text-left px-5 py-3 rounded-xl border text-base font-medium transition-colors duration-150 '
+                    'w-full text-left px-4 py-3 sm:px-5 rounded-xl border text-sm sm:text-base font-medium transition-colors duration-150 '
 
                   if (!hasAnswered) {
                     classes += 'border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-300 text-gray-700 cursor-pointer'
@@ -116,14 +124,14 @@ export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
       </div>
 
       {allDone && (
-        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 space-y-4 text-center">
-          <p className="text-2xl font-bold text-blue-800">
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 sm:p-6 space-y-4 text-center">
+          <p className="text-xl sm:text-2xl font-bold text-blue-800">
             {score} out of {total} correct
           </p>
-          <p className="text-blue-700 text-lg">{resultMessage()}</p>
+          <p className="text-blue-700 text-base sm:text-lg">{resultMessage()}</p>
           <button
             onClick={reset}
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors duration-200"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 sm:px-8 py-3 rounded-xl transition-colors duration-200 min-h-[48px]"
           >
             Try Again
           </button>

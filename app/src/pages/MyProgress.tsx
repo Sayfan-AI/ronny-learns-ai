@@ -1,6 +1,8 @@
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
+import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
+import { computeBadges, type Badge } from '../hooks/useBadges'
 
 const VISITED_KEY = 'ronny-visited-modules'
 
@@ -26,9 +28,19 @@ function loadVisited(): Set<string> {
   }
 }
 
+function streakMessage(streak: number): string {
+  if (streak === 0) return 'Visit again tomorrow to start a streak!'
+  if (streak === 1) return 'You started your streak today — come back tomorrow!'
+  if (streak < 5) return `${streak} days in a row — keep it up!`
+  if (streak < 10) return `${streak} days in a row — you are on a roll!`
+  return `${streak} days in a row — incredible dedication!`
+}
+
 export function MyProgress() {
   const [visited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
+  const [streak] = useState<StreakData>(() => recordVisitAndGetStreak())
+  const [badges] = useState<Badge[]>(() => computeBadges())
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -87,6 +99,52 @@ export function MyProgress() {
           <p className="text-gray-500 text-sm text-center">
             {completedCount} of {total} modules visited
           </p>
+        </div>
+
+        {/* Streak card */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-3">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🔥</span>
+            <h2 className="text-xl font-semibold text-gray-700">Learning streak</h2>
+          </div>
+          <div className="flex items-end gap-4">
+            <span className="text-5xl font-extrabold text-orange-500">{streak.current}</span>
+            <span className="text-gray-500 pb-1">day{streak.current !== 1 ? 's' : ''} in a row</span>
+          </div>
+          <p className="text-gray-500 text-sm">{streakMessage(streak.current)}</p>
+          {streak.longest > streak.current && (
+            <p className="text-gray-400 text-xs">
+              Personal best: <strong>{streak.longest}</strong> day{streak.longest !== 1 ? 's' : ''}
+            </p>
+          )}
+        </div>
+
+        {/* Badges */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-700">Your badges</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {badges.map((badge) => (
+              <div
+                key={badge.id}
+                className={`rounded-xl border p-4 flex flex-col items-center gap-2 text-center transition-all ${
+                  badge.earned
+                    ? `${badge.color} ${badge.borderColor}`
+                    : 'bg-gray-50 border-gray-200 opacity-40'
+                }`}
+              >
+                <span className="text-3xl">{badge.icon}</span>
+                <p className={`font-semibold text-sm leading-tight ${badge.earned ? badge.textColor : 'text-gray-500'}`}>
+                  {badge.name}
+                </p>
+                <p className={`text-xs leading-tight ${badge.earned ? badge.textColor : 'text-gray-400'}`}>
+                  {badge.description}
+                </p>
+                {!badge.earned && (
+                  <span className="text-xs text-gray-400 italic">Locked</span>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Module list */}

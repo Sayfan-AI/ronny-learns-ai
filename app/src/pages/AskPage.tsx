@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { useState, useRef } from 'react'
+import { recordQuestionAsked } from '../hooks/useBadges'
 
 interface QA {
   keywords: string[]
@@ -127,6 +128,7 @@ export function AskPage() {
     e.preventDefault()
     const found = findAnswer(query)
     setResult(found ?? 'not-found')
+    recordQuestionAsked()
     setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
   }
 
