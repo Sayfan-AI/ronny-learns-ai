@@ -19,9 +19,42 @@ interface QuizProps {
 
 type AnswerMap = Record<number, number>
 
+const PERSONAL_BEST_KEY = 'ronny-quiz-personal-best'
+
+function loadPersonalBest(): Record<string, number> {
+  try {
+    const raw = localStorage.getItem(PERSONAL_BEST_KEY)
+    return raw ? JSON.parse(raw) : {}
+  } catch {
+    return {}
+  }
+}
+
+function savePersonalBest(lessonId: string, pct: number): void {
+  try {
+    const bests = loadPersonalBest()
+    if ((bests[lessonId] ?? -1) < pct) {
+      bests[lessonId] = pct
+      localStorage.setItem(PERSONAL_BEST_KEY, JSON.stringify(bests))
+    }
+  } catch {
+    // ignore
+  }
+}
+
 export function Quiz({ questions, title = 'Test your knowledge', lessonId, lessonTitle }: QuizProps) {
   const [answers, setAnswers] = useState<AnswerMap>({})
   const [key, setKey] = useState(0)
+  const [personalBest, setPersonalBest] = useState<number | null>(null)
+
+  // Load personal best on mount (before any answers are given)
+  useEffect(() => {
+    if (!lessonId) return
+    const bests = loadPersonalBest()
+    if (bests[lessonId] !== undefined) {
+      setPersonalBest(bests[lessonId])
+    }
+  }, [lessonId])
 
   const answered = Object.keys(answers).length
   const total = questions.length
@@ -74,6 +107,15 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
     }
   }, [allDone, lessonId, score, total])
 
+  // Persist personal best score
+  useEffect(() => {
+    if (allDone && lessonId && total > 0) {
+      const pct = score / total
+      savePersonalBest(lessonId, pct)
+      setPersonalBest(prev => (prev === null || pct > prev ? pct : prev))
+    }
+  }, [allDone, lessonId, score, total])
+
   function handleSelect(questionIndex: number, optionIndex: number) {
     if (answers[questionIndex] !== undefined) return
     setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))
@@ -108,9 +150,17 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
 
   return (
     <div key={key} className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-6">
-      <div className="flex items-center gap-3">
-        <span className="text-4xl">&#x1F4DD;</span>
-        <h2 className="text-xl sm:text-2xl font-semibold text-gray-700">{title}</h2>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="flex items-center gap-3">
+          <span className="text-4xl">&#x1F4DD;</span>
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-700">{title}</h2>
+        </div>
+        {personalBest !== null && (
+          <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-700 text-sm font-medium px-3 py-1.5 rounded-full">
+            <span>&#x1F3C6;</span>
+            <span>Personal best: {Math.round(personalBest * 100)}%</span>
+          </div>
+        )}
       </div>
 
       <div className="space-y-8">

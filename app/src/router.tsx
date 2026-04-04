@@ -59,6 +59,8 @@ const AIForAccessibility = lazy(() => import('./pages/AIForAccessibility').then(
 const LearningPath = lazy(() => import('./pages/LearningPath').then(m => ({ default: m.LearningPath })))
 const AIAndScientificResearch = lazy(() => import('./pages/AIAndScientificResearch').then(m => ({ default: m.AIAndScientificResearch })))
 const AIProductivityTools = lazy(() => import('./pages/AIProductivityTools').then(m => ({ default: m.AIProductivityTools })))
+const AIAndCopyright = lazy(() => import('./pages/AIAndCopyright').then(m => ({ default: m.AIAndCopyright })))
+const HowToUseAISafely = lazy(() => import('./pages/HowToUseAISafely').then(m => ({ default: m.HowToUseAISafely })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -427,6 +429,18 @@ const aiProductivityToolsRoute = createRoute({
   component: withSuspense(AIProductivityTools),
 })
 
+const aiAndCopyrightRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-copyright',
+  component: withSuspense(AIAndCopyright),
+})
+
+const howToUseAISafelyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/how-to-use-ai-safely',
+  component: withSuspense(HowToUseAISafely),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -482,6 +496,8 @@ const routeTree = rootRoute.addChildren([
   learningPathRoute,
   aiAndScientificResearchRoute,
   aiProductivityToolsRoute,
+  aiAndCopyrightRoute,
+  howToUseAISafelyRoute,
 ])
 
 const hashHistory = createHashHistory()

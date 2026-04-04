@@ -80,6 +80,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-mental-health',  icon: '🧠', title: 'AI and your mental health',              to: '/learn/ai-and-mental-health' },
       { id: 'future-of-ai',          icon: '🔭', title: 'What does the future of AI look like?', to: '/learn/future-of-ai' },
       { id: 'ai-laws-and-rights',    icon: '⚖️', title: 'AI, laws, and your rights',             to: '/learn/ai-laws-and-rights' },
+      { id: 'ai-and-copyright',      icon: '⚖️', title: 'AI and the law',                         to: '/learn/ai-and-copyright' },
+      { id: 'how-to-use-ai-safely',  icon: '🛡️', title: 'How to use AI safely',                  to: '/learn/how-to-use-ai-safely' },
     ],
   },
   {
@@ -126,6 +128,7 @@ const READING_TIMES: Record<string, number> = {
   'trusting-ai': 5, 'ai-and-jobs': 6, 'ai-and-environment': 6, 'ai-and-privacy': 6,
   'ai-and-education': 6, 'ai-and-social-media': 6, 'ai-and-misinformation': 6,
   'ai-and-mental-health': 6, 'future-of-ai': 7, 'ai-laws-and-rights': 7,
+  'ai-and-copyright': 6, 'how-to-use-ai-safely': 5,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -146,6 +149,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-education': 'AI and society', 'ai-and-social-media': 'AI and society',
   'ai-and-misinformation': 'AI and society', 'ai-and-mental-health': 'AI and society',
   'future-of-ai': 'AI and society', 'ai-laws-and-rights': 'AI and society',
+  'ai-and-copyright': 'AI and society', 'how-to-use-ai-safely': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }

@@ -72,6 +72,8 @@ const STAGES: Stage[] = [
       { id: 'ai-and-mental-health', icon: '&#x1F9E0;', title: 'AI and your mental health',              path: '/learn/ai-and-mental-health',      difficulty: 'Beginner',     readingTime: '6 min' },
       { id: 'ai-and-misinformation',icon: '&#x1F50E;', title: 'AI and misinformation',                  path: '/learn/ai-and-misinformation',     difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-laws-and-rights',   icon: '&#x2696;&#xFE0F;', title: 'AI, laws, and your rights',      path: '/learn/ai-laws-and-rights',        difficulty: 'Intermediate', readingTime: '7 min' },
+      { id: 'ai-and-copyright',     icon: '&#x2696;&#xFE0F;', title: 'AI and the law',                  path: '/learn/ai-and-copyright',          difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'how-to-use-ai-safely', icon: '&#x1F6E1;&#xFE0F;', title: 'How to use AI safely',           path: '/learn/how-to-use-ai-safely',      difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'future-of-ai',         icon: '&#x1F52D;', title: 'What does the future of AI look like?',  path: '/learn/future-of-ai',              difficulty: 'Intermediate', readingTime: '7 min' },
     ],
   },
