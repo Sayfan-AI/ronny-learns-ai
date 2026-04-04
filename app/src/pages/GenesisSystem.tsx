@@ -56,22 +56,22 @@ const quizQuestions: QuizQuestion[] = [
 export function GenesisSystem() {
   useMarkVisited('genesis-system')
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white flex flex-col items-center px-4 py-16">
-      <div className="max-w-2xl w-full space-y-8">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
+      <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="text-6xl">&#x2699;&#xFE0F;</div>
-          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <div className="text-5xl sm:text-6xl">&#x2699;&#xFE0F;</div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
             What is the Genesis system?
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             Gigi uses a special AI setup called <strong>Genesis</strong> to build this app.
             Let&apos;s look at how it works — without the jargon.
           </p>
         </div>
 
         {/* What is Genesis */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F3D7;&#xFE0F;</span>
             <h2 className="text-2xl font-semibold text-gray-700">What is it?</h2>
@@ -88,7 +88,7 @@ export function GenesisSystem() {
         </div>
 
         {/* The agents */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-6">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4 sm:space-y-6">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F465;</span>
             <h2 className="text-2xl font-semibold text-gray-700">The agents and their roles</h2>
@@ -139,7 +139,7 @@ export function GenesisSystem() {
         </div>
 
         {/* How they coordinate */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F517;</span>
             <h2 className="text-2xl font-semibold text-gray-700">How do they coordinate?</h2>
@@ -164,7 +164,7 @@ export function GenesisSystem() {
         </div>
 
         {/* Watch it happen */}
-        <div className="bg-orange-50 border border-orange-200 rounded-2xl p-8 space-y-4">
+        <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F440;</span>
             <h2 className="text-2xl font-semibold text-orange-800">Watch it happen in real time</h2>

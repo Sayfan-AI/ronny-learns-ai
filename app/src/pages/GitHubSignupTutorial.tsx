@@ -155,15 +155,15 @@ export function GitHubSignupTutorial() {
         </div>
 
         {/* Step card */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-5">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4 sm:space-y-5">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-lg flex-shrink-0">
               {currentStep + 1}
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800">{step.title}</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">{step.title}</h2>
           </div>
 
-          <p className="text-gray-700 text-lg leading-relaxed">{step.description}</p>
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">{step.description}</p>
 
           {step.details.length > 0 && (
             <ul className="space-y-2">
@@ -185,11 +185,11 @@ export function GitHubSignupTutorial() {
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex justify-between items-center gap-3">
           <button
             onClick={() => setCurrentStep(s => Math.max(0, s - 1))}
             disabled={currentStep === 0}
-            className="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium disabled:opacity-40 hover:bg-gray-50 transition-colors"
+            className="px-4 sm:px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium disabled:opacity-40 hover:bg-gray-50 transition-colors min-h-[48px]"
           >
             &larr; Previous
           </button>
@@ -197,14 +197,14 @@ export function GitHubSignupTutorial() {
           {!isLast ? (
             <button
               onClick={() => setCurrentStep(s => Math.min(totalSteps - 1, s + 1))}
-              className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+              className="px-6 sm:px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors min-h-[48px]"
             >
               Next step &rarr;
             </button>
           ) : (
-            <div className="flex flex-col items-end gap-1">
-              <span className="text-green-600 font-semibold text-lg">You made it! &#127881;</span>
-              <span className="text-gray-500 text-sm">Don&apos;t forget to message Gigi your username.</span>
+            <div className="flex flex-col items-end gap-1 text-right">
+              <span className="text-green-600 font-semibold text-base sm:text-lg">You made it! &#127881;</span>
+              <span className="text-gray-500 text-xs sm:text-sm">Don&apos;t forget to message Gigi your username.</span>
             </div>
           )}
         </div>

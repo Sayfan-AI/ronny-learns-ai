@@ -145,15 +145,15 @@ export function HomePage() {
   const avatar = profile?.avatar || '👋'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center px-4 py-16">
-      <div className="max-w-2xl w-full space-y-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
+      <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="text-6xl">{avatar}</div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <div className="text-5xl sm:text-6xl">{avatar}</div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
             Hi {displayName}! Welcome to your AI learning journey.
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             Follow the steps below to learn about GitHub and AI — no experience needed.
           </p>
           {!profile && (
@@ -168,7 +168,7 @@ export function HomePage() {
 
         {/* Progress bar */}
         {completedCount > 0 && (
-          <div className="bg-white rounded-2xl shadow-md p-6 space-y-3">
+          <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 space-y-3">
             <div className="flex justify-between items-center">
               <span className="font-semibold text-gray-700">Your progress</span>
               <span className="text-sm text-gray-500">{completedCount} of {MODULES.length} modules visited</span>
@@ -200,7 +200,7 @@ export function HomePage() {
         )}
 
         {/* For Gigi section */}
-        <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6 space-y-3">
+        <div className="bg-pink-50 border border-pink-200 rounded-2xl p-4 sm:p-6 space-y-3">
           <p className="text-sm font-semibold text-pink-700 uppercase tracking-wide">For Gigi</p>
           <p className="text-gray-700 leading-relaxed">
             This site is a step-by-step guide for Ronny. Share the link and they can work through it
@@ -227,7 +227,7 @@ export function HomePage() {
 
         {/* Learning path */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-gray-700 text-center">Your learning path</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 text-center">Your learning path</h2>
           <p className="text-gray-500 text-center text-sm">Start at the top and work your way down.</p>
 
           <div className="space-y-3">
@@ -244,12 +244,12 @@ export function HomePage() {
                     setVisited(next)
                     localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
                   }}
-                  className={`bg-white rounded-xl shadow-sm border-2 transition-all duration-200 p-5 flex items-center gap-4 ${
+                  className={`bg-white rounded-xl shadow-sm border-2 transition-all duration-200 p-4 sm:p-5 flex items-center gap-3 sm:gap-4 ${
                     done ? 'border-green-300' : `border-gray-100 ${colors.border}`
                   }`}
                 >
                   {/* Step number / check */}
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 ${
+                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0 ${
                     done ? 'bg-green-500 text-white' : colors.badge
                   }`}>
                     {done ? '✓' : idx + 1}
@@ -258,17 +258,17 @@ export function HomePage() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">{mod.icon}</span>
-                      <h3 className="font-semibold text-gray-800 text-lg leading-tight">{mod.title}</h3>
+                      <span className="text-xl sm:text-2xl">{mod.icon}</span>
+                      <h3 className="font-semibold text-gray-800 text-base sm:text-lg leading-tight">{mod.title}</h3>
                     </div>
-                    <p className="text-gray-500 text-sm mt-1">{mod.description}</p>
+                    <p className="text-gray-500 text-xs sm:text-sm mt-1">{mod.description}</p>
                     {'readingTime' in mod && (
                       <p className="text-gray-400 text-xs mt-1">{(mod as { readingTime: string }).readingTime} read</p>
                     )}
                   </div>
 
                   {/* Arrow */}
-                  <span className="text-gray-400 text-xl flex-shrink-0">&rarr;</span>
+                  <span className="text-gray-400 text-lg sm:text-xl flex-shrink-0">&rarr;</span>
                 </Link>
               )
             })}
@@ -325,14 +325,14 @@ export function HomePage() {
         <div className="border-t border-gray-200 pt-6">
           <Link
             to="/learn/next-steps"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-md p-6 flex items-center gap-4 transition-colors duration-200"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-md p-4 sm:p-6 flex items-center gap-3 sm:gap-4 transition-colors duration-200"
           >
-            <span className="text-4xl flex-shrink-0">&#x1F680;</span>
-            <div>
-              <h3 className="font-semibold text-white text-xl leading-tight">Ready to get involved?</h3>
+            <span className="text-3xl sm:text-4xl flex-shrink-0">&#x1F680;</span>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-semibold text-white text-lg sm:text-xl leading-tight">Ready to get involved?</h3>
               <p className="text-emerald-100 text-sm mt-1">After you have gone through the modules, here is how to go from learning to doing.</p>
             </div>
-            <span className="text-white text-xl flex-shrink-0 ml-auto">&rarr;</span>
+            <span className="text-white text-xl flex-shrink-0">&rarr;</span>
           </Link>
         </div>
 
@@ -383,7 +383,7 @@ export function HomePage() {
         </div>
 
         {/* For Gigi bottom */}
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 space-y-3">
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-6 space-y-3">
           <h2 className="text-lg font-semibold text-amber-800">For Gigi</h2>
           <p className="text-gray-700 text-sm leading-relaxed">
             This site was built by the Genesis AI system to help Ronny learn about AI, GitHub, and this project.

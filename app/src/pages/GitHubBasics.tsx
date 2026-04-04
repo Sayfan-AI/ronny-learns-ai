@@ -56,22 +56,22 @@ const quizQuestions: QuizQuestion[] = [
 export function GitHubBasics() {
   useMarkVisited('github-basics')
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex flex-col items-center px-4 py-16">
-      <div className="max-w-2xl w-full space-y-8">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
+      <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F4C1;</div>
-          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <div className="text-5xl sm:text-6xl">&#x1F4C1;</div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
             What is GitHub actually for?
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             You have a GitHub account now. But what do people actually use it for?
             Let&apos;s break it down — no jargon, promise.
           </p>
         </div>
 
         {/* Section 1: Repositories */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F4E6;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Repositories (repos)</h2>
@@ -88,7 +88,7 @@ export function GitHubBasics() {
         </div>
 
         {/* Section 2: Commits */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F4BE;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Commits — save points</h2>
@@ -105,7 +105,7 @@ export function GitHubBasics() {
         </div>
 
         {/* Section 3: Issues */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x2705;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Issues — the to-do list</h2>
@@ -122,7 +122,7 @@ export function GitHubBasics() {
         </div>
 
         {/* Section 4: Pull Requests */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F500;</span>
             <h2 className="text-2xl font-semibold text-gray-700">Pull requests — proposing changes</h2>
@@ -139,7 +139,7 @@ export function GitHubBasics() {
         </div>
 
         {/* Section 5: Why it matters */}
-        <div className="bg-green-50 border border-green-200 rounded-2xl p-8 space-y-4">
+        <div className="bg-green-50 border border-green-200 rounded-2xl p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F517;</span>
             <h2 className="text-2xl font-semibold text-green-800">Why does this matter to you?</h2>

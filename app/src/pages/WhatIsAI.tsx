@@ -56,25 +56,25 @@ const quizQuestions: QuizQuestion[] = [
 export function WhatIsAI() {
   useMarkVisited('what-is-ai')
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center px-4 py-16">
-      <div className="max-w-2xl w-full space-y-8">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
+      <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F916;</div>
-          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <div className="text-5xl sm:text-6xl">&#x1F916;</div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
             What is AI?
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             You&apos;ve probably heard the word &ldquo;AI&rdquo; a lot lately. Let&apos;s demystify it.
             It&apos;s not magic — and it&apos;s not as scary as it sounds.
           </p>
         </div>
 
         {/* Section 1: What is AI */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-4xl">&#x1F9E0;</span>
-            <h2 className="text-2xl font-semibold text-gray-700">At the most basic level</h2>
+            <span className="text-3xl sm:text-4xl">&#x1F9E0;</span>
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-700">At the most basic level</h2>
           </div>
           <p className="text-gray-600 text-lg leading-relaxed">
             AI stands for <strong>Artificial Intelligence</strong>. At its core, an AI is a
@@ -88,7 +88,7 @@ export function WhatIsAI() {
         </div>
 
         {/* Section 2: How language models work */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F4DA;</span>
             <h2 className="text-2xl font-semibold text-gray-700">How AI like Claude works</h2>
@@ -110,7 +110,7 @@ export function WhatIsAI() {
         </div>
 
         {/* Section 3: What AI can and can't do */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x2696;&#xFE0F;</span>
             <h2 className="text-2xl font-semibold text-gray-700">What AI is good at — and not so good at</h2>
@@ -138,7 +138,7 @@ export function WhatIsAI() {
         </div>
 
         {/* Section 4: How Gigi uses AI */}
-        <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
+        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F6E0;&#xFE0F;</span>
             <h2 className="text-2xl font-semibold text-gray-700">How Gigi uses AI to build this for you</h2>
@@ -161,7 +161,7 @@ export function WhatIsAI() {
         </div>
 
         {/* Section 5: Key message */}
-        <div className="bg-purple-50 border border-purple-200 rounded-2xl p-8 space-y-4">
+        <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 sm:p-8 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-4xl">&#x1F4A1;</span>
             <h2 className="text-2xl font-semibold text-purple-800">The key thing to remember</h2>
