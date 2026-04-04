@@ -1,5 +1,5 @@
-import { Link } from '@tanstack/react-router'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { NextLesson } from '../components/NextLesson'
 
 export function WhatIsCICD() {
   useMarkVisited('what-is-ci-cd')
@@ -159,21 +159,8 @@ export function WhatIsCICD() {
           </p>
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center pt-2">
-          <Link
-            to="/"
-            className="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
-          >
-            &larr; Home
-          </Link>
-          <Link
-            to="/learn/how-this-was-built"
-            className="px-6 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-semibold transition-colors"
-          >
-            How this app was built &rarr;
-          </Link>
-        </div>
+        {/* Next lesson */}
+        <NextLesson currentId="what-is-ci-cd" />
 
       </div>
     </div>

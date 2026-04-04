@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { NextLesson } from '../components/NextLesson'
 
 const agents = [
   {
@@ -176,6 +177,10 @@ export function MeetTheAgents() {
             &larr; Home
           </Link>
         </div>
+
+
+        {/* Next lesson */}
+        <NextLesson currentId="meet-the-agents" />
 
       </div>
     </div>

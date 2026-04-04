@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { NextLesson } from '../components/NextLesson'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -168,21 +169,8 @@ export function WhatIsAnAPI() {
         {/* Quiz */}
         <Quiz questions={quizQuestions} title="Quiz: What is an API?" lessonId="what-is-api" lessonTitle="What is an API?" />
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center pt-2">
-          <Link
-            to="/"
-            className="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
-          >
-            &larr; Home
-          </Link>
-          <Link
-            to="/learn/genesis-system"
-            className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
-          >
-            The Genesis System &rarr;
-          </Link>
-        </div>
+        {/* Next lesson */}
+        <NextLesson currentId="what-is-api" />
 
       </div>
     </div>

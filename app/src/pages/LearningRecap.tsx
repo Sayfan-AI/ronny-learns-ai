@@ -63,6 +63,8 @@ const GROUPS: Group[] = [
     lessons: [
       { id: 'ai-everyday-life', icon: '&#x1F30D;', title: 'AI in everyday life', summary: 'Where you already encounter AI without realising it.', path: '/learn/ai-everyday-life' },
       { id: 'ai-pros-and-cons', icon: '&#x2696;&#xFE0F;', title: 'AI pros and cons', summary: 'Benefits and risks of AI, explained honestly.', path: '/learn/ai-pros-and-cons' },
+      { id: 'prompt-engineering', icon: '&#x270F;&#xFE0F;', title: 'What is prompt engineering?', summary: 'How to write better prompts to get more useful AI responses.', path: '/learn/prompt-engineering' },
+      { id: 'ai-safety', icon: '&#x1F6E1;&#xFE0F;', title: 'AI safety and alignment', summary: 'Why making AI safe and aligned with human values matters.', path: '/learn/ai-safety' },
     ],
   },
   {

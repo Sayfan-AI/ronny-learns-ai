@@ -1,6 +1,7 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { NextLesson } from '../components/NextLesson'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -321,15 +322,8 @@ export function HowAITrainingWorks() {
         {/* Quiz */}
         <Quiz questions={quizQuestions} title="Quiz: How does AI training work?" lessonId="how-ai-training-works" lessonTitle="How does AI training work?" />
 
-        {/* Back link */}
-        <div className="text-center">
-          <a
-            href="#/"
-            className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline"
-          >
-            &larr; Back to home
-          </a>
-        </div>
+        {/* Next lesson */}
+        <NextLesson currentId="how-ai-training-works" />
       </div>
     </div>
   )

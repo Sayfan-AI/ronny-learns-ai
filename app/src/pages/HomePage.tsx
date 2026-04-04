@@ -194,6 +194,24 @@ const MODULES = [
     to: '/learn/ai-pros-and-cons',
     color: 'orange',
   },
+  {
+    id: 'prompt-engineering',
+    title: 'What is prompt engineering?',
+    description: 'How to write better prompts to get clearer, more useful answers from AI — with before and after examples.',
+    readingTime: '6 min',
+    icon: '✏️',
+    to: '/learn/prompt-engineering',
+    color: 'violet',
+  },
+  {
+    id: 'ai-safety',
+    title: 'AI safety and alignment',
+    description: 'Why making AI do what we actually want matters, and what Anthropic does to keep Claude safe.',
+    readingTime: '6 min',
+    icon: '🛡️',
+    to: '/learn/ai-safety',
+    color: 'teal',
+  },
 ]
 
 const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {

@@ -1,4 +1,5 @@
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { NextLesson } from '../components/NextLesson'
 
 interface TimelineEvent {
   year: string
@@ -139,11 +140,8 @@ export function AIHistory() {
           </p>
         </div>
 
-        <div className="text-center">
-          <a href="#/" className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline">
-            &larr; Back to home
-          </a>
-        </div>
+        {/* Next lesson */}
+        <NextLesson currentId="ai-history" />
       </div>
     </div>
   )
