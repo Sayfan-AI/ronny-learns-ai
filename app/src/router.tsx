@@ -70,6 +70,9 @@ const AIAndTransport = lazy(() => import('./pages/AIAndTransport').then(m => ({ 
 const AIAndArt = lazy(() => import('./pages/AIAndArt').then(m => ({ default: m.AIAndArt })))
 const AIAndCybersecurity = lazy(() => import('./pages/AIAndCybersecurity').then(m => ({ default: m.AIAndCybersecurity })))
 const AIAndSpace = lazy(() => import('./pages/AIAndSpace').then(m => ({ default: m.AIAndSpace })))
+const AIAndClimateChange = lazy(() => import('./pages/AIAndClimateChange').then(m => ({ default: m.AIAndClimateChange })))
+const AIAndMusic = lazy(() => import('./pages/AIAndMusic').then(m => ({ default: m.AIAndMusic })))
+const Achievements = lazy(() => import('./pages/Achievements').then(m => ({ default: m.Achievements })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -504,6 +507,24 @@ const aiAndSpaceRoute = createRoute({
   component: withSuspense(AIAndSpace),
 })
 
+const aiAndClimateChangeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-climate-change',
+  component: withSuspense(AIAndClimateChange),
+})
+
+const aiAndMusicRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-music',
+  component: withSuspense(AIAndMusic),
+})
+
+const achievementsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/achievements',
+  component: withSuspense(Achievements),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -570,6 +591,9 @@ const routeTree = rootRoute.addChildren([
   aiAndArtRoute,
   aiAndCybersecurityRoute,
   aiAndSpaceRoute,
+  aiAndClimateChangeRoute,
+  aiAndMusicRoute,
+  achievementsRoute,
 ])
 
 const hashHistory = createHashHistory()

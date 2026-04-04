@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useProfile } from '../hooks/useProfile'
+import { useAchievements } from '../hooks/useAchievements'
 import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
 import { computeBadges, type Badge } from '../hooks/useBadges'
 import { loadVisitCounts } from '../hooks/useLessonVisit'
@@ -71,6 +72,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-art',                 icon: '🎨', title: 'AI and art',                               to: '/learn/ai-and-art' },
       { id: 'ai-and-cybersecurity',       icon: '🔒', title: 'AI and cybersecurity',                     to: '/learn/ai-and-cybersecurity' },
       { id: 'ai-and-space',               icon: '🚀', title: 'AI and space',                             to: '/learn/ai-and-space' },
+      { id: 'ai-and-climate-change',      icon: '🌍', title: 'AI and climate change',                    to: '/learn/ai-and-climate-change' },
     ],
   },
   {
@@ -95,6 +97,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-money',          icon: '💰', title: 'AI and money',                            to: '/learn/ai-and-money' },
       { id: 'ai-and-democracy',      icon: '🏛️', title: 'AI and democracy',                       to: '/learn/ai-and-democracy' },
       { id: 'ai-and-language',       icon: '🗣️', title: 'AI and language',                        to: '/learn/ai-and-language' },
+      { id: 'ai-and-music',          icon: '🎵', title: 'AI and music',                            to: '/learn/ai-and-music' },
     ],
   },
   {
@@ -145,6 +148,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-money': 6, 'ai-and-democracy': 7, 'ai-and-language': 5,
   'ai-and-food': 5, 'ai-and-sport': 6, 'ai-and-transport': 5, 'ai-and-art': 6,
   'ai-and-cybersecurity': 5, 'ai-and-space': 6,
+  'ai-and-climate-change': 6, 'ai-and-music': 5,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -170,6 +174,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-food': 'AI in the real world', 'ai-and-sport': 'AI in the real world',
   'ai-and-transport': 'AI in the real world', 'ai-and-art': 'AI in the real world',
   'ai-and-cybersecurity': 'AI in the real world', 'ai-and-space': 'AI in the real world',
+  'ai-and-climate-change': 'AI in the real world', 'ai-and-music': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -279,12 +284,17 @@ function buildProgressSummary(
 
 export function MyProgress() {
   const [visited] = useState<Set<string>>(loadVisited)
-  const { profile } = useProfile()
+  const { profile, setProfile } = useProfile()
   const [streak] = useState<StreakData>(() => recordVisitAndGetStreak())
   const [badges] = useState<Badge[]>(() => computeBadges())
   const [shared, setShared] = useState(false)
   const [weeklyGoalData, setWeeklyGoalData] = useState<WeeklyGoalData>(() => loadWeeklyGoal())
   const { calendar } = useLearningCalendar()
+  const achievements = useAchievements()
+  const earnedCount = achievements.filter(a => a.earned).length
+  const [editingName, setEditingName] = useState(false)
+  const [nameInput, setNameInput] = useState('')
+  const nameInputRef = useRef<HTMLInputElement>(null)
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -321,6 +331,20 @@ export function MyProgress() {
     setWeeklyGoalData(prev => ({ ...prev, goal: null }))
   }
 
+  function handleEditName() {
+    setNameInput(profile?.name ?? '')
+    setEditingName(true)
+    setTimeout(() => nameInputRef.current?.focus(), 50)
+  }
+
+  function handleSaveName() {
+    const trimmed = nameInput.trim().slice(0, 30)
+    if (trimmed) {
+      setProfile({ name: trimmed, avatar: profile?.avatar ?? '👋' })
+    }
+    setEditingName(false)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-10">
       <div className="max-w-2xl mx-auto space-y-8">
@@ -354,6 +378,53 @@ export function MyProgress() {
                   : `You have visited ${completedCount} of ${total} modules. Keep going!`}
               </p>
             </>
+          )}
+        </div>
+
+        {/* Achievements summary + name change */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link
+            to="/achievements"
+            className="flex-1 bg-white rounded-2xl shadow-sm border border-amber-200 p-4 flex items-center gap-3 hover:bg-amber-50 transition-colors"
+          >
+            <span className="text-3xl">&#x1F3C5;</span>
+            <div>
+              <p className="font-semibold text-gray-800 text-sm">Your achievements</p>
+              <p className="text-gray-500 text-xs mt-0.5">
+                {earnedCount === 0
+                  ? 'Start earning badges'
+                  : `${earnedCount} of ${achievements.length} badges earned`}
+              </p>
+            </div>
+            <span className="ml-auto text-amber-400">&#x279C;</span>
+          </Link>
+
+          {profile && (
+            <div className="flex-1 bg-white rounded-2xl shadow-sm border border-gray-200 p-4 flex items-center gap-3">
+              <span className="text-3xl">{profile.avatar}</span>
+              <div className="flex-1 min-w-0">
+                {editingName ? (
+                  <div className="flex gap-2 items-center">
+                    <input
+                      ref={nameInputRef}
+                      type="text"
+                      value={nameInput}
+                      onChange={e => setNameInput(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') handleSaveName(); if (e.key === 'Escape') setEditingName(false) }}
+                      maxLength={30}
+                      className="flex-1 border border-gray-300 rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      aria-label="Your name"
+                    />
+                    <button onClick={handleSaveName} className="text-blue-600 text-xs font-semibold hover:underline">Save</button>
+                  </div>
+                ) : (
+                  <>
+                    <p className="font-semibold text-gray-800 text-sm truncate">{profile.name}</p>
+                    <button onClick={handleEditName} className="text-blue-500 hover:underline text-xs">Change your name</button>
+                  </>
+                )}
+              </div>
+            </div>
           )}
         </div>
 

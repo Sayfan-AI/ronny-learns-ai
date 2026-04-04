@@ -408,6 +408,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'purple',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-music',
+        title: 'AI and music — composition, recommendation, and the future of sound',
+        description: 'How Spotify recommends your next favourite song, how AI composition tools work, the voice cloning debate, and AI behind the mixing desk.',
+        readingTime: '5 min',
+        icon: '🎵',
+        to: '/learn/ai-and-music',
+        color: 'violet',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -501,6 +511,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🚀',
         to: '/learn/ai-and-space',
         color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-climate-change',
+        title: 'AI and climate change — forecasting, clean energy, and carbon capture',
+        description: 'How AI improves climate models, makes renewable energy grids reliable, tracks deforestation from space, and accelerates materials discovery.',
+        readingTime: '6 min',
+        icon: '🌍',
+        to: '/learn/ai-and-climate-change',
+        color: 'emerald',
         difficulty: 'Intermediate',
       },
     ],
@@ -681,7 +701,8 @@ const DIFFICULTY_STYLES: Record<Difficulty, string> = {
 export function HomePage() {
   const [visited, setVisited] = useState<Set<string>>(loadVisited)
   const [bookmarks, setBookmarks] = useState<Set<string>>(loadBookmarks)
-  const { profile } = useProfile()
+  const { profile, setProfile } = useProfile()
+  const [nameInput, setNameInput] = useState('')
   const { streak, bestStreak } = useStreak()
   const weeklyHighlight = useWeeklyHighlight()
 
@@ -715,6 +736,13 @@ export function HomePage() {
     saveBookmarks(next)
   }
 
+  function handleSaveName() {
+    const trimmed = nameInput.trim().slice(0, 30)
+    if (!trimmed) return
+    setProfile({ name: trimmed, avatar: '👋' })
+    setNameInput('')
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center px-4 py-8 sm:py-16">
       <div className="max-w-2xl w-full space-y-6 sm:space-y-8">
@@ -722,7 +750,9 @@ export function HomePage() {
         <div className="text-center space-y-3 sm:space-y-4">
           <div className="text-5xl sm:text-6xl" aria-hidden="true">{avatar}</div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
-            Hi {displayName}! Welcome to your AI learning journey.
+            {profile
+              ? `Welcome back, ${displayName}!`
+              : `Hi there! Welcome to your AI learning journey.`}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             Follow the steps below to learn about GitHub and AI — no experience needed.
@@ -734,16 +764,34 @@ export function HomePage() {
             >
               See the full learning path &rarr;
             </Link>
-            {!profile && (
-              <Link
-                to="/profile"
-                className="inline-block text-sm text-blue-500 hover:text-blue-700 underline py-2"
-              >
-                Personalise this app with your name &rarr;
-              </Link>
-            )}
           </div>
         </div>
+
+        {/* Inline name prompt — shown only when no profile is set */}
+        {!profile && (
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 space-y-3">
+            <p className="font-semibold text-blue-800 text-sm">What should we call you?</p>
+            <p className="text-blue-700 text-sm">Enter your name and we will greet you personally every time you visit.</p>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={nameInput}
+                onChange={e => setNameInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') handleSaveName() }}
+                placeholder="Your name"
+                maxLength={30}
+                className="flex-1 border border-blue-200 rounded-xl px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white"
+                aria-label="Enter your name"
+              />
+              <button
+                onClick={handleSaveName}
+                className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Daily reminder banner */}
         {showReminder && (
