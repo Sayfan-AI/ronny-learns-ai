@@ -42,6 +42,15 @@ export const LESSON_ORDER: Array<{ id: string; icon: string; title: string; path
   { id: 'what-is-ci-cd',      icon: '&#x1F680;', title: 'What is CI/CD?',                  path: '/learn/what-is-ci-cd' },
   { id: 'version-control',    icon: '&#x1F4BE;', title: 'Version control',                 path: '/learn/what-is-version-control' },
   { id: 'pull-request',       icon: '&#x1F501;', title: 'What is a pull request?',         path: '/learn/what-is-a-pull-request' },
+  { id: 'ai-and-copyright',  icon: '&#x2696;&#xFE0F;', title: 'AI and the law',             path: '/learn/ai-and-copyright' },
+  { id: 'how-to-use-ai-safely', icon: '&#x1F6E1;&#xFE0F;', title: 'How to use AI safely',  path: '/learn/how-to-use-ai-safely' },
+  { id: 'ai-and-money',      icon: '&#x1F4B0;', title: 'AI and money',                       path: '/learn/ai-and-money' },
+  { id: 'ai-and-democracy',  icon: '&#x1F3DB;&#xFE0F;', title: 'AI and democracy',          path: '/learn/ai-and-democracy' },
+  { id: 'ai-and-language',   icon: '&#x1F5E3;&#xFE0F;', title: 'AI and language',           path: '/learn/ai-and-language' },
+  { id: 'ai-and-food',       icon: '&#x1F33F;', title: 'AI and food',                         path: '/learn/ai-and-food' },
+  { id: 'ai-and-sport',      icon: '&#x26BD;',  title: 'AI and sport',                        path: '/learn/ai-and-sport' },
+  { id: 'ai-and-transport',  icon: '&#x1F697;', title: 'AI and transport',                    path: '/learn/ai-and-transport' },
+  { id: 'ai-and-art',        icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                path: '/learn/ai-and-art' },
 ]
 
 interface NextLessonProps {

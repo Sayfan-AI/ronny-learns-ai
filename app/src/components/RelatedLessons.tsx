@@ -49,6 +49,10 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'ai-and-money',         icon: '&#x1F4B0;', title: 'AI and money',                            path: '/learn/ai-and-money',                difficulty: 'Intermediate' },
   { id: 'ai-and-democracy',     icon: '&#x1F3DB;&#xFE0F;', title: 'AI and democracy',               path: '/learn/ai-and-democracy',            difficulty: 'Intermediate' },
   { id: 'ai-and-language',      icon: '&#x1F5E3;&#xFE0F;', title: 'AI and language',                path: '/learn/ai-and-language',             difficulty: 'Beginner' },
+  { id: 'ai-and-food',          icon: '&#x1F33F;', title: 'AI and food',                              path: '/learn/ai-and-food',                 difficulty: 'Beginner' },
+  { id: 'ai-and-sport',         icon: '&#x26BD;',  title: 'AI and sport',                             path: '/learn/ai-and-sport',                difficulty: 'Intermediate' },
+  { id: 'ai-and-transport',     icon: '&#x1F697;', title: 'AI and transport',                         path: '/learn/ai-and-transport',            difficulty: 'Beginner' },
+  { id: 'ai-and-art',           icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                     path: '/learn/ai-and-art',                  difficulty: 'Intermediate' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -93,6 +97,10 @@ const RELATED: Record<string, string[]> = {
   'ai-and-money':          ['ai-bias', 'ai-and-privacy', 'trusting-ai'],
   'ai-and-democracy':      ['ai-and-misinformation', 'ai-bias', 'ai-and-privacy'],
   'ai-and-language':       ['ai-for-accessibility', 'ai-in-your-apps', 'how-chatbots-work'],
+  'ai-and-food':           ['ai-and-environment', 'ai-and-jobs', 'ai-productivity-tools'],
+  'ai-and-sport':          ['ai-and-creativity', 'ai-in-healthcare', 'ai-and-food'],
+  'ai-and-transport':      ['ai-everyday-life', 'ai-and-environment', 'future-of-ai'],
+  'ai-and-art':            ['ai-and-creativity', 'ai-and-jobs', 'ai-and-copyright'],
 }
 
 const DIFFICULTY_COLOURS: Record<string, string> = {

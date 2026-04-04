@@ -6,6 +6,7 @@ import { useStreak } from '../hooks/useStreak'
 import { getRecommendations, type Recommendation } from '../hooks/useRecommendations'
 import { useWeeklyHighlight } from '../hooks/useWeeklyHighlight'
 import { useDailyReminder } from '../hooks/useDailyReminder'
+import { loadWeeklyGoal } from '../hooks/useWeeklyGoal'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -462,6 +463,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'sky',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-transport',
+        title: 'AI and transport — self-driving cars, smart traffic, and the future of getting around',
+        description: 'Waymo vs Tesla Autopilot, smart traffic lights, how Google Maps predicts your journey time, and predictive maintenance on trains.',
+        readingTime: '5 min',
+        icon: '🚗',
+        to: '/learn/ai-and-transport',
+        color: 'sky',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-art',
+        title: 'AI and art — how AI makes images, and what that means for artists',
+        description: 'DALL-E, Midjourney, and Stable Diffusion explained simply — plus the copyright debate, artist opt-outs, and AI art competitions.',
+        readingTime: '6 min',
+        icon: '🎨',
+        to: '/learn/ai-and-art',
+        color: 'violet',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -661,6 +682,7 @@ export function HomePage() {
 
   const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
+  const weeklyGoalData = loadWeeklyGoal()
 
   function toggleBookmark(id: string) {
     const next = new Set(bookmarks)
@@ -792,6 +814,48 @@ export function HomePage() {
                 )}
               </p>
             </div>
+          </div>
+        )}
+
+        {/* Weekly learning goal ring */}
+        {weeklyGoalData.goal !== null && (
+          <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-4 flex items-center gap-4">
+            <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" className="flex-shrink-0">
+              <circle cx="28" cy="28" r="22" fill="none" stroke="#e5e7eb" strokeWidth="6" />
+              <circle
+                cx="28"
+                cy="28"
+                r="22"
+                fill="none"
+                stroke={weeklyGoalData.completedThisWeek >= weeklyGoalData.goal ? '#10b981' : '#3b82f6'}
+                strokeWidth="6"
+                strokeDasharray={`${2 * Math.PI * 22}`}
+                strokeDashoffset={`${2 * Math.PI * 22 * (1 - Math.min(1, weeklyGoalData.completedThisWeek / weeklyGoalData.goal))}`}
+                strokeLinecap="round"
+                transform="rotate(-90 28 28)"
+              />
+              <text x="28" y="33" textAnchor="middle" fontSize="12" fontWeight="700"
+                fill={weeklyGoalData.completedThisWeek >= weeklyGoalData.goal ? '#10b981' : '#3b82f6'}>
+                {weeklyGoalData.completedThisWeek}/{weeklyGoalData.goal}
+              </text>
+            </svg>
+            <div className="flex-1 min-w-0">
+              {weeklyGoalData.completedThisWeek >= weeklyGoalData.goal ? (
+                <>
+                  <p className="font-semibold text-emerald-800 text-sm leading-tight">Weekly goal reached!</p>
+                  <p className="text-emerald-600 text-xs mt-0.5">You completed {weeklyGoalData.completedThisWeek} of {weeklyGoalData.goal} lessons this week. Amazing!</p>
+                </>
+              ) : (
+                <>
+                  <p className="font-semibold text-blue-800 text-sm leading-tight">Weekly goal</p>
+                  <p className="text-blue-600 text-xs mt-0.5">
+                    {weeklyGoalData.completedThisWeek} of {weeklyGoalData.goal} lessons this week.
+                    {' '}{weeklyGoalData.goal - weeklyGoalData.completedThisWeek} to go!
+                  </p>
+                </>
+              )}
+            </div>
+            <Link to="/my-progress" className="text-blue-500 hover:underline text-xs flex-shrink-0">Change goal</Link>
           </div>
         )}
 

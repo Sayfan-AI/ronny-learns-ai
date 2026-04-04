@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { recordPerfectQuiz } from '../hooks/useBadges'
 import { recordWrongAnswer } from '../hooks/useQuizHistory'
+import { recordWeeklyCompletion } from '../hooks/useWeeklyGoal'
 
 export interface QuizQuestion {
   question: string
@@ -87,6 +88,8 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
         const filtered = order.filter((id) => id !== lessonId)
         filtered.push(lessonId)
         localStorage.setItem('ronny-completion-order', JSON.stringify(filtered))
+        // Record for weekly goal tracking
+        recordWeeklyCompletion(lessonId)
       } catch {
         // ignore storage errors
       }
@@ -229,17 +232,55 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
       </div>
 
       {allDone && (
-        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 sm:p-6 space-y-4 text-center">
-          <p className="text-xl sm:text-2xl font-bold text-blue-800">
-            {score} out of {total} correct
-          </p>
-          <p className="text-blue-700 text-base sm:text-lg">{resultMessage()}</p>
-          <button
-            onClick={reset}
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 sm:px-8 py-3 rounded-xl transition-colors duration-200 min-h-[48px]"
-          >
-            Try Again
-          </button>
+        <div className="space-y-4">
+          {/* Recap card — shows right/wrong breakdown */}
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 sm:p-6 space-y-3">
+            <p className="text-base font-semibold text-gray-700">Your results at a glance</p>
+            <div className="space-y-2">
+              {questions.map((q, qi) => {
+                const chosen = answers[qi]
+                const correct = chosen === q.correctIndex
+                return (
+                  <div
+                    key={qi}
+                    className={`flex gap-3 items-start rounded-xl p-3 text-sm ${
+                      correct
+                        ? 'bg-green-50 border border-green-200'
+                        : 'bg-red-50 border border-red-200'
+                    }`}
+                  >
+                    <span className={`flex-shrink-0 font-bold ${correct ? 'text-green-600' : 'text-red-600'}`}>
+                      {correct ? '&#x2713;' : '&#x2717;'}
+                    </span>
+                    <div className="space-y-0.5">
+                      <p className={`font-medium ${correct ? 'text-green-800' : 'text-red-800'}`}>
+                        Q{qi + 1}: {q.question}
+                      </p>
+                      {!correct && (
+                        <p className="text-red-700 text-xs">
+                          Correct answer: <strong>{q.options[q.correctIndex]}</strong>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Score and CTA */}
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 sm:p-6 space-y-4 text-center">
+            <p className="text-xl sm:text-2xl font-bold text-blue-800">
+              {score} out of {total} correct
+            </p>
+            <p className="text-blue-700 text-base sm:text-lg">{resultMessage()}</p>
+            <button
+              onClick={reset}
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 sm:px-8 py-3 rounded-xl transition-colors duration-200 min-h-[48px]"
+            >
+              Try Again
+            </button>
+          </div>
         </div>
       )}
     </div>

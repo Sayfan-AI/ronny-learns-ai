@@ -6,6 +6,7 @@ import { computeBadges, type Badge } from '../hooks/useBadges'
 import { loadVisitCounts } from '../hooks/useLessonVisit'
 import { loadAllNotes } from '../components/LessonNote'
 import { loadAllReviewLater } from '../hooks/useReviewLater'
+import { loadWeeklyGoal, saveWeeklyGoal, type WeeklyGoalData } from '../hooks/useWeeklyGoal'
 
 const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
 
@@ -64,6 +65,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-productivity-tools',      icon: '⚡', title: 'AI and your productivity',               to: '/learn/ai-productivity-tools' },
       { id: 'ai-and-food',                icon: '🌿', title: 'AI and food',                              to: '/learn/ai-and-food' },
       { id: 'ai-and-sport',               icon: '⚽', title: 'AI and sport',                             to: '/learn/ai-and-sport' },
+      { id: 'ai-and-transport',           icon: '🚗', title: 'AI and transport',                         to: '/learn/ai-and-transport' },
+      { id: 'ai-and-art',                 icon: '🎨', title: 'AI and art',                               to: '/learn/ai-and-art' },
     ],
   },
   {
@@ -136,7 +139,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-mental-health': 6, 'future-of-ai': 7, 'ai-laws-and-rights': 7,
   'ai-and-copyright': 6, 'how-to-use-ai-safely': 5,
   'ai-and-money': 6, 'ai-and-democracy': 7, 'ai-and-language': 5,
-  'ai-and-food': 5, 'ai-and-sport': 6,
+  'ai-and-food': 5, 'ai-and-sport': 6, 'ai-and-transport': 5, 'ai-and-art': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -160,6 +163,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-copyright': 'AI and society', 'how-to-use-ai-safely': 'AI and society',
   'ai-and-money': 'AI and society', 'ai-and-democracy': 'AI and society', 'ai-and-language': 'AI and society',
   'ai-and-food': 'AI in the real world', 'ai-and-sport': 'AI in the real world',
+  'ai-and-transport': 'AI in the real world', 'ai-and-art': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -273,6 +277,7 @@ export function MyProgress() {
   const [streak] = useState<StreakData>(() => recordVisitAndGetStreak())
   const [badges] = useState<Badge[]>(() => computeBadges())
   const [shared, setShared] = useState(false)
+  const [weeklyGoalData, setWeeklyGoalData] = useState<WeeklyGoalData>(() => loadWeeklyGoal())
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -297,6 +302,16 @@ export function MyProgress() {
     await shareProgress(completedCount, total)
     setShared(true)
     setTimeout(() => setShared(false), 2500)
+  }
+
+  function handleSetGoal(goal: number) {
+    saveWeeklyGoal(goal)
+    setWeeklyGoalData(loadWeeklyGoal())
+  }
+
+  function handleChangeGoal() {
+    // Open the goal picker again by setting goal to null temporarily
+    setWeeklyGoalData(prev => ({ ...prev, goal: null }))
   }
 
   return (
@@ -340,6 +355,73 @@ export function MyProgress() {
           <p className="font-semibold text-gray-800 text-base">How am I doing?</p>
           <p className="text-gray-700 leading-relaxed text-sm">{progressSummary}</p>
         </div>
+
+        {/* Weekly learning goal */}
+        {weeklyGoalData.goal === null ? (
+          <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-5 space-y-3">
+            <p className="font-semibold text-gray-800 text-base">Set a weekly learning goal</p>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              How many lessons would you like to complete each week? Choose a target and track it on the home page.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {[2, 3, 5].map(n => (
+                <button
+                  key={n}
+                  onClick={() => handleSetGoal(n)}
+                  className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors min-h-[44px]"
+                >
+                  {n} lessons / week
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-5">
+            <div className="flex items-center justify-between flex-wrap gap-3">
+              <div className="space-y-1">
+                <p className="font-semibold text-gray-800 text-base">Weekly goal</p>
+                <p className="text-gray-500 text-sm">
+                  {weeklyGoalData.completedThisWeek >= weeklyGoalData.goal
+                    ? `Goal reached this week — well done!`
+                    : `${weeklyGoalData.completedThisWeek} of ${weeklyGoalData.goal} lessons completed this week`}
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                {/* Progress ring */}
+                <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true">
+                  <circle cx="28" cy="28" r="22" fill="none" stroke="#e5e7eb" strokeWidth="6" />
+                  <circle
+                    cx="28"
+                    cy="28"
+                    r="22"
+                    fill="none"
+                    stroke={weeklyGoalData.completedThisWeek >= weeklyGoalData.goal ? '#10b981' : '#3b82f6'}
+                    strokeWidth="6"
+                    strokeDasharray={`${2 * Math.PI * 22}`}
+                    strokeDashoffset={`${2 * Math.PI * 22 * (1 - Math.min(1, weeklyGoalData.completedThisWeek / weeklyGoalData.goal))}`}
+                    strokeLinecap="round"
+                    transform="rotate(-90 28 28)"
+                  />
+                  <text x="28" y="33" textAnchor="middle" fontSize="13" fontWeight="700"
+                    fill={weeklyGoalData.completedThisWeek >= weeklyGoalData.goal ? '#10b981' : '#3b82f6'}>
+                    {weeklyGoalData.completedThisWeek}/{weeklyGoalData.goal}
+                  </text>
+                </svg>
+                <button
+                  onClick={handleChangeGoal}
+                  className="text-blue-500 hover:underline text-sm"
+                >
+                  Change goal
+                </button>
+              </div>
+            </div>
+            {weeklyGoalData.completedThisWeek >= weeklyGoalData.goal && (
+              <p className="text-emerald-600 font-semibold text-sm mt-3 text-center">
+                &#x1F389; You hit your goal this week — amazing work!
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Progress bar */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">

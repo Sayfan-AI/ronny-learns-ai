@@ -56,6 +56,22 @@ const ALL_LESSONS: RecommendedLesson[] = [
   { id: 'version-control',       icon: '&#x1F4BE;', title: 'How does version control work?',               path: '/learn/what-is-version-control',    difficulty: 'Advanced',     sectionIndex: 3 },
   { id: 'pull-request',          icon: '&#x1F4CB;', title: 'What is a pull request?',                      path: '/learn/what-is-a-pull-request',     difficulty: 'Advanced',     sectionIndex: 3 },
   { id: 'meet-the-agents',       icon: '&#x1F465;', title: 'Meet the AI agents',                           path: '/agents',                           difficulty: 'Beginner',     sectionIndex: 3 },
+  // Additional lessons added in later milestones
+  { id: 'ai-in-your-apps',        icon: '&#x1F4F1;', title: 'AI in the apps you already use',              path: '/learn/ai-in-your-apps',            difficulty: 'Beginner',     sectionIndex: 1 },
+  { id: 'ai-for-accessibility',   icon: '&#x267F;',  title: 'AI for accessibility',                         path: '/learn/ai-for-accessibility',       difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-and-social-media',    icon: '&#x1F4F2;', title: 'AI and social media',                          path: '/learn/ai-and-social-media',        difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-and-scientific-research', icon: '&#x1F52C;', title: 'AI and scientific research',              path: '/learn/ai-and-scientific-research', difficulty: 'Intermediate', sectionIndex: 2 },
+  { id: 'ai-productivity-tools',  icon: '&#x26A1;',  title: 'AI and your productivity',                     path: '/learn/ai-productivity-tools',      difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-laws-and-rights',     icon: '&#x2696;&#xFE0F;', title: 'AI, laws, and your rights',            path: '/learn/ai-laws-and-rights',         difficulty: 'Intermediate', sectionIndex: 2 },
+  { id: 'ai-and-copyright',       icon: '&#x2696;&#xFE0F;', title: 'AI and the law',                       path: '/learn/ai-and-copyright',           difficulty: 'Intermediate', sectionIndex: 2 },
+  { id: 'how-to-use-ai-safely',   icon: '&#x1F6E1;&#xFE0F;', title: 'How to use AI safely',               path: '/learn/how-to-use-ai-safely',       difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-and-money',           icon: '&#x1F4B0;', title: 'AI and money',                                 path: '/learn/ai-and-money',               difficulty: 'Intermediate', sectionIndex: 2 },
+  { id: 'ai-and-democracy',       icon: '&#x1F3DB;&#xFE0F;', title: 'AI and democracy',                   path: '/learn/ai-and-democracy',           difficulty: 'Intermediate', sectionIndex: 2 },
+  { id: 'ai-and-language',        icon: '&#x1F5E3;&#xFE0F;', title: 'AI and language',                    path: '/learn/ai-and-language',            difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-and-food',            icon: '&#x1F33F;', title: 'AI and food',                                  path: '/learn/ai-and-food',                difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-and-sport',           icon: '&#x26BD;',  title: 'AI and sport',                                 path: '/learn/ai-and-sport',               difficulty: 'Intermediate', sectionIndex: 2 },
+  { id: 'ai-and-transport',       icon: '&#x1F697;', title: 'AI and transport',                             path: '/learn/ai-and-transport',           difficulty: 'Beginner',     sectionIndex: 2 },
+  { id: 'ai-and-art',             icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                         path: '/learn/ai-and-art',                 difficulty: 'Intermediate', sectionIndex: 2 },
 ]
 
 function loadVisitedIds(): Set<string> {
