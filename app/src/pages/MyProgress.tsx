@@ -4,6 +4,21 @@ import { useProfile } from '../hooks/useProfile'
 import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
 import { computeBadges, type Badge } from '../hooks/useBadges'
 
+const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
+
+async function shareProgress(completedCount: number, total: number) {
+  const text = `I have completed ${completedCount} of ${total} lessons on Ronny Learns AI! Check it out: ${APP_URL}`
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'My progress on Ronny Learns AI', text, url: APP_URL })
+      return
+    } catch {
+      // fall through
+    }
+  }
+  await navigator.clipboard.writeText(text)
+}
+
 const VISITED_KEY = 'ronny-visited-modules'
 
 const ALL_MODULES = [
@@ -41,12 +56,19 @@ export function MyProgress() {
   const { profile } = useProfile()
   const [streak] = useState<StreakData>(() => recordVisitAndGetStreak())
   const [badges] = useState<Badge[]>(() => computeBadges())
+  const [shared, setShared] = useState(false)
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
   const pct = Math.round((completedCount / total) * 100)
   const allDone = completedCount === total
   const displayName = profile?.name || 'Ronny'
+
+  async function handleShare() {
+    await shareProgress(completedCount, total)
+    setShared(true)
+    setTimeout(() => setShared(false), 2500)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-10">
@@ -99,6 +121,14 @@ export function MyProgress() {
           <p className="text-gray-500 text-sm text-center">
             {completedCount} of {total} modules visited
           </p>
+          <div className="flex justify-center">
+            <button
+              onClick={handleShare}
+              className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
+            >
+              {shared ? '&#x2713; Copied!' : '&#x1F517; Share my progress'}
+            </button>
+          </div>
         </div>
 
         {/* Streak card */}

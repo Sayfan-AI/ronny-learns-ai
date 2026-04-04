@@ -27,6 +27,10 @@ import { HowAITrainingWorks } from './pages/HowAITrainingWorks'
 import { NeuralNetwork } from './pages/NeuralNetwork'
 import { LanguageModels } from './pages/LanguageModels'
 import { AIHistory } from './pages/AIHistory'
+import { AIEverydayLife } from './pages/AIEverydayLife'
+import { AIProsAndCons } from './pages/AIProsAndCons'
+import { Glossary } from './pages/Glossary'
+import { LearningRecap } from './pages/LearningRecap'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -199,6 +203,30 @@ const aiHistoryRoute = createRoute({
   component: AIHistory,
 })
 
+const aiEverydayLifeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-everyday-life',
+  component: AIEverydayLife,
+})
+
+const aiProsAndConsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-pros-and-cons',
+  component: AIProsAndCons,
+})
+
+const glossaryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/glossary',
+  component: Glossary,
+})
+
+const learningRecapRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learning-recap',
+  component: LearningRecap,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -227,6 +255,10 @@ const routeTree = rootRoute.addChildren([
   neuralNetworkRoute,
   languageModelsRoute,
   aiHistoryRoute,
+  aiEverydayLifeRoute,
+  aiProsAndConsRoute,
+  glossaryRoute,
+  learningRecapRoute,
 ])
 
 const hashHistory = createHashHistory()

@@ -175,6 +175,24 @@ const MODULES = [
     to: '/ai-history',
     color: 'amber',
   },
+  {
+    id: 'ai-everyday-life',
+    title: 'AI in everyday life',
+    description: 'Search engines, recommendations, voice assistants, spam filters — AI is already all around you.',
+    readingTime: '5 min',
+    icon: '🌍',
+    to: '/learn/ai-everyday-life',
+    color: 'sky',
+  },
+  {
+    id: 'ai-pros-and-cons',
+    title: 'AI: the good and the bad',
+    description: 'A balanced, honest look at what AI can do for us — and the real risks worth understanding.',
+    readingTime: '6 min',
+    icon: '⚖️',
+    to: '/learn/ai-pros-and-cons',
+    color: 'orange',
+  },
 ]
 
 const COLOR_MAP: Record<string, { border: string; badge: string; button: string }> = {
@@ -394,6 +412,33 @@ export function HomePage() {
                 <p className="text-emerald-600 text-sm">See which modules you have visited and how far you have come.</p>
               </div>
               <span className="text-emerald-400 text-xl flex-shrink-0">&rarr;</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Tools section */}
+        <div className="border-t border-gray-200 pt-6 space-y-3">
+          <h2 className="text-xl font-semibold text-gray-700 text-center">Useful tools</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Link
+              to="/glossary"
+              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4D6;</span>
+              <div>
+                <p className="font-semibold text-violet-800 text-sm">Glossary</p>
+                <p className="text-violet-600 text-xs">Plain-English definitions for every AI term.</p>
+              </div>
+            </Link>
+            <Link
+              to="/learning-recap"
+              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F393;</span>
+              <div>
+                <p className="font-semibold text-indigo-800 text-sm">Learning recap</p>
+                <p className="text-indigo-600 text-xs">A visual overview of everything you have learned.</p>
+              </div>
             </Link>
           </div>
         </div>

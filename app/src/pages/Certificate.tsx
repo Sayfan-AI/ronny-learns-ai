@@ -2,6 +2,20 @@ import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 
+const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
+
+async function shareOrCopy(text: string, url: string) {
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'Ronny Learns AI — Certificate', text, url })
+      return
+    } catch {
+      // fall through to clipboard
+    }
+  }
+  await navigator.clipboard.writeText(url)
+}
+
 const VISITED_KEY = 'ronny-visited-modules'
 
 const ALL_MODULE_IDS = [
@@ -27,6 +41,16 @@ function todayString(): string {
 export function Certificate() {
   const [visited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
+  const [copied, setCopied] = useState(false)
+
+  async function handleShare() {
+    await shareOrCopy(
+      `I just completed the Ronny Learns AI course! Check it out: ${APP_URL}`,
+      APP_URL
+    )
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
 
   const completedCount = ALL_MODULE_IDS.filter(id => visited.has(id)).length
   const total = ALL_MODULE_IDS.length
@@ -146,6 +170,12 @@ export function Certificate() {
             className="px-6 py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
           >
             &#x1F5A8; Print or save as PDF
+          </button>
+          <button
+            onClick={handleShare}
+            className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+          >
+            {copied ? '&#x2713; Link copied!' : '&#x1F517; Share my certificate'}
           </button>
           <Link
             to="/"
