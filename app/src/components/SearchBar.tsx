@@ -52,6 +52,8 @@ const SEARCH_INDEX: SearchItem[] = [
   { type: 'lesson', title: 'AI for accessibility',                   description: 'How AI helps people with disabilities use technology more fully.',to: '/learn/ai-for-accessibility',        difficulty: 'Beginner',     topicGroup: 'AI in the real world' },
   { type: 'lesson', title: 'AI and scientific research',            description: 'AlphaFold, drug discovery, climate modelling, and astronomy — AI in the lab.', to: '/learn/ai-and-scientific-research', difficulty: 'Intermediate',  topicGroup: 'AI in the real world' },
   { type: 'lesson', title: 'AI and your productivity',              description: 'Writing assistants, coding helpers, meeting tools, and research tools.', to: '/learn/ai-productivity-tools',    difficulty: 'Beginner',     topicGroup: 'AI in the real world' },
+  { type: 'lesson', title: 'AI and energy',                        description: 'Smart grids, renewable forecasting, smart tariffs, EV charging, and why AI uses a lot of electricity.', to: '/learn/ai-and-energy',   difficulty: 'Beginner',     topicGroup: 'AI in the real world' },
+  { type: 'lesson', title: 'AI and elderly care',                  description: 'Fall detection, companion robots, dementia support, and the ethics of AI monitoring.', to: '/learn/ai-and-elderly-care',   difficulty: 'Intermediate', topicGroup: 'AI in the real world' },
   { type: 'lesson', title: 'Glossary',                               description: 'Plain-English definitions for every AI term.',                   to: '/glossary' },
   { type: 'lesson', title: 'Learning recap',                         description: 'A visual overview of everything you have learned.',              to: '/learning-recap' },
   { type: 'lesson', title: 'Ask a question',                         description: 'Get a plain-language answer to any question about AI.',          to: '/ask' },
@@ -118,11 +120,30 @@ function applyFilters(
   })
 }
 
+const RECENT_KEY = 'ronny-recent-searches'
+const MAX_RECENT = 5
+
+function loadRecent(): string[] {
+  try {
+    return JSON.parse(localStorage.getItem(RECENT_KEY) ?? '[]')
+  } catch {
+    return []
+  }
+}
+
+function saveRecent(term: string) {
+  const trimmed = term.trim()
+  if (!trimmed) return
+  const prev = loadRecent().filter(t => t !== trimmed)
+  localStorage.setItem(RECENT_KEY, JSON.stringify([trimmed, ...prev].slice(0, MAX_RECENT)))
+}
+
 export function SearchBar() {
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | null>(null)
   const [topicFilter, setTopicFilter] = useState<TopicGroup | null>(null)
+  const [recentSearches, setRecentSearches] = useState<string[]>(loadRecent)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const hasQuery = query.trim().length >= 2
@@ -163,6 +184,27 @@ export function SearchBar() {
     setDifficultyFilter(null)
     setTopicFilter(null)
     setOpen(false)
+  }
+
+  function handleResultClick() {
+    if (query.trim().length >= 2) {
+      saveRecent(query.trim())
+      setRecentSearches(loadRecent())
+    }
+    setQuery('')
+    setOpen(false)
+    setDifficultyFilter(null)
+    setTopicFilter(null)
+  }
+
+  function applyRecentSearch(term: string) {
+    setQuery(term)
+    setOpen(true)
+  }
+
+  function clearRecentSearches() {
+    localStorage.removeItem(RECENT_KEY)
+    setRecentSearches([])
   }
 
   function toggleDifficulty(d: Difficulty) {
@@ -211,6 +253,32 @@ export function SearchBar() {
 
       {showFilters && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg border border-gray-200 z-50 overflow-hidden">
+
+          {/* Recent searches (shown only when input is focused and empty) */}
+          {!hasQuery && !hasFilter && recentSearches.length > 0 && (
+            <div className="px-4 pt-3 pb-2 border-b border-gray-100">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-xs text-gray-400 font-medium">Recent searches</span>
+                <button
+                  onClick={clearRecentSearches}
+                  className="text-xs text-blue-500 hover:text-blue-700"
+                >
+                  Clear
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {recentSearches.map(term => (
+                  <button
+                    key={term}
+                    onClick={() => applyRecentSearch(term)}
+                    className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-800 transition-colors"
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Filter chips */}
           <div className="px-4 pt-3 pb-2 space-y-2 border-b border-gray-100">
@@ -281,7 +349,7 @@ export function SearchBar() {
                           to={item.to}
                           role="option"
                           aria-selected={false}
-                          onClick={() => { setQuery(''); setOpen(false); setDifficultyFilter(null); setTopicFilter(null) }}
+                          onClick={handleResultClick}
                           className="flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors"
                         >
                           <span className="text-xl flex-shrink-0">&#x1F4DA;</span>
@@ -315,7 +383,7 @@ export function SearchBar() {
                           to={item.to}
                           role="option"
                           aria-selected={false}
-                          onClick={() => { setQuery(''); setOpen(false); setDifficultyFilter(null); setTopicFilter(null) }}
+                          onClick={handleResultClick}
                           className="flex items-center gap-3 px-4 py-3 hover:bg-violet-50 transition-colors"
                         >
                           <span className="text-xl flex-shrink-0">&#x1F4D6;</span>

@@ -3,6 +3,7 @@ import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory }
 import { NavBar } from './components/NavBar'
 import { WelcomeTour } from './components/WelcomeTour'
 import { MilestoneCelebration } from './components/MilestoneCelebration'
+import { ReadingModeButton } from './components/ReadingModeButton'
 
 // Lazy-loaded page components — each becomes its own JS chunk
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -84,6 +85,8 @@ const AIAndRetail = lazy(() => import('./pages/AIAndRetail').then(m => ({ defaul
 const AIAndChildren = lazy(() => import('./pages/AIAndChildren').then(m => ({ default: m.AIAndChildren })))
 const AIAndTravel = lazy(() => import('./pages/AIAndTravel').then(m => ({ default: m.AIAndTravel })))
 const AIAndHousing = lazy(() => import('./pages/AIAndHousing').then(m => ({ default: m.AIAndHousing })))
+const AIAndEnergy = lazy(() => import('./pages/AIAndEnergy').then(m => ({ default: m.AIAndEnergy })))
+const AIAndElderlyCare = lazy(() => import('./pages/AIAndElderlyCare').then(m => ({ default: m.AIAndElderlyCare })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -121,6 +124,7 @@ const rootRoute = createRootRoute({
       <NavBar />
       <WelcomeTour />
       <MilestoneCelebration />
+      <ReadingModeButton />
       <main id="main-content">
         <Outlet />
       </main>
@@ -602,6 +606,18 @@ const aiAndHousingRoute = createRoute({
   component: withSuspense(AIAndHousing),
 })
 
+const aiAndEnergyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-energy',
+  component: withSuspense(AIAndEnergy),
+})
+
+const aiAndElderlyCareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-elderly-care',
+  component: withSuspense(AIAndElderlyCare),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -682,6 +698,8 @@ const routeTree = rootRoute.addChildren([
   aiAndChildrenRoute,
   aiAndTravelRoute,
   aiAndHousingRoute,
+  aiAndEnergyRoute,
+  aiAndElderlyCareRoute,
 ])
 
 const hashHistory = createHashHistory()

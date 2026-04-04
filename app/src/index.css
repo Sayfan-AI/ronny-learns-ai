@@ -155,6 +155,26 @@ code {
   border-radius: 4px;
 }
 
+/* Reading mode: distraction-free lesson view */
+body.reading-mode nav {
+  display: none !important;
+}
+
+body.reading-mode .max-w-2xl {
+  max-width: 720px !important;
+}
+
+body.reading-mode p,
+body.reading-mode li {
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+}
+
+body.reading-mode [data-related],
+body.reading-mode .reading-mode-hide {
+  display: none !important;
+}
+
 /* Print styles: hide navigation and interactive elements */
 @media print {
   nav,

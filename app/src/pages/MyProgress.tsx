@@ -64,6 +64,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-children',        title: 'AI and children',                          to: '/learn/ai-and-children' },
   { id: 'ai-and-travel',          title: 'AI and travel',                            to: '/learn/ai-and-travel' },
   { id: 'ai-and-housing',         title: 'AI and housing',                           to: '/learn/ai-and-housing' },
+  { id: 'ai-and-energy',          title: 'AI and energy',                            to: '/learn/ai-and-energy' },
+  { id: 'ai-and-elderly-care',    title: 'AI and elderly care',                      to: '/learn/ai-and-elderly-care' },
 ]
 
 interface QuizScoreEntry {
@@ -228,6 +230,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-retail',              icon: '🛍️', title: 'AI and retail',                                to: '/learn/ai-and-retail' },
       { id: 'ai-and-travel',              icon: '✈️', title: 'AI and travel',                                to: '/learn/ai-and-travel' },
       { id: 'ai-and-housing',             icon: '🏠', title: 'AI and housing',                               to: '/learn/ai-and-housing' },
+      { id: 'ai-and-energy',              icon: '⚡', title: 'AI and energy',                                to: '/learn/ai-and-energy' },
+      { id: 'ai-and-elderly-care',        icon: '🧓', title: 'AI and elderly care',                          to: '/learn/ai-and-elderly-care' },
     ],
   },
   {
@@ -313,6 +317,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-agriculture': 5, 'ai-and-mental-wellbeing-at-work': 6,
   'ai-and-retail': 5, 'ai-and-children': 6,
   'ai-and-travel': 5, 'ai-and-housing': 6,
+  'ai-and-energy': 5, 'ai-and-elderly-care': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -344,6 +349,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-agriculture': 'AI in the real world', 'ai-and-mental-wellbeing-at-work': 'AI and society',
   'ai-and-retail': 'AI in the real world', 'ai-and-children': 'AI and society',
   'ai-and-travel': 'AI in the real world', 'ai-and-housing': 'AI in the real world',
+  'ai-and-energy': 'AI in the real world', 'ai-and-elderly-care': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
