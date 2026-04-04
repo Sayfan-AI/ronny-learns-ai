@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useProfile } from '../hooks/useProfile'
 import { useAchievements } from '../hooks/useAchievements'
 import { recordVisitAndGetStreak, type StreakData } from '../hooks/useStreak'
@@ -55,6 +55,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-music',           title: 'AI and music',                             to: '/learn/ai-and-music' },
   { id: 'ai-and-robotics',        title: 'AI and robotics',                          to: '/learn/ai-and-robotics' },
   { id: 'ai-and-gaming',          title: 'AI and gaming',                            to: '/learn/ai-and-gaming' },
+  { id: 'ai-and-journalism',      title: 'AI and journalism',                        to: '/learn/ai-and-journalism' },
+  { id: 'ai-and-fashion',         title: 'AI and fashion',                           to: '/learn/ai-and-fashion' },
 ]
 
 interface QuizScoreEntry {
@@ -101,6 +103,69 @@ async function shareProgress(completedCount: number, total: number) {
     }
   }
   await navigator.clipboard.writeText(text)
+}
+
+function generateExportText(
+  profile: { name: string; avatar: string } | null,
+  visited: Set<string>,
+  quizScores: { attempted: QuizScoreEntry[]; unattempted: Array<{ id: string; title: string; to: string }> },
+  notes: Record<string, string>,
+  achievements: Array<{ name: string; description: string; earned: boolean }>,
+): string {
+  const now = new Date()
+  const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  const lines: string[] = []
+
+  lines.push('Ronny Learns AI — My Learning Summary')
+  lines.push(`Generated: ${dateStr}`)
+  lines.push(`Name: ${profile?.name ?? 'Not set'}`)
+  lines.push('')
+
+  const completedModules = ALL_MODULES.filter(m => visited.has(m.id))
+  lines.push(`=== Completed Lessons (${completedModules.length} of ${ALL_MODULES.length}) ===`)
+  completedModules.forEach((m, i) => {
+    lines.push(`${i + 1}. ${m.title}`)
+  })
+  if (completedModules.length === 0) lines.push('None yet — start your first lesson!')
+  lines.push('')
+
+  lines.push('=== My Quiz Scores ===')
+  if (quizScores.attempted.length === 0) {
+    lines.push('No quiz scores yet.')
+  } else {
+    quizScores.attempted.forEach(entry => {
+      const bar = `${entry.score}/${entry.total} (${entry.pct}%)`
+      lines.push(`${entry.title.padEnd(50, '.')} ${bar}`)
+    })
+  }
+  lines.push('')
+
+  const noteEntries = Object.entries(notes).filter(([, v]) => v.trim())
+  lines.push(`=== My Notes (${noteEntries.length} lessons with notes) ===`)
+  if (noteEntries.length === 0) {
+    lines.push('No notes yet.')
+  } else {
+    noteEntries.forEach(([id, text]) => {
+      const module = ALL_MODULES.find(m => m.id === id)
+      const title = module?.title ?? id
+      lines.push(`[${title}]`)
+      lines.push(text.trim())
+      lines.push('---')
+    })
+  }
+  lines.push('')
+
+  const earnedAchievements = achievements.filter(a => a.earned)
+  lines.push(`=== My Achievements (${earnedAchievements.length} earned) ===`)
+  if (earnedAchievements.length === 0) {
+    lines.push('No achievements yet.')
+  } else {
+    earnedAchievements.forEach(a => {
+      lines.push(`${a.name} — ${a.description}`)
+    })
+  }
+
+  return lines.join('\n')
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -151,6 +216,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-space',               icon: '🚀', title: 'AI and space',                             to: '/learn/ai-and-space' },
       { id: 'ai-and-climate-change',      icon: '🌍', title: 'AI and climate change',                    to: '/learn/ai-and-climate-change' },
       { id: 'ai-and-robotics',            icon: '🤖', title: 'AI and robotics',                            to: '/learn/ai-and-robotics' },
+      { id: 'ai-and-fashion',             icon: '👗', title: 'AI and fashion',                              to: '/learn/ai-and-fashion' },
     ],
   },
   {
@@ -177,6 +243,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-language',       icon: '🗣️', title: 'AI and language',                        to: '/learn/ai-and-language' },
       { id: 'ai-and-music',          icon: '🎵', title: 'AI and music',                            to: '/learn/ai-and-music' },
       { id: 'ai-and-gaming',         icon: '🎮', title: 'AI and gaming',                           to: '/learn/ai-and-gaming' },
+      { id: 'ai-and-journalism',     icon: '📰', title: 'AI and journalism',                       to: '/learn/ai-and-journalism' },
     ],
   },
   {
@@ -229,6 +296,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-cybersecurity': 5, 'ai-and-space': 6,
   'ai-and-climate-change': 6, 'ai-and-music': 5,
   'ai-and-robotics': 5, 'ai-and-gaming': 5,
+  'ai-and-journalism': 6, 'ai-and-fashion': 5,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -256,6 +324,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-cybersecurity': 'AI in the real world', 'ai-and-space': 'AI in the real world',
   'ai-and-climate-change': 'AI in the real world', 'ai-and-music': 'AI and society',
   'ai-and-robotics': 'AI in the real world', 'ai-and-gaming': 'AI and society',
+  'ai-and-journalism': 'AI and society', 'ai-and-fashion': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -378,6 +447,7 @@ export function MyProgress() {
   const nameInputRef = useRef<HTMLInputElement>(null)
   const [showAllQuizScores, setShowAllQuizScores] = useState(false)
   const [quizScoreData] = useState(() => loadQuizScores())
+  const [exportStatus, setExportStatus] = useState<'idle' | 'copied' | 'downloaded'>('idle')
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -412,6 +482,43 @@ export function MyProgress() {
   function handleChangeGoal() {
     // Open the goal picker again by setting goal to null temporarily
     setWeeklyGoalData(prev => ({ ...prev, goal: null }))
+  }
+
+  const getExportText = useCallback(() => {
+    return generateExportText(profile, visited, quizScoreData, loadAllNotes(), achievements)
+  }, [profile, visited, quizScoreData, achievements])
+
+  async function handleCopyExport() {
+    const text = getExportText()
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = text
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+    setExportStatus('copied')
+    setTimeout(() => setExportStatus('idle'), 2500)
+  }
+
+  function handleDownloadExport() {
+    const text = getExportText()
+    const now = new Date()
+    const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `ronny-learns-ai-progress-${dateStr}.txt`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+    setExportStatus('downloaded')
+    setTimeout(() => setExportStatus('idle'), 2500)
   }
 
   function handleEditName() {
@@ -971,6 +1078,37 @@ export function MyProgress() {
                 <span className="text-amber-400 ml-auto flex-shrink-0">&rarr;</span>
               </Link>
             )}
+          </div>
+        </div>
+
+        {/* Export progress */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-700">Export my progress</h2>
+          <p className="text-gray-500 text-sm leading-relaxed">
+            Download or copy a plain-text summary of everything you have learned &mdash; including
+            your completed lessons, quiz scores, personal notes, and achievements.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={handleCopyExport}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800 font-semibold text-sm transition-colors"
+            >
+              {exportStatus === 'copied' ? (
+                <><span>&#x2713;</span> Copied!</>
+              ) : (
+                <><span>&#x1F4CB;</span> Copy to clipboard</>
+              )}
+            </button>
+            <button
+              onClick={handleDownloadExport}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 font-semibold text-sm transition-colors"
+            >
+              {exportStatus === 'downloaded' ? (
+                <><span>&#x2713;</span> Downloaded!</>
+              ) : (
+                <><span>&#x1F4E5;</span> Download as .txt</>
+              )}
+            </button>
           </div>
         </div>
 

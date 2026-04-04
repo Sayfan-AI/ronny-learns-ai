@@ -53,6 +53,14 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'ai-and-sport',         icon: '&#x26BD;',  title: 'AI and sport',                             path: '/learn/ai-and-sport',                difficulty: 'Intermediate' },
   { id: 'ai-and-transport',     icon: '&#x1F697;', title: 'AI and transport',                         path: '/learn/ai-and-transport',            difficulty: 'Beginner' },
   { id: 'ai-and-art',           icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                     path: '/learn/ai-and-art',                  difficulty: 'Intermediate' },
+  { id: 'ai-and-cybersecurity', icon: '&#x1F512;', title: 'AI and cybersecurity',               path: '/learn/ai-and-cybersecurity',         difficulty: 'Beginner' },
+  { id: 'ai-and-space',         icon: '&#x1F680;', title: 'AI and space',                        path: '/learn/ai-and-space',                 difficulty: 'Intermediate' },
+  { id: 'ai-and-climate-change',icon: '&#x1F30D;', title: 'AI and climate change',               path: '/learn/ai-and-climate-change',        difficulty: 'Intermediate' },
+  { id: 'ai-and-music',         icon: '&#x1F3B5;', title: 'AI and music',                        path: '/learn/ai-and-music',                 difficulty: 'Beginner' },
+  { id: 'ai-and-robotics',      icon: '&#x1F916;', title: 'AI and robotics',                     path: '/learn/ai-and-robotics',              difficulty: 'Beginner' },
+  { id: 'ai-and-gaming',        icon: '&#x1F3AE;', title: 'AI and gaming',                       path: '/learn/ai-and-gaming',                difficulty: 'Beginner' },
+  { id: 'ai-and-journalism',    icon: '&#x1F4F0;', title: 'AI and journalism',                   path: '/learn/ai-and-journalism',            difficulty: 'Intermediate' },
+  { id: 'ai-and-fashion',       icon: '&#x1F457;', title: 'AI and fashion',                      path: '/learn/ai-and-fashion',               difficulty: 'Beginner' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -101,6 +109,15 @@ const RELATED: Record<string, string[]> = {
   'ai-and-sport':          ['ai-and-creativity', 'ai-in-healthcare', 'ai-and-food'],
   'ai-and-transport':      ['ai-everyday-life', 'ai-and-environment', 'future-of-ai'],
   'ai-and-art':            ['ai-and-creativity', 'ai-and-jobs', 'ai-and-copyright'],
+  'ai-and-cybersecurity':  ['ai-and-privacy', 'trusting-ai', 'ai-and-misinformation'],
+  'ai-and-space':          ['ai-and-scientific-research', 'ai-and-environment', 'future-of-ai'],
+  'ai-and-climate-change': ['ai-and-environment', 'ai-and-scientific-research', 'future-of-ai'],
+  'ai-and-music':          ['ai-and-creativity', 'ai-and-art', 'ai-in-your-apps'],
+  'ai-and-robotics':       ['ai-and-jobs', 'ai-and-transport', 'ai-in-healthcare'],
+  'ai-and-gaming':         ['ai-and-creativity', 'ai-and-jobs', 'ai-and-misinformation'],
+  'ai-and-journalism':     ['ai-and-misinformation', 'trusting-ai', 'ai-and-social-media'],
+  'ai-and-fashion':        ['ai-and-creativity', 'ai-and-jobs', 'ai-and-environment'],
+  'ai-and-copyright':      ['ai-and-laws-and-rights', 'ai-bias', 'ai-and-privacy'],
 }
 
 const DIFFICULTY_COLOURS: Record<string, string> = {

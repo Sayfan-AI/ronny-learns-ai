@@ -63,9 +63,9 @@ const COLLECTIONS: Collection[] = [
     lessons: [
       { id: 'ai-bias',             title: 'What is AI bias?',              to: '/learn/ai-bias',             icon: '&#x2696;&#xFE0F;' },
       { id: 'ai-and-misinformation', title: 'AI and misinformation',       to: '/learn/ai-and-misinformation', icon: '&#x1F50E;' },
+      { id: 'ai-and-journalism',   title: 'AI and journalism',             to: '/learn/ai-and-journalism',   icon: '&#x1F4F0;' },
       { id: 'ai-and-democracy',    title: 'AI and democracy',              to: '/learn/ai-and-democracy',    icon: '&#x1F3DB;&#xFE0F;' },
       { id: 'ai-laws-and-rights',  title: 'AI, laws, and your rights',     to: '/learn/ai-laws-and-rights',  icon: '&#x2696;&#xFE0F;' },
-      { id: 'ai-and-mental-health', title: 'AI and mental health',         to: '/learn/ai-and-mental-health', icon: '&#x1F9E0;' },
     ],
   },
   {

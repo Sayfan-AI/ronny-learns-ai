@@ -7,6 +7,7 @@ import { getRecommendations, type Recommendation } from '../hooks/useRecommendat
 import { useWeeklyHighlight } from '../hooks/useWeeklyHighlight'
 import { useDailyReminder } from '../hooks/useDailyReminder'
 import { loadWeeklyGoal } from '../hooks/useWeeklyGoal'
+import { DailyChallenge } from '../components/DailyChallenge'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -428,6 +429,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'purple',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-journalism',
+        title: 'AI and journalism — fake news, newsroom tools, and the battle for truth',
+        description: 'How newsrooms use AI for transcription and story leads, why deepfakes threaten trust, and how to spot AI-generated news.',
+        readingTime: '6 min',
+        icon: '📰',
+        to: '/learn/ai-and-journalism',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -541,6 +552,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🤖',
         to: '/learn/ai-and-robotics',
         color: 'slate',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-fashion',
+        title: 'AI and fashion — trend forecasting, sustainable design, and virtual try-ons',
+        description: 'How AI predicts next season\'s trends, lets you try clothes on digitally, and helps cut billions of unsold garments from landfill.',
+        readingTime: '5 min',
+        icon: '👗',
+        to: '/learn/ai-and-fashion',
+        color: 'pink',
         difficulty: 'Beginner',
       },
     ],
@@ -1056,6 +1077,9 @@ export function HomePage() {
             <p className="text-emerald-600 text-sm">Head to My Progress to see your achievements and certificate.</p>
           </div>
         )}
+
+        {/* Daily challenge */}
+        <DailyChallenge />
 
         {/* Recently completed */}
         {recentlyCompletedModules.length > 0 && (
