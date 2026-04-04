@@ -1,5 +1,6 @@
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 export function WhatIsCICD() {
   useMarkVisited('what-is-ci-cd')
@@ -160,6 +161,8 @@ export function WhatIsCICD() {
         </div>
 
         {/* Next lesson */}
+        <RelatedLessons currentId="what-is-ci-cd" />
+
         <NextLesson currentId="what-is-ci-cd" />
 
       </div>

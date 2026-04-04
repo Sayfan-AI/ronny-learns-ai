@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -253,6 +254,8 @@ export function LanguageModels() {
         <Quiz questions={quizQuestions} title="Quiz: How do language models work?" lessonId="language-models" lessonTitle="How do language models work?" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="language-models" />
+
         <NextLesson currentId="language-models" />
       </div>
     </div>

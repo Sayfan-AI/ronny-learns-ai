@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -222,6 +223,8 @@ export function NeuralNetwork() {
         <Quiz questions={quizQuestions} title="Quiz: What is a neural network?" lessonId="neural-network" lessonTitle="What is a neural network?" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="neural-network" />
+
         <NextLesson currentId="neural-network" />
       </div>
     </div>

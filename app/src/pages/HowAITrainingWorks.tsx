@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -328,6 +329,8 @@ export function HowAITrainingWorks() {
         <Quiz questions={quizQuestions} title="Quiz: How does AI training work?" lessonId="how-ai-training-works" lessonTitle="How does AI training work?" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="how-ai-training-works" />
+
         <NextLesson currentId="how-ai-training-works" />
       </div>
     </div>

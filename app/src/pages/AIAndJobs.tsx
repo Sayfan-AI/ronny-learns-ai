@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -225,6 +226,8 @@ export function AIAndJobs() {
           lessonTitle="AI and jobs — what is really changing?"
           questions={quizQuestions}
         />
+
+        <RelatedLessons currentId="ai-and-jobs" />
 
         <NextLesson currentId="ai-and-jobs" />
 

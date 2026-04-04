@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -250,6 +251,8 @@ export function AIInHealthcare() {
           lessonTitle="AI in healthcare"
           questions={quizQuestions}
         />
+
+        <RelatedLessons currentId="ai-in-healthcare" />
 
         <NextLesson currentId="ai-in-healthcare" />
 

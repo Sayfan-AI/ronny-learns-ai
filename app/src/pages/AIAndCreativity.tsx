@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -239,6 +240,8 @@ export function AIAndCreativity() {
           lessonTitle="AI and creativity"
           questions={quizQuestions}
         />
+
+        <RelatedLessons currentId="ai-and-creativity" />
 
         <NextLesson currentId="ai-and-creativity" />
 

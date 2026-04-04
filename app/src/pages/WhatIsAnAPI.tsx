@@ -4,6 +4,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -175,6 +176,8 @@ export function WhatIsAnAPI() {
         <Quiz questions={quizQuestions} title="Quiz: What is an API?" lessonId="what-is-api" lessonTitle="What is an API?" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="what-is-api" />
+
         <NextLesson currentId="what-is-api" />
 
       </div>

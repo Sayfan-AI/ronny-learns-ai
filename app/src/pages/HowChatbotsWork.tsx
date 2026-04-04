@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -230,6 +231,8 @@ export function HowChatbotsWork() {
           lessonTitle="How do chatbots work?"
           questions={quizQuestions}
         />
+
+        <RelatedLessons currentId="how-chatbots-work" />
 
         <NextLesson currentId="how-chatbots-work" />
 

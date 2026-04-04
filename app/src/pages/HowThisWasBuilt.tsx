@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { NextLesson } from '../components/NextLesson'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 export function HowThisWasBuilt() {
   return (
@@ -199,6 +200,8 @@ export function HowThisWasBuilt() {
 
 
         {/* Next lesson */}
+        <RelatedLessons currentId="how-this-was-built" />
+
         <NextLesson currentId="how-this-was-built" />
 
       </div>

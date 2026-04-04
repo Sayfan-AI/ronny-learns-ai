@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -198,6 +199,8 @@ export function GenesisSystem() {
         <Quiz questions={quizQuestions} title="Quiz: What is the Genesis system?" lessonId="genesis-system" lessonTitle="What is the Genesis system?" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="genesis-system" />
+
         <NextLesson currentId="genesis-system" />
       </div>
     </div>

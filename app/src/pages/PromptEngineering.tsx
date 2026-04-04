@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -193,6 +194,8 @@ export function PromptEngineering() {
           lessonTitle="What is prompt engineering?"
           questions={quizQuestions}
         />
+
+        <RelatedLessons currentId="prompt-engineering" />
 
         <NextLesson currentId="prompt-engineering" />
 

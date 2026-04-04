@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 interface Step {
   title: string
@@ -225,6 +226,8 @@ export function GitHubSignupTutorial() {
         </div>
 
         {/* Next lesson */}
+        <RelatedLessons currentId="github-signup" />
+
         <NextLesson currentId="github-signup" />
 
       </div>

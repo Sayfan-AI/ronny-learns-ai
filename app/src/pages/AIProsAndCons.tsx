@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -186,6 +187,8 @@ export function AIProsAndCons() {
         <Quiz questions={quizQuestions} title="Quiz: AI pros and cons" lessonId="ai-pros-and-cons" lessonTitle="AI pros and cons" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="ai-pros-and-cons" />
+
         <NextLesson currentId="ai-pros-and-cons" />
 
       </div>

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { NextLesson } from '../components/NextLesson'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const VISITED_KEY = 'ronny-visited-modules'
 
@@ -238,6 +239,8 @@ export function PullRequest() {
 
 
         {/* Next lesson */}
+        <RelatedLessons currentId="pull-request" />
+
         <NextLesson currentId="pull-request" />
 
       </div>

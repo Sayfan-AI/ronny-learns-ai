@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
 import { SearchBar } from '../components/SearchBar'
+import { useStreak } from '../hooks/useStreak'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -263,6 +264,36 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-environment',
+        title: 'AI and the environment',
+        description: 'The energy and water AI uses, its carbon footprint, and what the industry is doing to go greener.',
+        readingTime: '6 min',
+        icon: '🌱',
+        to: '/learn/ai-and-environment',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-privacy',
+        title: 'AI and privacy — who sees your data?',
+        description: 'How AI apps collect and use personal data, your rights, and practical tips to stay safe.',
+        readingTime: '6 min',
+        icon: '🔒',
+        to: '/learn/ai-and-privacy',
+        color: 'violet',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-education',
+        title: 'AI and education — how AI is changing how we learn',
+        description: 'Personalised tutoring, teacher tools, academic integrity, and what AI cannot replace.',
+        readingTime: '6 min',
+        icon: '🎓',
+        to: '/learn/ai-and-education',
+        color: 'sky',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -441,6 +472,7 @@ export function HomePage() {
   const [visited, setVisited] = useState<Set<string>>(loadVisited)
   const [bookmarks, setBookmarks] = useState<Set<string>>(loadBookmarks)
   const { profile } = useProfile()
+  const { streak, bestStreak } = useStreak()
 
   const quizCompleted = loadQuizCompleted()
   const quizCompletedCount = MODULES.filter(m => quizCompleted.has(m.id)).length
@@ -541,6 +573,27 @@ export function HomePage() {
             </Link>
           )}
         </div>
+
+        {/* Learning streak */}
+        {streak > 0 && (
+          <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4">
+            <span className="text-3xl flex-shrink-0">&#x1F525;</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-orange-800 text-base leading-tight">
+                {streak} day{streak !== 1 ? 's' : ''} in a row!
+              </p>
+              <p className="text-orange-600 text-sm mt-0.5">
+                Keep it up &mdash; you are on a learning streak.
+                {bestStreak > streak && (
+                  <span className="ml-1 text-orange-500">Best: {bestStreak} days.</span>
+                )}
+                {bestStreak === streak && streak > 1 && (
+                  <span className="ml-1 text-orange-500">That is your best yet!</span>
+                )}
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Lesson of the day */}
         {lessonOfTheDay ? (

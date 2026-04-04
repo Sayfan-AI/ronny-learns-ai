@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -169,6 +170,8 @@ export function GitHubBasics() {
         <Quiz questions={quizQuestions} title="Quiz: What is GitHub for?" lessonId="github-basics" lessonTitle="What is GitHub for?" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="github-basics" />
+
         <NextLesson currentId="github-basics" />
       </div>
     </div>

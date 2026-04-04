@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -199,6 +200,8 @@ export function AIEverydayLife() {
         <Quiz questions={quizQuestions} title="Quiz: AI in everyday life" lessonId="ai-everyday-life" lessonTitle="AI in everyday life" />
 
         {/* Next lesson */}
+        <RelatedLessons currentId="ai-everyday-life" />
+
         <NextLesson currentId="ai-everyday-life" />
 
       </div>

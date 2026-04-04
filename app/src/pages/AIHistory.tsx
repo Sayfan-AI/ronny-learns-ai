@@ -1,5 +1,6 @@
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 interface TimelineEvent {
   year: string
@@ -141,6 +142,8 @@ export function AIHistory() {
         </div>
 
         {/* Next lesson */}
+        <RelatedLessons currentId="ai-history" />
+
         <NextLesson currentId="ai-history" />
       </div>
     </div>

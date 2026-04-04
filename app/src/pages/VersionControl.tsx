@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { NextLesson } from '../components/NextLesson'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const VISITED_KEY = 'ronny-visited-modules'
 
@@ -222,6 +223,8 @@ export function VersionControl() {
 
 
         {/* Next lesson */}
+        <RelatedLessons currentId="version-control" />
+
         <NextLesson currentId="version-control" />
 
       </div>

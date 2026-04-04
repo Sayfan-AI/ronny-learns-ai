@@ -3,6 +3,7 @@ import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
 import { NextLesson } from '../components/NextLesson'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { RelatedLessons } from '../components/RelatedLessons'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -205,6 +206,8 @@ export function AISafety() {
           lessonTitle="AI safety and alignment"
           questions={quizQuestions}
         />
+
+        <RelatedLessons currentId="ai-safety" />
 
         <NextLesson currentId="ai-safety" />
 
