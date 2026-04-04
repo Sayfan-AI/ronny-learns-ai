@@ -29,7 +29,7 @@ const VISITED_KEY = 'ronny-visited-modules'
 const PERFECT_QUIZZES_KEY = 'ronny-perfect-quizzes'
 const QUESTIONS_ASKED_KEY = 'ronny-questions-asked'
 
-const TOTAL_MODULES = 12  // keep in sync with HomePage MODULES array
+const TOTAL_MODULES = 19  // keep in sync with LESSON_ORDER in NextLesson.tsx
 
 function loadVisitedCount(): number {
   try {

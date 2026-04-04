@@ -1,6 +1,7 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { NextLesson } from '../components/NextLesson'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -260,15 +261,8 @@ export function WhatIsML() {
         {/* Quiz */}
         <Quiz questions={quizQuestions} title="Quiz: What is machine learning?" lessonId="what-is-ml" lessonTitle="What is machine learning?" />
 
-        {/* Back link */}
-        <div className="text-center">
-          <a
-            href="#/"
-            className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline"
-          >
-            &larr; Back to home
-          </a>
-        </div>
+        {/* Next lesson */}
+        <NextLesson currentId="what-is-ml" />
       </div>
     </div>
   )

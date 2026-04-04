@@ -1,6 +1,7 @@
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { NextLesson } from '../components/NextLesson'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -191,15 +192,8 @@ export function GenesisSystem() {
         {/* Quiz */}
         <Quiz questions={quizQuestions} title="Quiz: What is the Genesis system?" lessonId="genesis-system" lessonTitle="What is the Genesis system?" />
 
-        {/* Back link */}
-        <div className="text-center">
-          <a
-            href="#/"
-            className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline"
-          >
-            &larr; Back to home
-          </a>
-        </div>
+        {/* Next lesson */}
+        <NextLesson currentId="genesis-system" />
       </div>
     </div>
   )

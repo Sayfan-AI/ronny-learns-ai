@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
+import { NextLesson } from '../components/NextLesson'
 
 const VISITED_KEY = 'ronny-visited-modules'
 
@@ -218,6 +219,10 @@ export function VersionControl() {
             What is a pull request? &rarr;
           </Link>
         </div>
+
+
+        {/* Next lesson */}
+        <NextLesson currentId="version-control" />
 
       </div>
     </div>

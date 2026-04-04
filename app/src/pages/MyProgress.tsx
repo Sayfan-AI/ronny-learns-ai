@@ -32,6 +32,15 @@ const ALL_MODULES = [
   { id: 'version-control',  icon: '💾', title: 'How does version control work?',       to: '/learn/what-is-version-control' },
   { id: 'pull-request',     icon: '📋', title: 'What is a pull request?',              to: '/learn/what-is-a-pull-request' },
   { id: 'meet-the-agents',  icon: '👥', title: 'Meet the AI agents',                  to: '/agents' },
+  { id: 'ai-everyday-life', icon: '🌍', title: 'AI in everyday life',                 to: '/learn/ai-everyday-life' },
+  { id: 'ai-pros-and-cons', icon: '⚖️', title: 'AI: the good and the bad',            to: '/learn/ai-pros-and-cons' },
+  { id: 'what-is-ml',       icon: '📊', title: 'What is machine learning?',           to: '/learn/what-is-machine-learning' },
+  { id: 'how-ai-training-works', icon: '🏋️', title: 'How does AI training work?',   to: '/learn/how-ai-training-works' },
+  { id: 'neural-network',   icon: '🧠', title: 'What is a neural network?',           to: '/learn/neural-network' },
+  { id: 'language-models',  icon: '💬', title: 'How do language models work?',        to: '/learn/language-models' },
+  { id: 'ai-history',       icon: '📜', title: 'AI history timeline',                 to: '/ai-history' },
+  { id: 'prompt-engineering', icon: '✏️', title: 'What is prompt engineering?',      to: '/learn/prompt-engineering' },
+  { id: 'ai-safety',        icon: '🛡️', title: 'AI safety and alignment',            to: '/learn/ai-safety' },
 ]
 
 function loadVisited(): Set<string> {

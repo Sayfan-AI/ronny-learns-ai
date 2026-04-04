@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { Quiz } from '../components/Quiz'
 import type { QuizQuestion } from '../components/Quiz'
+import { NextLesson } from '../components/NextLesson'
 
 const VISITED_KEY = 'ronny-visited-modules'
 
@@ -234,6 +235,10 @@ export function PullRequest() {
             My progress &rarr;
           </Link>
         </div>
+
+
+        {/* Next lesson */}
+        <NextLesson currentId="pull-request" />
 
       </div>
     </div>
