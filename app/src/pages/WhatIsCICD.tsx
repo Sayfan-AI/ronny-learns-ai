@@ -3,6 +3,7 @@ import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
+import { LessonRating } from '../components/LessonRating'
 
 export function WhatIsCICD() {
   useMarkVisited('what-is-ci-cd')
@@ -165,6 +166,9 @@ export function WhatIsCICD() {
 
         {/* Next lesson */}
         <LessonNote lessonId="what-is-ci-cd" />
+
+        {/* Rating */}
+        <LessonRating lessonId="what-is-ci-cd" />
 
         <RelatedLessons currentId="what-is-ci-cd" />
 

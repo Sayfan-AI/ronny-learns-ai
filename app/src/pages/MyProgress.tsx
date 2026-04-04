@@ -54,6 +54,16 @@ const SECTION_GROUPS: SectionGroup[] = [
     ],
   },
   {
+    heading: 'AI in the real world',
+    modules: [
+      { id: 'ai-and-creativity',          icon: '🎨', title: 'AI and creativity',                       to: '/learn/ai-and-creativity' },
+      { id: 'ai-in-healthcare',           icon: '🩺', title: 'AI in healthcare',                        to: '/learn/ai-in-healthcare' },
+      { id: 'ai-for-accessibility',       icon: '♿', title: 'AI for accessibility',                    to: '/learn/ai-for-accessibility' },
+      { id: 'ai-and-scientific-research', icon: '🔬', title: 'AI and scientific research',             to: '/learn/ai-and-scientific-research' },
+      { id: 'ai-productivity-tools',      icon: '⚡', title: 'AI and your productivity',               to: '/learn/ai-productivity-tools' },
+    ],
+  },
+  {
     heading: 'AI and society',
     modules: [
       { id: 'ai-pros-and-cons',      icon: '⚖️', title: 'AI: the good and the bad',               to: '/learn/ai-pros-and-cons' },
@@ -62,11 +72,10 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'prompt-engineering',    icon: '✏️', title: 'What is prompt engineering?',            to: '/learn/prompt-engineering' },
       { id: 'trusting-ai',           icon: '🔍', title: 'Can I trust what AI says?',              to: '/learn/trusting-ai' },
       { id: 'ai-and-jobs',           icon: '💼', title: 'AI and jobs',                             to: '/learn/ai-and-jobs' },
-      { id: 'ai-and-creativity',     icon: '🎨', title: 'AI and creativity',                       to: '/learn/ai-and-creativity' },
-      { id: 'ai-in-healthcare',      icon: '🩺', title: 'AI in healthcare',                        to: '/learn/ai-in-healthcare' },
       { id: 'ai-and-environment',    icon: '🌱', title: 'AI and the environment',                  to: '/learn/ai-and-environment' },
       { id: 'ai-and-privacy',        icon: '🔒', title: 'AI and privacy',                          to: '/learn/ai-and-privacy' },
       { id: 'ai-and-education',      icon: '🎓', title: 'AI and education',                        to: '/learn/ai-and-education' },
+      { id: 'ai-and-social-media',   icon: '📲', title: 'AI and social media',                    to: '/learn/ai-and-social-media' },
       { id: 'ai-and-misinformation', icon: '🔎', title: 'AI and misinformation',                  to: '/learn/ai-and-misinformation' },
       { id: 'ai-and-mental-health',  icon: '🧠', title: 'AI and your mental health',              to: '/learn/ai-and-mental-health' },
       { id: 'future-of-ai',          icon: '🔭', title: 'What does the future of AI look like?', to: '/learn/future-of-ai' },
@@ -105,6 +114,95 @@ function streakMessage(streak: number): string {
   return `${streak} days in a row — incredible dedication!`
 }
 
+// Reading time per lesson (minutes) — matches values shown on lesson pages
+const READING_TIMES: Record<string, number> = {
+  'github-signup': 5, 'github-basics': 4, 'what-is-api': 4, 'genesis-system': 4,
+  'what-is-ai': 5, 'what-is-ml': 6, 'how-ai-training-works': 7, 'neural-network': 6,
+  'language-models': 7, 'how-chatbots-work': 6, 'ai-history': 5, 'ai-everyday-life': 5,
+  'ai-in-your-apps': 5,
+  'ai-and-creativity': 6, 'ai-in-healthcare': 6, 'ai-for-accessibility': 5,
+  'ai-and-scientific-research': 6, 'ai-productivity-tools': 5,
+  'ai-pros-and-cons': 6, 'ai-bias': 6, 'ai-safety': 6, 'prompt-engineering': 6,
+  'trusting-ai': 5, 'ai-and-jobs': 6, 'ai-and-environment': 6, 'ai-and-privacy': 6,
+  'ai-and-education': 6, 'ai-and-social-media': 6, 'ai-and-misinformation': 6,
+  'ai-and-mental-health': 6, 'future-of-ai': 7, 'ai-laws-and-rights': 7,
+  'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
+  'meet-the-agents': 4,
+}
+
+// Topic group membership for "favourite topic" stat
+const TOPIC_GROUPS: Record<string, string> = {
+  'github-signup': 'GitHub and coding', 'github-basics': 'GitHub and coding', 'what-is-api': 'GitHub and coding',
+  'genesis-system': 'GitHub and coding', 'how-this-was-built': 'GitHub and coding',
+  'what-is-ci-cd': 'GitHub and coding', 'version-control': 'GitHub and coding',
+  'pull-request': 'GitHub and coding', 'meet-the-agents': 'GitHub and coding',
+  'what-is-ai': 'How AI works', 'what-is-ml': 'How AI works', 'how-ai-training-works': 'How AI works',
+  'neural-network': 'How AI works', 'language-models': 'How AI works', 'how-chatbots-work': 'How AI works',
+  'ai-history': 'How AI works', 'ai-everyday-life': 'How AI works', 'ai-in-your-apps': 'How AI works',
+  'ai-and-creativity': 'AI in the real world', 'ai-in-healthcare': 'AI in the real world',
+  'ai-for-accessibility': 'AI in the real world', 'ai-and-scientific-research': 'AI in the real world',
+  'ai-productivity-tools': 'AI in the real world',
+  'ai-and-jobs': 'AI and society', 'ai-and-environment': 'AI and society', 'ai-and-privacy': 'AI and society',
+  'ai-and-education': 'AI and society', 'ai-and-social-media': 'AI and society',
+  'ai-and-misinformation': 'AI and society', 'ai-and-mental-health': 'AI and society',
+  'future-of-ai': 'AI and society', 'ai-laws-and-rights': 'AI and society',
+  'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
+  'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
+}
+
+interface StatsResult {
+  totalReadingMinutes: number
+  quizAccuracyPct: number | null
+  favouriteTopic: string | null
+}
+
+function computeStats(visited: Set<string>): StatsResult {
+  // Total reading time
+  let totalReadingMinutes = 0
+  for (const id of visited) {
+    totalReadingMinutes += READING_TIMES[id] ?? 0
+  }
+
+  // Quiz accuracy from ronny-quiz-scores
+  let quizAccuracyPct: number | null = null
+  try {
+    const raw = localStorage.getItem('ronny-quiz-scores')
+    if (raw) {
+      const scores: Record<string, { score: number; total: number }> = JSON.parse(raw)
+      let totalCorrect = 0
+      let totalQuestions = 0
+      for (const v of Object.values(scores)) {
+        totalCorrect += v.score
+        totalQuestions += v.total
+      }
+      if (totalQuestions > 0) {
+        quizAccuracyPct = Math.round((totalCorrect / totalQuestions) * 100)
+      }
+    }
+  } catch {
+    // ignore
+  }
+
+  // Favourite topic — group with most completed lessons
+  const topicCounts: Record<string, number> = {}
+  for (const id of visited) {
+    const group = TOPIC_GROUPS[id]
+    if (group) topicCounts[group] = (topicCounts[group] ?? 0) + 1
+  }
+  let favouriteTopic: string | null = null
+  let maxCount = 0
+  for (const [topic, count] of Object.entries(topicCounts)) {
+    if (count > maxCount || (count === maxCount && (!favouriteTopic || topic < favouriteTopic))) {
+      maxCount = count
+      favouriteTopic = topic
+    }
+  }
+  // Only show favourite if Ronny has completed at least 3 lessons in it
+  if (maxCount < 3) favouriteTopic = null
+
+  return { totalReadingMinutes, quizAccuracyPct, favouriteTopic }
+}
+
 export function MyProgress() {
   const [visited] = useState<Set<string>>(loadVisited)
   const { profile } = useProfile()
@@ -120,6 +218,8 @@ export function MyProgress() {
 
   const visitCounts = loadVisitCounts()
   const revisitedCount = ALL_MODULES.filter(m => (visitCounts[m.id] ?? 0) >= 2).length
+
+  const stats = computeStats(visited)
 
   const allNotes = loadAllNotes()
   const noteEntries = ALL_MODULES.filter(m => allNotes[m.id])
@@ -255,6 +355,57 @@ export function MyProgress() {
                 <span className="text-gray-500 text-sm font-medium">lesson{revisitedCount !== 1 ? 's' : ''} revisited</span>
               </div>
               <p className="text-gray-400 text-xs mt-0.5">You looked twice &mdash; that is how real learning works</p>
+            </div>
+          </div>
+        )}
+
+        {/* Stats at a glance */}
+        {completedCount >= 3 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+            <h2 className="text-xl font-semibold text-gray-700">My stats at a glance</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Reading time */}
+              <div className="bg-blue-50 rounded-xl p-4 text-center space-y-1">
+                <div className="text-3xl" aria-hidden="true">&#x1F4DA;</div>
+                <div className="text-2xl font-extrabold text-blue-700">
+                  {stats.totalReadingMinutes >= 60
+                    ? `${(stats.totalReadingMinutes / 60).toFixed(1)}h`
+                    : `${stats.totalReadingMinutes}m`}
+                </div>
+                <div className="text-xs text-blue-600 font-medium leading-tight">reading completed</div>
+              </div>
+
+              {/* Quiz accuracy */}
+              <div className="bg-emerald-50 rounded-xl p-4 text-center space-y-1">
+                <div className="text-3xl" aria-hidden="true">&#x1F9E0;</div>
+                {stats.quizAccuracyPct !== null ? (
+                  <>
+                    <div className="text-2xl font-extrabold text-emerald-700">{stats.quizAccuracyPct}%</div>
+                    <div className="text-xs text-emerald-600 font-medium leading-tight">quiz accuracy</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-lg font-bold text-emerald-600">No quizzes yet</div>
+                    <div className="text-xs text-emerald-500 leading-tight">complete a lesson quiz to see your score</div>
+                  </>
+                )}
+              </div>
+
+              {/* Favourite topic */}
+              <div className="bg-purple-50 rounded-xl p-4 text-center space-y-1">
+                <div className="text-3xl" aria-hidden="true">&#x2B50;</div>
+                {stats.favouriteTopic ? (
+                  <>
+                    <div className="text-sm font-extrabold text-purple-700 leading-tight">{stats.favouriteTopic}</div>
+                    <div className="text-xs text-purple-500 leading-tight">your favourite topic so far</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-sm font-bold text-purple-600 leading-tight">Keep going!</div>
+                    <div className="text-xs text-purple-500 leading-tight">your favourite topic will appear here</div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}

@@ -7,6 +7,7 @@ import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
+import { LessonRating } from '../components/LessonRating'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -180,6 +181,9 @@ export function WhatIsAnAPI() {
 
         {/* Next lesson */}
         <LessonNote lessonId="what-is-api" />
+
+        {/* Rating */}
+        <LessonRating lessonId="what-is-api" />
 
         <RelatedLessons currentId="what-is-api" />
 

@@ -6,6 +6,7 @@ import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
+import { LessonRating } from '../components/LessonRating'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -174,6 +175,9 @@ export function GitHubBasics() {
 
         {/* Next lesson */}
         <LessonNote lessonId="github-basics" />
+
+        {/* Rating */}
+        <LessonRating lessonId="github-basics" />
 
         <RelatedLessons currentId="github-basics" />
 

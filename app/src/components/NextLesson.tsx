@@ -35,6 +35,8 @@ export const LESSON_ORDER: Array<{ id: string; icon: string; title: string; path
   { id: 'ai-laws-and-rights',  icon: '&#x2696;&#xFE0F;', title: 'AI, laws, and your rights', path: '/learn/ai-laws-and-rights' },
   { id: 'ai-and-social-media', icon: '&#x1F4F2;', title: 'AI and social media',             path: '/learn/ai-and-social-media' },
   { id: 'ai-for-accessibility',icon: '&#x267F;',  title: 'AI for accessibility',            path: '/learn/ai-for-accessibility' },
+  { id: 'ai-and-scientific-research', icon: '&#x1F52C;', title: 'AI and scientific research', path: '/learn/ai-and-scientific-research' },
+  { id: 'ai-productivity-tools', icon: '&#x26A1;', title: 'AI and your productivity',        path: '/learn/ai-productivity-tools' },
   { id: 'how-this-was-built',  icon: '&#x1F528;', title: 'How this app was built',          path: '/learn/how-this-was-built' },
   { id: 'meet-the-agents',    icon: '&#x1F4BC;', title: 'Meet the agents',                 path: '/agents' },
   { id: 'what-is-ci-cd',      icon: '&#x1F680;', title: 'What is CI/CD?',                  path: '/learn/what-is-ci-cd' },

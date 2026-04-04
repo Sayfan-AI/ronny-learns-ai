@@ -5,6 +5,7 @@ import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
+import { LessonRating } from '../components/LessonRating'
 
 interface Step {
   title: string
@@ -230,6 +231,9 @@ export function GitHubSignupTutorial() {
 
         {/* Next lesson */}
         <LessonNote lessonId="github-signup" />
+
+        {/* Rating */}
+        <LessonRating lessonId="github-signup" />
 
         <RelatedLessons currentId="github-signup" />
 

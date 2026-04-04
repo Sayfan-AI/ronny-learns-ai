@@ -3,6 +3,7 @@ import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
+import { LessonRating } from '../components/LessonRating'
 
 interface TimelineEvent {
   year: string
@@ -146,6 +147,9 @@ export function AIHistory() {
 
         {/* Next lesson */}
         <LessonNote lessonId="ai-history" />
+
+        {/* Rating */}
+        <LessonRating lessonId="ai-history" />
 
         <RelatedLessons currentId="ai-history" />
 

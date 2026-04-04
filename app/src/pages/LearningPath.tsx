@@ -53,8 +53,10 @@ const STAGES: Stage[] = [
       { id: 'ai-everyday-life',    icon: '&#x1F30D;', title: 'AI in everyday life',                    path: '/learn/ai-everyday-life',          difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'ai-in-healthcare',    icon: '&#x1FA7A;', title: 'AI in healthcare',                       path: '/learn/ai-in-healthcare',          difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-creativity',   icon: '&#x1F3A8;', title: 'AI and creativity — art, music, writing', path: '/learn/ai-and-creativity',        difficulty: 'Beginner',     readingTime: '6 min' },
-      { id: 'ai-in-your-apps',     icon: '&#x1F4F1;', title: 'AI in the apps you already use',         path: '/learn/ai-in-your-apps',           difficulty: 'Beginner',     readingTime: '5 min' },
-      { id: 'ai-for-accessibility',icon: '&#x267F;',  title: 'AI for accessibility',                   path: '/learn/ai-for-accessibility',      difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-in-your-apps',     icon: '&#x1F4F1;', title: 'AI in the apps you already use',         path: '/learn/ai-in-your-apps',                difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-for-accessibility',icon: '&#x267F;',  title: 'AI for accessibility',                   path: '/learn/ai-for-accessibility',           difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-scientific-research', icon: '&#x1F52C;', title: 'AI and scientific research',      path: '/learn/ai-and-scientific-research',      difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'ai-productivity-tools', icon: '&#x26A1;', title: 'AI and your productivity',              path: '/learn/ai-productivity-tools',           difficulty: 'Beginner',     readingTime: '5 min' },
     ],
   },
   {

@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { createRouter, createRoute, createRootRoute, Outlet, createHashHistory } from '@tanstack/react-router'
 import { NavBar } from './components/NavBar'
 import { WelcomeTour } from './components/WelcomeTour'
+import { MilestoneCelebration } from './components/MilestoneCelebration'
 
 // Lazy-loaded page components — each becomes its own JS chunk
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -56,6 +57,8 @@ const KnowledgeCheck = lazy(() => import('./pages/KnowledgeCheck').then(m => ({ 
 const AIAndSocialMedia = lazy(() => import('./pages/AIAndSocialMedia').then(m => ({ default: m.AIAndSocialMedia })))
 const AIForAccessibility = lazy(() => import('./pages/AIForAccessibility').then(m => ({ default: m.AIForAccessibility })))
 const LearningPath = lazy(() => import('./pages/LearningPath').then(m => ({ default: m.LearningPath })))
+const AIAndScientificResearch = lazy(() => import('./pages/AIAndScientificResearch').then(m => ({ default: m.AIAndScientificResearch })))
+const AIProductivityTools = lazy(() => import('./pages/AIProductivityTools').then(m => ({ default: m.AIProductivityTools })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -92,6 +95,7 @@ const rootRoute = createRootRoute({
       </a>
       <NavBar />
       <WelcomeTour />
+      <MilestoneCelebration />
       <main id="main-content">
         <Outlet />
       </main>
@@ -411,6 +415,18 @@ const learningPathRoute = createRoute({
   component: withSuspense(LearningPath),
 })
 
+const aiAndScientificResearchRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-scientific-research',
+  component: withSuspense(AIAndScientificResearch),
+})
+
+const aiProductivityToolsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-productivity-tools',
+  component: withSuspense(AIProductivityTools),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -464,6 +480,8 @@ const routeTree = rootRoute.addChildren([
   aiAndSocialMediaRoute,
   aiForAccessibilityRoute,
   learningPathRoute,
+  aiAndScientificResearchRoute,
+  aiProductivityToolsRoute,
 ])
 
 const hashHistory = createHashHistory()
