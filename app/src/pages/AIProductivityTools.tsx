@@ -7,6 +7,7 @@ import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
+import { ShareButton } from '../components/ShareButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -86,6 +87,7 @@ export function AIProductivityTools() {
               AI and your productivity
             </h1>
             <CompletedBadge lessonId="ai-productivity-tools" />
+          <ShareButton lessonTitle="ai-productivity-tools" />
           </div>
           <div className="flex items-center justify-center gap-3 text-sm text-gray-500 flex-wrap">
             <span className="bg-green-100 text-green-700 font-medium px-3 py-1 rounded-full">Beginner</span>

@@ -8,6 +8,7 @@ import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
+import { ShareButton } from '../components/ShareButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -67,6 +68,7 @@ export function AIProsAndCons() {
             <span>About 6 min read</span>
           </div>
           <CompletedBadge lessonId="ai-pros-and-cons" />
+          <ShareButton lessonTitle="ai-pros-and-cons" />
         </div>
 
         {/* Benefits */}

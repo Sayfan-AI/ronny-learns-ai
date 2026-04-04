@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { recordPerfectQuiz } from '../hooks/useBadges'
 import { recordWrongAnswer } from '../hooks/useQuizHistory'
 import { recordWeeklyCompletion } from '../hooks/useWeeklyGoal'
+import { recordTodayAndGetCalendar } from '../hooks/useLearningCalendar'
 
 export interface QuizQuestion {
   question: string
@@ -90,6 +91,8 @@ export function Quiz({ questions, title = 'Test your knowledge', lessonId, lesso
         localStorage.setItem('ronny-completion-order', JSON.stringify(filtered))
         // Record for weekly goal tracking
         recordWeeklyCompletion(lessonId)
+        // Record for streak calendar
+        recordTodayAndGetCalendar()
       } catch {
         // ignore storage errors
       }

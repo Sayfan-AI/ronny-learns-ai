@@ -7,6 +7,8 @@ import { loadVisitCounts } from '../hooks/useLessonVisit'
 import { loadAllNotes } from '../components/LessonNote'
 import { loadAllReviewLater } from '../hooks/useReviewLater'
 import { loadWeeklyGoal, saveWeeklyGoal, type WeeklyGoalData } from '../hooks/useWeeklyGoal'
+import { StreakCalendar } from '../components/StreakCalendar'
+import { useLearningCalendar } from '../hooks/useLearningCalendar'
 
 const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
 
@@ -67,6 +69,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-sport',               icon: '⚽', title: 'AI and sport',                             to: '/learn/ai-and-sport' },
       { id: 'ai-and-transport',           icon: '🚗', title: 'AI and transport',                         to: '/learn/ai-and-transport' },
       { id: 'ai-and-art',                 icon: '🎨', title: 'AI and art',                               to: '/learn/ai-and-art' },
+      { id: 'ai-and-cybersecurity',       icon: '🔒', title: 'AI and cybersecurity',                     to: '/learn/ai-and-cybersecurity' },
+      { id: 'ai-and-space',               icon: '🚀', title: 'AI and space',                             to: '/learn/ai-and-space' },
     ],
   },
   {
@@ -140,6 +144,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-copyright': 6, 'how-to-use-ai-safely': 5,
   'ai-and-money': 6, 'ai-and-democracy': 7, 'ai-and-language': 5,
   'ai-and-food': 5, 'ai-and-sport': 6, 'ai-and-transport': 5, 'ai-and-art': 6,
+  'ai-and-cybersecurity': 5, 'ai-and-space': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -164,6 +169,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-money': 'AI and society', 'ai-and-democracy': 'AI and society', 'ai-and-language': 'AI and society',
   'ai-and-food': 'AI in the real world', 'ai-and-sport': 'AI in the real world',
   'ai-and-transport': 'AI in the real world', 'ai-and-art': 'AI in the real world',
+  'ai-and-cybersecurity': 'AI in the real world', 'ai-and-space': 'AI in the real world',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
@@ -278,6 +284,7 @@ export function MyProgress() {
   const [badges] = useState<Badge[]>(() => computeBadges())
   const [shared, setShared] = useState(false)
   const [weeklyGoalData, setWeeklyGoalData] = useState<WeeklyGoalData>(() => loadWeeklyGoal())
+  const { calendar } = useLearningCalendar()
 
   const completedCount = ALL_MODULES.filter(m => visited.has(m.id)).length
   const total = ALL_MODULES.length
@@ -500,6 +507,9 @@ export function MyProgress() {
               Personal best: <strong>{streak.longest}</strong> day{streak.longest !== 1 ? 's' : ''}
             </p>
           )}
+          <div className="pt-2 border-t border-gray-100">
+            <StreakCalendar calendar={calendar} />
+          </div>
         </div>
 
         {/* Revisit stat */}

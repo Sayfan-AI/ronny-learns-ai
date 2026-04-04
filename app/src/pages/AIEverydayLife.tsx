@@ -8,6 +8,7 @@ import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
+import { ShareButton } from '../components/ShareButton'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -67,6 +68,7 @@ export function AIEverydayLife() {
             <span>About 5 min read</span>
           </div>
           <CompletedBadge lessonId="ai-everyday-life" />
+          <ShareButton lessonTitle="ai-everyday-life" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-md p-8 space-y-4">
