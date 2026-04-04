@@ -177,7 +177,7 @@ export function AIProsAndCons() {
           </p>
         </div>
 
-        <Quiz questions={quizQuestions} title="Quiz: AI pros and cons" />
+        <Quiz questions={quizQuestions} title="Quiz: AI pros and cons" lessonId="ai-pros-and-cons" lessonTitle="AI pros and cons" />
 
         <div className="text-center">
           <a

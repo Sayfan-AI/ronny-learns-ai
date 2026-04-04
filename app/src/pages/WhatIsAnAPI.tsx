@@ -166,7 +166,7 @@ export function WhatIsAnAPI() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={quizQuestions} title="Quiz: What is an API?" />
+        <Quiz questions={quizQuestions} title="Quiz: What is an API?" lessonId="what-is-api" lessonTitle="What is an API?" />
 
         {/* Navigation */}
         <div className="flex justify-between items-center pt-2">

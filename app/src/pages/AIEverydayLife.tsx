@@ -190,7 +190,7 @@ export function AIEverydayLife() {
           </p>
         </div>
 
-        <Quiz questions={quizQuestions} title="Quiz: AI in everyday life" />
+        <Quiz questions={quizQuestions} title="Quiz: AI in everyday life" lessonId="ai-everyday-life" lessonTitle="AI in everyday life" />
 
         <div className="text-center">
           <a

@@ -31,6 +31,7 @@ import { AIEverydayLife } from './pages/AIEverydayLife'
 import { AIProsAndCons } from './pages/AIProsAndCons'
 import { Glossary } from './pages/Glossary'
 import { LearningRecap } from './pages/LearningRecap'
+import { QuizReview } from './pages/QuizReview'
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -227,6 +228,12 @@ const learningRecapRoute = createRoute({
   component: LearningRecap,
 })
 
+const quizReviewRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz-review',
+  component: QuizReview,
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -259,6 +266,7 @@ const routeTree = rootRoute.addChildren([
   aiProsAndConsRoute,
   glossaryRoute,
   learningRecapRoute,
+  quizReviewRoute,
 ])
 
 const hashHistory = createHashHistory()

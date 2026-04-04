@@ -217,7 +217,7 @@ export function PullRequest() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={questions} title="Test your knowledge: pull requests" />
+        <Quiz questions={questions} title="Test your knowledge: pull requests" lessonId="pull-request" lessonTitle="What is a pull request?" />
 
         {/* Navigation */}
         <div className="flex justify-between items-center pt-2">

@@ -258,7 +258,7 @@ export function WhatIsML() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={quizQuestions} title="Quiz: What is machine learning?" />
+        <Quiz questions={quizQuestions} title="Quiz: What is machine learning?" lessonId="what-is-ml" lessonTitle="What is machine learning?" />
 
         {/* Back link */}
         <div className="text-center">

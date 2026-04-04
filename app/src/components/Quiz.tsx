@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { recordPerfectQuiz } from '../hooks/useBadges'
+import { recordWrongAnswer } from '../hooks/useQuizHistory'
 
 export interface QuizQuestion {
   question: string
@@ -11,11 +12,14 @@ export interface QuizQuestion {
 interface QuizProps {
   questions: QuizQuestion[]
   title?: string
+  /** Provide lessonId + lessonTitle to persist wrong answers for the review page */
+  lessonId?: string
+  lessonTitle?: string
 }
 
 type AnswerMap = Record<number, number>
 
-export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
+export function Quiz({ questions, title = 'Test your knowledge', lessonId, lessonTitle }: QuizProps) {
   const [answers, setAnswers] = useState<AnswerMap>({})
   const [key, setKey] = useState(0)
 
@@ -36,6 +40,20 @@ export function Quiz({ questions, title = 'Test your knowledge' }: QuizProps) {
   function handleSelect(questionIndex: number, optionIndex: number) {
     if (answers[questionIndex] !== undefined) return
     setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))
+
+    // Persist wrong answers for review
+    if (lessonId && lessonTitle && optionIndex !== questions[questionIndex].correctIndex) {
+      const q = questions[questionIndex]
+      recordWrongAnswer({
+        lessonId,
+        lessonTitle,
+        question: q.question,
+        options: q.options,
+        correctIndex: q.correctIndex,
+        chosenIndex: optionIndex,
+        explanation: q.explanation,
+      })
+    }
   }
 
   function reset() {

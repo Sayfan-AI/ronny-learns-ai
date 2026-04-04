@@ -213,7 +213,7 @@ export function NeuralNetwork() {
           </p>
         </div>
 
-        <Quiz questions={quizQuestions} title="Quiz: What is a neural network?" />
+        <Quiz questions={quizQuestions} title="Quiz: What is a neural network?" lessonId="neural-network" lessonTitle="What is a neural network?" />
 
         <div className="text-center">
           <a href="#/" className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline">

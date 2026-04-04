@@ -119,3 +119,35 @@ code {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Print styles: hide navigation and interactive elements */
+@media print {
+  nav,
+  button,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  #root {
+    border: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .shadow-md,
+  .shadow-sm,
+  .shadow-lg {
+    box-shadow: none !important;
+  }
+}

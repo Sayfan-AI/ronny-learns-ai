@@ -244,7 +244,7 @@ export function LanguageModels() {
           </p>
         </div>
 
-        <Quiz questions={quizQuestions} title="Quiz: How do language models work?" />
+        <Quiz questions={quizQuestions} title="Quiz: How do language models work?" lessonId="language-models" lessonTitle="How do language models work?" />
 
         <div className="text-center">
           <a href="#/" className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline">

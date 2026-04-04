@@ -189,7 +189,7 @@ export function GenesisSystem() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={quizQuestions} title="Quiz: What is the Genesis system?" />
+        <Quiz questions={quizQuestions} title="Quiz: What is the Genesis system?" lessonId="genesis-system" lessonTitle="What is the Genesis system?" />
 
         {/* Back link */}
         <div className="text-center">

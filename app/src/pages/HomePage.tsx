@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useProfile } from '../hooks/useProfile'
+import { SearchBar } from '../components/SearchBar'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -252,6 +253,9 @@ export function HomePage() {
           )}
         </div>
 
+        {/* Search */}
+        <SearchBar />
+
         {/* Today's AI Fact */}
         <div className="bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl p-4 flex items-start gap-3">
           <span className="text-2xl flex-shrink-0">&#x1F4A1;</span>
@@ -438,6 +442,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-indigo-800 text-sm">Learning recap</p>
                 <p className="text-indigo-600 text-xs">A visual overview of everything you have learned.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz-review"
+              className="bg-amber-50 border border-amber-200 rounded-xl p-4 hover:bg-amber-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4DD;</span>
+              <div>
+                <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
+                <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
               </div>
             </Link>
           </div>

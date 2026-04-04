@@ -179,7 +179,7 @@ export function WhatIsAI() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={quizQuestions} title="Quiz: What is AI?" />
+        <Quiz questions={quizQuestions} title="Quiz: What is AI?" lessonId="what-is-ai" lessonTitle="What is AI?" />
 
         {/* Back link */}
         <div className="text-center">

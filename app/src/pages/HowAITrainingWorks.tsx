@@ -319,7 +319,7 @@ export function HowAITrainingWorks() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={quizQuestions} title="Quiz: How does AI training work?" />
+        <Quiz questions={quizQuestions} title="Quiz: How does AI training work?" lessonId="how-ai-training-works" lessonTitle="How does AI training work?" />
 
         {/* Back link */}
         <div className="text-center">

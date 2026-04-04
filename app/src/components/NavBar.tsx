@@ -18,6 +18,7 @@ const NAV_LINKS = [
   { to: '/learn/what-is-ci-cd', label: 'How does it update?' },
   { to: '/glossary', label: 'Glossary' },
   { to: '/learning-recap', label: 'Learning recap' },
+  { to: '/quiz-review', label: 'Quiz review' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },

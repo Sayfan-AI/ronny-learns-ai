@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
+import { Link } from '@tanstack/react-router'
 import { useMarkVisited } from '../hooks/useMarkVisited'
+import { useProfile } from '../hooks/useProfile'
 
 const VISITED_KEY = 'ronny-visited-modules'
 
@@ -84,9 +86,32 @@ const COLOR_MAP: Record<string, { bg: string; border: string; label: string; che
   emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', label: 'text-emerald-700', check: 'text-emerald-500' },
 }
 
+function buildPlainTextSummary(visited: Set<string>, groups: Group[], name: string): string {
+  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  const allLessons = groups.flatMap(g => g.lessons)
+  const completedCount = allLessons.filter(l => visited.has(l.id)).length
+  const lines: string[] = [
+    `Learning recap for ${name}`,
+    `Printed on ${date}`,
+    `Overall progress: ${completedCount} of ${allLessons.length} lessons visited`,
+    '',
+  ]
+  for (const group of groups) {
+    lines.push(`--- ${group.label} ---`)
+    for (const lesson of group.lessons) {
+      const status = visited.has(lesson.id) ? '[done]' : '[ ]  '
+      lines.push(`  ${status} ${lesson.title}`)
+    }
+    lines.push('')
+  }
+  return lines.join('\n')
+}
+
 export function LearningRecap() {
   useMarkVisited('learning-recap')
   const [visited, setVisited] = useState<Set<string>>(new Set())
+  const [copied, setCopied] = useState(false)
+  const { profile } = useProfile()
 
   useEffect(() => {
     setVisited(loadVisited())
@@ -95,18 +120,67 @@ export function LearningRecap() {
   const allLessons = GROUPS.flatMap(g => g.lessons)
   const completedCount = allLessons.filter(l => visited.has(l.id)).length
   const total = allLessons.length
+  const displayName = profile?.name || 'Ronny'
+
+  function handlePrint() {
+    window.print()
+  }
+
+  async function handleCopyText() {
+    const text = buildPlainTextSummary(visited, GROUPS, displayName)
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2500)
+    } catch {
+      // Fallback for browsers that block clipboard
+      const el = document.createElement('textarea')
+      el.value = text
+      el.style.position = 'fixed'
+      el.style.opacity = '0'
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2500)
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center px-4 py-16 print:bg-white print:py-4">
       <div className="max-w-2xl w-full space-y-8">
         <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F393;</div>
+          <div className="text-6xl print:hidden">&#x1F393;</div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             Your learning recap
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-gray-600 leading-relaxed print:hidden">
             Everything you have covered, all in one place.
           </p>
+          <p className="hidden print:block text-gray-500 text-base">
+            {displayName} &mdash; printed {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </p>
+        </div>
+
+        {/* Print / copy buttons — hidden when printing */}
+        <div className="flex flex-wrap gap-3 justify-center print:hidden">
+          <button
+            onClick={handlePrint}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-colors shadow-sm"
+          >
+            <span>&#x1F5A8;&#xFE0F;</span> Print summary
+          </button>
+          <button
+            onClick={handleCopyText}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-semibold text-sm transition-colors"
+          >
+            {copied ? (
+              <><span>&#x2705;</span> Copied!</>
+            ) : (
+              <><span>&#x1F4CB;</span> Copy as text</>
+            )}
+          </button>
         </div>
 
         {/* Progress bar */}
@@ -167,7 +241,21 @@ export function LearningRecap() {
           )
         })}
 
-        <div className="text-center">
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-center gap-4 print:hidden">
+          <span className="text-3xl flex-shrink-0">&#x1F4DD;</span>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-amber-800 text-base">Review quiz questions you got wrong</h3>
+            <p className="text-amber-700 text-sm">Practice the questions you missed and check your understanding.</p>
+          </div>
+          <Link
+            to="/quiz-review"
+            className="flex-shrink-0 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-colors"
+          >
+            Review &rarr;
+          </Link>
+        </div>
+
+        <div className="text-center print:hidden">
           <a
             href="#/"
             className="inline-block text-blue-600 hover:text-blue-800 text-lg font-medium underline"

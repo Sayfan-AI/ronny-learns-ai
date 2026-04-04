@@ -201,7 +201,7 @@ export function VersionControl() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={questions} title="Test your knowledge: version control" />
+        <Quiz questions={questions} title="Test your knowledge: version control" lessonId="version-control" lessonTitle="Version control" />
 
         {/* Navigation */}
         <div className="flex justify-between items-center pt-2">

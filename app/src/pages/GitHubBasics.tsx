@@ -160,7 +160,7 @@ export function GitHubBasics() {
         </div>
 
         {/* Quiz */}
-        <Quiz questions={quizQuestions} title="Quiz: What is GitHub for?" />
+        <Quiz questions={quizQuestions} title="Quiz: What is GitHub for?" lessonId="github-basics" lessonTitle="What is GitHub for?" />
 
         {/* Back link */}
         <div className="text-center">
