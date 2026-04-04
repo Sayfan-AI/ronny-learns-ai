@@ -1,5 +1,5 @@
-import { Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { Link, useNavigate } from '@tanstack/react-router'
+import { useState, useCallback } from 'react'
 import { useProfile } from '../hooks/useProfile'
 import { SearchBar } from '../components/SearchBar'
 import { useStreak } from '../hooks/useStreak'
@@ -644,6 +644,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'rose',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-insurance',
+        title: 'AI and insurance — how AI sets your premium, telematics, and fairness concerns',
+        description: 'How insurers use AI to price policies, what black box devices track, health wearable discounts, and the fairness questions regulators are asking.',
+        readingTime: '5 min',
+        icon: '🛡️',
+        to: '/learn/ai-and-insurance',
+        color: 'teal',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-policing',
+        title: 'AI and policing — predictive policing, facial recognition, and civil liberties',
+        description: 'How police use AI for hot-spot mapping and facial recognition, the evidence of racial bias, wrongful arrests, and the civil liberties debate.',
+        readingTime: '6 min',
+        icon: '⚖️',
+        to: '/learn/ai-and-policing',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -820,9 +840,18 @@ const DIFFICULTY_STYLES: Record<Difficulty, string> = {
 }
 
 export function HomePage() {
+  const navigate = useNavigate()
   const [visited, setVisited] = useState<Set<string>>(loadVisited)
   const [bookmarks, setBookmarks] = useState<Set<string>>(loadBookmarks)
   const { profile, setProfile } = useProfile()
+
+  const handleSurpriseMe = useCallback(() => {
+    const allModules = MODULE_GROUPS.flatMap(g => g.modules)
+    const unvisited = allModules.filter(m => !visited.has(m.id))
+    const pool = unvisited.length > 0 ? unvisited : allModules
+    const pick = pool[Math.floor(Math.random() * pool.length)]
+    if (pick) navigate({ to: pick.to as '/' })
+  }, [visited, navigate])
   const [nameInput, setNameInput] = useState('')
   const { streak, bestStreak } = useStreak()
   const weeklyHighlight = useWeeklyHighlight()
@@ -936,6 +965,17 @@ export function HomePage() {
 
         {/* Search */}
         <SearchBar />
+
+        {/* Surprise me */}
+        <div className="flex justify-center">
+          <button
+            onClick={handleSurpriseMe}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-indigo-300 text-indigo-700 font-semibold text-sm hover:bg-indigo-50 transition-colors"
+          >
+            <span>&#x1F3B2;</span>
+            Surprise me! Pick a random lesson
+          </button>
+        </div>
 
         {/* Today's AI Fact */}
         <div className="bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl p-4 flex items-start gap-3">
