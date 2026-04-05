@@ -120,6 +120,8 @@ const AIAndCharities = lazy(() => import('./pages/AIAndCharities').then(m => ({ 
 const AIAndVolunteering = lazy(() => import('./pages/AIAndVolunteering').then(m => ({ default: m.AIAndVolunteering })))
 const AIAndAdultEducation = lazy(() => import('./pages/AIAndAdultEducation').then(m => ({ default: m.AIAndAdultEducation })))
 const AIAndArchitecture = lazy(() => import('./pages/AIAndArchitecture').then(m => ({ default: m.AIAndArchitecture })))
+const AIAndAdvertising = lazy(() => import("./pages/AIAndAdvertising").then(m => ({ default: m.AIAndAdvertising })))
+const AIAndEmergencyServices = lazy(() => import("./pages/AIAndEmergencyServices").then(m => ({ default: m.AIAndEmergencyServices })))
 const AIAndTheArts = lazy(() => import('./pages/AIAndTheArts').then(m => ({ default: m.AIAndTheArts })))
 
 // Loading fallback shown while a page chunk is being fetched
@@ -840,6 +842,18 @@ const aiAndArchitectureRoute = createRoute({
   component: withSuspense(AIAndArchitecture),
 })
 
+const aiAndAdvertisingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-advertising',
+  component: withSuspense(AIAndAdvertising),
+})
+
+const aiAndEmergencyServicesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-emergency-services',
+  component: withSuspense(AIAndEmergencyServices),
+})
+
 const aiAndTheArtsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-the-arts',
@@ -960,6 +974,8 @@ const routeTree = rootRoute.addChildren([
   aiAndAdultEducationRoute,
   aiAndArchitectureRoute,
   aiAndTheArtsRoute,
+  aiAndAdvertisingRoute,
+  aiAndEmergencyServicesRoute,
 ])
 
 const hashHistory = createHashHistory()

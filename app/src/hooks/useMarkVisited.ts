@@ -82,7 +82,38 @@ export function useMarkVisited(moduleKey: string) {
     }
     recordStreakVisit()
     recordRecentlyViewed(moduleKey)
+    recordViewCount(moduleKey)
   }, [moduleKey])
+}
+
+const VIEW_COUNTS_KEY = 'ronny-lesson-view-counts'
+
+/**
+ * Increments the view count for a lesson in localStorage.
+ * Called every time a lesson page is mounted, so the count grows with each visit.
+ */
+function recordViewCount(lessonId: string) {
+  try {
+    const raw = localStorage.getItem(VIEW_COUNTS_KEY)
+    const counts: Record<string, number> = raw ? JSON.parse(raw) : {}
+    counts[lessonId] = (counts[lessonId] ?? 0) + 1
+    localStorage.setItem(VIEW_COUNTS_KEY, JSON.stringify(counts))
+  } catch {
+    // ignore
+  }
+}
+
+/**
+ * Loads lesson view counts from localStorage.
+ * Returns a map of lessonId -> view count.
+ */
+export function loadLessonViewCounts(): Record<string, number> {
+  try {
+    const raw = localStorage.getItem(VIEW_COUNTS_KEY)
+    return raw ? JSON.parse(raw) : {}
+  } catch {
+    return {}
+  }
 }
 
 /**

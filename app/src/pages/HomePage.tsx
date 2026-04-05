@@ -7,7 +7,7 @@ import { getRecommendations, type Recommendation } from '../hooks/useRecommendat
 import { useWeeklyHighlight } from '../hooks/useWeeklyHighlight'
 import { useDailyReminder } from '../hooks/useDailyReminder'
 import { loadWeeklyGoal } from '../hooks/useWeeklyGoal'
-import { loadLessonTimestamps } from '../hooks/useMarkVisited'
+import { loadLessonTimestamps, loadLessonViewCounts } from '../hooks/useMarkVisited'
 import { DailyChallenge } from '../components/DailyChallenge'
 import { LessonOfTheWeek } from '../components/LessonOfTheWeek'
 import { RecentlyViewed, loadRecentlyViewed } from '../components/RecentlyViewed'
@@ -534,6 +534,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-the-arts',
         color: 'purple',
         difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-advertising',
+        title: 'AI and advertising — how AI targets ads, personalised marketing, and your digital rights',
+        description: 'How programmatic advertising, real-time bidding, and behavioural profiling work — plus practical steps to protect your privacy with ad blockers and UK GDPR rights.',
+        readingTime: '7 min',
+        icon: '📢',
+        to: '/learn/ai-and-advertising',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-emergency-services',
+        title: 'AI and emergency services — AI in 999 calls, fire detection, ambulance dispatch, and disaster response',
+        description: 'How AI is transforming emergency response — from voice analysis in 999 calls and ambulance optimisation to earthquake early warning, flood prediction, and disaster response drones.',
+        readingTime: '7 min',
+        icon: '🚨',
+        to: '/learn/ai-and-emergency-services',
+        color: 'red',
+        difficulty: 'Intermediate',
       },
     ],
   },
@@ -1109,6 +1129,39 @@ const LESSON_POOL = MODULES.filter(m =>
   !['meet-the-agents'].includes(m.id) && m.readingTime !== undefined
 )
 
+/** Curated fallback for Popular Lessons when not enough view data is available */
+const POPULAR_LESSONS_FALLBACK = [
+  'what-is-ai',
+  'ai-and-social-media',
+  'ai-and-privacy',
+]
+
+/** Returns the top N lesson modules by view count, with curated fallback for missing slots */
+function getPopularLessons(max: number): Module[] {
+  try {
+    const counts = loadLessonViewCounts()
+    const sorted = LESSON_POOL
+      .filter(m => (counts[m.id] ?? 0) > 0)
+      .sort((a, b) => (counts[b.id] ?? 0) - (counts[a.id] ?? 0))
+      .slice(0, max)
+    if (sorted.length >= max) return sorted
+    // Fill remaining slots from curated fallback list
+    const existing = new Set(sorted.map(m => m.id))
+    for (const fallbackId of POPULAR_LESSONS_FALLBACK) {
+      if (sorted.length >= max) break
+      if (existing.has(fallbackId)) continue
+      const mod = LESSON_POOL.find(m => m.id === fallbackId)
+      if (mod) { sorted.push(mod); existing.add(fallbackId) }
+    }
+    return sorted.slice(0, max)
+  } catch {
+    return POPULAR_LESSONS_FALLBACK
+      .map(id => LESSON_POOL.find(m => m.id === id))
+      .filter((m): m is Module => m !== undefined)
+      .slice(0, max)
+  }
+}
+
 function getLessonOfTheDay(quizCompleted: Set<string>): Module | null {
   if (LESSON_POOL.length === 0) return null
   const dayIndex = Math.floor(Date.now() / 86400000)
@@ -1193,6 +1246,7 @@ export function HomePage() {
 
   const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
   const continueLesson = getContinueLesson(visited, quizCompleted)
+  const popularLessons = getPopularLessons(3)
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
@@ -1552,6 +1606,39 @@ export function HomePage() {
               >
                 Pick up here &rarr;
               </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Popular lessons */}
+        {popularLessons.length > 0 && (
+          <div className="bg-violet-50 border border-violet-200 dark:bg-violet-950 dark:border-violet-800 rounded-2xl p-4 sm:p-5 space-y-3">
+            <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wide">Popular lessons</p>
+            <div className="space-y-2">
+              {popularLessons.map(mod => {
+                const group = MODULE_GROUPS.find(g => g.modules.some(m => m.id === mod.id))
+                return (
+                  <Link
+                    key={mod.id}
+                    to={mod.to as '/'}
+                    className="flex items-center gap-3 group"
+                  >
+                    <span className="text-2xl flex-shrink-0" aria-hidden="true">{mod.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-violet-900 dark:text-violet-100 text-sm group-hover:underline leading-tight">{mod.title}</p>
+                      <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                        {group && (
+                          <span className="text-xs text-violet-500 dark:text-violet-400">{group.heading}</span>
+                        )}
+                        <span className="inline-flex items-center gap-1 bg-violet-200 dark:bg-violet-800 text-violet-700 dark:text-violet-300 text-xs px-2 py-0.5 rounded-full font-medium">
+                          &#x2605; Popular
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-violet-400 text-base flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         )}
