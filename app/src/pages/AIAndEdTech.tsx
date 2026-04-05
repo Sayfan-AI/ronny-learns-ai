@@ -11,81 +11,81 @@ import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
 
-const LESSON_TITLE = 'AI and education technology (EdTech)'
+const LESSON_TITLE = 'AI and education technology'
 
 const KEY_TAKEAWAYS = [
-  'AI tutoring platforms like Century Tech and Khanmigo adapt lesson difficulty in real time based on how a student responds — personalising learning in ways that were previously only possible with one-to-one tuition.',
-  'AI essay marking tools and writing detection systems like Turnitin are widely used in UK universities, but experts debate whether AI can fairly assess creative and analytical writing.',
-  'AI proctoring software that monitors students through webcams during online exams has been shown to have higher error rates for darker skin tones, penalising students unfairly.',
-  'Oak National Academy, the UK government-funded resource platform, offers AI-powered lesson planning tools to help teachers save time and reduce workload.',
-  'The digital divide means AI in education can widen inequality — students without reliable home internet or devices miss out on the personalised tools their more affluent peers can access.',
+  'Adaptive learning platforms like Century Tech and Khanmigo personalise what students study based on how they respond — moving them on when they understand and offering extra practice when they struggle.',
+  'AI essay marking tools are increasingly used in exam systems, but raise concerns about whether AI can fairly assess creativity, nuance, and original argument — particularly for students from diverse backgrounds.',
+  'AI exam proctoring software uses webcams and eye-tracking to detect cheating — but has faced serious criticism for racial bias in facial recognition, invasive surveillance, and penalising anxious students.',
+  'The UK government funds Oak National Academy, which uses AI to help teachers generate lesson plans and resources, reducing workload for teachers in state schools.',
+  'AI in education can both widen and narrow opportunity — adaptive tools can help students who lack private tutors, but require reliable devices and internet access that not all students have.',
 ]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How does an AI tutoring platform like Century Tech personalise learning for a student?',
+    question: 'How does an adaptive learning platform like Century Tech personalise learning for individual students?',
     options: [
-      'It assigns each student to a small group taught by a human tutor over video call, with the AI managing the scheduling and monitoring attendance',
-      'It adjusts the difficulty, topic, and format of questions in real time based on how the student responds — moving faster when they are confident and slowing down when they struggle',
-      'It analyses a student\'s school report and reading age at the start of the year, then assigns them to a fixed learning track that matches their historical performance',
-      'It records every lesson the student attends and replays the parts they found difficult, identified by tracking when they paused, rewound, or re-watched segments',
+      'A human teacher remotely monitors each student progress on a dashboard and manually adjusts the difficulty of tasks after every lesson',
+      'AI analyses how a student responds to questions and adapts the sequence and difficulty of content in real time, providing extra practice where gaps are detected and advancing when mastery is shown',
+      'The platform selects lessons randomly from the curriculum to ensure students are exposed to a wide variety of topics rather than repeatedly covering the same ground',
+      'Students are placed in one of three ability groups at the start of term, and all students in the same group receive identical content throughout the year',
     ],
     correctIndex: 1,
     explanation:
-      'Platforms like Century Tech use AI trained on data from millions of students to build a model of what each individual student knows and where they have gaps. As you answer questions, the AI continuously updates this model. If you get something right, it gradually increases difficulty. If you struggle, it revisits foundational concepts, presents information in a different format, or gives you more practice on the specific skill. This is called adaptive learning. Research from Ofsted and independent studies suggests adaptive platforms can accelerate progress, particularly for students who fall behind in traditional classroom settings.',
-    hint: 'Think about the AI responding to what the student does right now, not just their history.',
+      "Adaptive learning platforms build a model of each student's knowledge over time. Century Tech, used in thousands of UK schools, maps what students know against curriculum objectives and identifies knowledge gaps. When a student struggles with a concept, the platform serves additional practice questions designed to build understanding of the prerequisite knowledge. When a student demonstrates mastery, the platform advances to the next topic or presents more challenging questions. The AI also prioritises content for review before memory naturally decays, using spaced repetition techniques. Evidence from pilot programmes in UK schools showed improved outcomes in mathematics and reading, particularly for students who struggled to get individual attention in large classes.",
+    hint: 'Think about the platform responding to what each student does, rather than following a fixed sequence.',
   },
   {
-    question: 'What does Turnitin\'s AI writing detection tool do?',
+    question: 'What is the main concern about using AI to mark student essays and written assignments?',
     options: [
-      'It checks student essays for factual errors by cross-referencing claims against an academic database, highlighting any incorrect statements',
-      'It analyses the writing style, sentence structure, and vocabulary patterns in a piece of text to estimate the probability that it was generated by an AI rather than written by the student',
-      'It automatically grades essays on a scale of 1 to 10 based on grammar, argument structure, and use of evidence, replacing the need for human marking',
-      'It scans student work for plagiarism by comparing it to a database of published academic papers, flagging any passages that match existing sources',
+      'AI marking is too slow — it takes longer to process an essay than an experienced teacher and so does not save any marking time in practice',
+      'AI marking systems may penalise unconventional writing styles, original arguments, and diverse linguistic backgrounds, favouring formulaic responses that match patterns in training data',
+      'AI systems cannot read handwriting, so they can only be used for typed submissions, which many students and teachers find awkward and impractical',
+      'The cost of AI marking software is prohibitively expensive for most schools and universities, meaning it creates inequality between well-funded and underfunded institutions',
     ],
     correctIndex: 1,
     explanation:
-      'Turnitin (widely used by UK universities) introduced an AI writing detection feature that assigns each submitted piece of writing an "AI percentage" — an estimate of how much of the text it believes was generated by AI tools like ChatGPT. The tool works by analysing patterns that tend to distinguish AI-generated text from human writing: perplexity (how predictable the word choices are) and burstiness (how much sentence length and complexity varies). Human writing tends to be less predictable and more varied. Critics point out the tool has produced false positives — accusing students of using AI when they did not — which has led to calls for caution in using it as sole evidence in academic misconduct cases.',
-    hint: 'Think about detecting whether a piece of writing was likely generated by an AI tool.',
+      "AI essay marking systems — including Turnitin's WritingMentor and various automated essay scoring tools used in standardised tests — are trained on large datasets of human-marked essays. They learn to identify features associated with high marks (complex vocabulary, logical structure, argument development). However, critics point out that training data typically overrepresents writing from majority-culture backgrounds and standardised English. Students who write in non-standard dialects, use non-Western rhetorical structures, or produce genuinely original arguments that diverge from typical patterns may be penalised. There are also concerns about whether AI can assess the quality of creative fiction or detect subtle irony and satire.",
+    hint: 'Think about what kinds of writing an AI trained on typical essays might not understand or value.',
   },
   {
-    question: 'What is AI proctoring software and why is it controversial?',
+    question: 'What is AI exam proctoring software and what are the main criticisms of it?',
     options: [
-      'Software that automatically marks multiple-choice exam papers using optical character recognition, replacing the need for human markers',
-      'Software that monitors students during online exams via webcam, using AI to flag behaviours it interprets as potential cheating — which has been shown to have higher error rates for some groups',
-      'Software used by exam boards to detect when a student has taken too many exams in one sitting, alerting them to potential burnout before results are released',
-      'Software that generates personalised exam questions for each student based on their learning history, making it harder to share answers between students',
+      'Software that allows invigilators to monitor students remotely during online exams using a webcam feed, with the AI filtering out routine activity to reduce monitoring workload',
+      'Software that uses AI to analyse webcam footage, eye movements, keyboard patterns, and screen activity during online exams to flag potential cheating — criticised for racial bias, false positives, and privacy invasion',
+      'Software that automatically generates exam questions from course content using AI, ensuring each student receives a unique set of questions to make copying impossible',
+      'An AI system that analyses historical exam results to predict which students are most likely to cheat, so invigilators can allocate their attention during physical exams more efficiently',
     ],
     correctIndex: 1,
     explanation:
-      'AI proctoring software (examples include Proctorio and ExamSoft) is used by universities to monitor students sitting exams at home. The software watches through the webcam, tracks eye movements, flags when the student looks away from the screen, detects other people in the room, and analyses noise. Any flag generates a report for a human reviewer. The controversy centres on two issues: first, the software has documented higher false positive rates for students with darker skin tones (the webcam-based eye tracking works less accurately on darker skin, triggering more suspicious flags); and second, the surveillance is considered disproportionate and stressful by many students, particularly those with anxiety.',
-    hint: 'Think about watching students through their webcams and what problems this can cause.',
+      "AI proctoring tools like Proctorio, Honorlock, and ExamSoft monitor students during online exams by analysing webcam video, tracking eye movements, recording keystrokes, and detecting multiple monitor use. The AI flags behaviour it interprets as suspicious — looking away from the screen, unusual typing patterns, background noise. Several universities rapidly adopted these tools during the COVID-19 pandemic. Significant problems have been documented: facial recognition components have higher failure rates for students with darker skin, penalising them unfairly; students with anxiety disorder have been flagged for signs of stress; students without quiet private spaces at home are disadvantaged; and the constant surveillance creates significant psychological distress. Several US universities have dropped these tools following student protest and research findings.",
+    hint: 'Think about who is disadvantaged by the AI\'s assumptions about what normal exam behaviour looks like.',
   },
   {
-    question: 'What is Oak National Academy\'s AI lesson planning tool designed to do?',
+    question: 'What is Oak National Academy and how is AI used in it?',
     options: [
-      'Automatically teach lessons to students without a teacher present, using a conversational AI tutor that answers questions in real time',
-      'Help teachers create lesson plans, quizzes, and teaching materials more quickly — reducing the time spent on planning so they can focus on teaching',
-      'Analyse student exam results across the UK and produce a national AI curriculum that all schools must follow, replacing individual teacher planning',
-      'Grade student work across all UK schools automatically and upload results to the national pupil database without teacher involvement',
+      'A private AI tutoring service that provides personalised one-to-one tutoring to secondary school students in the UK for a monthly subscription fee',
+      'A government-funded platform providing free curriculum resources to UK state schools, which uses AI to help teachers generate lesson plans, adapt materials, and reduce workload',
+      'An AI system developed by Ofsted that automatically generates school inspection reports based on student test scores and attendance data',
+      'A university-based research project that uses AI to analyse national exam results and identify which teaching approaches produce the best outcomes across different school types',
     ],
     correctIndex: 1,
     explanation:
-      'Oak National Academy is a government-funded non-profit that provides free lesson plans and teaching resources to UK schools. In 2023 it launched "Aila" — an AI-powered lesson planning assistant. Teachers describe what they want to teach (the subject, age group, learning objectives) and Aila generates a draft lesson plan, slides, and quiz questions which the teacher can review and edit. The aim is to reduce the administrative burden on teachers — surveys consistently show teachers spend many hours per week on planning that could be reduced with AI assistance. Importantly, the tool is designed to support teachers, not replace them; all materials go through teacher review.',
-    hint: 'Think about saving teachers time on administrative tasks so they can focus on the students.',
+      "Oak National Academy was set up by the UK government during the COVID-19 pandemic to provide free online lessons for pupils when schools closed. It has since become a permanent resource, providing curriculum-aligned lessons and materials free of charge to all UK state schools. In 2023, Oak launched AI-powered teacher tools that help teachers generate lesson plans, create presentations, and adapt resources for different ability levels in a fraction of the time it would take manually. The aim is to reduce teacher workload — a significant problem in UK schools, where many teachers spend more than 50 hours per week on work including substantial planning and marking time. The tools are opt-in and the resources remain under teacher control.",
+    hint: 'Think about who the primary beneficiary is — students directly, or teachers who then help students.',
   },
   {
-    question: 'How does the digital divide affect the impact of AI in education?',
+    question: 'How can AI in education both widen and narrow educational opportunity?',
     options: [
-      'The digital divide is not relevant to AI in education because all school-age students in the UK are provided with a government-issued device by the age of 11',
-      'Students without reliable home internet or suitable devices cannot access AI tutoring, adaptive learning, and AI homework tools — potentially widening the gap between them and more affluent peers who can',
-      'The digital divide only matters in developing countries; in the UK, all state schools have enough computers for every student to use AI tutoring tools during school hours',
-      'AI in education automatically compensates for the digital divide by providing easier content to students who engage less frequently, assuming they must be struggling',
+      'AI widens opportunity only — it always helps students who lack resources because it replaces expensive private tutors with affordable digital tools that work equally well for all students',
+      'AI can widen opportunity (personalised support without private tutors, more teacher time through workload reduction) but can also narrow it (requires reliable devices and internet, may disadvantage students with non-standard writing styles)',
+      'AI narrows opportunity only — the platforms are developed by private companies whose primary motivation is profit, so the features that most benefit disadvantaged students are always placed behind expensive subscription tiers',
+      'AI has no effect on educational inequality because all AI-based tools must be provided free of charge to schools under the UK Education Act',
     ],
     correctIndex: 1,
     explanation:
-      'The digital divide refers to the gap between those who have good access to the internet and digital devices, and those who do not. In UK education, this has real consequences. During the COVID-19 pandemic, it became starkly visible: students in deprived households without laptops or broadband fell significantly behind those who could access online learning. AI tutoring tools — which run on tablets or laptops with an internet connection — face the same problem. If the most powerful adaptive learning tools are only accessible at home to students from wealthier families, AI in education could widen achievement gaps rather than narrow them. The government has run device loan schemes, but coverage remains incomplete.',
-    hint: 'Think about what happens to students who cannot access these tools at home.',
+      "AI educational tools have genuine potential to reduce inequality. Adaptive learning platforms can provide the kind of personalised, responsive feedback previously available only through private tutoring — in principle giving state school students an equivalent experience to those with tutors. However, realising this potential requires conditions that do not exist equally for all students. The digital divide is real: around 900,000 children in the UK lack suitable devices or reliable internet at home. AI tools that advantage students who type fluently or write in standard academic English may disadvantage those from different linguistic backgrounds. Assessment systems that use AI must be audited for differential impact across student groups. The tools are not neutral — their impact depends on how they are designed, implemented, and who has access to them.",
+    hint: 'Think about the conditions needed for an AI tool to actually help a disadvantaged student.',
   },
 ]
 
@@ -93,7 +93,7 @@ export function AIAndEdTech() {
   useMarkVisited('ai-and-edtech')
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
       <div className="max-w-2xl w-full space-y-8">
 
         <div className="text-center space-y-4">
@@ -102,8 +102,8 @@ export function AIAndEdTech() {
             AI and education technology
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI tutors, adaptive learning, essay marking, exam surveillance, and what
-            it all means for students and teachers in UK schools and universities.
+            AI tutors, adaptive learning, essay marking, exam surveillance, teacher
+            tools, and the equity questions that matter most in UK classrooms.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
@@ -119,109 +119,92 @@ export function AIAndEdTech() {
 
         <KeyTakeaways points={KEY_TAKEAWAYS} />
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-indigo-100 dark:border-indigo-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI tutors and adaptive learning — personalising education at scale</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI tutors and adaptive learning</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            The best human tutors personalise every lesson to the individual — moving faster when the student understands, slowing down when they struggle, and changing the explanation when one approach is not working. AI is now attempting to do this at scale, for every student simultaneously.
+            The most significant use of AI in education is personalised adaptive learning — systems that respond to each student individually rather than following a fixed curriculum path for everyone.
+          </p>
+          <div className="space-y-3">
+            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F3EB;</span>
+              <div>
+                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Century Tech (UK)</p>
+                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Used in thousands of UK state schools, Century Tech maps student knowledge against the national curriculum and adapts the sequence and difficulty of content in real time. Teachers get a class-level view of where students are struggling, enabling them to intervene where most needed.</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F916;</span>
+              <div>
+                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Khanmigo (Khan Academy)</p>
+                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Built on GPT-4, Khanmigo is an AI tutor that can explain concepts, walk through worked examples, answer questions, and provide practice problems with feedback. Khan Academy is free and available globally, making this level of personalised support accessible to students who would otherwise rely on private tutors.</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4C8;</span>
+              <div>
+                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Tassomai</p>
+                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">A UK platform used by secondary school students preparing for GCSEs, Tassomai uses spaced repetition and AI-driven question selection to help students revise effectively. Studies have shown significantly improved exam results for regular users compared to those who only used traditional revision methods.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI essay marking — promise and concerns</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            AI is increasingly used to provide feedback on student writing and, in some contexts, to assign marks. This is one of the most contested areas in educational AI.
+          </p>
+          <div className="space-y-2">
+            {[
+              'Turnitin\'s AI writing detection tool is used by thousands of UK universities to flag essays it suspects were written by AI rather than students',
+              'Automated essay scoring systems are used in some standardised tests and increasingly in formative (non-final) assessment contexts',
+              'AI can provide immediate, detailed feedback on grammar, structure, and argument — far faster than waiting for a teacher to mark a class set',
+              'Concerns include: AI penalises unconventional writing styles and non-standard English, it may not appreciate genuine originality, and students from diverse backgrounds may be systematically disadvantaged',
+              'Several UK universities have had to apologise to students who were wrongly flagged as having used AI tools to write assignments',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-orange-600 dark:text-orange-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI exam surveillance — the proctoring controversy</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            During COVID-19 lockdowns, universities worldwide adopted AI-powered remote exam proctoring. The fallout has prompted significant debate about surveillance in education.
           </p>
           <div className="space-y-3">
             {[
-              {
-                icon: '&#x1F9E0;',
-                label: 'Century Tech',
-                text: 'A UK-based platform used in hundreds of schools. It builds a "learning map" for each student, constantly updated as they answer questions. The AI identifies micro-gaps in knowledge — for example, a student who understands addition but struggles with carrying — and targets practice there.',
-                color: 'indigo',
-              },
-              {
-                icon: '&#x1F4D6;',
-                label: 'Tassomai',
-                text: 'Designed for GCSE revision, Tassomai uses spaced repetition — showing students questions more frequently if they got them wrong recently. Evidence from secondary schools suggests students using it regularly improve their exam performance compared to traditional revision.',
-                color: 'indigo',
-              },
-              {
-                icon: '&#x1F916;',
-                label: 'Khanmigo (Khan Academy)',
-                text: "Khan Academy's AI tutor, powered by GPT-4, acts as a Socratic guide — it does not give students the answer, it asks questions that help them think through the problem themselves. Available in some UK schools through Khan Academy's free platform.",
-                color: 'indigo',
-              },
-            ].map(({ icon, label, text, color }) => (
-              <div key={label} className={`flex gap-3 items-start bg-${color}-50 dark:bg-${color}-950 rounded-xl p-3`}>
+              { icon: '&#x1F4F9;', label: 'How it works', text: 'Software like Proctorio monitors students via webcam, tracking eye movements, head position, keyboard behaviour, and screen content. The AI flags behaviour it classifies as suspicious and generates a report for a human reviewer.' },
+              { icon: '&#x1F3C0;', label: 'The racial bias problem', text: 'Facial recognition components in proctoring software have documented higher error rates for students with darker skin tones, leading to more frequent false flags and distressing interruptions during exams. This has been characterised as algorithmic discrimination.' },
+              { icon: '&#x1F3E0;', label: 'The home environment problem', text: 'Proctoring software expects a quiet, well-lit room with no other people present. Many students, particularly those from lower-income backgrounds, share rooms with family members and cannot meet these requirements — effectively penalising them for their home circumstances.' },
+              { icon: '&#x1F4C4;', label: 'The mental health impact', text: 'Research found that AI surveillance during exams significantly increases anxiety, particularly for students already prone to test anxiety. Some students reported performance significantly worse than their classroom work because of the monitoring.' },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start bg-red-50 dark:bg-red-950 rounded-xl p-3">
                 <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
                 <div>
-                  <p className={`font-semibold text-${color}-800 dark:text-${color}-200 text-sm mb-0.5`}>{label}</p>
-                  <p className={`text-${color}-700 dark:text-${color}-300 text-sm leading-relaxed`}>{text}</p>
+                  <p className="font-semibold text-red-800 dark:text-red-200 text-sm mb-0.5">{label}</p>
+                  <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">{text}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI essay marking and writing detection</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Two separate but related uses of AI have arrived in UK universities: tools that automatically score essays, and tools that try to detect whether a student used AI to write them.
-          </p>
-          <div className="space-y-3">
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x270F;&#xFE0F;</span>
-              <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Automated essay scoring</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">AI can reliably assess grammar, structure, vocabulary range, and argument coherence. For short-answer and standardised assessments it is quite accurate. However, experts question whether AI can fairly evaluate original argument, creativity, cultural context, and ambiguity — the qualities that distinguish excellent humanistic writing from competent writing.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F50D;</span>
-              <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">AI writing detection (Turnitin)</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Turnitin's AI detection assigns a percentage score indicating how much of a submission it believes is AI-generated. It has produced false positives — wrongly flagging human writing as AI-generated. UK universities are advised not to use these scores as sole evidence when making misconduct decisions. The University of Cambridge and others have publicly cautioned against over-reliance on these tools.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Exam surveillance — AI proctoring and its problems</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            During and after the COVID-19 pandemic, universities began using AI proctoring software to invigilate online exams. The technology monitors students through their webcam, tracking eyes and body movements, listening through the microphone, and flagging behaviour it interprets as suspicious.
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                question: 'The bias problem',
-                detail: 'Multiple studies found that eye-tracking features — used to flag "looking away" — work less accurately for students with darker skin tones, because the webcam-based tracking struggles with lower contrast between iris and skin. These students are flagged as suspicious at higher rates, creating discriminatory outcomes.',
-              },
-              {
-                question: 'The anxiety problem',
-                detail: 'Being watched through a webcam with movements analysed is significantly more stressful than sitting in an exam hall. Students with anxiety disorders, autism, or ADHD reported particular difficulties — their natural behaviour patterns (looking up to think, moving in their seat) triggered more flags.',
-              },
-              {
-                question: 'The privacy problem',
-                detail: 'Proctoring software often requires access to the whole screen, the webcam, and the microphone — and some systems scan the room the student is sitting in. Privacy campaigners argue this level of surveillance in students\' homes goes far beyond what is necessary.',
-              },
-            ].map(({ question, detail }) => (
-              <div key={question} className="bg-red-50 dark:bg-red-950 rounded-xl p-4 space-y-1">
-                <p className="font-semibold text-red-800 dark:text-red-200 text-sm">{question}</p>
-                <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">{detail}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Following student and faculty pressure, several UK universities — including UCL and the University of Manchester — have reduced or ended their use of AI proctoring software.
-          </p>
-        </div>
-
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Oak National Academy and AI for teachers</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Oak National Academy — AI for teachers</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Teachers in the UK spend an average of 10 to 12 hours per week on tasks beyond classroom teaching — planning, marking, and administration. AI is increasingly being used to reduce this burden.
+            One of the most promising applications of AI in UK education is reducing teacher workload by automating routine planning and resource creation tasks.
           </p>
           <div className="space-y-2">
             {[
-              'Oak National Academy launched "Aila" (AI Lesson Assistant) in 2023 — a free tool that generates lesson plans, slides, and quizzes from teacher prompts, available to any UK school',
-              'Microsoft Copilot integration in Teams is being used by some schools to summarise parent communication, draft letters, and prepare meeting notes',
-              'AI feedback tools can give students written comments on drafts before they submit, freeing teachers to focus on final marking of completed work',
-              "The Department for Education's 2023 Generative AI in Education report recommended that AI tools should reduce teacher workload, not increase it by requiring new skills",
-              'Subject to safeguards, AI lesson planning has the potential to give teachers more time with students — which is where human skills matter most',
+              'Oak National Academy is a government-funded platform providing free curriculum resources to all UK state schools',
+              'In 2023, Oak launched AI tools that help teachers generate lesson plans, slides, quizzes, and worksheets aligned to national curriculum requirements',
+              'Teachers report saving several hours per week on planning when using the AI tools, which can generate a first draft of a full lesson plan in minutes',
+              'Resources remain under teacher control — the AI generates a starting point, the teacher adapts and improves it',
+              'The UK Department for Education has committed to expanding AI-powered teacher support tools as part of its EdTech strategy',
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
                 <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
@@ -231,29 +214,37 @@ export function AIAndEdTech() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Equity and the digital divide</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Equity and access — who benefits?</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI in education could be transformative — or it could deepen existing inequalities. Which one happens depends on the choices made about who gets access.
+            AI in education raises a fundamental equity question: does it help those who need it most, or widen existing advantages?
           </p>
           <div className="space-y-3">
-            <div className="bg-amber-50 dark:bg-amber-950 rounded-xl p-4 space-y-1">
-              <p className="font-semibold text-amber-800 dark:text-amber-200 text-sm">Where AI in education could widen the gap</p>
-              <p className="text-amber-700 dark:text-amber-300 text-sm leading-relaxed">The most powerful adaptive learning platforms are often subscription-based. Schools in deprived areas with smaller budgets may not afford them. Students without reliable broadband at home cannot do homework on them. Students who cannot afford the latest device may struggle with resource-intensive AI tools. All of these factors could concentrate the benefit among already-advantaged students.</p>
+            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x2705;</span>
+              <div>
+                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">How AI can reduce inequality</p>
+                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">Adaptive learning platforms provide personalised support that was previously only available through private tutors — potentially levelling the playing field between students from different economic backgrounds. Free tools like Khan Academy bring this to anyone with an internet connection.</p>
+              </div>
             </div>
-            <div className="bg-green-50 dark:bg-green-950 rounded-xl p-4 space-y-1">
-              <p className="font-semibold text-green-800 dark:text-green-200 text-sm">Where AI in education could narrow the gap</p>
-              <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">Free tools like Oak National Academy's resources, Khan Academy, and BBC Bitesize are available to any student with internet access. AI tutoring that provides the quality of personalised support previously only available to students whose parents could afford private tutors has the potential to be powerfully equalising — if access is genuinely universal.</p>
+            <div className="flex gap-3 items-start bg-red-50 dark:bg-red-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x26A0;&#xFE0F;</span>
+              <div>
+                <p className="font-semibold text-red-800 dark:text-red-200 text-sm mb-0.5">How AI can widen inequality</p>
+                <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">Around 900,000 children in the UK lack suitable devices or reliable internet at home. Premium AI tutoring tools are only available to those who can afford them. AI systems that disadvantage non-standard writing styles or diverse linguistic backgrounds may systematically underserve students from less privileged backgrounds.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <LessonNote lessonId="ai-and-edtech" />
+
+        <Quiz questions={quizQuestions} lessonId="ai-and-edtech" />
+
         <ReviewLaterButton lessonId="ai-and-edtech" />
 
-        <Quiz lessonId="ai-and-edtech" questions={quizQuestions} />
-
         <LessonRating lessonId="ai-and-edtech" />
+
         <LessonFeedback lessonId="ai-and-edtech" />
 
         <RelatedLessons currentId="ai-and-edtech" />

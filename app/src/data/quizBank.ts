@@ -288,4 +288,60 @@ export const QUIZ_BANK: BankedQuestion[] = [
     correctIndex: 1,
     explanation: 'Many common diseases are not caused by a single gene but by the combined effect of hundreds of small genetic variants. Polygenic risk scores aggregate all these small effects using AI trained on data from hundreds of thousands of people, placing each person on a risk spectrum for conditions like heart disease or type 2 diabetes.',
   },
+  // --- AI and autonomous vehicles ---
+  {
+    lessonId: 'ai-and-autonomous-vehicles',
+    lessonTitle: 'AI and autonomous vehicles',
+    question: 'At SAE Level 2 vehicle autonomy, who is responsible for monitoring the road and staying ready to take control?',
+    options: [
+      'The vehicle manufacturer — if an accident occurs while Level 2 features are active, the maker is legally liable',
+      'The driver — Level 2 means the car can handle steering and speed together, but the driver must remain alert and ready to intervene immediately',
+      'A remote operator at the car company who monitors the vehicle via camera and can intervene if needed',
+      'Nobody — Level 2 is fully autonomous and requires no human supervision',
+    ],
+    correctIndex: 1,
+    explanation: 'SAE Level 2 is "partial automation" — the car can simultaneously control both steering and speed. However, the human driver must remain engaged, watch the road, and be prepared to take control at any moment. Level 2 is not self-driving, and treating it as such has been the cause of several serious incidents.',
+  },
+  // --- AI and 3D printing ---
+  {
+    lessonId: 'ai-and-3d-printing',
+    lessonTitle: 'AI and 3D printing',
+    question: 'What is generative design in AI-assisted 3D printing?',
+    options: [
+      'Software that scans a physical object with a camera and converts it into a printable 3D file automatically',
+      'An AI technique where you define requirements (weight, strength, material) and the software explores millions of possible shapes to find the optimal design',
+      'A process that generates random decorative patterns to apply to the surface of a 3D-printed object',
+      'AI software that monitors a print in progress and pauses it if a defect is detected',
+    ],
+    correctIndex: 1,
+    explanation: 'Generative design reverses the traditional engineering process. Instead of designing a part and checking if it meets requirements, you define the requirements and let the AI search for the best shape. The results are often organic-looking structures that remove material from everywhere it is not structurally needed — making parts lighter and stronger. These shapes are only manufacturable by 3D printing.',
+  },
+  // --- AI and cybercrime ---
+  {
+    lessonId: 'ai-and-cybercrime',
+    lessonTitle: 'AI and cybercrime',
+    question: 'Which of the following is the single most effective step an individual can take to protect their accounts from AI-powered attacks?',
+    options: [
+      'Deleting all social media accounts, since criminals use publicly available information to personalise attacks',
+      'Enabling two-factor authentication on important accounts, so that even if a password is stolen the account cannot be accessed without a second verification step',
+      'Changing your password every week, since frequent changes mean criminals have less time to use a stolen password',
+      'Only using websites that have a padlock icon in the browser address bar',
+    ],
+    correctIndex: 1,
+    explanation: 'Two-factor authentication (2FA) is widely considered the highest-impact single security measure for individuals. Even if a criminal has your password, they cannot access your account without the second factor (usually your phone). A padlock only means the connection is encrypted — not that the website is trustworthy.',
+  },
+  // --- AI and space exploration ---
+  {
+    lessonId: 'ai-and-space-exploration',
+    lessonTitle: 'AI and space exploration',
+    question: 'Why do Mars rovers like Perseverance need to make some decisions autonomously using AI, rather than waiting for instructions from Earth?',
+    options: [
+      'Because NASA does not have enough staff to monitor the rover continuously, so AI acts as a substitute controller during breaks',
+      'Because signals between Earth and Mars take up to 20 minutes to arrive in each direction, making real-time remote control impossible for moment-to-moment navigation',
+      'Because the Martian atmosphere blocks radio signals for most of each day, so the rover must operate independently during blackout periods',
+      'Because international law requires all spacecraft operating beyond the Moon to be fully autonomous',
+    ],
+    correctIndex: 1,
+    explanation: 'The distance between Earth and Mars means radio signals take between 3 and 22 minutes to arrive, depending on where the two planets are in their orbits. A round trip for a command and response therefore takes between 6 and 44 minutes. AI allows the rover to plan short drives and avoid hazards independently, with humans setting longer-term goals.',
+  },
 ]

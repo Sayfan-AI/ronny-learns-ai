@@ -137,6 +137,26 @@ const AIAndConstruction = lazy(() => import('./pages/AIAndConstruction').then(m 
 const AIAndPersonalFinance = lazy(() => import('./pages/AIAndPersonalFinance').then(m => ({ default: m.AIAndPersonalFinance })))
 const AIAndCooking = lazy(() => import('./pages/AIAndCooking').then(m => ({ default: m.AIAndCooking })))
 const AIAndGenetics = lazy(() => import('./pages/AIAndGenetics').then(m => ({ default: m.AIAndGenetics })))
+const AIAndCybercrime = lazy(() => import('./pages/AIAndCybercrime').then(m => ({ default: m.AIAndCybercrime })))
+const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
+const AIAndAutonomousVehicles = lazy(() => import('./pages/AIAndAutonomousVehicles').then(m => ({ default: m.AIAndAutonomousVehicles })))
+const AIAnd3DPrinting = lazy(() => import('./pages/AIAnd3DPrinting').then(m => ({ default: m.AIAnd3DPrinting })))
+const AIAndTranslation = lazy(() => import('./pages/AIAndTranslation').then(m => ({ default: m.AIAndTranslation })))
+const AIAndLogistics = lazy(() => import('./pages/AIAndLogistics').then(m => ({ default: m.AIAndLogistics })))
+const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
+const AIAndTaxesAndFinancialAdmin = lazy(() => import('./pages/AIAndTaxesAndFinancialAdmin').then(m => ({ default: m.AIAndTaxesAndFinancialAdmin })))
+const AIAndRealEstate = lazy(() => import('./pages/AIAndRealEstate').then(m => ({ default: m.AIAndRealEstate })))
+const AIAndSocialCare = lazy(() => import('./pages/AIAndSocialCare').then(m => ({ default: m.AIAndSocialCare })))
+const AIInTheNews = lazy(() => import('./pages/AIInTheNews').then(m => ({ default: m.AIInTheNews })))
+const AIAndShopping = lazy(() => import('./pages/AIAndShopping').then(m => ({ default: m.AIAndShopping })))
+const AIAndTheHome = lazy(() => import('./pages/AIAndTheHome').then(m => ({ default: m.AIAndTheHome })))
+const AIAndImmigration = lazy(() => import('./pages/AIAndImmigration').then(m => ({ default: m.AIAndImmigration })))
+const AIAndDentistry = lazy(() => import('./pages/AIAndDentistry').then(m => ({ default: m.AIAndDentistry })))
+const AIAndNHSWaitingLists = lazy(() => import('./pages/AIAndNHSWaitingLists').then(m => ({ default: m.AIAndNHSWaitingLists })))
+const AIAndSocialMediaAlgorithms = lazy(() => import('./pages/AIAndSocialMediaAlgorithms').then(m => ({ default: m.AIAndSocialMediaAlgorithms })))
+const AIAndClimateActivism = lazy(() => import('./pages/AIAndClimateActivism').then(m => ({ default: m.AIAndClimateActivism })))
+const AIAndSportsMedicine = lazy(() => import('./pages/AIAndSportsMedicine').then(m => ({ default: m.AIAndSportsMedicine })))
+const AIAndFraudAndIdentityTheft = lazy(() => import('./pages/AIAndFraudAndIdentityTheft').then(m => ({ default: m.AIAndFraudAndIdentityTheft })))
 const AIAndGigEconomy = lazy(() => import('./pages/AIAndGigEconomy').then(m => ({ default: m.AIAndGigEconomy })))
 const AIAndEdTech = lazy(() => import('./pages/AIAndEdTech').then(m => ({ default: m.AIAndEdTech })))
 
@@ -960,6 +980,126 @@ const aiAndGeneticsRoute = createRoute({
   component: withSuspense(AIAndGenetics),
 })
 
+const aiAndCybercrimeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-cybercrime',
+  component: withSuspense(AIAndCybercrime),
+})
+
+const aiAndSpaceExplorationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-space-exploration',
+  component: withSuspense(AIAndSpaceExploration),
+})
+
+const aiAndAutonomousVehiclesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-autonomous-vehicles',
+  component: withSuspense(AIAndAutonomousVehicles),
+})
+
+const aiAndTranslationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-translation',
+  component: withSuspense(AIAndTranslation),
+})
+
+const aiAnd3DPrintingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-3d-printing',
+  component: withSuspense(AIAnd3DPrinting),
+})
+
+const aiAndLogisticsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-logistics',
+  component: withSuspense(AIAndLogistics),
+})
+
+const aiAndPregnancyAndBabyCareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-pregnancy-and-baby-care',
+  component: withSuspense(AIAndPregnancyAndBabyCare),
+})
+
+const aiAndTaxesAndFinancialAdminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-taxes-and-financial-admin',
+  component: withSuspense(AIAndTaxesAndFinancialAdmin),
+})
+
+const aiAndRealEstateRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-real-estate',
+  component: withSuspense(AIAndRealEstate),
+})
+
+const aiAndSocialCareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-social-care',
+  component: withSuspense(AIAndSocialCare),
+})
+
+const aiInTheNewsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/ai-news',
+  component: withSuspense(AIInTheNews),
+})
+
+const aiAndShoppingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-shopping',
+  component: withSuspense(AIAndShopping),
+})
+
+const aiAndTheHomeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-the-home',
+  component: withSuspense(AIAndTheHome),
+})
+
+const aiAndImmigrationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-immigration',
+  component: withSuspense(AIAndImmigration),
+})
+
+const aiAndDentistryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-dentistry',
+  component: withSuspense(AIAndDentistry),
+})
+
+const aiAndNHSWaitingListsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-nhs-waiting-lists',
+  component: withSuspense(AIAndNHSWaitingLists),
+})
+
+const aiAndSocialMediaAlgorithmsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-social-media-algorithms',
+  component: withSuspense(AIAndSocialMediaAlgorithms),
+})
+
+const aiAndClimateActivismRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-climate-activism',
+  component: withSuspense(AIAndClimateActivism),
+})
+
+const aiAndSportsMedicineRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-sports-medicine',
+  component: withSuspense(AIAndSportsMedicine),
+})
+
+const aiAndFraudAndIdentityTheftRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-fraud-and-identity-theft',
+  component: withSuspense(AIAndFraudAndIdentityTheft),
+})
+
 const aiAndGigEconomyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-gig-economy',
@@ -1102,6 +1242,26 @@ const routeTree = rootRoute.addChildren([
   aiAndPersonalFinanceRoute,
   aiAndCookingRoute,
   aiAndGeneticsRoute,
+  aiAndCybercrimeRoute,
+  aiAndSpaceExplorationRoute,
+  aiAndAutonomousVehiclesRoute,
+  aiAnd3DPrintingRoute,
+  aiAndTranslationRoute,
+  aiAndLogisticsRoute,
+  aiAndPregnancyAndBabyCareRoute,
+  aiAndTaxesAndFinancialAdminRoute,
+  aiAndRealEstateRoute,
+  aiAndSocialCareRoute,
+  aiInTheNewsRoute,
+  aiAndShoppingRoute,
+  aiAndTheHomeRoute,
+  aiAndImmigrationRoute,
+  aiAndDentistryRoute,
+  aiAndNHSWaitingListsRoute,
+  aiAndSocialMediaAlgorithmsRoute,
+  aiAndClimateActivismRoute,
+  aiAndSportsMedicineRoute,
+  aiAndFraudAndIdentityTheftRoute,
   aiAndGigEconomyRoute,
   aiAndEdTechRoute,
 ])

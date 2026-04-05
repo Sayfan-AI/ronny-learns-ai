@@ -1,101 +1,109 @@
+import { useMemo } from 'react'
 import { Link } from '@tanstack/react-router'
 import { LESSON_SERIES } from '../data/lessonSeries'
 
-const VISITED_KEY = 'ronny-visited-modules'
+interface LessonEntry {
+  id: string
+  title: string
+  to: string
+}
+
+interface ContinueYourSeriesProps {
+  lessons: LessonEntry[]
+}
 
 function loadVisited(): Set<string> {
   try {
-    const raw = localStorage.getItem(VISITED_KEY)
-    const arr: string[] = raw ? JSON.parse(raw) : []
-    return new Set(arr)
+    const raw = localStorage.getItem('ronny-visited-modules')
+    if (!raw) return new Set()
+    const data = JSON.parse(raw)
+    if (Array.isArray(data)) return new Set(data)
+    if (typeof data === 'object') return new Set(Object.keys(data))
+    return new Set()
   } catch {
     return new Set()
   }
 }
 
-interface SeriesProgress {
-  id: string
-  name: string
-  description: string
-  icon: string
-  completedCount: number
-  total: number
-  ratio: number
-  nextLessonId: string
-  nextLessonPath: string
-}
+export function ContinueYourSeries({ lessons }: ContinueYourSeriesProps) {
+  const visited = useMemo(() => loadVisited(), [])
 
-function getBestSeriesInProgress(): SeriesProgress | null {
-  const visited = loadVisited()
-  if (visited.size === 0) return null
+  const lessonMap = useMemo(() => {
+    const map = new Map<string, LessonEntry>()
+    for (const l of lessons) map.set(l.id, l)
+    return map
+  }, [lessons])
 
-  let best: SeriesProgress | null = null
+  // Find the series with at least 1 completed lesson and the highest completion ratio
+  const bestSeries = useMemo(() => {
+    let best: { series: typeof LESSON_SERIES[0]; completedCount: number; total: number; nextLesson: LessonEntry } | null = null
 
-  for (const series of LESSON_SERIES) {
-    const total = series.lessonIds.length
-    const completedCount = series.lessonIds.filter(id => visited.has(id)).length
+    for (const series of LESSON_SERIES) {
+      const seriesLessons = series.lessonIds
+        .map((id) => lessonMap.get(id))
+        .filter((l): l is LessonEntry => l !== undefined)
 
-    // Must have started but not fully completed
-    if (completedCount === 0 || completedCount === total) continue
+      if (seriesLessons.length === 0) continue
 
-    const ratio = completedCount / total
+      const completedCount = seriesLessons.filter((l) => visited.has(l.id)).length
+      if (completedCount === 0) continue // Must have started
 
-    const nextLessonId = series.lessonIds.find(id => !visited.has(id))
-    if (!nextLessonId) continue
+      const total = seriesLessons.length
+      if (completedCount >= total) continue // Already finished
 
-    // Build the path for the next lesson — convert lesson id to route slug
-    const nextLessonPath = `/learn/${nextLessonId}`
+      const nextLesson = seriesLessons.find((l) => !visited.has(l.id))
+      if (!nextLesson) continue
 
-    const candidate: SeriesProgress = {
-      id: series.id,
-      name: series.name,
-      description: series.description,
-      icon: series.icon,
-      completedCount,
-      total,
-      ratio,
-      nextLessonId,
-      nextLessonPath,
+      const ratio = completedCount / total
+
+      if (!best || ratio > best.completedCount / best.total) {
+        best = { series, completedCount, total, nextLesson }
+      }
     }
 
-    if (!best || ratio > best.ratio) {
-      best = candidate
-    }
-  }
+    return best
+  }, [visited, lessonMap])
 
-  return best
-}
+  if (!bestSeries) return null
 
-export function ContinueYourSeries() {
-  const series = getBestSeriesInProgress()
-  if (!series) return null
-
-  const progressPercent = Math.round(series.ratio * 100)
+  const { series, completedCount, total, nextLesson } = bestSeries
+  const progressPct = Math.round((completedCount / total) * 100)
 
   return (
-    <div className="bg-gradient-to-r from-violet-50 to-indigo-50 border border-violet-200 rounded-2xl p-4 sm:p-5 space-y-3">
-      <p className="text-xs font-semibold text-violet-600 uppercase tracking-wide">Continue your series</p>
-      <Link
-        to={series.nextLessonPath as '/'}
-        className="flex items-center gap-4 group"
-      >
-        <span className="text-3xl flex-shrink-0">{series.icon}</span>
+    <div className="bg-gradient-to-r from-violet-50 to-indigo-50 dark:from-violet-950 dark:to-indigo-950 rounded-2xl border border-violet-200 dark:border-violet-800 p-4 space-y-3">
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wide">Continue your series</span>
+      </div>
+
+      <div className="flex items-start gap-3">
+        <span
+          className="text-3xl flex-shrink-0"
+          dangerouslySetInnerHTML={{ __html: series.icon }}
+        />
         <div className="flex-1 min-w-0">
-          <p className="font-bold text-violet-900 group-hover:underline text-base leading-tight">{series.name}</p>
-          <p className="text-violet-700 text-sm mt-0.5 leading-relaxed">{series.description}</p>
-          <div className="flex items-center gap-3 mt-2">
-            <div className="flex-1 bg-violet-200 rounded-full h-1.5 max-w-[120px]">
+          <p className="font-bold text-violet-900 dark:text-violet-100 text-lg leading-snug">{series.name}</p>
+          <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed mt-0.5">{series.description}</p>
+
+          <div className="mt-2 flex items-center gap-3">
+            <div className="flex-1 bg-violet-200 dark:bg-violet-800 rounded-full h-2">
               <div
-                className="bg-violet-600 h-1.5 rounded-full transition-all"
-                style={{ width: `${progressPercent}%` }}
+                className="bg-violet-500 dark:bg-violet-400 h-2 rounded-full transition-all duration-500"
+                style={{ width: `${progressPct}%` }}
               />
             </div>
-            <span className="text-violet-500 text-xs whitespace-nowrap">
-              {series.completedCount} of {series.total} done
+            <span className="text-violet-600 dark:text-violet-400 text-xs font-semibold whitespace-nowrap">
+              {completedCount} of {total} done
             </span>
           </div>
         </div>
-        <span className="text-violet-400 text-xl flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </div>
+
+      <Link
+        to={nextLesson.to as '/'}
+        className="flex items-center justify-center gap-2 w-full bg-violet-600 hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-400 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors text-sm"
+      >
+        <span>Continue</span>
+        <span>&rarr;</span>
       </Link>
     </div>
   )

@@ -1,10 +1,5 @@
-/**
- * Lesson series group related lessons together into named collections.
- * Used by the ContinueYourSeries component on the home page.
- */
-
 export interface LessonSeries {
-  id: string
+  slug: string
   name: string
   description: string
   icon: string
@@ -13,114 +8,113 @@ export interface LessonSeries {
 
 export const LESSON_SERIES: LessonSeries[] = [
   {
-    id: 'ai-fundamentals',
-    name: 'AI Fundamentals',
-    description: 'Start here — learn how AI actually works under the hood.',
-    icon: '🧠',
-    lessonIds: [
-      'what-is-ai',
-      'what-is-ml',
-      'how-ai-training-works',
-      'neural-network',
-      'language-models',
-      'how-chatbots-work',
-    ],
-  },
-  {
-    id: 'ai-in-society',
-    name: 'AI in Society',
-    description: 'How AI is shaping the world we live in — for better and worse.',
-    icon: '🌍',
+    slug: 'ai-in-everyday-life',
+    name: 'AI in everyday life',
+    description: 'How AI shows up in your home, kitchen, travel, shopping, and daily routines.',
+    icon: '&#x1F3E0;',
     lessonIds: [
       'ai-everyday-life',
-      'ai-pros-and-cons',
-      'ai-bias',
-      'ai-safety',
-      'future-of-ai',
+      'ai-and-cooking',
+      'ai-and-food',
+      'ai-and-smart-homes',
+      'ai-and-sleep',
+      'ai-and-pets',
+      'ai-and-fitness-apps',
+      'ai-and-travel',
+      'ai-and-retail',
+      'ai-in-your-apps',
     ],
   },
   {
-    id: 'ai-and-work',
-    name: 'AI and Work',
-    description: 'AI in the workplace — jobs, hiring, productivity, and gig work.',
-    icon: '💼',
+    slug: 'ai-at-work',
+    name: 'AI at work',
+    description: 'How AI is changing jobs, workplaces, hiring, finance, and industry.',
+    icon: '&#x1F4BC;',
     lessonIds: [
       'ai-and-jobs',
-      'ai-and-hiring',
       'ai-and-the-workplace',
+      'ai-and-hiring',
+      'ai-and-manufacturing',
+      'ai-and-supply-chains',
+      'ai-and-logistics',
+      'ai-and-personal-finance',
+      'ai-and-banking',
       'ai-productivity-tools',
-      'ai-and-mental-wellbeing-at-work',
-      'ai-and-gig-economy',
+      'ai-and-advertising',
     ],
   },
   {
-    id: 'ai-and-health',
-    name: 'AI and Health',
-    description: 'From the NHS to mental health apps — AI across healthcare.',
-    icon: '🏥',
+    slug: 'ai-and-society',
+    name: 'AI and society',
+    description: 'The bigger picture — AI\'s impact on law, democracy, safety, and the future.',
+    icon: '&#x1F30D;',
+    lessonIds: [
+      'ai-bias',
+      'ai-safety',
+      'trusting-ai',
+      'ai-and-misinformation',
+      'ai-laws-and-rights',
+      'ai-and-the-law',
+      'ai-and-policing',
+      'ai-and-elections',
+      'ai-and-democracy',
+      'ai-and-cybercrime',
+      'ai-and-scams',
+      'ai-and-fraud-and-identity-theft',
+    ],
+  },
+  {
+    slug: 'ai-in-health-and-science',
+    name: 'AI in health and science',
+    description: 'AI in medicine, research, genetics, mental health, and the natural world.',
+    icon: '&#x1F9EC;',
     lessonIds: [
       'ai-in-healthcare',
       'ai-and-the-nhs',
-      'ai-and-mental-health',
-      'ai-and-mental-health-apps',
       'ai-and-drug-discovery',
       'ai-and-genetics',
-      'ai-and-sleep',
+      'ai-and-mental-health',
+      'ai-and-mental-health-apps',
+      'ai-and-scientific-research',
+      'ai-and-disability',
+      'ai-for-accessibility',
     ],
   },
   {
-    id: 'ai-rights-and-safety',
-    name: 'AI, Rights and Safety',
-    description: 'Privacy, laws, scams, and staying safe in an AI world.',
-    icon: '🛡️',
-    lessonIds: [
-      'ai-and-privacy',
-      'ai-laws-and-rights',
-      'ai-and-copyright',
-      'how-to-use-ai-safely',
-      'ai-and-scams',
-      'trusting-ai',
-      'ai-and-misinformation',
-    ],
-  },
-  {
-    id: 'ai-and-creative-arts',
-    name: 'AI and the Creative Arts',
-    description: 'AI in art, music, writing, photography, and more.',
-    icon: '🎨',
-    lessonIds: [
-      'ai-and-creativity',
-      'ai-and-art',
-      'ai-and-music',
-      'ai-and-photography',
-      'ai-and-creative-writing',
-      'ai-and-gaming',
-      'ai-and-film-and-tv',
-    ],
-  },
-  {
-    id: 'ai-and-education',
-    name: 'AI and Education',
-    description: 'Learning, tutoring, EdTech, and AI in schools and universities.',
-    icon: '📚',
-    lessonIds: [
-      'ai-and-education',
-      'ai-and-edtech',
-      'ai-and-language-learning',
-      'ai-and-adult-education',
-    ],
-  },
-  {
-    id: 'ai-and-environment',
-    name: 'AI and the Environment',
-    description: 'Climate change, energy, water, and the ocean — AI in nature.',
-    icon: '🌱',
+    slug: 'ai-and-the-world',
+    name: 'AI and the world',
+    description: 'Climate, environment, space, transport, and the planet we live on.',
+    icon: '&#x1F4A1;',
     lessonIds: [
       'ai-and-climate-change',
       'ai-and-the-environment',
-      'ai-and-energy',
-      'ai-and-water',
+      'ai-and-environment',
       'ai-and-the-ocean',
+      'ai-and-water',
+      'ai-and-transport',
+      'ai-and-autonomous-vehicles',
+      'ai-and-space-exploration',
+      'ai-and-energy',
+      'ai-and-climate-activism',
     ],
   },
 ]
+
+/**
+ * Returns all series that a given lesson belongs to.
+ */
+export function getSeriesForLesson(lessonId: string): LessonSeries[] {
+  return LESSON_SERIES.filter(series => series.lessonIds.includes(lessonId))
+}
+
+/**
+ * Calculates how many lessons in a series have been visited.
+ * Pass the set of visited lesson IDs from localStorage.
+ */
+export function getSeriesProgress(
+  series: LessonSeries,
+  visitedIds: Set<string>,
+): { completed: number; total: number } {
+  const completed = series.lessonIds.filter(id => visitedIds.has(id)).length
+  return { completed, total: series.lessonIds.length }
+}
