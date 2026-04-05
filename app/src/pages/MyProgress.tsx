@@ -126,6 +126,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-offensive-cybersecurity', title: 'AI and offensive cybersecurity',    to: '/learn/ai-and-offensive-cybersecurity' },
   { id: 'ai-and-mental-health-care',      title: 'AI and mental health care',          to: '/learn/ai-and-mental-health-care' },
   { id: 'ai-and-financial-advice',         title: 'AI and financial advice',            to: '/learn/ai-and-financial-advice' },
+  { id: 'ai-and-benefits-system',        title: 'AI and the benefits system',         to: '/learn/ai-and-benefits-system' },
+  { id: 'ai-and-music-creation',         title: 'AI and music creation',              to: '/learn/ai-and-music-creation' },
 ]
 
 interface QuizScoreEntry {
