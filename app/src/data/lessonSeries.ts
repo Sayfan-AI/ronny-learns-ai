@@ -44,6 +44,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-advertising',
       'ai-and-gig-economy',
       'ai-and-financial-advice',
+      'ai-and-creative-economy',
     ],
   },
   {
@@ -102,6 +103,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-space-exploration',
       'ai-and-energy',
       'ai-and-climate-activism',
+      'ai-and-climate-tech',
     ],
   },
 ]

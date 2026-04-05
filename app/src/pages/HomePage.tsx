@@ -17,6 +17,7 @@ import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
+import { LessonMilestoneCard } from '../components/LessonMilestoneCard'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1193,6 +1194,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'gray',
         difficulty: 'Advanced',
       },
+      {
+        id: 'ai-and-climate-tech',
+        title: 'AI and climate tech — wind and solar optimisation, smart grids, carbon capture, and the AI energy paradox',
+        description: 'How AI is improving renewable energy output, managing smart electricity grids, accelerating materials discovery — and the uncomfortable question about its own carbon footprint.',
+        readingTime: '7 min',
+        icon: '&#x26A1;',
+        to: '/learn/ai-and-climate-tech',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-creative-economy',
+        title: 'AI and the creative economy — musicians, writers, designers, the UK copyright debate, and how creatives are adapting',
+        description: 'How generative AI is reshaping creative industries, who is losing work, and the unresolved question of who owns what AI has learned from human creativity.',
+        readingTime: '7 min',
+        icon: '&#x1F3A8;',
+        to: '/learn/ai-and-creative-economy',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1620,6 +1641,9 @@ export function HomePage() {
             </Link>
           )}
         </div>
+
+        {/* Lesson milestone card */}
+        <LessonMilestoneCard completedCount={quizCompletedCount} />
 
         {/* Learning streak */}
         {streak > 0 && (
