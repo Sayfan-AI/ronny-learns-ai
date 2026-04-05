@@ -110,6 +110,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-taxes-and-financial-admin',     title: 'AI and taxes and financial admin',    to: '/learn/ai-and-taxes-and-financial-admin' },
   { id: 'ai-and-real-estate',          title: 'AI and real estate',                  to: '/learn/ai-and-real-estate' },
   { id: 'ai-and-social-care',          title: 'AI and social care',                  to: '/learn/ai-and-social-care' },
+  { id: 'ai-and-shopping',             title: 'AI and shopping',                     to: '/learn/ai-and-shopping' },
+  { id: 'ai-and-the-home',             title: 'AI and the home',                     to: '/learn/ai-and-the-home' },
 ]
 
 interface QuizScoreEntry {
