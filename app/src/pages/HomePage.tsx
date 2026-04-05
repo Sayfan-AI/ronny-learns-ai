@@ -7,6 +7,7 @@ import { getRecommendations, type Recommendation } from '../hooks/useRecommendat
 import { useWeeklyHighlight } from '../hooks/useWeeklyHighlight'
 import { useDailyReminder } from '../hooks/useDailyReminder'
 import { loadWeeklyGoal } from '../hooks/useWeeklyGoal'
+import { loadLessonTimestamps } from '../hooks/useMarkVisited'
 import { DailyChallenge } from '../components/DailyChallenge'
 
 const AI_FACTS = [
@@ -764,6 +765,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-scams',
+        title: 'AI and scams — how criminals use AI, and how to protect yourself',
+        description: 'Phishing, voice cloning, romance fraud, fake chatbots, and the NCSC\'s stop-think-call-back approach.',
+        readingTime: '6 min',
+        icon: '🚨',
+        to: '/learn/ai-and-scams',
+        color: 'red',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-pets',
+        title: 'AI and pets — health monitors, AI vets, and smart feeders',
+        description: 'Activity trackers for dogs, AI symptom checkers, how vets use AI diagnostics, smart feeders, and the privacy questions around connected pet devices.',
+        readingTime: '5 min',
+        icon: '🐾',
+        to: '/learn/ai-and-pets',
+        color: 'amber',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -933,6 +954,38 @@ function getLessonOfTheDay(quizCompleted: Set<string>): Module | null {
   return null // all completed
 }
 
+/**
+ * Returns the most recently visited lesson that hasn't been quiz-completed,
+ * or the next unstarted lesson in curriculum order if all visited ones are done.
+ * Returns null if no lessons have been visited yet.
+ */
+function getContinueLesson(visited: Set<string>, quizCompleted: Set<string>): { module: Module; lastVisited: string | null } | null {
+  if (visited.size === 0) return null
+
+  // Find the most recently visited module that isn't quiz-completed
+  const timestamps = loadLessonTimestamps()
+  const visitedIncomplete = LESSON_POOL
+    .filter(m => visited.has(m.id) && !quizCompleted.has(m.id))
+    .sort((a, b) => {
+      const tsA = timestamps[a.id] ?? ''
+      const tsB = timestamps[b.id] ?? ''
+      return tsB.localeCompare(tsA) // most recent first
+    })
+
+  if (visitedIncomplete.length > 0) {
+    const mod = visitedIncomplete[0]
+    return { module: mod, lastVisited: timestamps[mod.id] ?? null }
+  }
+
+  // All visited lessons are completed — suggest the next unstarted one
+  const nextUnstarted = LESSON_POOL.find(m => !visited.has(m.id))
+  if (nextUnstarted) {
+    return { module: nextUnstarted, lastVisited: null }
+  }
+
+  return null // all lessons visited and completed
+}
+
 const DIFFICULTY_STYLES: Record<Difficulty, string> = {
   Beginner:     'bg-green-100 text-green-700',
   Intermediate: 'bg-amber-100 text-amber-700',
@@ -972,6 +1025,7 @@ export function HomePage() {
     .filter((m): m is Module => m !== undefined)
 
   const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
+  const continueLesson = getContinueLesson(visited, quizCompleted)
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
@@ -1301,6 +1355,32 @@ export function HomePage() {
 
         {/* Daily challenge */}
         <DailyChallenge />
+
+        {/* Continue where you left off */}
+        {continueLesson && (
+          <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-4 sm:p-5">
+            <p className="text-xs font-semibold text-indigo-600 uppercase tracking-wide mb-3">Continue where you left off</p>
+            <div className="flex items-center gap-4">
+              <span className="text-3xl flex-shrink-0" aria-hidden="true">{continueLesson.module.icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-indigo-900 text-sm leading-tight">{continueLesson.module.title}</p>
+                {continueLesson.lastVisited ? (
+                  <p className="text-indigo-500 text-xs mt-0.5">
+                    You visited this on {new Date(continueLesson.lastVisited).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}
+                  </p>
+                ) : (
+                  <p className="text-indigo-500 text-xs mt-0.5">Next up in your learning path</p>
+                )}
+              </div>
+              <Link
+                to={continueLesson.module.to as '/'}
+                className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
+              >
+                Pick up here &rarr;
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* Recently completed */}
         {recentlyCompletedModules.length > 0 && (
