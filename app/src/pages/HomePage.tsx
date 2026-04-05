@@ -9,6 +9,7 @@ import { useDailyReminder } from '../hooks/useDailyReminder'
 import { loadWeeklyGoal } from '../hooks/useWeeklyGoal'
 import { loadLessonTimestamps } from '../hooks/useMarkVisited'
 import { DailyChallenge } from '../components/DailyChallenge'
+import { LessonOfTheWeek } from '../components/LessonOfTheWeek'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -805,6 +806,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'blue',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-elections',
+        title: 'AI and elections — deepfakes, targeted ads, and protecting democracy',
+        description: 'How AI is used in political campaigns — microtargeting, deepfake candidates, bot networks, and what democracies are doing to protect fair elections.',
+        readingTime: '7 min',
+        icon: '🗳️',
+        to: '/learn/ai-and-elections',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-banking',
+        title: 'AI and banking — fraud detection, credit scoring, and your financial rights',
+        description: 'How banks use AI to spot fraud in real time, decide who gets credit, power chatbot advisors, and what rights you have when an algorithm makes a financial decision about you.',
+        readingTime: '7 min',
+        icon: '🏦',
+        to: '/learn/ai-and-banking',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1459,6 +1480,9 @@ export function HomePage() {
             </div>
           </div>
         )}
+
+        {/* Lesson of the week */}
+        <LessonOfTheWeek lessons={MODULES} visitedIds={visited} />
 
         {/* For Gigi section */}
         <div className="bg-pink-50 border border-pink-200 rounded-2xl p-4 sm:p-6 space-y-3">
