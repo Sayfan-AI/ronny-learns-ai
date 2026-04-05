@@ -1147,6 +1147,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-fraud',
+        title: 'AI and fraud and identity theft — synthetic identity fraud, credential stuffing, fake documents, and protection',
+        description: 'How AI is used to commit fraud — and how banks and fraud prevention services fight back. What to do if your identity is stolen in the UK.',
+        readingTime: '7 min',
+        icon: '🕵️',
+        to: '/learn/ai-and-fraud',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-space-exploration',
         title: 'AI and space exploration — Mars rovers, satellite AI, telescope data, and the search for alien life',
         description: 'From Mars rovers that navigate alone to telescopes that discover planets automatically — how AI is transforming our understanding of the universe.',

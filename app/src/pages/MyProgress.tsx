@@ -118,6 +118,7 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-social-media-algorithms', title: 'AI and social media algorithms',  to: '/learn/ai-and-social-media-algorithms' },
   { id: 'ai-and-climate-activism',     title: 'AI and climate activism',             to: '/learn/ai-and-climate-activism' },
   { id: 'ai-and-sports-medicine',      title: 'AI and sports medicine',              to: '/learn/ai-and-sports-medicine' },
+  { id: 'ai-and-fraud',                title: 'AI and fraud and identity theft',     to: '/learn/ai-and-fraud' },
 ]
 
 interface QuizScoreEntry {
