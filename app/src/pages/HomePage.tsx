@@ -23,6 +23,7 @@ import { LessonOfTheDay } from '../components/LessonOfTheDay'
 import { ContinueYourSeries } from '../components/ContinueYourSeries'
 import { StreakReward } from '../components/StreakReward'
 import { StreakChallenge } from '../components/StreakChallenge'
+import { SeriesCompletionCard } from '../components/SeriesCompletionCard'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1440,16 +1441,6 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-wildlife-conservation',
-        title: 'AI and wildlife conservation — camera traps, acoustic monitoring, and anti-poaching AI',
-        description: 'How AI is identifying animals from camera trap photos, listening for rare bird calls, tracking deforestation by satellite, and predicting where poachers will strike.',
-        readingTime: '7 min',
-        icon: '&#x1F98A;',
-        to: '/learn/ai-and-wildlife-conservation',
-        color: 'green',
-        difficulty: 'Beginner',
-      },
-      {
         id: 'ai-and-small-businesses',
         title: 'AI and small businesses — bookkeeping, chatbots, inventory, and the high street',
         description: 'How AI tools like Xero, WhatsApp Business chatbots, and inventory AI are helping sole traders and independent shops — and the risks of relying on them unchecked.',
@@ -1486,6 +1477,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         readingTime: '7 min',
         icon: '&#x1F9A0;',
         to: '/learn/ai-and-addiction-and-recovery',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-fashion-tech',
+        title: 'AI and fashion technology — trend forecasting, virtual try-on, and what AI means for the industry',
+        description: 'How Zara and ASOS use AI to predict what will sell, how virtual try-on works, AI in sustainable fashion, the resale market, and what automation means for garment workers.',
+        readingTime: '8 min',
+        icon: '&#x1F457;',
+        to: '/learn/ai-and-fashion-tech',
+        color: 'pink',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-music-industry',
+        title: 'AI and the music industry — Suno, Spotify algorithms, copyright battles, and deepfake voices',
+        description: 'AI music generators, the RIAA lawsuits, how Spotify\'s recommendation algorithm works, the "Heart on My Sleeve" deepfake voice incident, and AI production tools.',
+        readingTime: '8 min',
+        icon: '&#x1F3B8;',
+        to: '/learn/ai-and-music-industry',
         color: 'purple',
         difficulty: 'Intermediate',
       },
@@ -1883,6 +1894,9 @@ export function HomePage() {
 
         {/* Lesson of the day — featured daily lesson */}
         <LessonOfTheDay lessons={LESSON_POOL} completedIds={quizCompleted} />
+
+        {/* Series completion celebration — shown when user completes all lessons in a series */}
+        <SeriesCompletionCard />
 
         {/* Continue your series — prompt for users part-way through a learning series */}
         <ContinueYourSeries lessons={MODULES} />

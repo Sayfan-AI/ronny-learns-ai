@@ -137,6 +137,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-local-government',        title: 'AI and local government',           to: '/learn/ai-and-local-government' },
   { id: 'ai-and-wildlife-conservation',   title: 'AI and wildlife conservation',      to: '/learn/ai-and-wildlife-conservation' },
   { id: 'ai-and-addiction-and-recovery',  title: 'AI and addiction and recovery',     to: '/learn/ai-and-addiction-and-recovery' },
+  { id: 'ai-and-fashion-tech',            title: 'AI and fashion technology',         to: '/learn/ai-and-fashion-tech' },
+  { id: 'ai-and-music-industry',          title: 'AI and the music industry',         to: '/learn/ai-and-music-industry' },
 ]
 
 interface QuizScoreEntry {

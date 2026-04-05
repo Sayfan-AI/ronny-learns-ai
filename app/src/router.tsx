@@ -175,6 +175,8 @@ const AIAndLocalGovernment = lazy(() => import('./pages/AIAndLocalGovernment').t
 const AIAndWildlifeConservation = lazy(() => import('./pages/AIAndWildlifeConservation').then(m => ({ default: m.AIAndWildlifeConservation })))
 const AIAndAddictionAndRecovery = lazy(() => import('./pages/AIAndAddictionAndRecovery').then(m => ({ default: m.AIAndAddictionAndRecovery })))
 const AIFactsQuiz = lazy(() => import('./pages/AIFactsQuiz').then(m => ({ default: m.AIFactsQuiz })))
+const AIAndFashionTech = lazy(() => import('./pages/AIAndFashionTech').then(m => ({ default: m.AIAndFashionTech })))
+const AIAndMusicIndustry = lazy(() => import('./pages/AIAndMusicIndustry').then(m => ({ default: m.AIAndMusicIndustry })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1224,6 +1226,18 @@ const aiFactsQuizRoute = createRoute({
   component: withSuspense(AIFactsQuiz),
 })
 
+const aiAndFashionTechRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-fashion-tech',
+  component: withSuspense(AIAndFashionTech),
+})
+
+const aiAndMusicIndustryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-music-industry',
+  component: withSuspense(AIAndMusicIndustry),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1392,6 +1406,8 @@ const routeTree = rootRoute.addChildren([
   aiAndWildlifeConservationRoute,
   aiAndAddictionAndRecoveryRoute,
   aiFactsQuizRoute,
+  aiAndFashionTechRoute,
+  aiAndMusicIndustryRoute,
 ])
 
 const hashHistory = createHashHistory()
