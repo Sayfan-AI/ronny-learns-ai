@@ -150,6 +150,7 @@ const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration')
 const AIAndLogisticsAndDelivery = lazy(() => import('./pages/AIAndLogisticsAndDelivery').then(m => ({ default: m.AIAndLogisticsAndDelivery })))
 const AIAndTheHome = lazy(() => import('./pages/AIAndTheHome').then(m => ({ default: m.AIAndTheHome })))
 const StreakChallengePage = lazy(() => import('./pages/StreakChallengePage').then(m => ({ default: m.StreakChallengePage })))
+const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1049,6 +1050,12 @@ const streakChallengeRoute = createRoute({
   component: withSuspense(StreakChallengePage),
 })
 
+const trueOrFalseQuizRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/true-or-false',
+  component: withSuspense(TrueOrFalseQuiz),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1192,6 +1199,7 @@ const routeTree = rootRoute.addChildren([
   aiAndLogisticsAndDeliveryRoute,
   aiAndTheHomeRoute,
   streakChallengeRoute,
+  trueOrFalseQuizRoute,
 ])
 
 const hashHistory = createHashHistory()

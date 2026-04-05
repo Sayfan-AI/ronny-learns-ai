@@ -1896,6 +1896,20 @@ export function HomePage() {
           </Link>
         </div>
 
+        {/* True or False quiz game */}
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-amber-800 mb-0.5">&#x2753; True or False?</p>
+            <p className="text-sm text-amber-700">15 statements about AI — can you tell fact from fiction?</p>
+          </div>
+          <Link
+            to="/quiz/true-or-false"
+            className="flex-shrink-0 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          >
+            Play &rarr;
+          </Link>
+        </div>
+
         {/* Recently completed */}
         {recentlyCompletedModules.length > 0 && (
           <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 space-y-3">
