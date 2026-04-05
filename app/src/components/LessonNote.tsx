@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 const NOTES_KEY = 'ronny-lesson-notes'
+const APP_URL = 'https://sayfan-ai.github.io/ronny-learns-ai/'
 
 function loadNote(lessonId: string): string {
   try {
@@ -38,6 +39,7 @@ export function LessonNote({ lessonId, lessonTitle }: LessonNoteProps) {
   const [text, setText] = useState(existingNote)
   const [saved, setSaved] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [shared, setShared] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -67,6 +69,31 @@ export function LessonNote({ lessonId, lessonTitle }: LessonNoteProps) {
     }
   }
 
+  async function handleShare() {
+    const shareText = lessonTitle
+      ? `"${text}" — from the ${lessonTitle} lesson on Ronny Learns AI`
+      : `"${text}" — from Ronny Learns AI`
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My note from Ronny Learns AI',
+          text: shareText,
+          url: APP_URL,
+        })
+        return
+      } catch {
+        // fall through to clipboard
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(shareText)
+      setShared(true)
+      setTimeout(() => setShared(false), 2000)
+    } catch {
+      // clipboard unavailable
+    }
+  }
+
   if (!open) {
     return (
       <div className="bg-yellow-50 border border-yellow-100 rounded-2xl p-4 flex items-center justify-between">
@@ -93,13 +120,22 @@ export function LessonNote({ lessonId, lessonTitle }: LessonNoteProps) {
           <p className="text-yellow-600 text-xs mt-0.5">Your notes are saved on this device only</p>
         </div>
         {text.trim() && (
-          <button
-            onClick={handleCopy}
-            className="text-xs text-yellow-700 hover:text-yellow-900 border border-yellow-300 hover:border-yellow-500 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex-shrink-0"
-            aria-label="Copy notes to clipboard"
-          >
-            {copied ? '&#x2713; Copied!' : 'Copy notes'}
-          </button>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={handleCopy}
+              className="text-xs text-yellow-700 hover:text-yellow-900 border border-yellow-300 hover:border-yellow-500 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+              aria-label="Copy notes to clipboard"
+            >
+              {copied ? '&#x2713; Copied!' : 'Copy notes'}
+            </button>
+            <button
+              onClick={handleShare}
+              className="text-xs text-yellow-700 hover:text-yellow-900 border border-yellow-300 hover:border-yellow-500 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+              aria-label="Share this note"
+            >
+              {shared ? '&#x2713; Copied!' : 'Share note'}
+            </button>
+          </div>
         )}
       </div>
       <textarea

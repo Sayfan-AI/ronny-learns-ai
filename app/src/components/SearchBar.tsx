@@ -62,6 +62,8 @@ const SEARCH_INDEX: SearchItem[] = [
   { type: 'lesson', title: 'AI and the weather',                   description: 'GraphCast, the Met Office, flood warnings, and how AI is beating traditional forecasting models.', to: '/learn/ai-and-weather', difficulty: 'Beginner', topicGroup: 'AI in the real world' },
   { type: 'lesson', title: 'AI and the environment',               description: 'The carbon cost of AI training and inference, the AI paradox, DeepMind cooling savings, and how to be a thoughtful AI user.', to: '/learn/ai-and-the-environment', difficulty: 'Beginner', topicGroup: 'AI in the real world' },
   { type: 'lesson', title: 'AI and the law',                       description: 'AI in legal research, deepfake evidence in court, the EU AI Act, liability, and your right to challenge automated decisions.', to: '/learn/ai-and-the-law', difficulty: 'Intermediate', topicGroup: 'AI and society' },
+  { type: 'lesson', title: 'AI and relationships',                  description: 'How dating apps use AI matching, AI companion apps, emotional risks, fake profiles, and the authenticity question.', to: '/learn/ai-and-relationships', difficulty: 'Beginner', topicGroup: 'AI and society' },
+  { type: 'lesson', title: 'AI and creative writing',               description: 'How LLMs generate text, tools writers use, copyright questions, the authenticity debate, and practical tips for writers.', to: '/learn/ai-and-creative-writing', difficulty: 'Intermediate', topicGroup: 'AI and society' },
   { type: 'lesson', title: 'Glossary',                               description: 'Plain-English definitions for every AI term.',                   to: '/glossary' },
   { type: 'lesson', title: 'Learning recap',                         description: 'A visual overview of everything you have learned.',              to: '/learning-recap' },
   { type: 'lesson', title: 'Ask a question',                         description: 'Get a plain-language answer to any question about AI.',          to: '/ask' },
@@ -130,6 +132,8 @@ function applyFilters(
 
 const RECENT_KEY = 'ronny-recent-searches'
 const MAX_RECENT = 5
+
+const SUGGESTED_TOPICS = ['jobs', 'law', 'health', 'privacy', 'environment', 'money', 'children', 'sport', 'art', 'future', 'relationships', 'writing']
 
 function loadRecent(): string[] {
   try {
@@ -210,6 +214,11 @@ export function SearchBar() {
     setOpen(true)
   }
 
+  function applySuggestedTopic(topic: string) {
+    setQuery(topic)
+    setOpen(true)
+  }
+
   function clearRecentSearches() {
     localStorage.removeItem(RECENT_KEY)
     setRecentSearches([])
@@ -282,6 +291,24 @@ export function SearchBar() {
                     className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-800 transition-colors"
                   >
                     {term}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Suggested topics (shown only when input is focused and empty) */}
+          {!hasQuery && !hasFilter && (
+            <div className="px-4 pt-3 pb-2 border-b border-gray-100">
+              <span className="text-xs text-gray-400 font-medium block mb-1.5">Suggested topics</span>
+              <div className="flex flex-wrap gap-1.5">
+                {SUGGESTED_TOPICS.map(topic => (
+                  <button
+                    key={topic}
+                    onClick={() => applySuggestedTopic(topic)}
+                    className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 hover:border-blue-400 transition-colors"
+                  >
+                    {topic}
                   </button>
                 ))}
               </div>

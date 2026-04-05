@@ -74,6 +74,7 @@ const STAGES: Stage[] = [
       { id: 'ai-and-customer-service', icon: '&#x1F4AC;', title: 'AI and customer service', path: '/learn/ai-and-customer-service',           difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'ai-and-weather',      icon: '&#x26C5;', title: 'AI and the weather',             path: '/learn/ai-and-weather',                  difficulty: 'Beginner',     readingTime: '5 min' },
       { id: 'ai-and-the-environment', icon: '&#x1F331;', title: 'AI and the environment',     path: '/learn/ai-and-the-environment',           difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-relationships',   icon: '&#x1F495;', title: 'AI and relationships',         path: '/learn/ai-and-relationships',             difficulty: 'Beginner',     readingTime: '5 min' },
     ],
   },
   {
@@ -98,6 +99,7 @@ const STAGES: Stage[] = [
       { id: 'ai-and-mental-wellbeing-at-work', icon: '&#x1F9D8;', title: 'AI and mental wellbeing at work', path: '/learn/ai-and-mental-wellbeing-at-work', difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-children',      icon: '&#x1F9D2;', title: 'AI and children',                    path: '/learn/ai-and-children',                 difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-the-law',      icon: '&#x2696;&#xFE0F;', title: 'AI and the law',               path: '/learn/ai-and-the-law',                  difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'ai-and-creative-writing', icon: '&#x270D;&#xFE0F;', title: 'AI and creative writing',  path: '/learn/ai-and-creative-writing',          difficulty: 'Intermediate', readingTime: '6 min' },
     ],
   },
   {

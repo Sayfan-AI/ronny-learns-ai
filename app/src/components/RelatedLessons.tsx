@@ -78,6 +78,8 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'ai-and-weather',            icon: '&#x26C5;', title: 'AI and the weather',              path: '/learn/ai-and-weather',               difficulty: 'Beginner' },
   { id: 'ai-and-the-environment',    icon: '&#x1F331;', title: 'AI and the environment',         path: '/learn/ai-and-the-environment',        difficulty: 'Beginner' },
   { id: 'ai-and-the-law',            icon: '&#x2696;&#xFE0F;', title: 'AI and the law',          path: '/learn/ai-and-the-law',               difficulty: 'Intermediate' },
+  { id: 'ai-and-relationships',       icon: '&#x1F495;', title: 'AI and relationships',             path: '/learn/ai-and-relationships',          difficulty: 'Beginner' },
+  { id: 'ai-and-creative-writing',    icon: '&#x270D;&#xFE0F;', title: 'AI and creative writing', path: '/learn/ai-and-creative-writing',       difficulty: 'Intermediate' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -151,6 +153,8 @@ const RELATED: Record<string, string[]> = {
   'ai-and-the-environment':      ['ai-and-climate-change', 'ai-and-energy', 'ai-and-agriculture'],
   'ai-and-the-law':              ['ai-laws-and-rights', 'ai-and-copyright', 'ai-and-privacy'],
   'ai-and-copyright':            ['ai-and-laws-and-rights', 'ai-bias', 'ai-and-privacy'],
+  'ai-and-relationships':        ['ai-and-mental-health', 'ai-and-social-media', 'ai-and-misinformation'],
+  'ai-and-creative-writing':     ['ai-and-creativity', 'ai-and-art', 'ai-and-copyright'],
 }
 
 const DIFFICULTY_COLOURS: Record<string, string> = {
