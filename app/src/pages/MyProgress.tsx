@@ -15,7 +15,7 @@ import { useLearningCalendar } from '../hooks/useLearningCalendar'
 import { LearningStatsCard } from '../components/LearningStatsCard'
 import { TopicCompletionTracker } from '../components/TopicCompletionTracker'
 import { EstimatedCompletion } from '../components/EstimatedCompletion'
-import { LESSON_SERIES } from '../data/lessonSeries'
+import { LESSON_SERIES, getSeriesProgress } from '../data/lessonSeries'
 
 // Lessons that have quizzes (ordered as they appear in the curriculum)
 const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
@@ -841,45 +841,47 @@ export function MyProgress() {
         {/* Topic completion tracker */}
         <TopicCompletionTracker />
 
-        {/* Learning series overview */}
-        {(() => {
-          const completedIds = new Set(quizScoreData.attempted.map(e => e.id))
-          return (
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-5 space-y-4">
-              <p className="font-semibold text-gray-800 dark:text-gray-100 text-base">Learning series</p>
-              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                Lessons are grouped into themed series. Complete all lessons in a series to master a topic area.
-              </p>
-              <div className="space-y-3">
-                {LESSON_SERIES.map(series => {
-                  const done = series.lessonIds.filter(id => completedIds.has(id)).length
-                  const total = series.lessonIds.length
-                  const pct = Math.round((done / total) * 100)
-                  return (
-                    <div key={series.slug} className="space-y-1.5">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <span dangerouslySetInnerHTML={{ __html: series.icon }} className="text-base flex-shrink-0" />
-                          <p className="font-medium text-gray-800 dark:text-gray-100 text-sm truncate">{series.name}</p>
-                        </div>
-                        <span className="text-gray-500 dark:text-gray-400 text-xs flex-shrink-0">{done}/{total}</span>
-                      </div>
-                      <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full transition-all ${done === total ? 'bg-emerald-500' : 'bg-violet-500'}`}
-                          style={{ width: `${pct}%` }}
-                        />
-                      </div>
-                      {done === total && (
-                        <p className="text-emerald-600 dark:text-emerald-400 text-xs">&#x2713; Series complete!</p>
-                      )}
+        {/* Learning series */}
+        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">&#x1F4DA;</span>
+            <h2 className="text-xl font-semibold text-gray-700">Learning series</h2>
+          </div>
+          <p className="text-sm text-gray-500">
+            Related lessons grouped into themed series. Work through a series to build a deep understanding of a topic.
+          </p>
+          <div className="space-y-3">
+            {LESSON_SERIES.map(series => {
+              const { completed, total } = getSeriesProgress(series, visited)
+              const pct = Math.round((completed / total) * 100)
+              const done = completed === total
+              return (
+                <div
+                  key={series.slug}
+                  className={`rounded-xl border p-4 space-y-2 ${done ? 'border-emerald-200 bg-emerald-50' : 'border-indigo-100 bg-indigo-50'}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl" aria-hidden="true" dangerouslySetInnerHTML={{ __html: series.icon }} />
+                    <p className={`font-semibold text-sm ${done ? 'text-emerald-800' : 'text-indigo-900'}`}>{series.name}</p>
+                    {done && <span className="ml-auto text-emerald-500 font-bold text-lg">&#x2713;</span>}
+                  </div>
+                  <p className="text-xs text-gray-500 leading-relaxed">{series.description}</p>
+                  <div className="flex items-center gap-3">
+                    <div className={`flex-1 h-2 rounded-full overflow-hidden ${done ? 'bg-emerald-200' : 'bg-indigo-200'}`}>
+                      <div
+                        className={`h-2 rounded-full transition-all duration-500 ${done ? 'bg-emerald-500' : 'bg-indigo-500'}`}
+                        style={{ width: `${pct}%` }}
+                      />
                     </div>
-                  )
-                })}
-              </div>
-            </div>
-          )
-        })()}
+                    <span className={`text-xs font-medium flex-shrink-0 ${done ? 'text-emerald-700' : 'text-indigo-600'}`}>
+                      {completed} / {total} lessons
+                    </span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
 
         {/* Achievements summary + name change */}
         <div className="flex flex-col sm:flex-row gap-3">

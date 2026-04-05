@@ -10,6 +10,8 @@ import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { DifficultyBadge } from '../components/DifficultyBadge'
+import { LessonSeriesBadge } from '../components/LessonSeriesBadge'
+
 
 const LESSON_TITLE = 'AI and scams'
 
@@ -93,6 +95,8 @@ export function AIAndScams() {
           <CompletedBadge lessonId="ai-and-scams" />
           <ShareButton lessonTitle={LESSON_TITLE} />
         </div>
+
+        <LessonSeriesBadge lessonId="ai-and-scams" />
 
         <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800">Why AI has made scams much worse</h2>
