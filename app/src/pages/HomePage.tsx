@@ -14,6 +14,7 @@ import { RecentlyViewed, loadRecentlyViewed } from '../components/RecentlyViewed
 import { WhatsNew } from '../components/WhatsNew'
 import { InterestQuiz } from '../components/InterestQuiz'
 import { TestYourself } from '../components/TestYourself'
+import { AppFeedback } from '../components/AppFeedback'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -553,6 +554,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🚨',
         to: '/learn/ai-and-emergency-services',
         color: 'red',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-virtual-reality',
+        title: 'AI and virtual reality — AI-generated worlds, VR NPCs, the metaverse, and what it means for real life',
+        description: 'How AI powers immersive VR environments, lifelike virtual characters, AR in everyday life, and the real questions about identity, addiction, and surveillance.',
+        readingTime: '7 min',
+        icon: '🥽',
+        to: '/learn/ai-and-virtual-reality',
+        color: 'violet',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-supply-chains',
+        title: 'AI and supply chains — robots in warehouses, demand forecasting, last-mile delivery, and when AI gets it wrong',
+        description: 'How AI keeps goods moving — demand forecasting, Amazon warehouse robots, route optimisation, last-mile delivery, and what the pandemic taught us about the limits of efficiency.',
+        readingTime: '7 min',
+        icon: '🚚',
+        to: '/learn/ai-and-supply-chains',
+        color: 'orange',
         difficulty: 'Intermediate',
       },
     ],
@@ -1709,6 +1730,9 @@ export function HomePage() {
 
         {/* What's new */}
         <WhatsNew />
+
+        {/* App feedback */}
+        <AppFeedback />
 
         {/* For Gigi section */}
         <div className="bg-pink-50 border border-pink-200 rounded-2xl p-4 sm:p-6 space-y-3">
