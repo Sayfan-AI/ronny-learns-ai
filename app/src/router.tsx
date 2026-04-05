@@ -141,6 +141,8 @@ const AIAndCybercrime = lazy(() => import('./pages/AIAndCybercrime').then(m => (
 const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
 const AIAndAutonomousVehicles = lazy(() => import('./pages/AIAndAutonomousVehicles').then(m => ({ default: m.AIAndAutonomousVehicles })))
 const AIAnd3DPrinting = lazy(() => import('./pages/AIAnd3DPrinting').then(m => ({ default: m.AIAnd3DPrinting })))
+const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
+const AIAndTaxesAndFinancialAdmin = lazy(() => import('./pages/AIAndTaxesAndFinancialAdmin').then(m => ({ default: m.AIAndTaxesAndFinancialAdmin })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -986,6 +988,18 @@ const aiAnd3DPrintingRoute = createRoute({
   component: withSuspense(AIAnd3DPrinting),
 })
 
+const aiAndPregnancyAndBabyCareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-pregnancy-and-baby-care',
+  component: withSuspense(AIAndPregnancyAndBabyCare),
+})
+
+const aiAndTaxesAndFinancialAdminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-taxes-and-financial-admin',
+  component: withSuspense(AIAndTaxesAndFinancialAdmin),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1120,6 +1134,8 @@ const routeTree = rootRoute.addChildren([
   aiAndSpaceExplorationRoute,
   aiAndAutonomousVehiclesRoute,
   aiAnd3DPrintingRoute,
+  aiAndPregnancyAndBabyCareRoute,
+  aiAndTaxesAndFinancialAdminRoute,
 ])
 
 const hashHistory = createHashHistory()

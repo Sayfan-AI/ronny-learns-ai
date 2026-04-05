@@ -1153,6 +1153,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'cyan',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-pregnancy-and-baby-care',
+        title: 'AI and pregnancy and baby care — bump-tracking apps, AI ultrasound, smart baby monitors, and parental data',
+        description: 'How AI is supporting parents through pregnancy and the newborn stage — from apps that personalise week-by-week advice to smart monitors that track breathing, and what you need to know about your data.',
+        readingTime: '7 min',
+        icon: '👶',
+        to: '/learn/ai-and-pregnancy-and-baby-care',
+        color: 'pink',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-taxes-and-financial-admin',
+        title: 'AI and taxes and financial admin — HMRC fraud detection, AI tax tools, expense scanning, and staying safe',
+        description: 'How HMRC uses AI to catch fraud, why AI-powered tax return tools are transforming self-assessment, how expense scanning apps work, and how to use these tools safely.',
+        readingTime: '7 min',
+        icon: '📊',
+        to: '/learn/ai-and-taxes-and-financial-admin',
+        color: 'amber',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1434,7 +1454,26 @@ export function HomePage() {
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
   const [keywordFilter, setKeywordFilter] = useState('')
+  const [searchFocused, setSearchFocused] = useState(false)
+  const [searchHistory, setSearchHistory] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem('ronny-search-history')
+      return stored ? (JSON.parse(stored) as string[]) : []
+    } catch {
+      return []
+    }
+  })
   const showInterestQuiz = quizCompletedCount === 0 && localStorage.getItem('ronny-interest-quiz-done') === null
+
+  function addToSearchHistory(term: string) {
+    const trimmed = term.trim()
+    if (!trimmed) return
+    setSearchHistory(prev => {
+      const deduped = [trimmed, ...prev.filter(t => t !== trimmed)].slice(0, 5)
+      try { localStorage.setItem('ronny-search-history', JSON.stringify(deduped)) } catch { /* ignore */ }
+      return deduped
+    })
+  }
 
   function toggleBookmark(id: string) {
     const next = new Set(bookmarks)
@@ -1936,18 +1975,24 @@ export function HomePage() {
             <p className="text-gray-500 text-sm">Grouped by topic — start anywhere, or work through in order.</p>
           </div>
 
-          {/* Keyword filter */}
+          {/* Keyword filter with search history */}
           <div className="relative">
             <input
               type="search"
               placeholder="Search lessons by keyword..."
               value={keywordFilter}
               onChange={e => setKeywordFilter(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => {
+                // Delay hiding so clicks on history chips register first
+                setTimeout(() => setSearchFocused(false), 150)
+                if (keywordFilter.trim()) addToSearchHistory(keywordFilter)
+              }}
               aria-label="Filter lessons by keyword"
               className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 pl-10 text-sm text-gray-700 shadow-sm placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200"
             />
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" aria-hidden="true">
-              🔍
+              &#x1F50D;
             </span>
             {keywordFilter && (
               <button
@@ -1957,6 +2002,27 @@ export function HomePage() {
               >
                 &times;
               </button>
+            )}
+            {/* Search history panel — shown when focused, empty, and history exists */}
+            {searchFocused && !keywordFilter && searchHistory.length > 0 && (
+              <div className="absolute z-10 top-full mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-md p-3">
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">Recent searches</p>
+                <div className="flex flex-wrap gap-2">
+                  {searchHistory.map(term => (
+                    <button
+                      key={term}
+                      onMouseDown={e => {
+                        e.preventDefault()
+                        setKeywordFilter(term)
+                        setSearchFocused(false)
+                      }}
+                      className="px-3 py-1 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-full border border-gray-200 hover:border-blue-300 transition-colors"
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
 
