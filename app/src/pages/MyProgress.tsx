@@ -120,6 +120,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-climate-activism',     title: 'AI and climate activism',             to: '/learn/ai-and-climate-activism' },
   { id: 'ai-and-sports-medicine',      title: 'AI and sports medicine',              to: '/learn/ai-and-sports-medicine' },
   { id: 'ai-and-fraud-and-identity-theft', title: 'AI and fraud and identity theft', to: '/learn/ai-and-fraud-and-identity-theft' },
+  { id: 'ai-and-gig-economy',          title: 'AI and the gig economy',              to: '/learn/ai-and-gig-economy' },
+  { id: 'ai-and-edtech',               title: 'AI and education technology',          to: '/learn/ai-and-edtech' },
 ]
 
 interface QuizScoreEntry {

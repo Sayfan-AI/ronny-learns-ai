@@ -20,6 +20,7 @@ import { QuizOfTheDay } from '../components/QuizOfTheDay'
 import { DifficultyBadge } from '../components/DifficultyBadge'
 import { LessonSeriesNavigator } from '../components/LessonSeriesNavigator'
 import { LessonOfTheDay } from '../components/LessonOfTheDay'
+import { ContinueYourSeries } from '../components/ContinueYourSeries'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1306,6 +1307,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'red',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-gig-economy',
+        title: 'AI and the gig economy — algorithmic management, surge pricing, automated deactivations, and worker rights',
+        description: 'How Uber, Deliveroo, and other platforms use AI to allocate jobs, set pay, monitor workers, and make disciplinary decisions — and what UK law says about your rights.',
+        readingTime: '7 min',
+        icon: '&#x1F6F4;',
+        to: '/learn/ai-and-gig-economy',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-edtech',
+        title: 'AI and education technology — AI tutors, adaptive learning, essay marking, and exam surveillance',
+        description: 'How AI is being used in UK schools and universities — from personalised tutoring and lesson planning tools to controversial exam proctoring software.',
+        readingTime: '7 min',
+        icon: '&#x1F4DA;',
+        to: '/learn/ai-and-edtech',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1697,6 +1718,9 @@ export function HomePage() {
 
         {/* Lesson of the day — featured daily lesson */}
         <LessonOfTheDay lessons={LESSON_POOL} completedIds={quizCompleted} />
+
+        {/* Continue your series — prompt for users part-way through a learning series */}
+        <ContinueYourSeries lessons={MODULES} />
 
         {/* Search */}
         <SearchBar />
