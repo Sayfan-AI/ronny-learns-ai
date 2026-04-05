@@ -17,6 +17,7 @@ import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
+import { LessonSeriesNavigator } from '../components/LessonSeriesNavigator'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1113,6 +1114,66 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-autonomous-vehicles',
+        title: 'AI and autonomous vehicles — self-driving cars, levels of autonomy, safety, and what is in your car today',
+        description: 'How self-driving cars work, the six levels of autonomy, who is leading the race, and the AI driver assistance already saving lives in your car.',
+        readingTime: '7 min',
+        icon: '🚗',
+        to: '/learn/ai-and-autonomous-vehicles',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-translation',
+        title: 'AI and translation — DeepL vs Google Translate, real-time interpreting, subtitles, and cultural nuance',
+        description: 'How machine translation went from laughably bad to genuinely useful — and where AI still needs help from human translators.',
+        readingTime: '6 min',
+        icon: '🗣',
+        to: '/learn/ai-and-translation',
+        color: 'cyan',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-3d-printing',
+        title: 'AI and 3D printing — generative design, medical implants, lighter aircraft parts, and custom shoes',
+        description: 'How AI generates designs impossible to make any other way — from custom medical implants to running shoes shaped for your specific foot.',
+        readingTime: '6 min',
+        icon: '🧱',
+        to: '/learn/ai-and-3d-printing',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-logistics',
+        title: 'AI and logistics — warehouse robots, route optimisation, delivery drones, and demand forecasting',
+        description: 'The invisible AI machine behind every online order — from Amazon\'s warehouse robots to the algorithm that sends your "3 stops away" notification.',
+        readingTime: '6 min',
+        icon: '🚚',
+        to: '/learn/ai-and-logistics',
+        color: 'yellow',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-space-exploration',
+        title: 'AI and space exploration — Mars rovers, satellite AI, telescope data, and the search for alien life',
+        description: 'How AI navigates rovers on Mars, watches the Earth from orbit, photographed a black hole, and searches for signs of extraterrestrial life.',
+        readingTime: '7 min',
+        icon: '🚀',
+        to: '/learn/ai-and-space-exploration',
+        color: 'indigo',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-cybercrime',
+        title: 'AI and cybercrime — AI-powered phishing, deepfake fraud, ransomware, and how to stay safe',
+        description: 'How criminals use AI to run more sophisticated attacks at greater scale — and the practical steps to protect yourself.',
+        readingTime: '6 min',
+        icon: '🔒',
+        to: '/learn/ai-and-cybercrime',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1730,6 +1791,9 @@ export function HomePage() {
 
         {/* Quiz of the day */}
         {visited.size >= 1 && <QuizOfTheDay />}
+
+        {/* Lesson series navigator */}
+        <LessonSeriesNavigator lessons={MODULES} visitedIds={visited} />
 
         {/* Test yourself — mixed-topic quiz from completed lessons */}
         <TestYourself />

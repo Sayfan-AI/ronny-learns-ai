@@ -137,6 +137,12 @@ const AIAndConstruction = lazy(() => import('./pages/AIAndConstruction').then(m 
 const AIAndPersonalFinance = lazy(() => import('./pages/AIAndPersonalFinance').then(m => ({ default: m.AIAndPersonalFinance })))
 const AIAndCooking = lazy(() => import('./pages/AIAndCooking').then(m => ({ default: m.AIAndCooking })))
 const AIAndGenetics = lazy(() => import('./pages/AIAndGenetics').then(m => ({ default: m.AIAndGenetics })))
+const AIAndAutonomousVehicles = lazy(() => import('./pages/AIAndAutonomousVehicles').then(m => ({ default: m.AIAndAutonomousVehicles })))
+const AIAndTranslation = lazy(() => import('./pages/AIAndTranslation').then(m => ({ default: m.AIAndTranslation })))
+const AIAnd3DPrinting = lazy(() => import('./pages/AIAnd3DPrinting').then(m => ({ default: m.AIAnd3DPrinting })))
+const AIAndLogistics = lazy(() => import('./pages/AIAndLogistics').then(m => ({ default: m.AIAndLogistics })))
+const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
+const AIAndCybercrime = lazy(() => import('./pages/AIAndCybercrime').then(m => ({ default: m.AIAndCybercrime })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -958,6 +964,42 @@ const aiAndGeneticsRoute = createRoute({
   component: withSuspense(AIAndGenetics),
 })
 
+const aiAndAutonomousVehiclesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-autonomous-vehicles',
+  component: withSuspense(AIAndAutonomousVehicles),
+})
+
+const aiAndTranslationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-translation',
+  component: withSuspense(AIAndTranslation),
+})
+
+const aiAnd3DPrintingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-3d-printing',
+  component: withSuspense(AIAnd3DPrinting),
+})
+
+const aiAndLogisticsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-logistics',
+  component: withSuspense(AIAndLogistics),
+})
+
+const aiAndSpaceExplorationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-space-exploration',
+  component: withSuspense(AIAndSpaceExploration),
+})
+
+const aiAndCybercrimeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-cybercrime',
+  component: withSuspense(AIAndCybercrime),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1088,6 +1130,12 @@ const routeTree = rootRoute.addChildren([
   aiAndPersonalFinanceRoute,
   aiAndCookingRoute,
   aiAndGeneticsRoute,
+  aiAndAutonomousVehiclesRoute,
+  aiAndTranslationRoute,
+  aiAnd3DPrintingRoute,
+  aiAndLogisticsRoute,
+  aiAndSpaceExplorationRoute,
+  aiAndCybercrimeRoute,
 ])
 
 const hashHistory = createHashHistory()
