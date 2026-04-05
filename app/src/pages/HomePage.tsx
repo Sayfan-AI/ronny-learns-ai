@@ -19,6 +19,7 @@ import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
 import { DifficultyBadge } from '../components/DifficultyBadge'
 import { LessonSeriesNavigator } from '../components/LessonSeriesNavigator'
+import { LessonOfTheDay } from '../components/LessonOfTheDay'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1235,6 +1236,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'amber',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-immigration',
+        title: 'AI and immigration — visa processing AI, biometric border checks, asylum decision tools, and algorithmic bias',
+        description: 'How AI is used to process visas, check identities at UK airports, and assess asylum claims — plus the controversy around algorithmic bias and your legal rights.',
+        readingTime: '7 min',
+        icon: '&#x1F6C2;',
+        to: '/learn/ai-and-immigration',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-dentistry',
+        title: 'AI and dentistry — X-ray analysis, cavity detection, treatment planning, and NHS dental AI tools',
+        description: 'How AI reads dental X-rays, detects oral cancer early, helps triage NHS dental emergencies, and supports patients with dental anxiety.',
+        readingTime: '6 min',
+        icon: '&#x1F9B7;',
+        to: '/learn/ai-and-dentistry',
+        color: 'cyan',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -1624,6 +1645,9 @@ export function HomePage() {
           </div>
         )}
 
+        {/* Lesson of the day — featured daily lesson */}
+        <LessonOfTheDay lessons={LESSON_POOL} completedIds={quizCompleted} />
+
         {/* Search */}
         <SearchBar />
 
@@ -1821,39 +1845,8 @@ export function HomePage() {
           </div>
         )}
 
-        {/* Lesson of the day */}
-        {lessonOfTheDay ? (
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-4 sm:p-5 space-y-3">
-            <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Lesson of the day</p>
-            <Link
-              to={lessonOfTheDay.to as '/'}
-              onClick={() => {
-                const next = new Set(visited)
-                next.add(lessonOfTheDay.id)
-                setVisited(next)
-                localStorage.setItem(VISITED_KEY, JSON.stringify([...next]))
-              }}
-              className="flex items-center gap-4 group"
-            >
-              <span className="text-3xl flex-shrink-0">{lessonOfTheDay.icon}</span>
-              <div className="flex-1 min-w-0">
-                <p className="font-bold text-blue-800 group-hover:underline text-base leading-tight">{lessonOfTheDay.title}</p>
-                <p className="text-blue-600 text-sm mt-0.5 leading-relaxed">{lessonOfTheDay.description}</p>
-                <div className="flex items-center gap-2 mt-1">
-                  {lessonOfTheDay.readingTime && (
-                    <span className="text-blue-400 text-xs">{lessonOfTheDay.readingTime} read</span>
-                  )}
-                  {lessonOfTheDay.difficulty && (
-                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[lessonOfTheDay.difficulty]}`}>
-                      {lessonOfTheDay.difficulty}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <span className="text-blue-400 text-xl flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
-            </Link>
-          </div>
-        ) : (
+        {/* All lessons completed celebration */}
+        {!lessonOfTheDay && (
           <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center space-y-1">
             <p className="text-emerald-800 font-semibold">You have completed all the lessons!</p>
             <p className="text-emerald-600 text-sm">Head to My Progress to see your achievements and certificate.</p>
