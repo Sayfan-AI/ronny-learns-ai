@@ -129,8 +129,17 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-sport-nutrition',                title: 'AI and sport nutrition',                   to: '/learn/ai-and-sport-nutrition' },
   { id: 'ai-and-mental-health-chatbots',         title: 'AI and mental health chatbots',            to: '/learn/ai-and-mental-health-chatbots' },
   { id: 'ai-and-personal-assistants',            title: 'AI and personal assistants',               to: '/learn/ai-and-personal-assistants' },
-  { id: 'ai-and-legal-system',                   title: 'AI and the legal system',                  to: '/learn/ai-and-legal-system' },
-  { id: 'ai-and-edtech',                         title: 'AI and education technology',              to: '/learn/ai-and-edtech' },
+  { id: 'ai-and-the-legal-system',               title: 'AI and the legal system',                  to: '/learn/ai-and-the-legal-system' },
+  { id: 'ai-and-education-technology',           title: 'AI and education technology',              to: '/learn/ai-and-education-technology' },
+  { id: 'ai-and-the-benefits-system',            title: 'AI and the benefits system',               to: '/learn/ai-and-the-benefits-system' },
+  { id: 'ai-and-pregnancy-and-baby-care',        title: 'AI and pregnancy and baby care',           to: '/learn/ai-and-pregnancy-and-baby-care' },
+  { id: 'ai-and-content-moderation',             title: 'AI and content moderation',                to: '/learn/ai-and-content-moderation' },
+  { id: 'ai-and-cybercrime',                    title: 'AI and cybercrime',                        to: '/learn/ai-and-cybercrime' },
+  { id: 'ai-and-autonomous-vehicles',           title: 'AI and autonomous vehicles',               to: '/learn/ai-and-autonomous-vehicles' },
+  { id: 'ai-and-financial-advice',              title: 'AI and financial advice',                  to: '/learn/ai-and-financial-advice' },
+  { id: 'ai-and-shopping',                      title: 'AI and shopping',                          to: '/learn/ai-and-shopping' },
+  { id: 'ai-and-translation',                   title: 'AI and translation',                       to: '/learn/ai-and-translation' },
+  { id: 'ai-and-gig-economy',                   title: 'AI and the gig economy',                   to: '/learn/ai-and-gig-economy' },
 ]
 
 interface QuizScoreEntry {

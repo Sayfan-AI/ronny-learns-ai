@@ -344,4 +344,46 @@ export const QUIZ_BANK: BankedQuestion[] = [
     correctIndex: 1,
     explanation: 'The distance between Earth and Mars means radio signals take between 3 and 22 minutes to arrive, depending on where the two planets are in their orbits. A round trip for a command and response therefore takes between 6 and 44 minutes. AI allows the rover to plan short drives and avoid hazards independently, with humans setting longer-term goals.',
   },
+  // --- AI and content moderation ---
+  {
+    lessonId: 'ai-and-content-moderation',
+    lessonTitle: 'AI and content moderation',
+    question: 'What is the main reason platforms like YouTube and Facebook rely on AI for content moderation?',
+    options: [
+      'AI is more accurate than human reviewers at identifying all types of harmful content',
+      'The volume of content uploaded is so vast that human-only review is physically impossible — YouTube receives 500 hours of video per minute',
+      'AI moderation is required by law in most countries',
+      'Human reviewers are too unreliable because they bring personal biases',
+    ],
+    correctIndex: 1,
+    explanation: 'YouTube receives around 500 hours of new video every minute. Human reviewers alone could never review even a fraction of this. AI handles the first pass, flagging content for human review in the most severe cases.',
+  },
+  // --- AI and the benefits system ---
+  {
+    lessonId: 'ai-and-benefits-system',
+    lessonTitle: 'AI and the benefits system',
+    question: 'What is the primary concern about using AI in the UK benefits system for fraud detection?',
+    options: [
+      'AI fraud detection is too expensive for the DWP to run at scale',
+      'Automated systems may wrongly flag legitimate claimants, and decisions made by algorithms can be hard to challenge or appeal',
+      'AI requires all claimants to submit digital evidence, excluding people without internet access',
+      'The DWP lacks the computing infrastructure to run AI systems across its entire caseload',
+    ],
+    correctIndex: 1,
+    explanation: "AI fraud detection systems can produce false positives — incorrectly identifying genuine claimants as fraudulent. The concern is compounded when algorithmic decisions are opaque and difficult to challenge, affecting vulnerable people who depend on benefits.",
+  },
+  // --- AI and pregnancy and baby care ---
+  {
+    lessonId: 'ai-and-pregnancy-and-baby-care',
+    lessonTitle: 'AI and pregnancy and baby care',
+    question: 'How is AI being used in ultrasound analysis during pregnancy?',
+    options: [
+      'AI replaces the sonographer entirely, producing all measurements and diagnoses without human involvement',
+      'AI helps sonographers detect abnormalities and take accurate measurements, improving consistency and catching things that might be missed in a quick scan',
+      'AI generates a 3D printed model of the foetus that parents can keep as a keepsake',
+      'AI adjusts the ultrasound machine settings automatically based on the mother\'s body type to produce clearer images',
+    ],
+    correctIndex: 1,
+    explanation: "AI-assisted ultrasound tools help sonographers identify foetal abnormalities, measure growth more accurately, and flag potential concerns for further review. They are a decision-support tool, not a replacement for the trained professional interpreting the scan.",
+  },
 ]
