@@ -170,6 +170,8 @@ const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').the
 const AIAndMusicCreation = lazy(() => import('./pages/AIAndMusicCreation').then(m => ({ default: m.AIAndMusicCreation })))
 const AIAndAgeingAndElderCare = lazy(() => import('./pages/AIAndAgeingAndElderCare').then(m => ({ default: m.AIAndAgeingAndElderCare })))
 const AIAndCriticalThinking = lazy(() => import('./pages/AIAndCriticalThinking').then(m => ({ default: m.AIAndCriticalThinking })))
+const AIAndWildlifeConservation = lazy(() => import('./pages/AIAndWildlifeConservation').then(m => ({ default: m.AIAndWildlifeConservation })))
+const AIAndAddictionAndRecovery = lazy(() => import('./pages/AIAndAddictionAndRecovery').then(m => ({ default: m.AIAndAddictionAndRecovery })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1189,6 +1191,18 @@ const aiAndCriticalThinkingRoute = createRoute({
   component: withSuspense(AIAndCriticalThinking),
 })
 
+const aiAndWildlifeConservationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-wildlife-conservation',
+  component: withSuspense(AIAndWildlifeConservation),
+})
+
+const aiAndAddictionAndRecoveryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-addiction-and-recovery',
+  component: withSuspense(AIAndAddictionAndRecovery),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1352,6 +1366,8 @@ const routeTree = rootRoute.addChildren([
   aiAndMusicCreationRoute,
   aiAndAgeingAndElderCareRoute,
   aiAndCriticalThinkingRoute,
+  aiAndWildlifeConservationRoute,
+  aiAndAddictionAndRecoveryRoute,
 ])
 
 const hashHistory = createHashHistory()

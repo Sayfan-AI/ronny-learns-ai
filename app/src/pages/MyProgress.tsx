@@ -133,6 +133,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-gig-workers',             title: 'AI and gig workers',                to: '/learn/ai-and-gig-workers' },
   { id: 'ai-and-ageing-and-elder-care',   title: 'AI and ageing and elder care',      to: '/learn/ai-and-ageing-and-elder-care' },
   { id: 'ai-and-critical-thinking',       title: 'AI and critical thinking',          to: '/learn/ai-and-critical-thinking' },
+  { id: 'ai-and-wildlife-conservation',   title: 'AI and wildlife conservation',       to: '/learn/ai-and-wildlife-conservation' },
+  { id: 'ai-and-addiction-and-recovery',  title: 'AI and addiction and recovery',      to: '/learn/ai-and-addiction-and-recovery' },
 ]
 
 interface QuizScoreEntry {
