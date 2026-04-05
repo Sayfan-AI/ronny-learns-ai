@@ -72,6 +72,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-hiring',              title: 'AI and hiring',                       to: '/learn/ai-and-hiring' },
   { id: 'ai-and-customer-service',    title: 'AI and customer service',             to: '/learn/ai-and-customer-service' },
   { id: 'ai-and-weather',             title: 'AI and the weather',                  to: '/learn/ai-and-weather' },
+  { id: 'ai-and-the-environment',     title: 'AI and the environment',              to: '/learn/ai-and-the-environment' },
+  { id: 'ai-and-the-law',             title: 'AI and the law',                      to: '/learn/ai-and-the-law' },
 ]
 
 interface QuizScoreEntry {
@@ -244,6 +246,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-hiring',             icon: '💼', title: 'AI and hiring',                                to: '/learn/ai-and-hiring' },
       { id: 'ai-and-customer-service',   icon: '💬', title: 'AI and customer service',                      to: '/learn/ai-and-customer-service' },
       { id: 'ai-and-weather',            icon: '⛅', title: 'AI and the weather',                           to: '/learn/ai-and-weather' },
+      { id: 'ai-and-the-environment',    icon: '🌱', title: 'AI and the environment',                       to: '/learn/ai-and-the-environment' },
     ],
   },
   {
@@ -273,6 +276,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-journalism',     icon: '📰', title: 'AI and journalism',                       to: '/learn/ai-and-journalism' },
       { id: 'ai-and-mental-wellbeing-at-work', icon: '🧘', title: 'AI and mental wellbeing at work', to: '/learn/ai-and-mental-wellbeing-at-work' },
       { id: 'ai-and-children',          icon: '🧒', title: 'AI and children',                            to: '/learn/ai-and-children' },
+      { id: 'ai-and-the-law',           icon: '⚖️', title: 'AI and the law',                              to: '/learn/ai-and-the-law' },
     ],
   },
   {
@@ -333,6 +337,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-insurance': 5, 'ai-and-policing': 6,
   'ai-and-the-nhs': 5, 'ai-and-hiring': 6,
   'ai-and-customer-service': 5, 'ai-and-weather': 5,
+  'ai-and-the-environment': 5, 'ai-and-the-law': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -368,6 +373,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-insurance': 'AI and society', 'ai-and-policing': 'AI and society',
   'ai-and-the-nhs': 'AI in the real world', 'ai-and-hiring': 'AI and society',
   'ai-and-customer-service': 'AI in the real world', 'ai-and-weather': 'AI in the real world',
+  'ai-and-the-environment': 'AI in the real world', 'ai-and-the-law': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }

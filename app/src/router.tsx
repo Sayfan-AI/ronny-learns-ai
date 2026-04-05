@@ -4,6 +4,8 @@ import { NavBar } from './components/NavBar'
 import { WelcomeTour } from './components/WelcomeTour'
 import { MilestoneCelebration } from './components/MilestoneCelebration'
 import { ReadingModeButton } from './components/ReadingModeButton'
+import { ReadingProgressBar } from './components/ReadingProgressBar'
+import { BackToTopButton } from './components/BackToTopButton'
 
 // Lazy-loaded page components — each becomes its own JS chunk
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -94,6 +96,8 @@ const AIAndHiring = lazy(() => import('./pages/AIAndHiring').then(m => ({ defaul
 const AIAndCustomerService = lazy(() => import('./pages/AIAndCustomerService').then(m => ({ default: m.AIAndCustomerService })))
 const AIAndWeather = lazy(() => import('./pages/AIAndWeather').then(m => ({ default: m.AIAndWeather })))
 const MyNotes = lazy(() => import('./pages/MyNotes').then(m => ({ default: m.MyNotes })))
+const AIAndTheEnvironment = lazy(() => import('./pages/AIAndTheEnvironment').then(m => ({ default: m.AIAndTheEnvironment })))
+const AIAndTheLaw = lazy(() => import('./pages/AIAndTheLaw').then(m => ({ default: m.AIAndTheLaw })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -128,10 +132,12 @@ const rootRoute = createRootRoute({
       >
         Skip to main content
       </a>
+      <ReadingProgressBar />
       <NavBar />
       <WelcomeTour />
       <MilestoneCelebration />
       <ReadingModeButton />
+      <BackToTopButton />
       <main id="main-content">
         <Outlet />
       </main>
@@ -667,6 +673,18 @@ const myNotesRoute = createRoute({
   component: withSuspense(MyNotes),
 })
 
+const aiAndTheEnvironmentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-the-environment',
+  component: withSuspense(AIAndTheEnvironment),
+})
+
+const aiAndTheLawRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-the-law',
+  component: withSuspense(AIAndTheLaw),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -756,6 +774,8 @@ const routeTree = rootRoute.addChildren([
   aiAndCustomerServiceRoute,
   aiAndWeatherRoute,
   myNotesRoute,
+  aiAndTheEnvironmentRoute,
+  aiAndTheLawRoute,
 ])
 
 const hashHistory = createHashHistory()

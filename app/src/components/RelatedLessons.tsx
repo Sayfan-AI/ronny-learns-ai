@@ -76,6 +76,8 @@ const ALL_LESSONS: LessonMeta[] = [
   { id: 'ai-and-hiring',             icon: '&#x1F4BC;', title: 'AI and hiring',                 path: '/learn/ai-and-hiring',                difficulty: 'Intermediate' },
   { id: 'ai-and-customer-service',   icon: '&#x1F4AC;', title: 'AI and customer service',       path: '/learn/ai-and-customer-service',      difficulty: 'Beginner' },
   { id: 'ai-and-weather',            icon: '&#x26C5;', title: 'AI and the weather',              path: '/learn/ai-and-weather',               difficulty: 'Beginner' },
+  { id: 'ai-and-the-environment',    icon: '&#x1F331;', title: 'AI and the environment',         path: '/learn/ai-and-the-environment',        difficulty: 'Beginner' },
+  { id: 'ai-and-the-law',            icon: '&#x2696;&#xFE0F;', title: 'AI and the law',          path: '/learn/ai-and-the-law',               difficulty: 'Intermediate' },
 ]
 
 // Map each lesson id to 2-3 related lesson ids
@@ -146,6 +148,8 @@ const RELATED: Record<string, string[]> = {
   'ai-and-hiring':               ['ai-bias', 'ai-and-jobs', 'ai-and-privacy'],
   'ai-and-customer-service':     ['ai-and-jobs', 'ai-bias', 'ai-laws-and-rights'],
   'ai-and-weather':              ['ai-and-climate-change', 'ai-and-energy', 'ai-and-agriculture'],
+  'ai-and-the-environment':      ['ai-and-climate-change', 'ai-and-energy', 'ai-and-agriculture'],
+  'ai-and-the-law':              ['ai-laws-and-rights', 'ai-and-copyright', 'ai-and-privacy'],
   'ai-and-copyright':            ['ai-and-laws-and-rights', 'ai-bias', 'ai-and-privacy'],
 }
 
