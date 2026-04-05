@@ -1239,9 +1239,6 @@ const MODULE_GROUPS: ModuleGroup[] = [
       {
         id: 'ai-and-immigration',
         title: 'AI and immigration — visa processing AI, biometric border checks, asylum decision tools, and algorithmic bias',
-        description: 'How AI is used to process visas, check identities at UK airports, and assess asylum claims — plus the controversy around algorithmic bias and your legal rights.',
-        readingTime: '7 min',
-        icon: '&#x1F6C2;',
         description: 'How AI is used at the UK border and in visa processing — and what you can do if an algorithm affects your immigration case.',
         readingTime: '7 min',
         icon: '🛂',
@@ -1252,11 +1249,6 @@ const MODULE_GROUPS: ModuleGroup[] = [
       {
         id: 'ai-and-dentistry',
         title: 'AI and dentistry — X-ray analysis, cavity detection, treatment planning, and NHS dental AI tools',
-        description: 'How AI reads dental X-rays, detects oral cancer early, helps triage NHS dental emergencies, and supports patients with dental anxiety.',
-        readingTime: '6 min',
-        icon: '&#x1F9B7;',
-        to: '/learn/ai-and-dentistry',
-        color: 'cyan',
         description: 'How AI is helping dentists spot cavities earlier, screen for oral cancer, and manage dental anxiety — plus what it means for NHS access.',
         readingTime: '6 min',
         icon: '🦷',
