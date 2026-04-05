@@ -10,6 +10,7 @@ import { loadWeeklyGoal } from '../hooks/useWeeklyGoal'
 import { loadLessonTimestamps } from '../hooks/useMarkVisited'
 import { DailyChallenge } from '../components/DailyChallenge'
 import { LessonOfTheWeek } from '../components/LessonOfTheWeek'
+import { RecentlyViewed, loadRecentlyViewed } from '../components/RecentlyViewed'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -826,6 +827,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'green',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-manufacturing',
+        title: 'AI and manufacturing — smart factories, predictive maintenance, and the future of industry',
+        description: 'How AI is transforming factories — predicting machine breakdowns before they happen, spotting defects at speed, and reshaping jobs on the factory floor.',
+        readingTime: '7 min',
+        icon: '🏭',
+        to: '/learn/ai-and-manufacturing',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-drug-discovery',
+        title: 'AI and drug discovery — finding new medicines faster with artificial intelligence',
+        description: "How AI is helping scientists find new medicines faster — from AlphaFold's Nobel Prize-winning breakthrough to drug candidates designed in weeks instead of years.",
+        readingTime: '7 min',
+        icon: '💉',
+        to: '/learn/ai-and-drug-discovery',
+        color: 'teal',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -911,6 +932,7 @@ const COLOR_MAP: Record<string, { border: string; badge: string; button: string 
   pink:    { border: 'hover:border-pink-300',    badge: 'bg-pink-100 text-pink-700',       button: 'bg-pink-600 hover:bg-pink-700 text-white' },
   amber:   { border: 'hover:border-amber-300',   badge: 'bg-amber-100 text-amber-700',     button: 'bg-amber-600 hover:bg-amber-700 text-white' },
   red:     { border: 'hover:border-red-300',     badge: 'bg-red-100 text-red-700',         button: 'bg-red-600 hover:bg-red-700 text-white' },
+  slate:   { border: 'hover:border-slate-300',   badge: 'bg-slate-100 text-slate-700',     button: 'bg-slate-600 hover:bg-slate-700 text-white' },
 }
 
 const VISITED_KEY = 'ronny-visited-modules'
@@ -1037,6 +1059,7 @@ export function HomePage() {
   const navigate = useNavigate()
   const [visited, setVisited] = useState<Set<string>>(loadVisited)
   const [bookmarks, setBookmarks] = useState<Set<string>>(loadBookmarks)
+  const [recentlyViewedIds] = useState<string[]>(loadRecentlyViewed)
   const { profile, setProfile } = useProfile()
 
   const handleSurpriseMe = useCallback(() => {
@@ -1483,6 +1506,9 @@ export function HomePage() {
 
         {/* Lesson of the week */}
         <LessonOfTheWeek lessons={MODULES} visitedIds={visited} />
+
+        {/* Recently viewed */}
+        <RecentlyViewed lessons={MODULES} recentIds={recentlyViewedIds} />
 
         {/* For Gigi section */}
         <div className="bg-pink-50 border border-pink-200 rounded-2xl p-4 sm:p-6 space-y-3">

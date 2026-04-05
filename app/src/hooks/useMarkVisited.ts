@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { recordRecentlyViewed } from '../components/RecentlyViewed'
 
 const VISITED_KEY = 'ronny-visited-modules'
 const STREAK_KEY = 'ronny-streak-current'
@@ -80,6 +81,7 @@ export function useMarkVisited(moduleKey: string) {
       // ignore storage errors (e.g. private browsing restrictions)
     }
     recordStreakVisit()
+    recordRecentlyViewed(moduleKey)
   }, [moduleKey])
 }
 

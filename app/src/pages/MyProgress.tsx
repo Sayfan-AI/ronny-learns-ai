@@ -83,6 +83,10 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-pets',                 title: 'AI and pets',                         to: '/learn/ai-and-pets' },
   { id: 'ai-and-fitness-apps',         title: 'AI and fitness apps',                 to: '/learn/ai-and-fitness-apps' },
   { id: 'ai-and-disability',           title: 'AI and disability',                   to: '/learn/ai-and-disability' },
+  { id: 'ai-and-elections',            title: 'AI and elections',                    to: '/learn/ai-and-elections' },
+  { id: 'ai-and-banking',              title: 'AI and banking',                      to: '/learn/ai-and-banking' },
+  { id: 'ai-and-manufacturing',        title: 'AI and manufacturing',                to: '/learn/ai-and-manufacturing' },
+  { id: 'ai-and-drug-discovery',       title: 'AI and drug discovery',               to: '/learn/ai-and-drug-discovery' },
 ]
 
 interface QuizScoreEntry {
@@ -258,6 +262,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-the-environment',    icon: '🌱', title: 'AI and the environment',                       to: '/learn/ai-and-the-environment' },
       { id: 'ai-and-relationships',      icon: '💕', title: 'AI and relationships',                          to: '/learn/ai-and-relationships' },
       { id: 'ai-and-photography',        icon: '📷', title: 'AI and photography',                              to: '/learn/ai-and-photography' },
+      { id: 'ai-and-manufacturing',      icon: '🏭', title: 'AI and manufacturing',                              to: '/learn/ai-and-manufacturing' },
+      { id: 'ai-and-drug-discovery',     icon: '💉', title: 'AI and drug discovery',                             to: '/learn/ai-and-drug-discovery' },
     ],
   },
   {
@@ -290,6 +296,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-the-law',           icon: '⚖️', title: 'AI and the law',                              to: '/learn/ai-and-the-law' },
       { id: 'ai-and-creative-writing',  icon: '✍️', title: 'AI and creative writing',                       to: '/learn/ai-and-creative-writing' },
       { id: 'ai-and-mental-health-apps', icon: '💬', title: 'AI and mental health apps',                      to: '/learn/ai-and-mental-health-apps' },
+      { id: 'ai-and-elections',          icon: '🗳️', title: 'AI and elections',                                to: '/learn/ai-and-elections' },
+      { id: 'ai-and-banking',            icon: '🏦', title: 'AI and banking',                                  to: '/learn/ai-and-banking' },
     ],
   },
   {
