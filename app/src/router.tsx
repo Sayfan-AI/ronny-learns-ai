@@ -152,6 +152,10 @@ const AIAndPrisonsAndCriminalJustice = lazy(() => import('./pages/AIAndPrisonsAn
 const WhatNextQuiz = lazy(() => import('./pages/WhatNextQuiz').then(m => ({ default: m.WhatNextQuiz })))
 const AIAndClimateTech = lazy(() => import('./pages/AIAndClimateTech').then(m => ({ default: m.AIAndClimateTech })))
 const AIAndCreativeEconomy = lazy(() => import('./pages/AIAndCreativeEconomy').then(m => ({ default: m.AIAndCreativeEconomy })))
+const AIAndGigWorkers = lazy(() => import('./pages/AIAndGigWorkers').then(m => ({ default: m.AIAndGigWorkers })))
+const AIAndAgeingAndElderCare = lazy(() => import('./pages/AIAndAgeingAndElderCare').then(m => ({ default: m.AIAndAgeingAndElderCare })))
+const AIAndCriticalThinking = lazy(() => import('./pages/AIAndCriticalThinking').then(m => ({ default: m.AIAndCriticalThinking })))
+const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1063,6 +1067,11 @@ const aiAndCreativeEconomyRoute = createRoute({
   component: withSuspense(AIAndCreativeEconomy),
 })
 
+const aiAndGigWorkersRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-gig-workers', component: withSuspense(AIAndGigWorkers) })
+const aiAndAgeingAndElderCareRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-ageing-and-elder-care', component: withSuspense(AIAndAgeingAndElderCare) })
+const aiAndCriticalThinkingRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-critical-thinking', component: withSuspense(AIAndCriticalThinking) })
+const aiAndSpaceExplorationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-space-exploration', component: withSuspense(AIAndSpaceExploration) })
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1208,6 +1217,10 @@ const routeTree = rootRoute.addChildren([
   whatNextQuizRoute,
   aiAndClimateTechRoute,
   aiAndCreativeEconomyRoute,
+  aiAndGigWorkersRoute,
+  aiAndAgeingAndElderCareRoute,
+  aiAndCriticalThinkingRoute,
+  aiAndSpaceExplorationRoute,
 ])
 
 const hashHistory = createHashHistory()
