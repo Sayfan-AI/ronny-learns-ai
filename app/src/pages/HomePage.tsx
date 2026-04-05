@@ -2739,6 +2739,16 @@ export function HomePage() {
                 <p className="text-amber-600 text-xs">Match 10 famous AI quotes to who said them.</p>
               </div>
             </Link>
+            <Link
+              to="/ai-history"
+              className="bg-blue-50 border border-blue-200 rounded-xl p-4 hover:bg-blue-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x23F3;</span>
+              <div>
+                <p className="font-semibold text-blue-800 text-sm">AI Timeline</p>
+                <p className="text-blue-600 text-xs">Arrange key AI milestones in the right chronological order.</p>
+              </div>
+            </Link>
           </div>
         </div>
 

@@ -100,6 +100,22 @@ export const LESSON_ORDER: Array<{ id: string; icon: string; title: string; path
   { id: 'ai-and-sport-nutrition', icon: '&#x1F96E;', title: 'AI and sport nutrition',       path: '/learn/ai-and-sport-nutrition' },
   { id: 'ai-and-mental-health-chatbots', icon: '&#x1F4AC;', title: 'AI and mental health chatbots', path: '/learn/ai-and-mental-health-chatbots' },
   { id: 'ai-and-content-moderation', icon: '&#x1F6E1;&#xFE0F;', title: 'AI and content moderation', path: '/learn/ai-and-content-moderation' },
+  { id: 'ai-and-sport-fan-experience', icon: '&#x1F3DF;&#xFE0F;', title: 'AI and sport fan experience', path: '/learn/ai-and-sport-fan-experience' },
+  { id: 'ai-and-offensive-cybersecurity', icon: '&#x1F6E1;&#xFE0F;', title: 'AI and offensive cybersecurity', path: '/learn/ai-and-offensive-cybersecurity' },
+  { id: 'ai-and-real-estate', icon: '&#x1F3E0;', title: 'AI and real estate',           path: '/learn/ai-and-real-estate' },
+  { id: 'ai-and-social-care', icon: '&#x1F91D;', title: 'AI and social care',           path: '/learn/ai-and-social-care' },
+  { id: 'ai-and-immigration', icon: '&#x1F6C2;', title: 'AI and immigration',           path: '/learn/ai-and-immigration' },
+  { id: 'ai-and-dentistry',   icon: '&#x1F9B7;', title: 'AI and dentistry',             path: '/learn/ai-and-dentistry' },
+  { id: 'ai-and-nhs-waiting-lists', icon: '&#x1F3E5;', title: 'AI and NHS waiting lists', path: '/learn/ai-and-nhs-waiting-lists' },
+  { id: 'ai-and-social-media-algorithms', icon: '&#x1F4F2;', title: 'AI and social media algorithms', path: '/learn/ai-and-social-media-algorithms' },
+  { id: 'ai-and-fraud',       icon: '&#x26A0;&#xFE0F;', title: 'AI and fraud',          path: '/learn/ai-and-fraud' },
+  { id: 'ai-and-climate-activism', icon: '&#x1F33F;', title: 'AI and climate activism', path: '/learn/ai-and-climate-activism' },
+  { id: 'ai-and-music-industry', icon: '&#x1F3B5;', title: 'AI and the music industry', path: '/learn/ai-and-music-industry' },
+  { id: 'ai-and-fashion-tech', icon: '&#x1F457;', title: 'AI and fashion technology',  path: '/learn/ai-and-fashion-tech' },
+  { id: 'ai-and-edtech',      icon: '&#x1F4BB;', title: 'AI and education technology', path: '/learn/ai-and-edtech' },
+  { id: 'ai-and-the-benefits-system', icon: '&#x1F3DB;&#xFE0F;', title: 'AI and the benefits system', path: '/learn/ai-and-the-benefits-system' },
+  { id: 'ai-and-pregnancy-and-baby-care', icon: '&#x1F476;', title: 'AI and pregnancy and baby care', path: '/learn/ai-and-pregnancy-and-baby-care' },
+  { id: 'ai-and-welfare-benefits', icon: '&#x1F3DB;&#xFE0F;', title: 'AI and welfare benefits', path: '/learn/ai-and-welfare-benefits' },
 ]
 
 interface NextLessonProps {
