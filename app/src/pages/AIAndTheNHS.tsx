@@ -15,30 +15,16 @@ const LESSON_TITLE = 'AI and the NHS'
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: "What does DeepMind's AlphaFold do?",
+    question: 'What was set up by the NHS in 2019 to coordinate the development and deployment of AI across the health service?',
     options: [
-      'It diagnoses patients by reading their medical records',
-      'It predicts the three-dimensional shape of proteins, helping scientists understand diseases and find new drugs',
-      'It manages NHS appointment scheduling and waiting lists',
-      'It writes clinical letters to reduce admin workload for doctors',
+      'The NHS Digital Authority',
+      'The NHS AI Lab',
+      'The Centre for Health Innovation',
+      'The NICE AI Review Board',
     ],
     correctIndex: 1,
     explanation:
-      "AlphaFold, developed by DeepMind (part of Google), solved one of biology's hardest problems: predicting the 3D structure of a protein from its amino acid sequence. This matters because the shape of a protein determines what it does in the body. Scientists can now use AlphaFold to understand how diseases work and design drugs that target specific proteins — work that would previously have taken years of lab experiments.",
-    hint: 'Think about the 50-year scientific puzzle DeepMind solved. It is about the physical shape of molecules, not patient care.',
-  },
-  {
-    question: 'Which NHS service uses an AI-powered symptom checker to help patients online?',
-    options: [
-      '999 — the emergency service',
-      '111 online — the non-emergency health advice service',
-      'NHS Direct — the nurse helpline',
-      'GP surgeries — for booking routine appointments',
-    ],
-    correctIndex: 1,
-    explanation:
-      "NHS 111 online uses an AI-guided symptom checker to help people who are not sure whether they need urgent care. Users answer questions about their symptoms and the system recommends whether to treat themselves at home, contact a GP, visit a pharmacy, or go to A&E. This reduces unnecessary A&E visits and helps staff prioritise the people who genuinely need emergency care.",
-    hint: 'Think about the non-emergency number — not 999, which is for life-threatening emergencies.',
+      "The NHS AI Lab was established in 2019 to fund research, run clinical evaluations, and bring together NHS trusts, technology companies, and regulators. It also developed the AI and Digital Regulations Service, which helps NHS trusts evaluate AI tools before buying them — checking for robust evidence, proper training data, and regulatory approval.",
   },
   {
     question: 'What was the main concern about the 2016 Royal Free Hospital / DeepMind data-sharing arrangement?',
@@ -50,8 +36,19 @@ const quizQuestions: QuizQuestion[] = [
     ],
     correctIndex: 1,
     explanation:
-      "In 2016, the Royal Free NHS Trust shared data on about 1.6 million patients with DeepMind to help develop an app called Streams for detecting acute kidney injury. The UK's data watchdog (the ICO) later found the arrangement breached data protection law because patients had not been properly informed and there was no clear lawful basis for sharing identifiable patient data. The case prompted NHS England to tighten rules around commercial data-sharing deals.",
-    hint: 'The concern was about privacy and whether patients knew their data was being shared — not about the technology itself.',
+      "In 2016, the Royal Free NHS Trust shared data on about 1.6 million patients with DeepMind to help develop an app for detecting acute kidney injury. The UK's data watchdog (the ICO) later found this breached data protection law because patients had not been properly informed and there was no clear lawful basis for sharing identifiable patient data. The case prompted new rules around NHS data deals with commercial companies.",
+  },
+  {
+    question: 'What controversy surrounded Babylon Health\'s GP at Hand service?',
+    options: [
+      'Its AI symptom checker was found to be hacking patient records',
+      'It attracted healthier, younger patients away from traditional GP practices, leaving sicker patients behind and threatening GP funding',
+      'It refused to serve patients over 65, which was ruled discriminatory',
+      'Its app was only available on Apple devices, excluding Android users',
+    ],
+    correctIndex: 1,
+    explanation:
+      "GP at Hand was popular with urban, working-age patients who could get appointments quickly via their smartphone. But critics argued it attracted the healthiest patients — leaving traditional GP surgeries with a sicker, more complex patient population but reduced income (which is partly based on patient headcount). The episode illustrated how AI-powered health services can improve convenience while creating new inequalities.",
   },
   {
     question: 'What is AI-assisted diabetic retinopathy screening designed to detect?',
@@ -63,21 +60,19 @@ const quizQuestions: QuizQuestion[] = [
     ],
     correctIndex: 1,
     explanation:
-      "Diabetic retinopathy is damage to the blood vessels in the retina caused by high blood sugar — and it is one of the leading causes of blindness in working-age adults in the UK. Moorfields Eye Hospital partnered with DeepMind to develop an AI that analyses retinal scans and can detect early signs of diabetic retinopathy (and other eye conditions) as accurately as a specialist. Catching it early means treatment can start before sight is lost.",
-    hint: 'The clue is in the name: retinopathy means damage to the retina — the light-sensitive layer at the back of the eye.',
+      "Diabetic retinopathy is damage to the blood vessels in the retina caused by high blood sugar — one of the leading causes of blindness in working-age adults in the UK. Moorfields Eye Hospital partnered with DeepMind to develop an AI that analyses retinal scans and can detect early signs of the condition as accurately as a specialist. Early detection means treatment can start before sight is lost.",
   },
   {
-    question: 'How can AI help reduce the NHS admin burden on clinical staff?',
+    question: 'Which of these is a genuine barrier slowing down AI adoption in the NHS?',
     options: [
-      'By seeing patients instead of doctors, freeing up clinical time',
-      'By automatically coding diagnoses and drafting routine clinical letters, so doctors and nurses spend less time on paperwork',
-      'By managing hospital budgets and procurement',
-      'By training junior doctors to make fewer diagnostic errors',
+      'NHS doctors are legally prohibited from using AI diagnostic tools',
+      'AI tools are too expensive for the NHS to afford in any capacity',
+      'Legacy IT systems cannot easily exchange data with modern AI tools, making integration difficult and costly',
+      'The UK government has banned AI in healthcare until 2030 for safety reasons',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      'NHS doctors and nurses spend a significant portion of their working day on administrative tasks: coding diagnoses for billing and statistics, writing referral and discharge letters, and updating patient records. AI tools can handle much of this automatically — transcribing consultations, extracting diagnostic codes, and drafting routine letters for a clinician to review and sign off. This does not replace clinical judgement but gives staff more time to spend with patients.',
-    hint: 'Think about the non-clinical tasks that take up clinical time — paperwork, not patient care.',
+      "Much of the NHS still runs on outdated IT systems from the 1990s and early 2000s. Connecting a modern AI diagnostic tool to these legacy systems is often a complex, expensive engineering project. This — combined with procurement complexity, workforce training gaps, and unresolved liability questions — means many promising AI tools take years to move from successful trial to widespread deployment.",
   },
 ]
 
@@ -101,10 +96,30 @@ export function AIAndTheNHS() {
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
               <span>About 5 min read</span>
             </div>
-            <DifficultyBadge level="Beginner" />
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-the-nhs" />
           <ShareButton lessonTitle={LESSON_TITLE} />
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">NHS AI Lab and the AI and Digital Regulations Service</h2>
+          <p className="text-gray-600 leading-relaxed">
+            In 2019, the NHS set up the <strong>NHS AI Lab</strong> to coordinate the development and
+            deployment of AI across the health service. It funds research, runs clinical evaluations,
+            and brings together NHS trusts, tech companies, and regulators.
+          </p>
+          <div className="bg-blue-50 rounded-xl p-4 space-y-2">
+            <p className="font-semibold text-blue-800 text-sm">The AI and Digital Regulations Service</p>
+            <p className="text-blue-700 text-sm leading-relaxed">
+              The NHS has also developed the <strong>AI and Digital Regulations Service</strong> to
+              help NHS trusts evaluate AI tools before they buy them. It provides evidence summaries
+              about whether a tool has been properly tested, whether the data it was trained on
+              represents the NHS patient population, and whether it has regulatory approval.
+              This matters because many AI tools are marketed to the NHS without robust evidence
+              that they actually work in practice.
+            </p>
+          </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-6 space-y-4">
@@ -208,6 +223,47 @@ export function AIAndTheNHS() {
           </p>
         </div>
 
+        <div className="bg-white rounded-2xl shadow-sm border border-rose-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Babylon Health and the GP at Hand controversy</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Babylon Health, a UK health tech company, launched <strong>GP at Hand</strong> in 2017
+            &mdash; a service allowing NHS patients in London to register with a GP via a smartphone
+            app and get appointments within hours, day or night.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F4F1;',
+                label: 'The appeal',
+                text: "GP at Hand used an AI symptom checker to triage patients and book video or in-person appointments quickly. For many urban, working-age people it was dramatically faster and more convenient than a traditional GP surgery.",
+              },
+              {
+                icon: '&#x26A0;&#xFE0F;',
+                label: 'The controversy',
+                text: 'Critics argued that GP at Hand attracted healthier, younger, wealthier patients — leaving traditional GP practices with a sicker, more complex patient population but a smaller NHS income (which is partly based on patient numbers). GPs warned it was skimming off easy patients and destabilising local healthcare.',
+              },
+              {
+                icon: '&#x1F9EA;',
+                label: "Babylon's AI accuracy claims",
+                text: "Babylon claimed its AI symptom checker matched doctors at a medical licensing exam, prompting a high-profile public dispute with doctors who argued the test conditions were misleading and real-world performance was far lower. The dispute raised broader questions about how AI health tools are tested and marketed.",
+              },
+              {
+                icon: '&#x1F4C4;',
+                label: 'What happened next',
+                text: 'Babylon Health faced financial difficulties and restructured significantly in 2023. GP at Hand continues as a service but the episode remains a case study in how disruptive health AI can create new inequalities even when it improves convenience.',
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800">Patient data and privacy</h2>
           <p className="text-gray-600 leading-relaxed">
@@ -271,6 +327,46 @@ export function AIAndTheNHS() {
                 icon: '&#x1F4C5;',
                 label: 'Appointment management',
                 text: 'Predictive AI can identify patients who are likely to miss appointments (based on factors like distance, time of day, and past behaviour) so that the NHS can send targeted reminders or rebook proactively, reducing the costly problem of DNA (did not attend).',
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Barriers to AI adoption in the NHS</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Despite the promise, AI is spreading slowly through the NHS. Several real obstacles
+            stand in the way.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F4B8;',
+                label: 'Procurement complexity',
+                text: "NHS trusts are independent organisations that buy technology separately. There is no single national procurement route for AI tools, meaning the same AI product might go through a different approval process at every trust. This is slow, expensive, and creates a patchwork of different tools across the country.",
+              },
+              {
+                icon: '&#x1F9E9;',
+                label: 'Integration with legacy systems',
+                text: "Much of the NHS runs on outdated IT systems, many of which cannot easily exchange data with modern AI tools. Connecting a cutting-edge diagnostic AI to a hospital running on a 1990s patient records system is often an expensive and difficult technical project.",
+              },
+              {
+                icon: '&#x1F468;&#x200D;&#x2695;&#xFE0F;',
+                label: 'Workforce confidence and training',
+                text: "Clinicians need to trust AI tools before they will rely on them. This requires training, evidence of performance in real NHS settings, and clear guidance on when to override an AI recommendation. Many AI tools are deployed without adequate support for the staff using them.",
+              },
+              {
+                icon: '&#x2696;&#xFE0F;',
+                label: 'Regulation and liability',
+                text: "Who is responsible if an AI system makes an error that harms a patient — the hospital, the AI developer, or the clinician who trusted it? UK regulation is still developing clear answers to these questions, creating uncertainty that slows adoption.",
               },
             ].map(({ icon, label, text }) => (
               <div key={label} className="flex gap-3 items-start">
