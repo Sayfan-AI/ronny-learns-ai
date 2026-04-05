@@ -116,6 +116,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-dentistry',            title: 'AI and dentistry',                    to: '/learn/ai-and-dentistry' },
   { id: 'ai-and-nhs-waiting-lists',    title: 'AI and NHS waiting lists',            to: '/learn/ai-and-nhs-waiting-lists' },
   { id: 'ai-and-social-media-algorithms', title: 'AI and social media algorithms',  to: '/learn/ai-and-social-media-algorithms' },
+  { id: 'ai-and-climate-activism',     title: 'AI and climate activism',             to: '/learn/ai-and-climate-activism' },
+  { id: 'ai-and-sports-medicine',      title: 'AI and sports medicine',              to: '/learn/ai-and-sports-medicine' },
 ]
 
 interface QuizScoreEntry {
@@ -784,6 +786,55 @@ export function MyProgress() {
 
         {/* Estimated completion panel */}
         <EstimatedCompletion completedCount={completedCount} totalCount={total} />
+
+        {/* Lesson completion certificate */}
+        {(() => {
+          const quizDoneCount = quizScoreData.attempted.length
+          const CERTIFICATE_THRESHOLD = 10
+          if (quizDoneCount >= CERTIFICATE_THRESHOLD) {
+            const certDate = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+            return (
+              <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-2xl p-6 space-y-4 print:border-amber-400 print:shadow-none">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">&#x1F396;&#xFE0F;</span>
+                  <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide">Certificate of Achievement</p>
+                </div>
+                <div className="text-center space-y-2 py-2">
+                  <p className="text-amber-900 font-bold text-2xl leading-tight">This certifies that</p>
+                  <p className="text-amber-800 font-extrabold text-3xl">{displayName}</p>
+                  <p className="text-amber-700 text-lg">has successfully completed</p>
+                  <p className="text-amber-900 font-bold text-4xl">{quizDoneCount}</p>
+                  <p className="text-amber-700 text-lg">lessons on Ronny Learns AI</p>
+                  <p className="text-amber-600 text-sm mt-2">Awarded on {certDate}</p>
+                </div>
+                <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                  <button
+                    onClick={() => window.print()}
+                    className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors print:hidden"
+                  >
+                    &#x1F5A8;&#xFE0F; Print or save as PDF
+                  </button>
+                  <p className="text-amber-600 text-xs text-center sm:text-left print:hidden">
+                    In your browser print dialog, choose &ldquo;Save as PDF&rdquo; to save a copy.
+                  </p>
+                </div>
+              </div>
+            )
+          }
+          const remaining = CERTIFICATE_THRESHOLD - quizDoneCount
+          return (
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3">
+              <span className="text-2xl flex-shrink-0">&#x1F3C5;</span>
+              <div>
+                <p className="font-semibold text-amber-800 text-sm">Certificate of Achievement</p>
+                <p className="text-amber-700 text-xs mt-0.5 leading-relaxed">
+                  Complete {remaining} more lesson{remaining === 1 ? '' : 's'} with a quiz to unlock your printable certificate.
+                  {quizDoneCount > 0 && ` (${quizDoneCount} of ${CERTIFICATE_THRESHOLD} done)`}
+                </p>
+              </div>
+            </div>
+          )
+        })()}
 
         {/* Topic completion tracker */}
         <TopicCompletionTracker />
