@@ -1052,6 +1052,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'slate',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-the-workplace',
+        title: 'AI and the workplace — writing assistants, meeting summaries, scheduling AI, and what it means for your job',
+        description: 'How AI is changing office work every day — drafting emails, summarising meetings, managing calendars, and what this means for jobs and how to use AI responsibly at work.',
+        readingTime: '7 min',
+        icon: '💼',
+        to: '/learn/ai-and-the-workplace',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-sport-analytics',
+        title: 'AI and sport analytics — performance tracking, injury prediction, AI scouting, and the data-driven game',
+        description: 'How professional clubs use AI to track every player movement, predict injuries before they happen, discover hidden talent worldwide, and transform the fan experience.',
+        readingTime: '7 min',
+        icon: '🏆',
+        to: '/learn/ai-and-sport-analytics',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1332,6 +1352,7 @@ export function HomePage() {
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
+  const [keywordFilter, setKeywordFilter] = useState('')
   const showInterestQuiz = quizCompletedCount === 0 && localStorage.getItem('ronny-interest-quiz-done') === null
 
   function toggleBookmark(id: string) {
@@ -1831,6 +1852,30 @@ export function HomePage() {
             <p className="text-gray-500 text-sm">Grouped by topic — start anywhere, or work through in order.</p>
           </div>
 
+          {/* Keyword filter */}
+          <div className="relative">
+            <input
+              type="search"
+              placeholder="Search lessons by keyword..."
+              value={keywordFilter}
+              onChange={e => setKeywordFilter(e.target.value)}
+              aria-label="Filter lessons by keyword"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 pl-10 text-sm text-gray-700 shadow-sm placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            />
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" aria-hidden="true">
+              🔍
+            </span>
+            {keywordFilter && (
+              <button
+                onClick={() => setKeywordFilter('')}
+                aria-label="Clear keyword filter"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg leading-none"
+              >
+                &times;
+              </button>
+            )}
+          </div>
+
           {/* Difficulty filter */}
           <div className="flex flex-wrap gap-2 justify-center">
             {(['All', 'Beginner', 'Intermediate', 'Advanced'] as const).map(level => (
@@ -1849,9 +1894,10 @@ export function HomePage() {
           </div>
 
           {MODULE_GROUPS.map((group) => {
-            const filteredModules = difficultyFilter === 'All'
-              ? group.modules
-              : group.modules.filter(m => m.difficulty === difficultyFilter)
+            const keyword = keywordFilter.trim().toLowerCase()
+            const filteredModules = group.modules
+              .filter(m => difficultyFilter === 'All' || m.difficulty === difficultyFilter)
+              .filter(m => !keyword || m.title.toLowerCase().includes(keyword) || m.description.toLowerCase().includes(keyword))
             if (filteredModules.length === 0) return null
             return (
             <section key={group.heading} className="space-y-2">
@@ -1941,6 +1987,25 @@ export function HomePage() {
             </section>
           )
           })}
+
+          {/* No results message when keyword filter matches nothing */}
+          {keywordFilter.trim() && MODULE_GROUPS.every(group => {
+            const keyword = keywordFilter.trim().toLowerCase()
+            return group.modules
+              .filter(m => difficultyFilter === 'All' || m.difficulty === difficultyFilter)
+              .filter(m => m.title.toLowerCase().includes(keyword) || m.description.toLowerCase().includes(keyword))
+              .length === 0
+          }) && (
+            <div className="text-center py-10 space-y-2">
+              <p className="text-gray-500 text-base">No lessons match &ldquo;{keywordFilter}&rdquo;.</p>
+              <button
+                onClick={() => setKeywordFilter('')}
+                className="text-blue-600 underline text-sm hover:text-blue-800"
+              >
+                Clear filter
+              </button>
+            </div>
+          )}
         </div>
 
         <p className="text-gray-400 text-sm text-center">
