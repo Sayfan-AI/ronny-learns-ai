@@ -13,6 +13,7 @@ import { loadWeeklyGoal, saveWeeklyGoal, type WeeklyGoalData } from '../hooks/us
 import { StreakCalendar } from '../components/StreakCalendar'
 import { useLearningCalendar } from '../hooks/useLearningCalendar'
 import { LearningStatsCard } from '../components/LearningStatsCard'
+import { TopicCompletionTracker } from '../components/TopicCompletionTracker'
 
 // Lessons that have quizzes (ordered as they appear in the curriculum)
 const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
@@ -90,6 +91,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-drug-discovery',       title: 'AI and drug discovery',               to: '/learn/ai-and-drug-discovery' },
   { id: 'ai-and-sleep',                title: 'AI and sleep',                        to: '/learn/ai-and-sleep' },
   { id: 'ai-and-the-ocean',            title: 'AI and the ocean',                    to: '/learn/ai-and-the-ocean' },
+  { id: 'ai-and-parenting',            title: 'AI and parenting',                    to: '/learn/ai-and-parenting' },
+  { id: 'ai-and-language-learning',    title: 'AI and language learning',            to: '/learn/ai-and-language-learning' },
 ]
 
 interface QuizScoreEntry {
@@ -319,6 +322,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-water',              icon: '💧', title: 'AI and water',                                     to: '/learn/ai-and-water' },
       { id: 'ai-and-sleep',              icon: '😴', title: 'AI and sleep',                                     to: '/learn/ai-and-sleep' },
       { id: 'ai-and-the-ocean',          icon: '🌊', title: 'AI and the ocean',                                 to: '/learn/ai-and-the-ocean' },
+      { id: 'ai-and-parenting',          icon: '👶', title: 'AI and parenting',                                 to: '/learn/ai-and-parenting' },
+      { id: 'ai-and-language-learning',  icon: '🗣️', title: 'AI and language learning',                        to: '/learn/ai-and-language-learning' },
     ],
   },
   {
@@ -753,6 +758,9 @@ export function MyProgress() {
 
         {/* Learning stats card */}
         <LearningStatsCard />
+
+        {/* Topic completion tracker */}
+        <TopicCompletionTracker />
 
         {/* Achievements summary + name change */}
         <div className="flex flex-col sm:flex-row gap-3">
