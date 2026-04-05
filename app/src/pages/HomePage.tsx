@@ -11,6 +11,7 @@ import { loadLessonTimestamps } from '../hooks/useMarkVisited'
 import { DailyChallenge } from '../components/DailyChallenge'
 import { LessonOfTheWeek } from '../components/LessonOfTheWeek'
 import { RecentlyViewed, loadRecentlyViewed } from '../components/RecentlyViewed'
+import { WhatsNew } from '../components/WhatsNew'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -452,6 +453,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'slate',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-the-military',
+        title: 'AI and the military — autonomous weapons, AI-assisted warfare, and the ethics of killer robots',
+        description: "How AI is being used in defence and conflict — loitering drones, autonomous weapons, Project Maven, and why 'meaningful human control' is so hard to define.",
+        readingTime: '7 min',
+        icon: '⚔️',
+        to: '/learn/ai-and-the-military',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -846,6 +857,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-drug-discovery',
         color: 'teal',
         difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-smart-homes',
+        title: 'AI and smart homes — smart speakers, thermostats, cameras, and privacy in the connected home',
+        description: 'How AI powers Alexa, Nest, Ring, and robot vacuums — what data your home collects, who can access it, and practical privacy tips.',
+        readingTime: '7 min',
+        icon: '🏠',
+        to: '/learn/ai-and-smart-homes',
+        color: 'green',
+        difficulty: 'Beginner',
       },
     ],
   },
@@ -1509,6 +1530,9 @@ export function HomePage() {
 
         {/* Recently viewed */}
         <RecentlyViewed lessons={MODULES} recentIds={recentlyViewedIds} />
+
+        {/* What's new */}
+        <WhatsNew />
 
         {/* For Gigi section */}
         <div className="bg-pink-50 border border-pink-200 rounded-2xl p-4 sm:p-6 space-y-3">
