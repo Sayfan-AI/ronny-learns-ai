@@ -100,6 +100,8 @@ const STAGES: Stage[] = [
       { id: 'ai-and-children',      icon: '&#x1F9D2;', title: 'AI and children',                    path: '/learn/ai-and-children',                 difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-the-law',      icon: '&#x2696;&#xFE0F;', title: 'AI and the law',               path: '/learn/ai-and-the-law',                  difficulty: 'Intermediate', readingTime: '6 min' },
       { id: 'ai-and-creative-writing', icon: '&#x270D;&#xFE0F;', title: 'AI and creative writing',  path: '/learn/ai-and-creative-writing',          difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'ai-and-photography',       icon: '&#x1F4F7;',         title: 'AI and photography',        path: '/learn/ai-and-photography',               difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'ai-and-mental-health-apps', icon: '&#x1F4AC;',        title: 'AI and mental health apps', path: '/learn/ai-and-mental-health-apps',         difficulty: 'Intermediate', readingTime: '6 min' },
     ],
   },
   {

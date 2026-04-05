@@ -72,6 +72,8 @@ const ALL_LESSONS: Array<{ id: string; icon: string; title: string; to: string }
   { id: 'version-control',       icon: '&#x1F4BE;', title: 'How does version control work?',           to: '/learn/what-is-version-control' },
   { id: 'pull-request',          icon: '&#x1F4CB;', title: 'What is a pull request?',                  to: '/learn/what-is-a-pull-request' },
   { id: 'meet-the-agents',       icon: '&#x1F465;', title: 'Meet the AI agents',                       to: '/agents' },
+  { id: 'ai-and-photography',          icon: '&#x1F4F7;', title: 'AI and photography',                         to: '/learn/ai-and-photography' },
+  { id: 'ai-and-mental-health-apps',   icon: '&#x1F4AC;', title: 'AI and mental health apps',                  to: '/learn/ai-and-mental-health-apps' },
 ]
 
 const LESSON_MAP = new Map(ALL_LESSONS.map(l => [l.id, l]))

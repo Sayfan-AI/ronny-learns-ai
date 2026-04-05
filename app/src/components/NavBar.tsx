@@ -25,6 +25,7 @@ const NAV_LINKS = [
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },
+  { to: '/bookmarks', label: 'Bookmarks' },
 ]
 
 export function NavBar() {

@@ -76,6 +76,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-the-law',             title: 'AI and the law',                      to: '/learn/ai-and-the-law' },
   { id: 'ai-and-relationships',        title: 'AI and relationships',                to: '/learn/ai-and-relationships' },
   { id: 'ai-and-creative-writing',     title: 'AI and creative writing',             to: '/learn/ai-and-creative-writing' },
+  { id: 'ai-and-photography',          title: 'AI and photography',                  to: '/learn/ai-and-photography' },
+  { id: 'ai-and-mental-health-apps',   title: 'AI and mental health apps',           to: '/learn/ai-and-mental-health-apps' },
 ]
 
 interface QuizScoreEntry {
@@ -250,6 +252,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-weather',            icon: '⛅', title: 'AI and the weather',                           to: '/learn/ai-and-weather' },
       { id: 'ai-and-the-environment',    icon: '🌱', title: 'AI and the environment',                       to: '/learn/ai-and-the-environment' },
       { id: 'ai-and-relationships',      icon: '💕', title: 'AI and relationships',                          to: '/learn/ai-and-relationships' },
+      { id: 'ai-and-photography',        icon: '📷', title: 'AI and photography',                              to: '/learn/ai-and-photography' },
     ],
   },
   {
@@ -281,6 +284,7 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-children',          icon: '🧒', title: 'AI and children',                            to: '/learn/ai-and-children' },
       { id: 'ai-and-the-law',           icon: '⚖️', title: 'AI and the law',                              to: '/learn/ai-and-the-law' },
       { id: 'ai-and-creative-writing',  icon: '✍️', title: 'AI and creative writing',                       to: '/learn/ai-and-creative-writing' },
+      { id: 'ai-and-mental-health-apps', icon: '💬', title: 'AI and mental health apps',                      to: '/learn/ai-and-mental-health-apps' },
     ],
   },
   {
@@ -343,6 +347,7 @@ const READING_TIMES: Record<string, number> = {
   'ai-and-customer-service': 5, 'ai-and-weather': 5,
   'ai-and-the-environment': 5, 'ai-and-the-law': 6,
   'ai-and-relationships': 5, 'ai-and-creative-writing': 6,
+  'ai-and-photography': 5, 'ai-and-mental-health-apps': 6,
   'how-this-was-built': 5, 'what-is-ci-cd': 4, 'version-control': 4, 'pull-request': 4,
   'meet-the-agents': 4,
 }
@@ -380,6 +385,7 @@ const TOPIC_GROUPS: Record<string, string> = {
   'ai-and-customer-service': 'AI in the real world', 'ai-and-weather': 'AI in the real world',
   'ai-and-the-environment': 'AI in the real world', 'ai-and-the-law': 'AI and society',
   'ai-and-relationships': 'AI and society', 'ai-and-creative-writing': 'AI and society',
+  'ai-and-photography': 'AI in the real world', 'ai-and-mental-health-apps': 'AI and society',
   'ai-pros-and-cons': 'Deep dives', 'ai-bias': 'Deep dives', 'ai-safety': 'Deep dives',
   'prompt-engineering': 'Deep dives', 'trusting-ai': 'Deep dives',
 }
