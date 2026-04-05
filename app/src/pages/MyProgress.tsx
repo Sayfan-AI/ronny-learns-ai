@@ -122,6 +122,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-fraud-and-identity-theft', title: 'AI and fraud and identity theft', to: '/learn/ai-and-fraud-and-identity-theft' },
   { id: 'ai-and-gig-economy',          title: 'AI and the gig economy',              to: '/learn/ai-and-gig-economy' },
   { id: 'ai-and-edtech',               title: 'AI and education technology',          to: '/learn/ai-and-edtech' },
+  { id: 'ai-and-sport-fan-experience', title: 'AI and the sports fan experience',     to: '/learn/ai-and-sport-fan-experience' },
+  { id: 'ai-and-offensive-cybersecurity', title: 'AI and offensive cybersecurity',    to: '/learn/ai-and-offensive-cybersecurity' },
 ]
 
 interface QuizScoreEntry {

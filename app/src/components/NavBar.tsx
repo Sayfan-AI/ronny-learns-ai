@@ -25,6 +25,7 @@ const NAV_LINKS = [
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },
+  { to: '/series', label: 'Series' },
   { to: '/bookmarks', label: 'Bookmarks' },
 ]
 
@@ -72,6 +73,7 @@ export function NavBar() {
           {[
             { to: '/', label: 'Home' },
             { to: '/learning-path', label: 'Learning path' },
+            { to: '/series', label: 'Series' },
             { to: '/collections', label: 'Collections' },
             { to: '/ask', label: 'Ask' },
             { to: '/my-progress', label: 'My progress' },

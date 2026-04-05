@@ -61,6 +61,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-cybercrime',
       'ai-and-scams',
       'ai-and-fraud-and-identity-theft',
+      'ai-and-offensive-cybersecurity',
     ],
   },
   {
