@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -276,6 +277,7 @@ export function AIAndJournalism() {
 
         <Quiz questions={quizQuestions} lessonId="ai-and-journalism" lessonTitle="AI and journalism" />
 
+        <LessonFeedback lessonId="ai-and-journalism" />
         <LessonRating lessonId="ai-and-journalism" />
         <RelatedLessons currentId="ai-and-journalism" />
         <NextLesson currentId="ai-and-journalism" />

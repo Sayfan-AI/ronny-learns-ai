@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
@@ -305,6 +306,7 @@ export function HowToUseAISafely() {
 
         <LessonNote lessonId="how-to-use-ai-safely" />
 
+        <LessonFeedback lessonId="how-to-use-ai-safely" />
         <LessonRating lessonId="how-to-use-ai-safely" />
         <ReviewLaterButton lessonId="how-to-use-ai-safely" />
 

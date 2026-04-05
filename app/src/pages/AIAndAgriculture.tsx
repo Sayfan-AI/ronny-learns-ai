@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -263,6 +264,7 @@ export function AIAndAgriculture() {
 
         <Quiz questions={quizQuestions} lessonId="ai-and-agriculture" lessonTitle="AI and agriculture" />
 
+        <LessonFeedback lessonId="ai-and-agriculture" />
         <LessonRating lessonId="ai-and-agriculture" />
         <RelatedLessons currentId="ai-and-agriculture" />
         <NextLesson currentId="ai-and-agriculture" />

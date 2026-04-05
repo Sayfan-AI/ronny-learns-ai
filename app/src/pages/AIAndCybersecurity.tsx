@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -311,6 +312,7 @@ export function AIAndCybersecurity() {
 
         <Quiz questions={quizQuestions} lessonId="ai-and-cybersecurity" lessonTitle="AI and cybersecurity" />
 
+        <LessonFeedback lessonId="ai-and-cybersecurity" />
         <LessonRating lessonId="ai-and-cybersecurity" />
         <RelatedLessons currentId="ai-and-cybersecurity" />
         <NextLesson currentId="ai-and-cybersecurity" />

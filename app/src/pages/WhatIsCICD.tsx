@@ -4,6 +4,7 @@ import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 export function WhatIsCICD() {
@@ -169,6 +170,7 @@ export function WhatIsCICD() {
         <LessonNote lessonId="what-is-ci-cd" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="what-is-ci-cd" />
         <LessonRating lessonId="what-is-ci-cd" />
         <ReviewLaterButton lessonId="what-is-ci-cd" />
 

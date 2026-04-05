@@ -8,6 +8,7 @@ import { computeBadges, type Badge } from '../hooks/useBadges'
 import { loadVisitCounts } from '../hooks/useLessonVisit'
 import { loadAllNotes } from '../components/LessonNote'
 import { loadAllReviewLater } from '../hooks/useReviewLater'
+import { countHelpfulLessons } from '../components/LessonFeedback'
 import { loadWeeklyGoal, saveWeeklyGoal, type WeeklyGoalData } from '../hooks/useWeeklyGoal'
 import { StreakCalendar } from '../components/StreakCalendar'
 import { useLearningCalendar } from '../hooks/useLearningCalendar'
@@ -80,6 +81,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-mental-health-apps',   title: 'AI and mental health apps',           to: '/learn/ai-and-mental-health-apps' },
   { id: 'ai-and-scams',                title: 'AI and scams',                        to: '/learn/ai-and-scams' },
   { id: 'ai-and-pets',                 title: 'AI and pets',                         to: '/learn/ai-and-pets' },
+  { id: 'ai-and-fitness-apps',         title: 'AI and fitness apps',                 to: '/learn/ai-and-fitness-apps' },
+  { id: 'ai-and-disability',           title: 'AI and disability',                   to: '/learn/ai-and-disability' },
 ]
 
 interface QuizScoreEntry {
@@ -577,6 +580,7 @@ export function MyProgress() {
   const [showAllTimeline, setShowAllTimeline] = useState(false)
   const [lessonTimestamps] = useState<Record<string, string>>(() => loadLessonTimestamps())
   const [whatToLearnNext] = useState<NextLessonSuggestion[]>(() => buildWhatToLearnNext(loadVisited(), loadLessonTimestamps()))
+  const helpfulCount = countHelpfulLessons(LESSONS_WITH_QUIZZES.map(l => l.id))
   const [quizStreak] = useState<number>(() => {
     try {
       const raw = localStorage.getItem('ronny-quiz-streak-count')
@@ -1027,6 +1031,22 @@ export function MyProgress() {
                   </>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Lessons you found helpful */}
+        {helpfulCount > 0 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-5">
+            <div className="text-4xl flex-shrink-0">&#x1F44D;</div>
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-green-600">{helpfulCount}</span>
+                <span className="text-gray-500 text-sm font-medium">
+                  lesson{helpfulCount !== 1 ? 's' : ''} marked helpful
+                </span>
+              </div>
+              <p className="text-gray-400 text-xs mt-0.5">out of {completedCount} completed — thanks for the feedback!</p>
             </div>
           </div>
         )}

@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -281,6 +282,7 @@ export function AIAndEducation() {
         <LessonNote lessonId="ai-and-education" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="ai-and-education" />
         <LessonRating lessonId="ai-and-education" />
         <ReviewLaterButton lessonId="ai-and-education" />
 

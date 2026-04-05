@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
@@ -240,6 +241,7 @@ export function HowChatbotsWork() {
         <LessonNote lessonId="how-chatbots-work" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="how-chatbots-work" />
         <LessonRating lessonId="how-chatbots-work" />
         <ReviewLaterButton lessonId="how-chatbots-work" />
 

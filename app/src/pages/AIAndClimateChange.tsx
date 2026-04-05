@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -297,6 +298,7 @@ export function AIAndClimateChange() {
 
         <Quiz questions={quizQuestions} lessonId="ai-and-climate-change" lessonTitle="AI and climate change" />
 
+        <LessonFeedback lessonId="ai-and-climate-change" />
         <LessonRating lessonId="ai-and-climate-change" />
         <RelatedLessons currentId="ai-and-climate-change" />
         <NextLesson currentId="ai-and-climate-change" />

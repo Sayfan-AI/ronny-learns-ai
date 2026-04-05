@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
@@ -311,6 +312,7 @@ export function FutureOfAI() {
         <LessonNote lessonId="future-of-ai" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="future-of-ai" />
         <LessonRating lessonId="future-of-ai" />
         <ReviewLaterButton lessonId="future-of-ai" />
 

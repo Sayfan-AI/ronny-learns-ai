@@ -4,6 +4,7 @@ import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 interface TimelineEvent {
@@ -150,6 +151,7 @@ export function AIHistory() {
         <LessonNote lessonId="ai-history" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="ai-history" />
         <LessonRating lessonId="ai-history" />
         <ReviewLaterButton lessonId="ai-history" />
 

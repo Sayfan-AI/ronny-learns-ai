@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -193,6 +194,7 @@ export function AIProductivityTools() {
         <LessonNote lessonId="ai-productivity-tools" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="ai-productivity-tools" />
         <LessonRating lessonId="ai-productivity-tools" />
         <ReviewLaterButton lessonId="ai-productivity-tools" />
 

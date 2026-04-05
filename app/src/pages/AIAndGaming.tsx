@@ -6,6 +6,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -280,6 +281,7 @@ export function AIAndGaming() {
 
         <Quiz questions={quizQuestions} lessonId="ai-and-gaming" lessonTitle="AI and gaming" />
 
+        <LessonFeedback lessonId="ai-and-gaming" />
         <LessonRating lessonId="ai-and-gaming" />
         <RelatedLessons currentId="ai-and-gaming" />
         <NextLesson currentId="ai-and-gaming" />

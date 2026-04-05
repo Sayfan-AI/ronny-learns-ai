@@ -51,6 +51,8 @@ export const LESSON_ORDER: Array<{ id: string; icon: string; title: string; path
   { id: 'ai-and-sport',      icon: '&#x26BD;',  title: 'AI and sport',                        path: '/learn/ai-and-sport' },
   { id: 'ai-and-transport',  icon: '&#x1F697;', title: 'AI and transport',                    path: '/learn/ai-and-transport' },
   { id: 'ai-and-art',        icon: '&#x1F58C;&#xFE0F;', title: 'AI and art',                path: '/learn/ai-and-art' },
+  { id: 'ai-and-fitness-apps', icon: '&#x1F3C3;', title: 'AI and fitness apps',         path: '/learn/ai-and-fitness-apps' },
+  { id: 'ai-and-disability',   icon: '&#x267F;',  title: 'AI and disability',            path: '/learn/ai-and-disability' },
 ]
 
 interface NextLessonProps {

@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 
@@ -331,6 +332,7 @@ export function AIInYourApps() {
         <LessonNote lessonId="ai-in-your-apps" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="ai-in-your-apps" />
         <LessonRating lessonId="ai-in-your-apps" />
         <ReviewLaterButton lessonId="ai-in-your-apps" />
 

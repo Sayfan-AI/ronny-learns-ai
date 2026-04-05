@@ -6,6 +6,7 @@ import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 interface Step {
@@ -234,6 +235,7 @@ export function GitHubSignupTutorial() {
         <LessonNote lessonId="github-signup" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="github-signup" />
         <LessonRating lessonId="github-signup" />
         <ReviewLaterButton lessonId="github-signup" />
 

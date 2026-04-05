@@ -105,6 +105,8 @@ const AIAndMentalHealthApps = lazy(() => import('./pages/AIAndMentalHealthApps')
 const Bookmarks = lazy(() => import('./pages/Bookmarks').then(m => ({ default: m.Bookmarks })))
 const AIAndScams = lazy(() => import('./pages/AIAndScams').then(m => ({ default: m.AIAndScams })))
 const AIAndPets = lazy(() => import('./pages/AIAndPets').then(m => ({ default: m.AIAndPets })))
+const AIAndFitnessApps = lazy(() => import('./pages/AIAndFitnessApps').then(m => ({ default: m.AIAndFitnessApps })))
+const AIAndDisability = lazy(() => import('./pages/AIAndDisability').then(m => ({ default: m.AIAndDisability })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -734,6 +736,18 @@ const aiAndPetsRoute = createRoute({
   component: withSuspense(AIAndPets),
 })
 
+const aiAndFitnessAppsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-fitness-apps',
+  component: withSuspense(AIAndFitnessApps),
+})
+
+const aiAndDisabilityRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-disability',
+  component: withSuspense(AIAndDisability),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -832,6 +846,8 @@ const routeTree = rootRoute.addChildren([
   bookmarksRoute,
   aiAndScamsRoute,
   aiAndPetsRoute,
+  aiAndFitnessAppsRoute,
+  aiAndDisabilityRoute,
 ])
 
 const hashHistory = createHashHistory()

@@ -7,6 +7,7 @@ import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
+import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 
 const quizQuestions: QuizQuestion[] = [
@@ -203,6 +204,7 @@ export function PromptEngineering() {
         <LessonNote lessonId="prompt-engineering" />
 
         {/* Rating */}
+        <LessonFeedback lessonId="prompt-engineering" />
         <LessonRating lessonId="prompt-engineering" />
         <ReviewLaterButton lessonId="prompt-engineering" />
 
