@@ -1174,6 +1174,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'amber',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-real-estate',
+        title: 'AI and real estate — property valuations, AI letting agents, smart home tech, and the future of the UK property market',
+        description: 'How AI is changing the way homes are valued, bought, rented, and financed — from instant property estimates to AI mortgage decisions and fraud detection.',
+        readingTime: '7 min',
+        icon: '🏠',
+        to: '/learn/ai-and-real-estate',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-social-care',
+        title: 'AI and social care — care robots, AI companions, monitoring, and what it means for care workers',
+        description: 'How AI is entering one of the most human parts of life — care for elderly and disabled people — and the profound questions it raises about dignity and loneliness.',
+        readingTime: '8 min',
+        icon: '🤝',
+        to: '/learn/ai-and-social-care',
+        color: 'rose',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -2235,6 +2255,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
+              </div>
+            </Link>
+            <Link
+              to="/ai-news"
+              className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:bg-slate-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4F0;</span>
+              <div>
+                <p className="font-semibold text-slate-800 text-sm">AI in the news</p>
+                <p className="text-slate-600 text-xs">A timeline of the moments that shaped modern AI.</p>
               </div>
             </Link>
           </div>

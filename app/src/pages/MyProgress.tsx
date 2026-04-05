@@ -106,6 +106,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-3d-printing',          title: 'AI and 3D printing',                  to: '/learn/ai-and-3d-printing' },
   { id: 'ai-and-pregnancy-and-baby-care',       title: 'AI and pregnancy and baby care',      to: '/learn/ai-and-pregnancy-and-baby-care' },
   { id: 'ai-and-taxes-and-financial-admin',     title: 'AI and taxes and financial admin',    to: '/learn/ai-and-taxes-and-financial-admin' },
+  { id: 'ai-and-real-estate',          title: 'AI and real estate',                  to: '/learn/ai-and-real-estate' },
+  { id: 'ai-and-social-care',          title: 'AI and social care',                  to: '/learn/ai-and-social-care' },
 ]
 
 interface QuizScoreEntry {
