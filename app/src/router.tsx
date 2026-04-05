@@ -169,6 +169,11 @@ const AIAndFinancialAdvice = lazy(() => import('./pages/AIAndFinancialAdvice').t
 const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
 const AIAndMusicCreation = lazy(() => import('./pages/AIAndMusicCreation').then(m => ({ default: m.AIAndMusicCreation })))
 const AIAndCriticalThinking = lazy(() => import('./pages/AIAndCriticalThinking').then(m => ({ default: m.AIAndCriticalThinking })))
+const AIAndSmallBusinesses = lazy(() => import('./pages/AIAndSmallBusinesses').then(m => ({ default: m.AIAndSmallBusinesses })))
+const AIAndLocalGovernment = lazy(() => import('./pages/AIAndLocalGovernment').then(m => ({ default: m.AIAndLocalGovernment })))
+const AIAndWildlifeConservation = lazy(() => import('./pages/AIAndWildlifeConservation').then(m => ({ default: m.AIAndWildlifeConservation })))
+const AIAndAddictionAndRecovery = lazy(() => import('./pages/AIAndAddictionAndRecovery').then(m => ({ default: m.AIAndAddictionAndRecovery })))
+const AIFactsQuiz = lazy(() => import('./pages/AIFactsQuiz').then(m => ({ default: m.AIFactsQuiz })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1182,6 +1187,36 @@ const aiAndCriticalThinkingRoute = createRoute({
   component: withSuspense(AIAndCriticalThinking),
 })
 
+const aiAndSmallBusinessesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-small-businesses',
+  component: withSuspense(AIAndSmallBusinesses),
+})
+
+const aiAndLocalGovernmentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-local-government',
+  component: withSuspense(AIAndLocalGovernment),
+})
+
+const aiAndWildlifeConservationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-wildlife-conservation',
+  component: withSuspense(AIAndWildlifeConservation),
+})
+
+const aiAndAddictionAndRecoveryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-addiction-and-recovery',
+  component: withSuspense(AIAndAddictionAndRecovery),
+})
+
+const aiFactsQuizRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/ai-facts',
+  component: withSuspense(AIFactsQuiz),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1344,6 +1379,11 @@ const routeTree = rootRoute.addChildren([
   aiAndBenefitsSystemRoute,
   aiAndMusicCreationRoute,
   aiAndCriticalThinkingRoute,
+  aiAndSmallBusinessesRoute,
+  aiAndLocalGovernmentRoute,
+  aiAndWildlifeConservationRoute,
+  aiAndAddictionAndRecoveryRoute,
+  aiFactsQuizRoute,
 ])
 
 const hashHistory = createHashHistory()
