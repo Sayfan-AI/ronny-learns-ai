@@ -23,7 +23,6 @@ import { LessonOfTheDay } from '../components/LessonOfTheDay'
 import { ContinueYourSeries } from '../components/ContinueYourSeries'
 import { StreakReward } from '../components/StreakReward'
 import { StreakChallenge } from '../components/StreakChallenge'
-import { StreakReward } from '../components/StreakReward'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1843,9 +1842,6 @@ export function HomePage() {
 
         {/* Search */}
         <SearchBar />
-
-        {/* Streak reward — shown when streak is 3+ days */}
-        <StreakReward />
 
         {/* Surprise me */}
         <div className="flex justify-center">
