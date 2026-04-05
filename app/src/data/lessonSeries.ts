@@ -60,6 +60,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-democracy',
       'ai-and-cybercrime',
       'ai-and-scams',
+      'ai-and-fraud-and-identity-theft',
     ],
   },
   {
@@ -94,6 +95,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-autonomous-vehicles',
       'ai-and-space-exploration',
       'ai-and-energy',
+      'ai-and-climate-activism',
     ],
   },
 ]

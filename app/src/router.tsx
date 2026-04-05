@@ -156,6 +156,7 @@ const AIAndNHSWaitingLists = lazy(() => import('./pages/AIAndNHSWaitingLists').t
 const AIAndSocialMediaAlgorithms = lazy(() => import('./pages/AIAndSocialMediaAlgorithms').then(m => ({ default: m.AIAndSocialMediaAlgorithms })))
 const AIAndClimateActivism = lazy(() => import('./pages/AIAndClimateActivism').then(m => ({ default: m.AIAndClimateActivism })))
 const AIAndSportsMedicine = lazy(() => import('./pages/AIAndSportsMedicine').then(m => ({ default: m.AIAndSportsMedicine })))
+const AIAndFraudAndIdentityTheft = lazy(() => import('./pages/AIAndFraudAndIdentityTheft').then(m => ({ default: m.AIAndFraudAndIdentityTheft })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1091,6 +1092,12 @@ const aiAndSportsMedicineRoute = createRoute({
   component: withSuspense(AIAndSportsMedicine),
 })
 
+const aiAndFraudAndIdentityTheftRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-fraud-and-identity-theft',
+  component: withSuspense(AIAndFraudAndIdentityTheft),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1240,6 +1247,7 @@ const routeTree = rootRoute.addChildren([
   aiAndSocialMediaAlgorithmsRoute,
   aiAndClimateActivismRoute,
   aiAndSportsMedicineRoute,
+  aiAndFraudAndIdentityTheftRoute,
 ])
 
 const hashHistory = createHashHistory()

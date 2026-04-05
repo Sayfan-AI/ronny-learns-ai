@@ -1296,6 +1296,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'green',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-fraud-and-identity-theft',
+        title: 'AI and fraud and identity theft — synthetic identity fraud, credential stuffing, fake documents, and how to protect yourself',
+        description: 'How AI enables criminals to steal identities and commit fraud at scale — and how the same technology is used to detect and stop them.',
+        readingTime: '7 min',
+        icon: '&#x1F575;&#xFE0F;',
+        to: '/learn/ai-and-fraud-and-identity-theft',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
