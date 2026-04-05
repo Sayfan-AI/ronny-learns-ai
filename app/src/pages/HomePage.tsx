@@ -1294,6 +1294,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-welfare-benefits',
+        title: 'AI and welfare benefits — DWP fraud detection, Universal Credit algorithms, SyRI case, and claimant rights',
+        description: 'How AI is used in the UK benefits system — from DWP IRIS fraud detection to algorithmic UC sanctions — and what claimants can do to challenge automated decisions.',
+        readingTime: '7 min',
+        icon: '💰',
+        to: '/learn/ai-and-welfare-benefits',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-dentistry',
         title: 'AI and dentistry — AI diagnosis, dental imaging, NHS waiting lists, and the future of the dentist',
         description: 'How AI is changing dental care in the UK — from AI that spots tooth decay in X-rays to tools helping overstretched NHS dentists manage patient lists.',
@@ -2527,6 +2537,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-emerald-800 text-sm">Sort It Out</p>
                 <p className="text-emerald-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/who-said-it"
+              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4AC;</span>
+              <div>
+                <p className="font-semibold text-violet-800 text-sm">Who said it?</p>
+                <p className="text-violet-600 text-xs">Match 10 famous AI quotes to the right person.</p>
               </div>
             </Link>
           </div>

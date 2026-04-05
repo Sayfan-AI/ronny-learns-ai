@@ -187,6 +187,9 @@ const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m
 const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
 // Milestone 68 pages
 const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
+// Milestone 69 pages
+const AIAndWelfareBenefits = lazy(() => import('./pages/AIAndWelfareBenefits').then(m => ({ default: m.AIAndWelfareBenefits })))
+const WhoSaidItQuiz = lazy(() => import('./pages/WhoSaidItQuiz').then(m => ({ default: m.WhoSaidItQuiz })))
 const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
 const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
 const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
@@ -1160,6 +1163,19 @@ const jargonMatchRoute = createRoute({
   component: withSuspense(JargonMatch),
 })
 
+// Milestone 69 routes
+const aiAndWelfareBenefitsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-welfare-benefits',
+  component: withSuspense(AIAndWelfareBenefits),
+})
+
+const whoSaidItQuizRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/who-said-it',
+  component: withSuspense(WhoSaidItQuiz),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1344,6 +1360,9 @@ const routeTree = rootRoute.addChildren([
   aiAndContentModerationRoute,
   aiTimelineRoute,
   jargonMatchRoute,
+  // Milestone 69
+  aiAndWelfareBenefitsRoute,
+  whoSaidItQuizRoute,
 ])
 
 const hashHistory = createHashHistory()
