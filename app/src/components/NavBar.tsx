@@ -23,6 +23,7 @@ const NAV_LINKS = [
   { to: '/glossary', label: 'Glossary' },
   { to: '/learning-recap', label: 'Learning recap' },
   { to: '/quiz-review', label: 'Quiz review' },
+  { to: '/quiz/ai-facts', label: 'AI facts quiz' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },

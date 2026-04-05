@@ -9,79 +9,72 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
-import { KeyTakeaways } from '../components/KeyTakeaways'
-import { LessonSeriesBadge } from '../components/LessonSeriesBadge'
 
-const LESSON_TITLE = 'AI and local government — pothole detection, planning permissions, social services AI, and algorithmic accountability'
-
-const KEY_TAKEAWAYS = [
-  'UK councils are using AI to detect potholes from dashcam footage and smartphone reports, prioritising repairs based on severity and road usage rather than who complains loudest.',
-  'AI planning tools help councils process planning applications faster by flagging applications that comply with local rules versus those needing human review — but complex or contentious decisions still require human judgement.',
-  'Several UK councils have used AI to assess social care needs and child safeguarding risk — raising serious questions about whether algorithmic systems can make fair decisions about vulnerable people.',
-  'Algorithmic accountability is a growing area of UK law: councils have duties under the Equality Act 2010 to ensure automated decisions do not discriminate unlawfully against protected groups.',
-  'The right to human review of automated decisions that significantly affect you is protected under UK GDPR — you can request that a council decision made primarily by an algorithm be reconsidered by a human.',
-]
-
-const QUIZ_QUESTIONS: QuizQuestion[] = [
+const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How do AI pothole detection systems work?',
+    question: 'How do councils use AI to detect potholes more efficiently than traditional methods?',
     options: [
-      'They use satellites to photograph every road in the country daily',
-      'They analyse dashcam footage and sensor data to identify and classify road defects, feeding a prioritised repair list to highway teams',
-      'They automatically dispatch repair crews the moment a pothole is detected',
-      'They fine drivers who damage their vehicles in potholes',
+      'Councils send robots underground to measure road thickness and predict where potholes will form next',
+      'AI analyses images from cameras mounted on council vehicles or reported via apps to automatically detect, log, and prioritise potholes by severity, covering far more roads than manual inspection teams',
+      'Satellites photograph every UK road daily and AI flags any changes in the tarmac surface visible from space',
+      'Residents complete a monthly survey on their street conditions and AI compiles the results into a maintenance schedule',
     ],
     correctIndex: 1,
     explanation:
-      'AI pothole detection typically uses cameras on council vehicles, bus fleets, or even smartphones to gather images of road surfaces. Computer vision algorithms then classify defects by type and severity, helping highway teams prioritise repairs based on risk and road usage rather than relying solely on public reports.',
+      'Several UK councils use AI road monitoring systems. Cameras mounted on refuse lorries, street-cleaning vehicles, or dedicated survey cars capture continuous footage of road surfaces. AI analyses this footage to detect potholes, cracks, and deteriorating road markings, automatically logging location and severity. This can cover an entire borough in weeks rather than the months it would take manual inspection teams. The AI prioritises repairs by severity and location, helping councils allocate limited road maintenance budgets more effectively.',
+    hint: 'Think about cameras on vehicles and automatic image analysis.',
   },
   {
-    question: 'What is the main concern about using AI for child safeguarding risk assessments?',
+    question: 'What is algorithmic accountability in the context of local government AI?',
     options: [
-      'AI is too slow to process child protection referrals in time',
-      'AI systems cannot access school records',
-      'Algorithmic risk scores can embed historical biases and may unfairly flag families from certain backgrounds as high-risk without adequate human oversight',
-      'The cost of AI systems is too high for local authority budgets',
-    ],
-    correctIndex: 2,
-    explanation:
-      'Several councils that trialled AI safeguarding tools found that if the training data reflected past patterns of intervention that were themselves biased — for example, disproportionate referrals from lower-income or minority ethnic families — the AI would perpetuate and potentially amplify those biases. The consequences for families wrongly flagged as high-risk can be severe.',
-  },
-  {
-    question: 'Under UK GDPR, what right do you have if a council makes a significant decision about you using an automated system?',
-    options: [
-      'The right to receive a full copy of the AI\'s source code',
-      'The right to request that the decision be reconsidered by a human',
-      'The right to financial compensation automatically',
-      'The right to have all AI systems in the council switched off',
+      'A system where AI automatically fires council workers who make mistakes',
+      'The requirement that when AI systems make or inform decisions affecting residents, councils must be able to explain how those decisions were reached, allow challenges, and have human oversight',
+      'A law requiring all council algorithms to be written in a programming language that non-technical residents can read',
+      'An accounting system that tracks how much councils spend on AI contracts',
     ],
     correctIndex: 1,
     explanation:
-      'UK GDPR gives individuals the right not to be subject to a decision based solely on automated processing that significantly affects them, including the right to request human review of such decisions. This applies to council decisions on benefits, housing, planning, or social care where an algorithm played a primary decision-making role.',
+      "Algorithmic accountability means that public bodies using AI to make decisions affecting people's lives must be transparent and open to challenge. If an AI system recommends that someone's housing benefit be reduced, the council must be able to explain what factors led to that recommendation, allow the resident to contest it, and have a human review the decision. The UK's Public Sector Equality Duty and the Equality Act 2010 apply to algorithmic decisions, meaning councils must assess whether their AI systems discriminate against protected groups.",
+    hint: 'Think about transparency, explanation, and the ability to challenge AI decisions.',
   },
   {
-    question: 'How might AI help councils process planning applications?',
+    question: 'How is AI being used to help social services identify vulnerable families earlier?',
     options: [
-      'By approving all applications automatically to reduce backlogs',
-      'By flagging which applications clearly comply with local planning rules versus those that need detailed human review, speeding up straightforward cases',
-      'By contacting neighbours automatically to gather objections',
-      'By replacing planning officers entirely with AI agents',
+      'AI monitors all social media accounts of council residents and flags any posts mentioning family difficulties',
+      'AI analyses data from multiple council systems such as housing, benefits, and school attendance to identify patterns associated with families that may need early support, allowing social workers to make contact before a crisis develops',
+      'AI interviews children at school each week and generates reports on family wellbeing',
+      'Councils use AI to automatically remove children from families identified as high-risk without any human involvement',
     ],
     correctIndex: 1,
     explanation:
-      'AI can read planning applications and check them against local development plans, national planning policy, and standard requirements. Applications that clearly comply can be fast-tracked; those that are ambiguous or contentious are flagged for detailed human review. This reduces the backlog without removing human judgement from complex cases.',
+      "Early intervention AI tools aim to identify vulnerable families before problems escalate. They typically analyse anonymised data from systems councils already hold: housing arrears, benefit claims, school attendance records, GP referrals, and previous social care contacts. Patterns in this combined data can flag families who may benefit from early support. Critically, the AI does not make decisions, it identifies cases for a social worker to assess. The approach is controversial: supporters argue it enables earlier help; critics raise concerns about privacy, bias, and the risk of stigmatising families based on data profiles.",
+    hint: 'The key is combining data from multiple systems to identify patterns, with human workers making the actual decisions.',
   },
   {
-    question: 'What does the Equality Act 2010 require councils to consider when deploying AI?',
+    question: 'What is the purpose of AI-powered planning permission tools in local councils?',
     options: [
-      'That AI systems are built in the UK',
-      'That AI decisions must always be more favourable than human decisions',
-      'That AI systems used for public services must not unlawfully discriminate against people with protected characteristics such as race, gender, disability, or age',
-      'That councils must hire equal numbers of human and AI decision-makers',
+      'To automatically approve or reject all planning applications without any human involvement, saving councils money',
+      'To help planning officers process large volumes of applications more quickly by automatically checking applications against planning rules, flagging issues, and summarising relevant history for the officer to consider',
+      'To design buildings on behalf of applicants and submit planning permission requests automatically',
+      'To prevent residents from appealing planning decisions by making the process too complicated to navigate',
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation:
-      'The public sector equality duty under the Equality Act 2010 requires councils to have due regard to equality when exercising their functions — including when deploying AI. If an AI system produces outcomes that disadvantage people because of a protected characteristic (even unintentionally), the council may be acting unlawfully.',
+      'Planning departments in UK councils typically receive thousands of applications per year, ranging from simple loft conversions to complex commercial developments. AI tools can automatically check whether an application includes all required documents, flag potential conflicts with local planning policies, retrieve relevant planning history for the site, and generate a summary for the planning officer. This reduces the administrative burden on officers, speeds up straightforward applications, and frees up expert time to focus on complex or contested cases. Human planning officers still make all decisions.',
+    hint: 'The AI helps with the administrative and checking work, not the actual decision-making.',
+  },
+  {
+    question: 'Why do campaigners raise concerns about bias in local government AI systems?',
+    options: [
+      'Because AI systems are programmed by council workers who are paid more than residents and therefore have different priorities',
+      'Because AI trained on historical data can perpetuate past patterns of discrimination, meaning some groups such as those in deprived areas or certain ethnic communities may be more likely to be flagged by risk-scoring systems regardless of actual need',
+      'Because AI prefers to help residents who live in expensive houses and ignores those in social housing',
+      'Because council AI systems are operated by private companies based overseas who have no interest in fairness',
+    ],
+    correctIndex: 1,
+    explanation:
+      "Algorithmic bias in public sector AI is a documented concern. If an AI is trained on historical social care, benefits, or policing data, it may reflect historical patterns in which certain groups were disproportionately investigated or denied services. The AI can then perpetuate these patterns at scale. For example, if families in a particular postcode were historically more likely to have social care referrals due to poverty rather than neglect, an AI might over-flag families in that area. The Equality and Human Rights Commission has called for rigorous equality impact assessments before councils deploy AI systems that affect residents' access to services.",
+    hint: 'Historical data can reflect historical biases, and AI trained on that data may reproduce them.',
   },
 ]
 
@@ -89,90 +82,161 @@ export function AIAndLocalGovernment() {
   useMarkVisited('ai-and-local-government')
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-8 space-y-8">
-      <div className="space-y-3">
-        <LessonSeriesBadge lessonId="ai-and-local-government" />
-        <CompletedBadge lessonId="ai-and-local-government" />
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-          AI and local government
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
-          Your council is quietly becoming an AI user. From detecting potholes to processing planning applications and assessing social care needs, local authorities across the UK are using algorithms to help manage services under tight budgets. This lesson explains what they are doing, why it raises difficult questions, and what rights you have.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <ShareButton lessonTitle={LESSON_TITLE} />
-          <ReviewLaterButton lessonId="ai-and-local-government" />
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-8">
+
+        <div className="text-center space-y-4">
+          <div className="text-6xl">&#x1F3DB;&#xFE0F;</div>
+          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+            AI and local government
+          </h1>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            Pothole detection, planning permission tools, social services AI, and the important question of
+            algorithmic accountability &mdash; how AI is being used by UK councils and what residents need to know.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
+              <span>About 7 min read</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-sm px-4 py-2 rounded-full font-semibold">
+              <span>Intermediate</span>
+            </div>
+          </div>
+          <CompletedBadge lessonId="ai-and-local-government" />
+          <ShareButton lessonTitle="AI and local government" />
         </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Fixing the roads &mdash; AI pothole detection</h2>
+          <p className="text-gray-600 leading-relaxed">
+            The UK has a significant backlog of road repairs. AI is helping councils survey roads faster
+            and prioritise the worst potholes more effectively.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F6E3;&#xFE0F;',
+                label: 'Camera-equipped vehicles',
+                text: 'Councils mount cameras on refuse lorries, street-cleaning vehicles, and dedicated survey cars. As these vehicles go about their normal routes, AI continuously analyses the footage to detect potholes, cracks, and failing road surfaces. One survey pass can cover an entire borough.',
+              },
+              {
+                icon: '&#x1F4F1;',
+                label: 'Resident reporting apps',
+                text: 'Apps like FixMyStreet let residents photograph potholes and submit them with GPS coordinates. AI analyses the images to assess severity, filters out duplicates, and routes reports to the correct team. This creates a real-time map of road damage across the borough.',
+              },
+              {
+                icon: '&#x1F4CA;',
+                label: 'Prioritisation and budgeting',
+                text: 'AI ranks potholes by severity, location risk (busy road versus quiet residential street), and likely deterioration rate. This helps councils allocate their limited road maintenance budgets to the repairs that will have the greatest safety impact.',
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Planning permissions &mdash; AI for planning officers</h2>
+          <p className="text-gray-600 leading-relaxed">
+            UK councils receive thousands of planning applications each year. AI is helping planning
+            departments process them faster without cutting corners on scrutiny.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { icon: '&#x2705;', title: 'Document checking', text: "AI automatically checks whether a planning application includes all required documents and drawings. If anything is missing, it flags this immediately, reducing the back-and-forth that currently causes delays at the start of the process." },
+              { icon: '&#x1F4DC;', title: 'Policy screening', text: "The AI scans applications against the council's local planning policies and flags potential issues for the officer to consider. For example, if an application is for a building in a flood zone or a conservation area, the AI highlights the relevant policy constraints." },
+              { icon: '&#x1F4CD;', title: 'Site history retrieval', text: "The AI retrieves the full planning history of a site in seconds, including previous applications, decisions, appeals, and any conditions attached. This can take an officer several hours manually across different systems." },
+              { icon: '&#x1F9D1;', title: 'Human decisions', text: "AI does not approve or reject planning applications. A qualified planning officer makes every decision, using the AI-generated summary as a starting point. Complex or controversial applications receive the same human scrutiny as before." },
+            ].map(({ icon, title, text }) => (
+              <div key={title} className="bg-gray-50 rounded-xl p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xl" dangerouslySetInnerHTML={{ __html: icon }} />
+                  <p className="font-semibold text-gray-800 text-sm">{title}</p>
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Social services AI &mdash; early intervention tools</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Some councils use AI to try to identify vulnerable families earlier, before problems
+            escalate to crisis. This is one of the most sensitive uses of AI in local government.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F4CA;',
+                label: 'How it works',
+                text: "The AI analyses anonymised data from multiple council systems: housing arrears, benefit claims, school attendance records, and previous social care contacts. Patterns in this combined data can flag families who might benefit from an early conversation with a support worker.",
+              },
+              {
+                icon: '&#x1F91D;',
+                label: 'The intended benefit',
+                text: "By identifying need earlier, councils hope to offer support before a family reaches crisis point. Early intervention is generally cheaper and less traumatic than crisis response. The AI flags cases for human assessment; it does not make decisions.",
+              },
+              {
+                icon: '&#x26A0;&#xFE0F;',
+                label: 'The concerns',
+                text: "Critics raise serious concerns: privacy (combining multiple data sources without residents' knowledge), bias (the AI may over-flag families in deprived areas because historical data reflects poverty, not actual neglect), and stigma (families may face scrutiny based on data profiles rather than actual behaviour).",
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-rose-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Algorithmic accountability &mdash; your right to know</h2>
+          <p className="text-gray-600 leading-relaxed">
+            When a council uses AI to inform decisions about you &mdash; your benefits, your housing,
+            your children &mdash; you have rights. Algorithmic accountability means councils must be
+            transparent about how these tools work and must allow you to challenge decisions.
+          </p>
+          <div className="bg-rose-50 rounded-xl p-4 space-y-2 mb-3">
+            <p className="font-semibold text-rose-800 text-sm">Your rights when a council uses AI</p>
+            <ul className="text-rose-700 text-sm leading-relaxed space-y-1 list-disc list-inside">
+              <li>The right to be told that an automated or AI-assisted process was used in a decision affecting you</li>
+              <li>The right to request a human review of any automated decision</li>
+              <li>The right to an explanation of the factors that influenced the decision</li>
+              <li>The right to challenge decisions you believe are incorrect or discriminatory</li>
+            </ul>
+          </div>
+          <div className="bg-blue-50 rounded-xl p-4 space-y-2">
+            <p className="font-semibold text-blue-800 text-sm">What councils are required to do</p>
+            <ul className="text-blue-700 text-sm leading-relaxed space-y-1 list-disc list-inside">
+              <li>Conduct Equality Impact Assessments before deploying AI that affects residents</li>
+              <li>Ensure AI decisions comply with the Equality Act 2010 and UK GDPR</li>
+              <li>Publish details of significant AI systems they use (required by transparency guidance)</li>
+              <li>Maintain human oversight of all AI-assisted decisions affecting individual residents</li>
+            </ul>
+          </div>
+        </div>
+
+        <ReviewLaterButton lessonId="ai-and-local-government" />
+        <LessonNote lessonId="ai-and-local-government" />
+
+        <Quiz questions={quizQuestions} lessonId="ai-and-local-government" lessonTitle="AI and local government" />
+
+        <LessonFeedback lessonId="ai-and-local-government" />
+        <LessonRating lessonId="ai-and-local-government" />
+        <RelatedLessons currentId="ai-and-local-government" />
+        <NextLesson currentId="ai-and-local-government" />
       </div>
-
-      <KeyTakeaways points={KEY_TAKEAWAYS} />
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Pothole detection — AI on the road</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Reporting a pothole used to mean calling the council, filling in a web form, and hoping someone noticed. Now, councils including Bath, Oxfordshire, and several London boroughs use AI dashcam systems mounted on council vehicles and bin lorries that continuously scan road surfaces.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          Computer vision algorithms analyse the footage in real time, classifying defects by type (pothole, crack, surface deterioration), size, and severity. The result is a prioritised repair list that weighs risk factors — how deep the pothole is, how busy the road is, how close it is to a junction — rather than simply responding to whichever resident complained most recently.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          Some councils have also used smartphone app data: apps like FixMyStreet or council-specific apps let residents photograph and report defects, and AI classifies the reports before a human ever looks at them. The system is faster, more consistent, and covers roads that are rarely driven by council vehicles.
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Planning applications — faster decisions for routine cases</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Local planning departments are chronically understaffed. Applications for extensions, loft conversions, and change of use can sit in a queue for months. AI tools are starting to help by doing what humans currently do with straightforward applications: checking whether the proposal complies with local planning rules.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          An AI can read an application, cross-reference it with the local development plan, national planning policy, flood risk maps, and heritage designations, and produce a summary of which criteria the application meets and which it does not. For a simple rear extension in an area with no special designations, this takes seconds rather than days.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          The AI does not make the final decision — a planning officer does. But by automating the information-gathering and checking stage, officers can spend their limited time on the applications that genuinely need human judgement: contentious cases, listed buildings, green belt applications, or anything likely to face appeal.
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Social services AI — the most contested territory</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          The most controversial application of AI in local government is in social services — particularly in assessing need for adult social care and risk in child protection.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          Several UK councils trialled predictive risk scoring tools that used data from multiple council systems — housing, benefits, school attendance, previous social care contacts — to generate a risk score for families. The idea was that early intervention, prompted by an AI flag, could prevent crises before they happened.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          The results were mixed, and the concerns were significant. Critics pointed out that if the AI was trained on historical data reflecting past patterns of intervention — which often reflected systemic inequalities — it would reproduce those biases. A system trained on data showing that low-income families in certain postcodes had more social care contacts might flag future families from those areas as high-risk, not because they were actually at greater risk but because they had historically been subject to more scrutiny.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          Several councils abandoned these tools following public pressure and academic scrutiny. The lesson is that AI risk assessment in child protection is not simply a technical problem — it is a profound ethical and legal question about who decides which children are at risk, and on what basis.
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Your rights when an algorithm makes a decision about you</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          If a council makes a significant decision about you — whether you qualify for social care, housing benefit, a planning permission, or a blue badge — using an automated system, you have rights under UK GDPR.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          Specifically, you have the right not to be subject to a decision based solely on automated processing that significantly affects you. You can request that the decision be reconsidered by a human, ask for an explanation of the factors that influenced the automated decision, and challenge it if you believe it is wrong.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          Councils also have duties under the Equality Act 2010's public sector equality duty. If you believe an AI system is producing outcomes that discriminate against you because of a protected characteristic — race, gender, disability, age, or others — you can complain to the council, escalate to the Local Government Ombudsman, or seek legal advice.
-        </p>
-        <p className="text-gray-700 dark:text-gray-300">
-          The right to explanation and human review is not always easy to enforce in practice, but it exists. Knowing it gives you a starting point if you believe an automated decision about you is unfair.
-        </p>
-      </section>
-
-      <LessonNote lessonId="ai-and-local-government" />
-
-      <Quiz questions={QUIZ_QUESTIONS} lessonId="ai-and-local-government" />
-
-      <LessonRating lessonId="ai-and-local-government" />
-      <LessonFeedback lessonId="ai-and-local-government" />
-      <RelatedLessons currentId="ai-and-local-government" />
-      <NextLesson currentId="ai-and-local-government" />
-    </main>
+    </div>
   )
 }
