@@ -30,6 +30,7 @@ const NAV_LINKS = [
   { to: '/quiz/true-or-false', label: 'True or False' },
   { to: '/quiz/ai-timeline', label: 'AI timeline' },
   { to: '/quiz/jargon-match', label: 'Jargon match' },
+  { to: '/quiz/who-said-it', label: 'Who said it?' },
   { to: '/streak', label: 'My streak' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },

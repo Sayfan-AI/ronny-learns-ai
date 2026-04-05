@@ -198,6 +198,7 @@ const AIAndFinancialAdvice = lazy(() => import('./pages/AIAndFinancialAdvice').t
 const AIAndShopping = lazy(() => import('./pages/AIAndShopping').then(m => ({ default: m.AIAndShopping })))
 const AIAndTranslation = lazy(() => import('./pages/AIAndTranslation').then(m => ({ default: m.AIAndTranslation })))
 const AIAndGigEconomy = lazy(() => import('./pages/AIAndGigEconomy').then(m => ({ default: m.AIAndGigEconomy })))
+// Milestone 69 remaining pages
 const AIAndWelfareBenefits = lazy(() => import('./pages/AIAndWelfareBenefits').then(m => ({ default: m.AIAndWelfareBenefits })))
 const WhoSaidItQuiz = lazy(() => import('./pages/WhoSaidItQuiz').then(m => ({ default: m.WhoSaidItQuiz })))
 // Milestone 70 — register previously unlinked pages
