@@ -1233,6 +1233,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'slate',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-content-moderation',
+        title: 'AI and social media content moderation — hate speech detection, misinformation, false positives, and the EU DSA',
+        description: "How platforms use AI to police billions of posts every day — the technology, the mistakes, the human cost, and the regulations being written to govern it.",
+        readingTime: '7 min',
+        icon: '🛡️',
+        to: '/learn/ai-and-content-moderation',
+        color: 'rose',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -2287,6 +2297,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-violet-800 text-sm">Sort it out</p>
                 <p className="text-violet-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/ai-timeline"
+              className="bg-cyan-50 border border-cyan-200 rounded-xl p-4 hover:bg-cyan-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x23F3;</span>
+              <div>
+                <p className="font-semibold text-cyan-800 text-sm">AI Timeline</p>
+                <p className="text-cyan-600 text-xs">Place 10 real AI milestones in the correct chronological order.</p>
               </div>
             </Link>
           </div>

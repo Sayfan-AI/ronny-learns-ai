@@ -155,6 +155,8 @@ const AIAndEducationTechnology = lazy(() => import('./pages/AIAndEducationTechno
 const AIAndPersonalAssistants = lazy(() => import('./pages/AIAndPersonalAssistants').then(m => ({ default: m.AIAndPersonalAssistants })))
 const AIAndTheLegalSystem = lazy(() => import('./pages/AIAndTheLegalSystem').then(m => ({ default: m.AIAndTheLegalSystem })))
 const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
+const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
+const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1084,6 +1086,18 @@ const sortItOutRoute = createRoute({
   component: withSuspense(SortItOut),
 })
 
+const aiAndContentModerationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-content-moderation',
+  component: withSuspense(AIAndContentModeration),
+})
+
+const aiTimelineRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/ai-timeline',
+  component: withSuspense(AITimeline),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1232,6 +1246,8 @@ const routeTree = rootRoute.addChildren([
   aiAndPersonalAssistantsRoute,
   aiAndTheLegalSystemRoute,
   sortItOutRoute,
+  aiAndContentModerationRoute,
+  aiTimelineRoute,
 ])
 
 const hashHistory = createHashHistory()
