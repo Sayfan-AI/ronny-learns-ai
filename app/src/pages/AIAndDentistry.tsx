@@ -14,78 +14,78 @@ import { KeyTakeaways } from '../components/KeyTakeaways'
 const LESSON_TITLE = 'AI and dentistry'
 
 const KEY_TAKEAWAYS = [
-  'AI tools like Pearl and Overjet analyse dental X-rays to detect cavities, bone loss, and signs of oral cancer with accuracy comparable to experienced dentists — and sometimes catching things the human eye misses.',
-  'AI treatment planning software can generate sequenced treatment plans, estimate costs, and suggest the order of dental work — helping practices be more consistent and reducing variation between dentists.',
-  'During the NHS dental access crisis, 111 dental triage tools and AI chatbots are helping direct patients to emergency versus routine care, easing pressure on a system stretched beyond capacity.',
-  'Oral cancer detection AI is being piloted in UK dental schools and community clinics — capable of identifying suspicious lesions in photographs, which could enable earlier intervention.',
-  'AI is also helping with dental anxiety: virtual reality relaxation tools, AI-guided breathing exercises, and chatbot aftercare are being trialled in practices to make the experience less stressful for anxious patients.',
+  'AI tools like Pearl and Overjet analyse dental X-rays to detect cavities, bone loss, and early signs of oral cancer — often catching things that human eyes miss on a busy clinic day.',
+  'Treatment planning software uses AI to sequence appointments, estimate costs, and generate personalised care plans, helping dentists manage complex cases more consistently.',
+  'NHS 111 uses AI-assisted triage to direct patients to emergency versus routine dental care — particularly important during the ongoing dental access crisis in England.',
+  'AI oral cancer screening tools are being piloted in UK dental schools and community clinics, aiming to catch the disease earlier when it is most treatable.',
+  'For anxious patients, some UK practices are using virtual reality relaxation tools and AI-guided breathing exercises during treatment — not replacing the dentist, but making the experience less stressful.',
 ]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How do AI tools like Pearl and Overjet help dentists analyse X-rays?',
+    question: 'What do AI dental X-ray analysis tools like Pearl and Overjet primarily do?',
     options: [
-      'They replace dentists entirely — the AI reads every X-ray and produces a diagnosis without human involvement',
-      'They highlight areas of concern on the X-ray image — such as possible cavities or bone loss — so the dentist can check those areas with extra attention',
-      'They convert X-ray images into 3D models that patients can view on a screen, improving understanding of their dental health',
-      'They store X-rays securely in the cloud and compare them against a national database to identify unusual patterns',
+      'They replace the dentist entirely by diagnosing conditions and automatically generating a treatment plan sent directly to the patient',
+      'They analyse dental radiographs to highlight areas of potential concern — cavities, bone loss, or suspicious lesions — that the dentist then reviews and confirms',
+      'They improve the quality of X-ray images by removing noise and adjusting brightness, making them clearer for the dentist to read manually',
+      'They compare a patient\'s teeth against a database of aesthetically ideal smiles and generate a cosmetic treatment plan',
     ],
     correctIndex: 1,
     explanation:
-      'AI dental imaging tools work by training on millions of annotated X-rays — images where experienced dentists have already marked cavities, bone loss, calculus build-up, and other issues. The AI learns to spot similar patterns and highlights them for the dentist to review. Studies have shown that dentists using AI assistance detect more issues than without it, and that AI sometimes catches very early-stage cavities that might otherwise be missed until the next appointment. Importantly, the dentist remains responsible for the diagnosis — the AI is an assistant, not a replacement.',
-    hint: 'Think about the AI as a second pair of eyes that highlights things for the dentist to check.',
+      "AI dental X-ray tools work as a second set of eyes on radiographic images. The software has been trained on millions of annotated dental X-rays, so it has learned to recognise patterns associated with cavities at early stages, bone resorption, calculus, and other conditions. When a dentist takes an X-ray, the AI overlays colour-coded annotations on the image in seconds, highlighting areas of concern. The dentist then reviews these suggestions and decides whether to treat. Studies have shown that AI-assisted review catches a significantly higher proportion of early cavities than unassisted review.",
+    hint: 'Think about AI as a decision-support tool that highlights areas for the dentist to check, rather than making decisions independently.',
   },
   {
-    question: 'What does AI treatment planning software do in a dental practice?',
+    question: 'How is AI helping to address the dental access crisis in England?',
     options: [
-      'It performs the dental treatment robotically — drilling, filling, and extracting teeth without a dentist present',
-      'It generates a suggested sequence of dental treatments, estimates costs, and helps the dentist present a clear plan to the patient',
-      'It automatically submits pre-authorisation requests to NHS England for complex procedures, removing administrative burden from the practice',
-      "It scans the patient's face using a camera to predict what their smile will look like after treatment, for marketing purposes",
+      'AI systems are being used to train new NHS dentists more quickly, reducing the number of years required to qualify',
+      'NHS 111 uses AI-assisted triage to assess dental symptoms described by callers and direct them to emergency dental treatment or routine NHS care appropriately',
+      'AI scheduling systems automatically book patients into the nearest available NHS dental appointment without requiring them to phone a practice',
+      'AI is being used to negotiate new NHS dental contracts on behalf of practices, increasing the number of dentists who choose to work in the NHS',
     ],
     correctIndex: 1,
     explanation:
-      "AI treatment planning tools review the full picture of a patient's dental health and suggest a logical, prioritised sequence of treatment. For example: first address the active infection, then restore the damaged tooth, then consider cosmetic work. They also estimate costs per treatment stage, helping practices have clearer financial conversations with patients. Consistency is a key benefit — different dentists in the same practice may recommend slightly different treatment sequences based on their training and preferences, while AI helps establish a standard baseline.",
-    hint: 'Think about the AI creating a roadmap for the dentist to follow and discuss with the patient.',
+      "England has a severe shortage of NHS dental provision. Many areas have no NHS dentists accepting new adult patients. When someone has a dental emergency, they often turn to NHS 111. AI triage tools help call handlers assess symptom severity consistently. The AI analyses reported symptoms (pain level, presence of swelling, fever, difficulty swallowing) and generates a priority score guiding whether the patient needs same-day emergency treatment, can wait a few days, or simply needs over-the-counter pain relief advice. This helps direct limited emergency dental appointments to those in greatest clinical need.",
+    hint: 'Think about the biggest practical problem in NHS dentistry right now — getting an appointment — and what AI can do to triage who needs urgent help.',
   },
   {
-    question: 'How is AI being used to help with the NHS dental access crisis?',
+    question: 'What is the significance of AI oral cancer screening being piloted in dental settings?',
     options: [
-      'AI is being used to train more dentists faster by running virtual dental simulations, cutting the length of dental degrees',
-      'AI-powered 111 triage tools and chatbots help patients determine whether they need emergency dental care or can wait for a routine appointment',
-      'AI is negotiating new NHS dental contracts automatically, resolving the financial disputes that have caused many dentists to leave the NHS',
-      'AI is diagnosing and treating dental pain remotely via video call, eliminating the need for in-person appointments in areas with no dental practices',
+      'Oral cancer screening has traditionally been done by specialist oncologists in hospital, so moving it to the dental practice using AI makes early detection much more accessible',
+      'AI can cure early-stage oral cancer directly by targeting the affected cells with precision radiation during a regular dental appointment',
+      'Oral cancer screening has never before been possible without an MRI scan, and AI tools allow dental X-rays to substitute for MRI in low-risk patients',
+      'Dental AI tools can detect oral cancer by analysing the bacteria present in a saliva sample',
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "The NHS dental access crisis has left millions of people unable to find an NHS dentist. Emergency dental services are overwhelmed. AI tools integrated with NHS 111 help assess callers' symptoms and direct them appropriately: a broken tooth with no pain might wait; an abscess causing swelling and fever needs urgent care. Chatbots on NHS websites do similar triage. This does not solve the underlying shortage of dentists, but it helps prioritise the capacity that exists.",
-    hint: 'Think about AI helping sort urgent from non-urgent cases when there are not enough dentists.',
-  },
-  {
-    question: 'Why is AI oral cancer detection considered particularly important?',
-    options: [
-      'Because oral cancer is the most common cancer in the UK and AI is the only reliable way to detect it',
-      'Because oral cancer survival rates improve dramatically with early detection, and AI can spot suspicious lesions at a stage when they are very small and easily treated',
-      'Because dentists are not currently trained to look for oral cancer — only oncologists are — and AI bridges this gap',
-      'Because AI can detect oral cancer from a blood test taken in the dental chair, avoiding the need for biopsy',
-    ],
-    correctIndex: 1,
-    explanation:
-      'Oral cancer has a five-year survival rate of around 80% when caught at stage one, but only around 20% when caught at stage four. The problem is that early-stage oral cancer often looks like a harmless ulcer or patch that patients and even dentists may dismiss. AI tools trained on thousands of images of oral lesions can analyse photographs taken during a routine dental examination and flag lesions that match patterns associated with cancer or pre-cancer. This prompts an urgent referral before the cancer has spread.',
-    hint: 'Think about catching something early versus late.',
+      "Oral cancer kills around 3,000 people per year in the UK. Survival rates are strongly linked to how early the cancer is caught: early-stage oral cancer has a roughly 90% five-year survival rate; late-stage has around 20%. Most people see their dentist more regularly than any other healthcare professional, making the dental appointment an ideal early detection opportunity. AI tools being piloted in dental schools can analyse images of oral tissue and flag lesions with characteristics associated with malignancy, prioritising who needs urgent specialist referral.",
+    hint: 'Think about where most people encounter healthcare regularly, and what that means for catching cancer early.',
   },
   {
     question: 'How is AI being used to help patients with dental anxiety?',
     options: [
-      'AI prescribes anti-anxiety medication automatically based on a short online questionnaire before the appointment',
-      'AI-guided virtual reality environments, breathing exercise apps, and chatbot aftercare are being used to help anxious patients feel calmer before and after dental treatment',
-      'AI replaces the dentist entirely with a robotic system that is completely silent and contactless, reducing the triggers of anxiety',
-      'AI sends automated reassurance texts after every appointment, reminding patients that their teeth are fine and they do not need to worry',
+      'AI chatbots prescribe anti-anxiety medication directly to patients before appointments, bypassing the need for a GP referral',
+      'Virtual reality headsets and AI-guided breathing exercises are used in some practices during treatment, creating calming environments and helping patients manage anxiety in the moment',
+      'AI analyses a patient\'s heart rate during treatment and automatically adjusts the speed of dental drills to minimise discomfort',
+      'AI replaces the dental drill entirely with a laser cutting system that is completely painless',
     ],
     correctIndex: 1,
     explanation:
-      'Dental anxiety affects around one in four people in the UK and is one of the main reasons people avoid going to the dentist until they are in severe pain. Virtual reality headsets allow patients to watch calming nature scenes during treatment, reducing the experience of pain and anxiety by directing attention elsewhere. Apps guide patients through breathing exercises and relaxation techniques in the waiting room. After treatment, AI chatbots follow up to ask how the patient is feeling and provide reassurance.',
-    hint: 'Think about tools that make the dental experience less stressful.',
+      "Dental anxiety affects roughly one in four adults in the UK, and severe dental phobia stops many people from attending at all. Some forward-thinking practices are piloting technology to make the experience less distressing. Virtual reality headsets immerse anxious patients in calming scenes — a beach, a forest, an underwater world — distracting them from the sights and sounds of treatment. AI-guided breathing exercises delivered through an app can help patients regulate their nervous system response before and during appointments. These tools do not replace the dentist or the treatment, but they can make the experience manageable for people who might otherwise avoid dental care entirely.",
+    hint: 'Think about what makes dental visits frightening, and what technology can do to address the sensory and emotional experience.',
+  },
+  {
+    question: 'What is AI treatment planning software designed to help dentists do?',
+    options: [
+      'It replaces the clinical judgement of the dentist entirely, generating a legally binding treatment plan that the patient must accept without modification',
+      'It analyses a patient\'s dental records, X-rays, and clinical findings to suggest a sequenced treatment plan — helping dentists manage complex cases consistently and communicate costs clearly',
+      'It automatically submits NHS treatment claims and negotiates the treatment band with NHS England to maximise the practice\'s income per patient',
+      'It creates a 3D printed replica of the patient\'s teeth so the dentist can practice procedures on the model before performing them',
+    ],
+    correctIndex: 1,
+    explanation:
+      "Complex dental cases — a patient who needs fillings, extractions, crown work, and potentially implants — require careful sequencing. AI treatment planning software analyses all available clinical information and generates a suggested treatment sequence with estimated timescales and costs. This helps dentists who may be managing hundreds of patients to maintain consistency, and helps patients understand what they are facing financially and clinically. The dentist reviews and modifies the AI-suggested plan based on their clinical judgement and the patient's preferences.",
+    hint: 'Think about a dentist managing a complex case with multiple treatments needed — what would help them plan and explain it clearly?',
   },
 ]
 
@@ -122,7 +122,7 @@ export function AIAndDentistry() {
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-sky-100 dark:border-sky-900 p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI in the dental surgery — the big picture</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Dentistry might not be the first place you think of when you think about artificial intelligence. But dental practices generate enormous amounts of visual data — X-rays, photographs, scans — and AI is very good at analysing images. The result is a growing set of tools that help dentists see more, plan better, and reach patients who struggle to access care.
+            Dental practices generate enormous amounts of visual data — X-rays, photographs, scans — and AI is very good at analysing images. The result is a growing set of tools that help dentists see more, plan better, and reach patients who struggle to access care.
           </p>
           <div className="space-y-2">
             {[
@@ -157,7 +157,7 @@ export function AIAndDentistry() {
               <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4C8;</span>
               <div>
                 <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">What the evidence shows</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Clinical studies have found AI-assisted review catches significantly more early cavities than unaided review. An early cavity — one that has not yet reached the nerve — can often be treated with a small filling or remineralisation. Missed until it is larger, it may need a crown or root canal treatment. Earlier detection saves patients pain and money.</p>
+                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Clinical studies have found AI-assisted review catches significantly more early cavities than unaided review. An early cavity — one that has not yet reached the nerve — can often be treated with a small filling or remineralisation. Missed until it is larger, it may need a crown or root canal treatment.</p>
               </div>
             </div>
             <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
@@ -181,7 +181,7 @@ export function AIAndDentistry() {
               'A caller describing a lost filling with mild sensitivity can usually wait a few days and use over-the-counter pain relief in the meantime',
               'A caller describing a broken tooth with no pain can often wait for a routine appointment',
               'AI triage tools analyse the combination of symptoms described and generate a priority level, helping call handlers direct patients appropriately',
-              'Without triage AI, the allocation of scarce emergency dental slots would depend heavily on how assertively the patient pushed for an appointment — which disadvantages vulnerable people',
+              'Without triage AI, the allocation of scarce emergency dental slots would depend on how assertively the patient pushed — which disadvantages vulnerable people',
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
                 <span className="text-violet-600 dark:text-violet-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
@@ -217,11 +217,11 @@ export function AIAndDentistry() {
                 color: 'red',
               },
             ].map(({ icon, label, text, color }) => (
-              <div key={label} className={"flex gap-3 items-start bg-" + color + "-50 dark:bg-" + color + "-950 rounded-xl p-3"}>
+              <div key={label} className={`flex gap-3 items-start bg-${color}-50 dark:bg-${color}-950 rounded-xl p-3`}>
                 <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
                 <div>
-                  <p className={"font-semibold text-" + color + "-800 dark:text-" + color + "-200 text-sm mb-0.5"}>{label}</p>
-                  <p className={"text-" + color + "-700 dark:text-" + color + "-300 text-sm leading-relaxed"}>{text}</p>
+                  <p className={`font-semibold text-${color}-800 dark:text-${color}-200 text-sm mb-0.5`}>{label}</p>
+                  <p className={`text-${color}-700 dark:text-${color}-300 text-sm leading-relaxed`}>{text}</p>
                 </div>
               </div>
             ))}
@@ -231,21 +231,21 @@ export function AIAndDentistry() {
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Dental anxiety and AI — making the dentist less dreadful</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Around one in four adults in the UK experiences significant dental anxiety. For roughly one in ten, it is severe enough to stop them attending at all — which leads to dental disease that could have been prevented or treated early.
+            Around one in four adults in the UK experiences significant dental anxiety. For roughly one in ten, it is severe enough to stop them attending at all.
           </p>
           <div className="space-y-3">
             {[
               {
                 label: 'Virtual reality distraction',
-                detail: 'Patients wear a VR headset during treatment and are immersed in a calming virtual environment — a beach, a forest, a gentle underwater scene. The visual and audio immersion reduces their awareness of what is happening in the chair. Several UK practices have reported significantly reduced anxiety scores and treatment completion rates for patients who previously could not tolerate procedures.',
+                detail: 'Patients wear a VR headset during treatment and are immersed in a calming virtual environment — a beach, a forest, a gentle underwater scene. The visual and audio immersion reduces their awareness of what is happening in the chair.',
               },
               {
                 label: 'AI-guided breathing and relaxation',
-                detail: "Apps using AI to guide patients through controlled breathing exercises before and during appointments can reduce physiological stress responses. Some systems monitor heart rate via a smartphone camera or wearable and adjust the breathing prompts based on the patient's actual state.",
+                detail: "Apps using AI guide patients through controlled breathing exercises before and during appointments. Some systems monitor heart rate via a smartphone camera or wearable and adjust the breathing prompts based on the patient's actual stress level.",
               },
               {
                 label: 'Chatbot aftercare',
-                detail: 'Following treatment, AI chatbots can answer questions about recovery — what to eat, when to take painkillers, what level of discomfort is normal — reducing the anxiety that comes from uncertainty after a procedure and reducing unnecessary emergency calls.',
+                detail: 'Following treatment, AI chatbots can answer questions about recovery — what to eat, when to take painkillers, what level of discomfort is normal — reducing the anxiety that comes from uncertainty after a procedure.',
               },
             ].map(({ label, detail }) => (
               <div key={label} className="bg-green-50 dark:bg-green-950 rounded-xl p-4 space-y-1">
