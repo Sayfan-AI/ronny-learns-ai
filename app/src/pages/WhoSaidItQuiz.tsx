@@ -1,177 +1,155 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
+import { useMarkVisited } from '../hooks/useMarkVisited'
 
-interface Quote {
+interface Round {
   id: string
-  text: string
-  speaker: string
+  quote: string
+  correctAnswer: string
   options: string[]
-  explanation: string
+  context: string
 }
 
-const QUOTES: Quote[] = [
+const ROUNDS: Round[] = [
   {
-    id: 'q1',
-    text: 'A computer would deserve to be called intelligent if it could deceive a human into believing that it was human.',
-    speaker: 'Alan Turing',
-    options: ['Alan Turing', 'Stephen Hawking', 'Bill Gates', 'Elon Musk'],
-    explanation: 'Alan Turing — mathematician and computing pioneer — proposed this idea in his 1950 paper "Computing Machinery and Intelligence". The test became known as the Turing Test and remains one of the most discussed concepts in AI, even though many researchers now consider it a flawed measure of intelligence.',
+    id: 'r1',
+    quote: '"We can only see a short distance ahead, but we can see plenty there that needs to be done."',
+    correctAnswer: 'Alan Turing',
+    options: ['Alan Turing', 'Marvin Minsky', 'John McCarthy', 'Claude Shannon'],
+    context: 'Alan Turing wrote this in his 1950 paper "Computing Machinery and Intelligence" — the same paper that proposed what became known as the Turing Test. Turing is widely regarded as the father of theoretical computer science and artificial intelligence.',
   },
   {
-    id: 'q2',
-    text: 'The development of full artificial intelligence could spell the end of the human race.',
-    speaker: 'Stephen Hawking',
-    options: ['Stephen Hawking', 'Nick Bostrom', 'Elon Musk', 'Alan Turing'],
-    explanation: "Stephen Hawking — the theoretical physicist — made this warning in a 2014 BBC interview. Hawking argued that once AI surpasses human intelligence, it could redesign itself at an ever-increasing rate, while humans, limited by slow biological evolution, could not compete. His concern was about the long-term risk of superintelligence rather than today's AI systems.",
+    id: 'r2',
+    quote: '"The development of full artificial intelligence could spell the end of the human race."',
+    correctAnswer: 'Stephen Hawking',
+    options: ['Elon Musk', 'Nick Bostrom', 'Stephen Hawking', 'Bill Gates'],
+    context: 'Stephen Hawking said this in a 2014 BBC interview. The theoretical physicist warned that AI could outpace human evolution and eventually supersede humanity. He advocated for research into making AI beneficial and avoiding an arms race.',
   },
   {
-    id: 'q3',
-    text: 'With artificial intelligence, we are summoning the demon.',
-    speaker: 'Elon Musk',
-    options: ['Elon Musk', 'Sam Altman', 'Nick Bostrom', 'Yuval Noah Harari'],
-    explanation: 'Elon Musk — entrepreneur and founder of Tesla, SpaceX, and xAI — made this remark at a 2014 MIT event. He has been one of the most prominent voices warning about AI existential risk, while simultaneously founding AI companies. His co-founding of OpenAI and later founding of xAI (which made Grok) reflects the tension between his warnings and his actions.',
+    id: 'r3',
+    quote: '"AI is probably the most important thing humanity has ever worked on. I think of it as something more profound than electricity or fire."',
+    correctAnswer: 'Sundar Pichai',
+    options: ['Sam Altman', 'Sundar Pichai', 'Jensen Huang', 'Jeff Bezos'],
+    context: "Sundar Pichai, CEO of Google and Alphabet, made this statement in 2020. It reflects Google's strategic bet on AI as fundamental to the company's future across search, cloud computing, healthcare, and autonomous vehicles.",
   },
   {
-    id: 'q4',
-    text: 'I think we are heading into a period where AI is going to be enormously, profoundly beneficial to humanity. I want to be clear about that.',
-    speaker: 'Sam Altman',
-    options: ['Sam Altman', 'Demis Hassabis', 'Sundar Pichai', 'Jensen Huang'],
-    explanation: "Sam Altman is the CEO of OpenAI, the company behind ChatGPT and GPT-4. He has expressed both optimism about AI's potential benefits and concern about its risks — calling for government regulation of advanced AI and supporting international agreements on AI safety. His position reflects the complex duality of many people who work at the frontier of AI development.",
+    id: 'r4',
+    quote: '"The question is not whether intelligent machines can have any emotions, but whether machines can be intelligent without any emotions."',
+    correctAnswer: 'Marvin Minsky',
+    options: ['Alan Turing', 'Marvin Minsky', 'Yann LeCun', 'Geoffrey Hinton'],
+    context: "Marvin Minsky, one of the founders of AI as an academic discipline at MIT, argued throughout his career that emotion was not separate from intelligence but central to it. His book 'The Emotion Machine' (2006) explored this idea in depth.",
   },
   {
-    id: 'q5',
-    text: 'Machines take me by surprise with great frequency.',
-    speaker: 'Alan Turing',
-    options: ['Alan Turing', 'John McCarthy', 'Marvin Minsky', 'Claude Shannon'],
-    explanation: "Alan Turing wrote this in 1950, arguing against the objection that machines cannot surprise us. He observed that he himself was frequently surprised by what machines did, and used this to argue that the assumption of complete predictability was unfounded. It remains a remarkably prescient observation given how surprising modern large language models often are.",
+    id: 'r5',
+    quote: '"We\'re making something that is either the most amazing thing that has ever happened, or the most catastrophic."',
+    correctAnswer: 'Sam Altman',
+    options: ['Elon Musk', 'Sam Altman', 'Dario Amodei', 'Demis Hassabis'],
+    context: 'Sam Altman, CEO of OpenAI, has repeatedly described AI development in these existential terms while continuing to develop it. His position — that AI could be transformative for good or catastrophically harmful — is sometimes called the "e/acc vs safety" tension within the AI industry.',
   },
   {
-    id: 'q6',
-    text: 'The question of whether machines can think is about as relevant as the question of whether submarines can swim.',
-    speaker: 'Edsger Dijkstra',
-    options: ['Edsger Dijkstra', 'Alan Turing', 'John McCarthy', 'Donald Knuth'],
-    explanation: "Edsger Dijkstra — a pioneering Dutch computer scientist known for Dijkstra's algorithm and contributions to structured programming — made this remark to highlight that the question conflates what machines do with what words like 'think' mean for humans. It is one of the most quoted observations about the philosophical difficulty of defining machine intelligence.",
+    id: 'r6',
+    quote: '"Machines take me by surprise with great frequency."',
+    correctAnswer: 'Alan Turing',
+    options: ['Alan Turing', 'John von Neumann', 'Norbert Wiener', 'Claude Shannon'],
+    context: "Alan Turing wrote this in 'Computing Machinery and Intelligence' (1950), arguing against the view that machines cannot think because they only do what they are programmed to do. He suggested that a machine's outputs can surprise even its creator.",
   },
   {
-    id: 'q7',
-    text: 'Artificial intelligence is the science of making machines do things that would require intelligence if done by men.',
-    speaker: 'Marvin Minsky',
-    options: ['Marvin Minsky', 'John McCarthy', 'Claude Shannon', 'Herbert Simon'],
-    explanation: "Marvin Minsky was a co-founder of MIT's Artificial Intelligence Laboratory and one of the pioneers of AI research. His definition — which is one of several classic definitions — captures the field's ambition to mechanise human-level cognitive tasks. McCarthy, who coined the term 'artificial intelligence', defined it slightly differently as 'the science and engineering of making intelligent machines'.",
+    id: 'r7',
+    quote: '"I\'m increasingly inclined to think that there should be some regulatory oversight, maybe at the national and international level, just to make sure that we don\'t do something very foolish."',
+    correctAnswer: 'Elon Musk',
+    options: ['Sam Altman', 'Bill Gates', 'Elon Musk', 'Tim Cook'],
+    context: 'Elon Musk said this in 2014 at the MIT Aeronautics and Astronautics department\'s centennial symposium, calling AI "our biggest existential threat". Musk later co-founded OpenAI (then left its board) and subsequently founded xAI, his own AI company.',
   },
   {
-    id: 'q8',
-    text: 'We are currently at a pivotal moment in AI development. The technology has crossed a threshold where it can genuinely help with some of the hardest problems humanity faces.',
-    speaker: 'Demis Hassabis',
-    options: ['Demis Hassabis', 'Sam Altman', 'Yann LeCun', 'Geoffrey Hinton'],
-    explanation: "Demis Hassabis is the CEO and co-founder of Google DeepMind. He has spoken extensively about using AI for scientific discovery — DeepMind's AlphaFold solved the protein folding problem that had stumped biologists for 50 years. Hassabis believes AI could compress decades of scientific progress into years, accelerating breakthroughs in medicine, climate, and other fields.",
+    id: 'r8',
+    quote: '"The question of whether a computer can think is no more interesting than the question of whether a submarine can swim."',
+    correctAnswer: 'Edsger Dijkstra',
+    options: ['Alan Turing', 'Edsger Dijkstra', 'John McCarthy', 'Marvin Minsky'],
+    context: 'Edsger Dijkstra, the Dutch computer scientist famous for shortest path algorithms and structured programming, was sceptical of AI claims. He argued that debating whether computers "think" was a category error — like asking if submarines "swim".',
   },
   {
-    id: 'q9',
-    text: 'The danger of AI is not that it will rebel against us, but that it will do exactly what we ask — and we might not ask for the right things.',
-    speaker: 'Joy Buolamwini',
-    options: ['Joy Buolamwini', 'Kate Crawford', 'Timnit Gebru', 'Meredith Broussard'],
-    explanation: "Joy Buolamwini is a researcher and activist who founded the Algorithmic Justice League. Her research on facial recognition bias — showing that commercial systems misidentified darker-skinned faces at far higher rates than lighter-skinned ones — sparked major policy debates. Her concern is not sci-fi robot rebellion, but the real-world harms of systems optimised for the wrong objectives.",
+    id: 'r9',
+    quote: '"I don\'t want to be too precise, but I\'d say we might have AGI within the next three to five years."',
+    correctAnswer: 'Sam Altman',
+    options: ['Demis Hassabis', 'Sam Altman', 'Yann LeCun', 'Ilya Sutskever'],
+    context: 'Sam Altman of OpenAI has made increasingly aggressive AGI timeline predictions. His estimates have prompted significant pushback from AI researchers who argue that defining AGI is itself contested and that timelines of this kind are not supported by current evidence.',
   },
   {
-    id: 'q10',
-    text: 'AI is neither magic nor sentient. It is statistics. Very, very large amounts of statistics.',
-    speaker: 'Yann LeCun',
-    options: ['Yann LeCun', 'Geoffrey Hinton', 'Yoshua Bengio', 'Andrew Ng'],
-    explanation: "Yann LeCun is the Chief AI Scientist at Meta and a Turing Award winner (alongside Geoffrey Hinton and Yoshua Bengio) for his foundational work on deep learning. He is known for pushing back against what he considers hype and anthropomorphisation of AI systems — arguing that current large language models, while impressive, lack genuine understanding and are far from human-level general intelligence.",
+    id: 'r10',
+    quote: '"There is no reason and no way that a human mind can keep up with an artificial intelligence machine by 2035."',
+    correctAnswer: 'Gray Scott',
+    options: ['Ray Kurzweil', 'Nick Bostrom', 'Gray Scott', 'Max Tegmark'],
+    context: 'Gray Scott is a futurist and researcher who has spoken widely about AI and technology trends. This quote reflects a strand of futurist thinking about the pace of AI development, though many AI researchers consider such precise timeline predictions to be speculative.',
   },
 ]
 
-function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5)
-}
-
 export function WhoSaidItQuiz() {
-  const [quotes] = useState(() => shuffle(QUOTES).slice(0, 10))
-  const [currentIndex, setCurrentIndex] = useState(0)
+  useMarkVisited('who-said-it')
+  const [round, setRound] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
-  const [score, setScore] = useState(0)
-  const [gameOver, setGameOver] = useState(false)
-  const [answers, setAnswers] = useState<Array<{ correct: boolean }>>([])
+  const [scores, setScores] = useState<Record<string, boolean>>({})
+  const [done, setDone] = useState(false)
 
-  const current = quotes[currentIndex]
-  const total = quotes.length
+  const current = ROUNDS[round]
+  const isAnswered = selected !== null
+  const isCorrect = selected === current.correctAnswer
+  const totalScore = Object.values(scores).filter(Boolean).length
 
-  const handleSelect = useCallback((option: string) => {
-    if (selected !== null) return
-    const correct = option === current.speaker
-    if (correct) setScore(s => s + 1)
+  function handleGuess(option: string) {
+    if (isAnswered) return
     setSelected(option)
-    setAnswers(prev => [...prev, { correct }])
-  }, [selected, current])
-
-  const handleNext = useCallback(() => {
-    if (currentIndex + 1 >= total) {
-      setGameOver(true)
-    } else {
-      setCurrentIndex(i => i + 1)
-      setSelected(null)
-    }
-  }, [currentIndex, total])
-
-  const handlePlayAgain = useCallback(() => {
-    setCurrentIndex(0)
-    setSelected(null)
-    setScore(0)
-    setGameOver(false)
-    setAnswers([])
-  }, [])
-
-  function getScoreMessage(s: number, t: number): string {
-    const pct = s / t
-    if (pct >= 0.9) return 'Outstanding! You really know your AI thinkers and their views.'
-    if (pct >= 0.7) return 'Impressive! You have a solid grasp of who thinks what about AI.'
-    if (pct >= 0.5) return 'Good effort — the explanations should help you learn who said what.'
-    return 'Tricky stuff! Each explanation reveals something interesting about these thinkers.'
+    setScores(prev => ({ ...prev, [current.id]: option === current.correctAnswer }))
   }
 
-  if (gameOver) {
+  function handleNext() {
+    if (round + 1 >= ROUNDS.length) {
+      setDone(true)
+    } else {
+      setRound(r => r + 1)
+      setSelected(null)
+    }
+  }
+
+  function handleRestart() {
+    setRound(0)
+    setSelected(null)
+    setScores({})
+    setDone(false)
+  }
+
+  if (done) {
+    const pct = Math.round((totalScore / ROUNDS.length) * 100)
     return (
-      <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
-        <div className="max-w-xl w-full space-y-6">
+      <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+        <div className="max-w-2xl w-full space-y-8">
           <div className="text-center space-y-3">
-            <div className="text-6xl">&#x1F4AC;</div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Quiz complete!</h1>
-          </div>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-8 text-center space-y-4">
-            <p className="text-6xl font-bold text-violet-600 dark:text-violet-400">
-              {score} / {total}
-            </p>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {getScoreMessage(score, total)}
+            <div className="text-5xl mb-2">&#x1F3C6;</div>
+            <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">All done!</h1>
+            <p className="text-2xl font-bold text-purple-600">{totalScore} / {ROUNDS.length} correct</p>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              {pct >= 80 ? 'Excellent — you know who said what in AI.' : pct >= 50 ? 'Good effort! A few tricky ones.' : 'Keep reading — the quotes will start to click.'}
             </p>
           </div>
-          <div className="flex flex-wrap gap-1.5 justify-center">
-            {answers.map((a, i) => (
-              <div
-                key={i}
-                className={`w-7 h-7 rounded-full text-xs flex items-center justify-center font-bold ${
-                  a.correct
-                    ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300'
-                    : 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300'
-                }`}
-              >
-                {a.correct ? '\u2713' : '\u2717'}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-5 space-y-3">
+            <h2 className="font-bold text-gray-800 dark:text-gray-100">Round breakdown</h2>
+            {ROUNDS.map((r) => (
+              <div key={r.id} className="flex justify-between items-center text-sm">
+                <span className="text-gray-600 dark:text-gray-300 truncate flex-1 mr-2">"{r.quote.substring(0, 50)}..."</span>
+                <span className={`font-bold flex-shrink-0 ${scores[r.id] ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {scores[r.id] ? '&#x2713; ' : '&#x2715; '}{r.correctAnswer}
+                </span>
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex gap-3 justify-center">
             <button
-              onClick={handlePlayAgain}
-              className="w-full bg-violet-500 hover:bg-violet-600 text-white font-semibold px-6 py-3 rounded-full text-sm transition-colors"
+              onClick={handleRestart}
+              className="px-6 py-3 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-colors"
             >
               Play again
             </button>
-            <Link
-              to="/"
-              className="w-full text-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold px-6 py-3 rounded-full text-sm transition-colors"
-            >
-              Back to lessons
+            <Link to="/" className="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+              Home
             </Link>
           </div>
         </div>
@@ -180,96 +158,64 @@ export function WhoSaidItQuiz() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
-      <div className="max-w-xl w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-6">
 
         <div className="text-center space-y-2">
-          <Link to="/" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Back to home</Link>
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-            Who said it?
-          </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            10 famous AI quotes — can you match them to the right person?
+          <div className="text-4xl mb-1">&#x1F4AC;</div>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Who said it?</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Famous quotes about AI — can you identify who said each one?</p>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Round {round + 1} of {ROUNDS.length}</span>
+          <span className="text-sm font-bold text-purple-600">Score: {totalScore}</span>
+        </div>
+
+        <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-full bg-purple-500 transition-all" style={{ width: `${(round / ROUNDS.length) * 100}%` }} />
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-purple-100 dark:border-purple-900 p-6">
+          <p className="text-gray-700 dark:text-gray-200 text-lg leading-relaxed italic text-center">
+            {current.quote}
           </p>
         </div>
 
-        {/* Progress */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-            <div
-              className="bg-violet-500 h-2 rounded-full transition-all"
-              style={{ width: `${(currentIndex / total) * 100}%` }}
-            />
-          </div>
-          <span className="text-sm text-gray-500 dark:text-gray-400 flex-shrink-0">
-            {currentIndex + 1} / {total}
-          </span>
-          <span className="text-sm font-semibold text-violet-600 dark:text-violet-400 flex-shrink-0">
-            {score} pts
-          </span>
-        </div>
-
-        {/* Quote card */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-6 space-y-5">
-          <div className="text-center">
-            <span className="inline-block bg-violet-100 dark:bg-violet-900 text-violet-600 dark:text-violet-300 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-              Quote {currentIndex + 1}
-            </span>
-            <p className="text-lg text-gray-800 dark:text-gray-100 leading-relaxed font-medium italic">
-              "{current.text}"
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {current.options.map((option) => {
-              let cls = 'w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors border-2 '
-              if (selected === null) {
-                cls += 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-violet-50 dark:hover:bg-violet-900 hover:border-violet-300 dark:hover:border-violet-600'
-              } else if (option === current.speaker) {
-                cls += 'bg-green-100 dark:bg-green-900 border-green-400 dark:border-green-600 text-green-800 dark:text-green-200'
-              } else if (option === selected) {
-                cls += 'bg-red-100 dark:bg-red-900 border-red-400 dark:border-red-600 text-red-800 dark:text-red-200'
-              } else {
-                cls += 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500'
-              }
-              return (
-                <button
-                  key={option}
-                  onClick={() => handleSelect(option)}
-                  className={cls}
-                  disabled={selected !== null}
-                >
-                  {option}
-                  {selected !== null && option === current.speaker && (
-                    <span className="ml-1">\u2713</span>
-                  )}
-                </button>
-              )
-            })}
-          </div>
-
-          {selected !== null && (
-            <div className="space-y-3">
-              <div className={`rounded-xl p-4 text-sm leading-relaxed ${
-                selected === current.speaker
-                  ? 'bg-green-50 dark:bg-green-950 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800'
-                  : 'bg-red-50 dark:bg-red-950 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800'
-              }`}>
-                <p className="font-semibold mb-1">
-                  {selected === current.speaker
-                    ? `Correct! This was said by ${current.speaker}.`
-                    : `Not quite. This was said by ${current.speaker}.`}
-                </p>
-                <p className="text-xs leading-relaxed opacity-90">{current.explanation}</p>
-              </div>
+        {!isAnswered ? (
+          <div className="grid grid-cols-1 gap-3">
+            {current.options.map(opt => (
               <button
-                onClick={handleNext}
-                className="w-full bg-violet-500 hover:bg-violet-600 text-white font-semibold px-6 py-3 rounded-full text-sm transition-colors"
+                key={opt}
+                onClick={() => handleGuess(opt)}
+                className="py-3 px-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-purple-50 hover:border-purple-300 dark:hover:bg-purple-900/20 dark:hover:border-purple-600 transition-colors text-left"
               >
-                {currentIndex + 1 < total ? 'Next quote' : 'See results'}
+                {opt}
               </button>
+            ))}
+          </div>
+        ) : (
+          <div className={`rounded-2xl p-5 space-y-3 ${isCorrect ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700' : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700'}`}>
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{isCorrect ? '&#x2705;' : '&#x274C;'}</span>
+              <p className={`font-bold ${isCorrect ? 'text-emerald-700 dark:text-emerald-300' : 'text-red-700 dark:text-red-300'}`}>
+                {isCorrect ? `Correct! That was ${current.correctAnswer}.` : `Not quite — this was said by ${current.correctAnswer}.`}
+              </p>
             </div>
-          )}
+            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{current.context}</p>
+            <button
+              onClick={handleNext}
+              className="w-full py-3 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-colors text-sm"
+            >
+              {round + 1 >= ROUNDS.length ? 'See final score' : 'Next quote'}
+            </button>
+          </div>
+        )}
+
+        <div className="text-center pt-2">
+          <Link to="/" className="text-indigo-600 dark:text-indigo-400 text-sm hover:underline">
+            &larr; Back to home
+          </Link>
         </div>
 
       </div>
