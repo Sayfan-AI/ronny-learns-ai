@@ -10,82 +10,78 @@ import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
+import { LessonSeriesBadge } from '../components/LessonSeriesBadge'
 
-const LESSON_TITLE = 'AI and ageing'
+const LESSON_TITLE = 'AI and ageing — helping older people live independently'
 
 const KEY_TAKEAWAYS = [
-  'AI fall detection systems in wearables (like Apple Watch) and floor sensors can detect a fall and automatically alert emergency services or a carer within seconds — giving older people confidence to live independently.',
-  'Smart pill dispensers use AI to alert carers if medication is not taken, track compliance over time, and some can integrate with GP systems to flag patterns that might indicate declining health.',
-  'Companion AI like PARO (a therapeutic robot seal) and conversational AI assistants (ElliQ) have been shown in studies to reduce loneliness and depression in older people — though questions about authenticity of AI companionship remain.',
-  'Modern AI-powered hearing aids use machine learning to learn your listening preferences and filter background noise in real time — adapting automatically to whether you are in a restaurant, outdoors, or on the phone.',
-  'AI monitoring of elderly people raises profound ethical questions about consent, dignity, and data ownership — especially for people with dementia who cannot meaningfully agree to surveillance of their daily life.',
+  'Fall detection AI — built into smartwatches, pendants, and home sensors — can call for help automatically if an older person falls, even if they are unconscious or unable to press a button.',
+  'Medication reminder systems use AI to track complex dosing schedules, remind patients to take their tablets, and alert carers or family members if doses are repeatedly missed.',
+  'Companion robots and AI assistants (like Amazon Alexa or more specialised devices) help address loneliness in older adults who live alone — but cannot replace human connection.',
+  'AI-powered hearing aids analyse the sound environment in real time and adjust automatically for speech clarity, background noise suppression, and directional focus.',
+  'The use of AI to monitor older adults at home raises important ethical questions about consent, dignity, surveillance, and who controls the data collected.',
 ]
 
-const quizQuestions: QuizQuestion[] = [
+const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
-    question: 'How does AI fall detection in wearables like Apple Watch work?',
+    question: 'How does AI fall detection work on a smartwatch?',
     options: [
-      'The watch uses GPS to detect when the wearer has moved from one location to another quickly, which it interprets as a fall',
-      'The watch uses accelerometers and gyroscopes to detect the sudden deceleration and impact patterns characteristic of a fall, then checks for movement to confirm and alerts emergency services',
-      'The watch takes a photograph every 30 seconds and uses computer vision to identify whether the person is standing, sitting, or lying on the floor',
-      'The watch monitors the wearer\'s heart rate — a sudden spike followed by inactivity is interpreted as a fall event',
+      'It asks the wearer to confirm they have fallen via a voice prompt',
+      'It uses sensors to detect the sudden motion, impact, and posture change associated with a fall, then calls for help if the wearer does not respond',
+      'It requires the wearer to press a button immediately after falling',
+      'It only works when connected to Wi-Fi',
     ],
     correctIndex: 1,
     explanation:
-      'Apple Watch and similar wearables use a combination of accelerometers (measuring acceleration in three axes) and gyroscopes (measuring rotation) to build a continuous model of body movement. A fall has a characteristic signature: a period of normal movement, followed by sudden freefall, then a sharp impact. If this pattern is detected, the watch checks whether the wearer is moving afterwards — if not, it assumes they may have been injured, shows an alert, and if they do not dismiss it within about a minute, automatically calls emergency services and shares their location. It also alerts emergency contacts. The system has real false positive and negative rates — vigorous exercise can occasionally trigger it, and some falls are not detected — but it has saved lives in cases where older people have fallen when alone at home.',
-    hint: 'Think about what a fall feels like physically — a sudden change in motion and a hard stop.',
+      'Modern fall detection uses accelerometers and gyroscopes to detect the pattern of movement associated with a fall — a sudden drop followed by impact and then stillness. If the device detects a likely fall, it gives the wearer a short window to confirm they are OK. If there is no response (they may be unconscious), it automatically calls emergency services and a chosen contact.',
   },
   {
-    question: 'What does a smart pill dispenser do, and why is medication adherence important for older people?',
+    question: 'What is one key benefit of AI medication reminder systems?',
     options: [
-      'Smart dispensers automatically order prescription refills from the pharmacy when stock is running low, saving older people from making phone calls',
-      'They dispense the correct pills at the correct time, lock to prevent overdosing, alert carers if a dose is missed, and track compliance over time',
-      'They are connected devices that allow GPs to remotely change a patient\'s prescription without the patient needing to visit the surgery',
-      'They replace all medications with liquid supplements that can be taken once a day, simplifying a complex multiple-pill regime into one easy dose',
+      'They can order prescriptions automatically from any pharmacy',
+      'They can manage complex multi-drug schedules and alert carers if doses are consistently missed — catching problems before they become medical emergencies',
+      'They can identify whether a pill is the correct medication by scanning it',
+      'They replace the need for a GP for routine prescriptions',
     ],
     correctIndex: 1,
     explanation:
-      'Non-adherence to medication — taking the wrong dose, taking it at the wrong time, or forgetting altogether — is estimated to cause around 33-69% of medication-related hospital admissions among older people in the UK. Complex regimes with multiple drugs taken at different times are especially prone to errors. Smart pill dispensers (like those from Pivotell and Hero) dispense only the correct pills at the correct time, use alarms and lights to prompt the user, lock to prevent double-dosing, and send alerts to designated family members or carers if a dose is missed after a set time window. Some systems integrate with GP and pharmacy systems to automatically reorder prescriptions and track compliance data that can be shared with the healthcare team to spot patterns of declining health.',
-    hint: 'Think about the consequences of an older person with multiple conditions missing a critical medication.',
+      'Many older adults take five or more medications with different dosing schedules. AI systems can track this complexity, remind the person at the right time, dispense the right pill from an automated container, and alert a family member or carer if doses are repeatedly missed — which can indicate cognitive decline or other problems.',
   },
   {
-    question: 'What is PARO, and what benefit has research shown from AI companion robots?',
+    question: 'What does research suggest about companion robots and loneliness in older adults?',
     options: [
-      'PARO is an AI personal assistant robot for older people that can make phone calls, send emails, and book GP appointments by voice command',
-      'PARO is a therapeutic robot shaped like a baby seal that responds to touch and voice — studies have shown it reduces loneliness, anxiety, and agitation in people with dementia',
-      'PARO is an acronym for a UK government programme that places AI monitoring devices in care homes to ensure staff are meeting quality standards',
-      'PARO is a rehabilitation robot that assists physiotherapists in helping elderly patients recover from surgery by guiding them through exercise routines',
+      'They fully replace the need for human contact',
+      'They provide no benefit whatsoever',
+      'They can reduce feelings of loneliness and improve mood, but cannot replace human relationships',
+      'They are only effective for people with dementia',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      'PARO (Personal Assistive RObot) is a therapeutic robot developed in Japan that is shaped like a baby harp seal. It has sensors for touch, sound, light, and temperature, and responds with sounds and movements when stroked or spoken to. It looks appealing and non-threatening. Multiple clinical studies, including trials in UK care homes, have found that regular interaction with PARO reduces agitation, anxiety, and depression in people with dementia, and that it reduces the need for sedative medications. It provides a form of social stimulation for people who can no longer meaningfully hold conversations. Critics raise valid concerns: is interacting with a robot that simulates emotional responses authentic, and could it replace genuine human contact rather than supplement it? These are real ethical tensions without easy answers.',
-    hint: 'Think about what benefit an animal companion provides for wellbeing — and whether a robot can provide the same.',
+      'Studies on devices like Paro (a robotic seal used in dementia care) and AI assistants suggest they can reduce reported loneliness, improve mood, and encourage more communication. However, researchers emphasise that they should supplement human contact, not replace it — and there are concerns about people becoming emotionally dependent on devices that companies could withdraw.',
   },
   {
-    question: 'How do modern AI-powered hearing aids differ from older hearing aids?',
+    question: 'How do AI-powered hearing aids differ from traditional hearing aids?',
     options: [
-      'They are smaller and less visible, but the underlying audio processing technology is the same as traditional hearing aids from 20 years ago',
-      'They use machine learning to distinguish speech from background noise, adapt to different sound environments, and learn the individual user\'s preferences over time',
-      'They replace the need for ear moulds by using spatial audio technology that beams sound directly to the ear without any device being worn',
-      'They are connected directly to a GP\'s system and automatically adjust the hearing aid settings based on the audiologist\'s remote assessment every month',
+      'They are significantly smaller',
+      'They continuously analyse the sound environment and automatically adjust settings for different situations — suppressing background noise, enhancing speech, and focusing on the direction the wearer is facing',
+      'They can translate speech into other languages',
+      'They only work with smartphones',
     ],
     correctIndex: 1,
     explanation:
-      "Traditional hearing aids amplified all sounds, including background noise — making a busy restaurant overwhelming. Modern AI-powered hearing aids from manufacturers like Starkey, Phonak, and Signia use machine learning to classify the acoustic environment in real time (restaurant, outdoors, office, telephone call) and automatically adjust amplification, directionality, and noise filtering accordingly. They learn from the user's adjustments — if you consistently turn down the volume in a particular environment, the AI remembers and applies that preference automatically next time. Some models also offer features like fall detection, language translation, and fitness tracking. The NHS provides free hearing aids to those who qualify; AI-enhanced models are increasingly available through private audiologists, though they are significantly more expensive.",
-    hint: 'Think about the difference between simply making everything louder versus intelligently separating speech from noise.',
+      'Traditional hearing aids simply amplify sound. Modern AI hearing aids (from companies like Oticon, Widex, and Starkey) process sound in real time, distinguishing speech from background noise, adjusting automatically when you move from a quiet room to a busy street, and sometimes learning the wearer\'s preferences over time.',
   },
   {
-    question: 'What ethical concern is most significant when using AI monitoring technology for older people with dementia?',
+    question: 'What is the main ethical concern about using AI to monitor older adults at home?',
     options: [
-      'The cost of AI monitoring devices is too high for most families to afford, meaning the technology only benefits wealthy older people',
-      'People with dementia often cannot meaningfully consent to being continuously monitored — raising profound questions about dignity, autonomy, and who decides',
-      'AI monitoring devices frequently malfunction in care home environments, providing false reassurance that someone is safe when they are not',
-      'The main concern is data security — care home staff having access to monitoring data could breach patient confidentiality',
+      'It is too expensive for most families',
+      'The AI might not work in older properties',
+      'Continuous monitoring can undermine dignity, autonomy, and privacy — especially if the older person did not fully understand or consent to what data is being collected and who can see it',
+      'It requires constant internet access',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Consent is the central ethical challenge. For a mentally competent person, AI monitoring — floor sensors, wearables, room cameras — can be offered and accepted or refused. For a person with moderate to severe dementia, meaningful consent may not be possible. Decisions are then made by family members, carers, or the local authority under the Mental Capacity Act, which requires decisions to be in the person's best interests. But 'best interests' involves balancing safety (fewer falls, faster emergency response) against dignity and autonomy (being watched constantly, having intimate activities monitored). Care Quality Commission guidance recognises this tension. Age UK and other advocacy organisations emphasise that AI monitoring should supplement — not replace — human care relationships, and that the least intrusive technology appropriate for the actual risk should be used.",
-    hint: 'Think about who gets to decide that someone will be monitored when that person cannot meaningfully decide for themselves.',
+      'Monitoring technology installed "for someone\'s safety" can easily become surveillance that removes their privacy in their own home. Key questions include: Does the older person genuinely consent, or have they been pressured? Can they turn it off? Who can access the data — family, carers, the technology company? How long is it stored? These are live ethical and legal questions in UK care settings.',
   },
 ]
 
@@ -93,147 +89,107 @@ export function AIAndAgeing() {
   useMarkVisited('ai-and-ageing')
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
-      <div className="max-w-2xl w-full space-y-8">
+    <div className="max-w-3xl mx-auto px-4 py-10">
+      <LessonSeriesBadge lessonId="ai-and-ageing" />
 
-        <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F9D3;</div>
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
-            AI and ageing
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            Fall detection, medication reminders, companion robots, smart hearing aids,
-            and the ethics of using AI to support older people.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
-              <span>About 6 min read</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Beginner</span>
-            </div>
-          </div>
-          <CompletedBadge lessonId="ai-and-ageing" />
-          <ShareButton lessonTitle={LESSON_TITLE} />
-        </div>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">{LESSON_TITLE}</h1>
+      <p className="text-gray-500 text-sm mb-6">7 min read</p>
 
-        <KeyTakeaways points={KEY_TAKEAWAYS} />
+      <CompletedBadge lessonId="ai-and-ageing" />
+      <ShareButton lessonTitle={LESSON_TITLE} />
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Fall detection — independence with a safety net</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Falls are the leading cause of injury-related hospital admissions among people over 65 in the UK.
-            AI is changing how quickly help arrives.
-          </p>
-          <div className="space-y-3">
-            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950/30 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x231A;</span>
-              <div>
-                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Wearable detection (Apple Watch, Samsung, Garmin)</p>
-                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">Accelerometers and gyroscopes detect the signature of a fall — freefall followed by sudden impact. If the wearer does not respond within about a minute, the watch calls emergency services and sends a location alert to emergency contacts. Available on consumer smartwatches at accessible prices.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950/30 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F3E0;</span>
-              <div>
-                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Passive floor sensors</p>
-                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">Radar or vibration sensors mounted on walls or ceilings detect falls without requiring the person to wear anything. Systems like those from Vayyar and TLC are unobtrusive and work even if the person is in the bathroom — where many serious falls occur. The sensor does not see or record video, protecting privacy.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950/30 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4F1;</span>
-              <div>
-                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Lifeline and pendant alarms</p>
-                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">Traditional Lifeline-style pendant alarms have been updated with automatic fall detection — no longer requiring the person to press a button. Some connect via 4G so they work anywhere, not just at home. Age UK and many local councils offer these as part of social care support for older people living independently.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <KeyTakeaways points={KEY_TAKEAWAYS} />
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Medication management — the right pill at the right time</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Many older people take multiple medications at different times of day. AI-powered dispensers
-            reduce errors and keep families informed.
-          </p>
-          <div className="space-y-2">
-            {[
-              'Pivotell, Hero, and similar dispensers load a week\'s worth of pills into compartments; the device unlocks only the correct compartment at the correct time',
-              'An alarm and flashing light prompt the person to take their medication; if the compartment is not opened within a set window, an alert goes to the carer or family',
-              'Some devices integrate with pharmacy and GP systems — when a compartment runs low, an automatic refill is ordered, and the GP can see the compliance record',
-              'AI tracking can identify patterns — missed doses consistently on certain days or times may indicate a changing health or wellbeing situation worth investigating',
-              'NHS England has been piloting smart dispensers in schemes to help people with early dementia stay in their own homes longer',
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-blue-600 dark:text-blue-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="prose prose-gray max-w-none mt-8">
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-pink-100 dark:border-pink-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Companion AI — addressing loneliness</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Chronic loneliness affects around 1.4 million older people in England. AI companions
-            are being used as one part of the response — with both promising results and real concerns.
-          </p>
-          <div className="space-y-3">
-            {[
-              { icon: '&#x1F9F8;', name: 'PARO', detail: 'A robot shaped like a baby seal, approved as a medical device in several countries. Clinical studies in UK care homes showed reduced anxiety, agitation, and depression in people with dementia, and reduced need for sedative medication. Costs several thousand pounds per unit, but is shared between residents.' },
-              { icon: '&#x1F5E3;&#xFE0F;', name: 'ElliQ', detail: 'A conversational AI device designed specifically for older people living alone. It proactively starts conversations, suggests activities, connects to family via video calls, and provides health reminders. Unlike Amazon Echo, it is designed to be warm and social rather than transactional.' },
-              { icon: '&#x1F4AC;', name: 'ChatGPT and general AI assistants', detail: 'Many older people are using general AI chatbots for conversation and mental stimulation. Some report finding it genuinely helpful for reducing isolation, particularly those with mobility issues who cannot easily get out.' },
-            ].map(({ icon, name, detail }) => (
-              <div key={name} className="flex gap-3 items-start bg-pink-50 dark:bg-pink-950/30 rounded-xl p-3">
-                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
-                <div>
-                  <p className="font-semibold text-pink-800 dark:text-pink-200 text-sm mb-0.5">{name}</p>
-                  <p className="text-pink-700 dark:text-pink-300 text-sm leading-relaxed">{detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="bg-pink-50 dark:bg-pink-950 rounded-xl p-4">
-            <p className="text-pink-700 dark:text-pink-300 text-sm leading-relaxed">
-              <span className="font-semibold">The ethical debate:</span> should AI interaction be seen as an authentic substitute for human connection? Critics argue that using robots to address loneliness allows society to invest less in human care relationships. Supporters argue that for people who have very limited social contact, some form of positive interaction — even with a robot — is better than none.
-            </p>
-          </div>
-        </div>
+        <h2>AI and an ageing population</h2>
+        <p>
+          The UK has an ageing population. By 2050, around one in four people in the UK will be over 65. This creates enormous pressure on health and social care systems — and a significant opportunity for technology to help older people live independently, safely, and with dignity for longer.
+        </p>
+        <p>
+          AI is increasingly woven into products and services aimed at older adults, from smartwatches that detect falls to robots designed to reduce loneliness. This lesson looks at what is actually available, what the evidence says about what works, and the ethical questions this technology raises.
+        </p>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Ethics of AI monitoring — safety versus dignity</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            When AI monitors older people's daily lives, important questions arise about consent,
-            dignity, and who is making decisions on whose behalf.
-          </p>
-          <div className="space-y-2">
-            {[
-              'Consent: a person with dementia may not be able to meaningfully agree to continuous monitoring — decisions must be made by others in their "best interests" under the Mental Capacity Act',
-              'Dignity: being watched while using the bathroom, getting dressed, or having an intimate moment removes privacy that most people consider fundamental',
-              'Least restrictive principle: the Care Quality Commission guidance requires using the least intrusive technology that meets the actual need — a movement sensor may be appropriate where a camera is not',
-              'Data ownership: who owns the data collected from monitoring — the person being monitored, the care provider, the device manufacturer? What happens to it?',
-              'Replacing human care: there is a risk that cheaper AI monitoring is used to justify reducing the human contact that is itself therapeutic and essential',
-              'Discrimination: AI that monitors care home staff behaviour can create adversarial dynamics and may flag care tasks that look unusual to an algorithm but are perfectly appropriate',
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-orange-600 dark:text-orange-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <h2>Fall detection</h2>
+        <p>
+          Falls are the leading cause of injury-related death in adults over 65 in the UK, and one of the most common reasons older people are admitted to hospital. Many falls happen when the person is alone — and the outcome can depend critically on how quickly help arrives.
+        </p>
+        <p>
+          Traditional personal alarm systems (pendants or wristbands) rely on the person pressing a button after they fall. This fails if they are unconscious, confused, or simply unable to reach the button. AI fall detection removes this dependency.
+        </p>
+        <p>
+          The Apple Watch's fall detection feature uses accelerometers and gyroscopes to recognise the distinctive movement pattern of a fall — sudden acceleration followed by impact and then stillness. If the wearer does not respond to a prompt within 60 seconds, it automatically calls emergency services and sends an alert to chosen contacts. Similar features are built into many Android smartwatches.
+        </p>
+        <p>
+          Dedicated fall detection products for the home — from companies like Sensara, TalkingMats, and Canary Care — use room sensors (not cameras) to track movement patterns and detect anomalies. If someone falls in the bathroom or lies motionless for an extended period, the system alerts a designated carer or family member.
+        </p>
+        <p>
+          Age UK has been involved in trialling several of these technologies, and the NHS is exploring their use as part of its strategy to reduce fall-related hospital admissions.
+        </p>
+
+        <h2>Medication management</h2>
+        <p>
+          Polypharmacy — taking five or more medications — is common among older adults with multiple conditions. Managing different drugs with different dosing times, food interactions, and refill schedules is cognitively demanding. Missing doses or taking the wrong dose at the wrong time can have serious health consequences.
+        </p>
+        <p>
+          AI medication management systems address this in several ways. Smart pill dispensers (like the Pivotell or Hero dispensers) store multiple medications in separate compartments, dispense the correct pills at the correct times, and alert the person (and their carer) if a dose is missed. Connected systems can report compliance data to a GP or pharmacist.
+        </p>
+        <p>
+          Voice assistant reminders (via Alexa or Google Home) offer a simpler version: "Mum, it's 8am — time for your blood pressure tablet." The NHS has piloted these approaches in some areas to support patients being discharged from hospital after medication-related admissions.
+        </p>
+
+        <h2>Companion robots and AI assistants</h2>
+        <p>
+          Loneliness is a significant health problem for older adults in the UK — the Campaign to End Loneliness estimates that around 1.4 million older people are often lonely. Research has linked chronic loneliness to a higher risk of dementia, heart disease, and early death.
+        </p>
+        <p>
+          AI companions range from voice assistants like Amazon Echo to purpose-built companion robots. The most studied of these is Paro, a robotic seal designed in Japan that responds to touch and sound. Research in care settings has found it reduces agitation in people with dementia, increases social interaction, and reduces the need for some medication.
+        </p>
+        <p>
+          More conversational AI companions — chatbots designed to have open-ended conversations — are being developed specifically for older adults. Products like ElliQ (a robot designed for older adults by Israeli company Intuition Robotics) can proactively start conversations, suggest activities, and connect the user to video calls with family members.
+        </p>
+        <p>
+          The evidence is broadly positive for mood and engagement, but researchers and ethicists raise important cautions. What happens when the company withdraws the product or service — and the older person has become emotionally dependent on it? Is it ethical to let someone form a relationship with what is essentially a programme that has no feelings?
+        </p>
 
         <LessonNote lessonId="ai-and-ageing" />
 
-        <Quiz lessonId="ai-and-ageing" questions={quizQuestions} />
+        <h2>AI-powered hearing aids</h2>
+        <p>
+          Hearing loss affects around 40% of people over 50 in the UK and rises significantly with age. Traditional hearing aids simply amplify sound — which makes both speech and background noise louder, often making it harder rather than easier to follow conversations in noisy environments.
+        </p>
+        <p>
+          AI hearing aids process sound continuously using machine learning. They can distinguish between speech and background noise, suppress the rumble of a restaurant kitchen while enhancing the voices at your table, and switch settings automatically as you move from a quiet room to a busy street. Some models learn the wearer's preferences over time.
+        </p>
+        <p>
+          In the UK, NHS hearing aids have historically been functional but basic. Private AI hearing aids (from brands like Oticon, Widex, Phonak, and Starkey) are significantly more capable but expensive — typically £1,500–£3,500 per pair. There is an ongoing debate about NHS hearing aid technology and whether more advanced AI models should be available through the health service.
+        </p>
 
-        <RelatedLessons currentId="ai-and-ageing" />
+        <h2>Ethics: who is monitoring whom?</h2>
+        <p>
+          Technology that keeps older people safer at home is genuinely valuable. But it sits alongside important questions about dignity, autonomy, and consent.
+        </p>
+        <p>
+          Consider a family that installs a movement sensor system in their elderly parent's home "so we know they're OK." The parent may feel safer. But they may also feel watched — unable to have a bad day, stay in bed late, or make unusual choices without triggering a worried phone call. Their home is no longer private, even from family.
+        </p>
+        <p>
+          Genuine consent is essential. "We've set this up for your safety" is not consent — it is a fait accompli. Older adults should understand what data is collected, who can access it, and how to disable the system if they choose. The Care Quality Commission (CQC) has issued guidance on monitoring in care homes, emphasising that residents must consent to being monitored and retain the right to refuse.
+        </p>
+        <p>
+          UK GDPR applies to data collected about older adults by technology companies. Family members and carers acting in a personal capacity generally fall outside data protection law, but commercial providers do not. If a technology company collects data about an older person's daily patterns, they must have a lawful basis for doing so.
+        </p>
 
-        <LessonRating lessonId="ai-and-ageing" />
-        <LessonFeedback lessonId="ai-and-ageing" />
-        <ReviewLaterButton lessonId="ai-and-ageing" />
-        <NextLesson currentId="ai-and-ageing" />
       </div>
+
+      <div className="mt-10">
+        <Quiz questions={QUIZ_QUESTIONS} lessonId="ai-and-ageing" />
+      </div>
+
+      <LessonRating lessonId="ai-and-ageing" />
+      <LessonFeedback lessonId="ai-and-ageing" />
+      <ReviewLaterButton lessonId="ai-and-ageing" />
+      <RelatedLessons currentId="ai-and-ageing" />
+      <NextLesson currentId="ai-and-ageing" />
     </div>
   )
 }

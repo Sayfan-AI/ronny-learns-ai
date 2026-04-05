@@ -23,6 +23,7 @@ import { LessonOfTheDay } from '../components/LessonOfTheDay'
 import { ContinueYourSeries } from '../components/ContinueYourSeries'
 import { StreakReward } from '../components/StreakReward'
 import { StreakChallenge } from '../components/StreakChallenge'
+import { StreakReward } from '../components/StreakReward'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1409,6 +1410,36 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'violet',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-gig-workers',
+        title: 'AI and gig workers — algorithmic management, worker rights, and what UK law says',
+        description: 'The gig worker\'s perspective: how Uber, Deliveroo, and Amazon Flex use AI to manage workers, what happens when the algorithm gets it wrong, and your rights under UK law.',
+        readingTime: '8 min',
+        icon: '&#x1F6E4;',
+        to: '/learn/ai-and-gig-workers',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-ageing',
+        title: 'AI and ageing — fall detection, medication reminders, companion robots, and smart hearing aids',
+        description: 'How AI is helping older people live independently for longer — and the ethical questions about consent, dignity, and surveillance that come with it.',
+        readingTime: '7 min',
+        icon: '&#x1F9D3;',
+        to: '/learn/ai-and-ageing',
+        color: 'teal',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-critical-thinking',
+        title: 'AI and critical thinking — using AI without losing your own mind',
+        description: 'The difference between using AI as a learning tool and letting it think for you — why critical thinking matters more than ever, and the skills that AI cannot replace.',
+        readingTime: '8 min',
+        icon: '&#x1F9E0;',
+        to: '/learn/ai-and-critical-thinking',
+        color: 'violet',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -1797,6 +1828,9 @@ export function HomePage() {
             </button>
           </div>
         )}
+
+        {/* Streak reward — shown when user has 3+ consecutive days */}
+        <StreakReward streak={streak} />
 
         {/* Lesson of the day — featured daily lesson */}
         <LessonOfTheDay lessons={LESSON_POOL} completedIds={quizCompleted} />
