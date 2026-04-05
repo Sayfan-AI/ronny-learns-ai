@@ -14,6 +14,7 @@ import { StreakCalendar } from '../components/StreakCalendar'
 import { useLearningCalendar } from '../hooks/useLearningCalendar'
 import { LearningStatsCard } from '../components/LearningStatsCard'
 import { TopicCompletionTracker } from '../components/TopicCompletionTracker'
+import { EstimatedCompletion } from '../components/EstimatedCompletion'
 
 // Lessons that have quizzes (ordered as they appear in the curriculum)
 const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
@@ -95,6 +96,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-language-learning',    title: 'AI and language learning',            to: '/learn/ai-and-language-learning' },
   { id: 'ai-and-the-workplace',        title: 'AI and the workplace',                to: '/learn/ai-and-the-workplace' },
   { id: 'ai-and-sport-analytics',      title: 'AI and sport analytics',              to: '/learn/ai-and-sport-analytics' },
+  { id: 'ai-and-construction',         title: 'AI and construction',                 to: '/learn/ai-and-construction' },
+  { id: 'ai-and-personal-finance',     title: 'AI and personal finance',             to: '/learn/ai-and-personal-finance' },
 ]
 
 interface QuizScoreEntry {
@@ -760,6 +763,9 @@ export function MyProgress() {
 
         {/* Learning stats card */}
         <LearningStatsCard />
+
+        {/* Estimated completion panel */}
+        <EstimatedCompletion completedCount={completedCount} totalCount={total} />
 
         {/* Topic completion tracker */}
         <TopicCompletionTracker />
