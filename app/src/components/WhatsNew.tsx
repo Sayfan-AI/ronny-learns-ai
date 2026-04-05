@@ -13,10 +13,17 @@ interface NewLesson {
 // Most recently added lesson should be first.
 const RECENT_LESSONS: NewLesson[] = [
   {
-    id: 'ai-and-smart-cities',
-    title: 'AI and smart cities',
-    icon: '🏙️',
-    to: '/learn/ai-and-smart-cities',
+    id: 'ai-and-volunteering',
+    title: 'AI and volunteering',
+    icon: '🙋',
+    to: '/learn/ai-and-volunteering',
+    difficulty: 'Intermediate',
+  },
+  {
+    id: 'ai-and-adult-education',
+    title: 'AI and adult education',
+    icon: '📚',
+    to: '/learn/ai-and-adult-education',
     difficulty: 'Intermediate',
   },
   {
@@ -25,13 +32,6 @@ const RECENT_LESSONS: NewLesson[] = [
     icon: '🤝',
     to: '/learn/ai-and-charities',
     difficulty: 'Intermediate',
-  },
-  {
-    id: 'ai-and-streaming',
-    title: 'AI and streaming',
-    icon: '🎬',
-    to: '/learn/ai-and-streaming',
-    difficulty: 'Beginner',
   },
 ]
 

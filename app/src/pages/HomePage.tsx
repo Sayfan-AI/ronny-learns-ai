@@ -12,6 +12,7 @@ import { DailyChallenge } from '../components/DailyChallenge'
 import { LessonOfTheWeek } from '../components/LessonOfTheWeek'
 import { RecentlyViewed, loadRecentlyViewed } from '../components/RecentlyViewed'
 import { WhatsNew } from '../components/WhatsNew'
+import { InterestQuiz } from '../components/InterestQuiz'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -501,6 +502,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🤝',
         to: '/learn/ai-and-charities',
         color: 'rose',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-volunteering',
+        title: 'AI and volunteering — matching helpers, predicting need, and the ethics of automated giving of time',
+        description: 'How AI is transforming volunteer matching, demand forecasting, and emergency coordination — and what it means for the millions of people who give their time.',
+        readingTime: '7 min',
+        icon: '🙋',
+        to: '/learn/ai-and-volunteering',
+        color: 'emerald',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-adult-education',
+        title: 'AI and adult education — AI tutors, personalised learning, and lifelong upskilling',
+        description: 'How AI is reshaping lifelong learning through adaptive platforms, skills gap analysis, and workplace training — and the access barriers that must be overcome.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/learn/ai-and-adult-education',
+        color: 'violet',
         difficulty: 'Intermediate',
       },
     ],
@@ -1154,6 +1175,7 @@ export function HomePage() {
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
+  const showInterestQuiz = quizCompletedCount === 0 && localStorage.getItem('ronny-interest-quiz-done') === null
 
   function toggleBookmark(id: string) {
     const next = new Set(bookmarks)
@@ -1477,6 +1499,9 @@ export function HomePage() {
             <p className="text-emerald-600 text-sm">Head to My Progress to see your achievements and certificate.</p>
           </div>
         )}
+
+        {/* Interest quiz for new users */}
+        {showInterestQuiz && <InterestQuiz />}
 
         {/* Daily challenge */}
         <DailyChallenge />
