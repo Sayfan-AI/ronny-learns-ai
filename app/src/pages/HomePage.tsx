@@ -21,6 +21,7 @@ import { DifficultyBadge } from '../components/DifficultyBadge'
 import { LessonSeriesNavigator } from '../components/LessonSeriesNavigator'
 import { LessonOfTheDay } from '../components/LessonOfTheDay'
 import { ContinueYourSeries } from '../components/ContinueYourSeries'
+import { StreakReward } from '../components/StreakReward'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1347,6 +1348,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'slate',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-gig-workers',
+        title: 'AI and gig workers — algorithmic management, driver scoring, UK worker rights, and the future of platform work',
+        description: 'How Uber, Deliveroo, and Amazon Flex use AI to assign work and deactivate accounts, what the 2021 Supreme Court ruling means for UK gig workers, and your rights under GDPR.',
+        readingTime: '7 min',
+        icon: '&#x1F6F5;',
+        to: '/learn/ai-and-gig-workers',
+        color: 'amber',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-ageing',
+        title: 'AI and ageing — fall detection, medication reminders, companion robots, smart hearing aids, and ethics',
+        description: 'How AI is helping older people live independently — from Apple Watch fall detection and smart pill dispensers to PARO the therapeutic robot and AI hearing aids — and the ethical questions about consent and dignity.',
+        readingTime: '6 min',
+        icon: '&#x1F9D3;',
+        to: '/learn/ai-and-ageing',
+        color: 'violet',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -1744,6 +1765,9 @@ export function HomePage() {
 
         {/* Search */}
         <SearchBar />
+
+        {/* Streak reward — shown when streak is 3+ days */}
+        <StreakReward />
 
         {/* Surprise me */}
         <div className="flex justify-center">

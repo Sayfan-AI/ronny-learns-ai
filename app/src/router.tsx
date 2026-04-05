@@ -162,6 +162,8 @@ const AIAndEdTech = lazy(() => import('./pages/AIAndEdTech').then(m => ({ defaul
 const AIAndSportFanExperience = lazy(() => import('./pages/AIAndSportFanExperience').then(m => ({ default: m.AIAndSportFanExperience })))
 const AIAndOffensiveCybersecurity = lazy(() => import('./pages/AIAndOffensiveCybersecurity').then(m => ({ default: m.AIAndOffensiveCybersecurity })))
 const SeriesPage = lazy(() => import('./pages/SeriesPage').then(m => ({ default: m.SeriesPage })))
+const AIAndGigWorkers = lazy(() => import('./pages/AIAndGigWorkers').then(m => ({ default: m.AIAndGigWorkers })))
+const AIAndAgeing = lazy(() => import('./pages/AIAndAgeing').then(m => ({ default: m.AIAndAgeing })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1133,6 +1135,18 @@ const seriesPageRoute = createRoute({
   component: withSuspense(SeriesPage),
 })
 
+const aiAndGigWorkersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-gig-workers',
+  component: withSuspense(AIAndGigWorkers),
+})
+
+const aiAndAgeingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-ageing',
+  component: withSuspense(AIAndAgeing),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1288,6 +1302,8 @@ const routeTree = rootRoute.addChildren([
   aiAndSportFanExperienceRoute,
   aiAndOffensiveCybersecurityRoute,
   seriesPageRoute,
+  aiAndGigWorkersRoute,
+  aiAndAgeingRoute,
 ])
 
 const hashHistory = createHashHistory()
