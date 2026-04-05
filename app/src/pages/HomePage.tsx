@@ -17,6 +17,7 @@ import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1131,7 +1132,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         icon: '🚀',
         to: '/learn/ai-and-space-exploration',
         color: 'indigo',
-        difficulty: 'Intermediate',
+        difficulty: 'Beginner',
       },
       {
         id: 'ai-and-autonomous-vehicles',
@@ -2097,9 +2098,7 @@ export function HomePage() {
                               <span className="text-gray-400 text-xs">{mod.readingTime} read</span>
                             )}
                             {mod.difficulty && (
-                              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[mod.difficulty]}`}>
-                                {mod.difficulty}
-                              </span>
+                              <DifficultyBadge level={mod.difficulty} size="sm" />
                             )}
                             {modScore && (
                               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${

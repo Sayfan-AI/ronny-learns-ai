@@ -9,6 +9,7 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const LESSON_TITLE = 'AI and pets'
 
@@ -87,9 +88,7 @@ export function AIAndPets() {
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
               <span>About 5 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Beginner</span>
-            </div>
+            <DifficultyBadge level="Beginner" />
           </div>
           <CompletedBadge lessonId="ai-and-pets" />
           <ShareButton lessonTitle={LESSON_TITLE} />

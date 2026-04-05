@@ -316,4 +316,32 @@ export const QUIZ_BANK: BankedQuestion[] = [
     correctIndex: 1,
     explanation: 'Generative design reverses the traditional engineering process. Instead of designing a part and checking if it meets requirements, you define the requirements and let the AI search for the best shape. The results are often organic-looking structures that remove material from everywhere it is not structurally needed — making parts lighter and stronger. These shapes are only manufacturable by 3D printing.',
   },
+  // --- AI and cybercrime ---
+  {
+    lessonId: 'ai-and-cybercrime',
+    lessonTitle: 'AI and cybercrime',
+    question: 'Which of the following is the single most effective step an individual can take to protect their accounts from AI-powered attacks?',
+    options: [
+      'Deleting all social media accounts, since criminals use publicly available information to personalise attacks',
+      'Enabling two-factor authentication on important accounts, so that even if a password is stolen the account cannot be accessed without a second verification step',
+      'Changing your password every week, since frequent changes mean criminals have less time to use a stolen password',
+      'Only using websites that have a padlock icon in the browser address bar',
+    ],
+    correctIndex: 1,
+    explanation: 'Two-factor authentication (2FA) is widely considered the highest-impact single security measure for individuals. Even if a criminal has your password, they cannot access your account without the second factor (usually your phone). A padlock only means the connection is encrypted — not that the website is trustworthy.',
+  },
+  // --- AI and space exploration ---
+  {
+    lessonId: 'ai-and-space-exploration',
+    lessonTitle: 'AI and space exploration',
+    question: 'Why do Mars rovers like Perseverance need to make some decisions autonomously using AI, rather than waiting for instructions from Earth?',
+    options: [
+      'Because NASA does not have enough staff to monitor the rover continuously, so AI acts as a substitute controller during breaks',
+      'Because signals between Earth and Mars take up to 20 minutes to arrive in each direction, making real-time remote control impossible for moment-to-moment navigation',
+      'Because the Martian atmosphere blocks radio signals for most of each day, so the rover must operate independently during blackout periods',
+      'Because international law requires all spacecraft operating beyond the Moon to be fully autonomous',
+    ],
+    correctIndex: 1,
+    explanation: 'The distance between Earth and Mars means radio signals take between 3 and 22 minutes to arrive, depending on where the two planets are in their orbits. A round trip for a command and response therefore takes between 6 and 44 minutes. AI allows the rover to plan short drives and avoid hazards independently, with humans setting longer-term goals.',
+  },
 ]

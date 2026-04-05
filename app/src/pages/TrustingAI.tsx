@@ -5,6 +5,7 @@ import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
@@ -79,9 +80,7 @@ export function TrustingAI() {
             <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-700 text-sm px-4 py-2 rounded-full">
               <span>About 5 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="trusting-ai" />
         </div>
