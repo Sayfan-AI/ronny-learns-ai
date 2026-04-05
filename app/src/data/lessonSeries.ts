@@ -23,6 +23,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-travel',
       'ai-and-retail',
       'ai-in-your-apps',
+      'ai-and-sport-fan-experience',
     ],
   },
   {
@@ -41,6 +42,8 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-banking',
       'ai-productivity-tools',
       'ai-and-advertising',
+      'ai-and-gig-economy',
+      'ai-and-financial-advice',
     ],
   },
   {
@@ -62,6 +65,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-scams',
       'ai-and-fraud-and-identity-theft',
       'ai-and-offensive-cybersecurity',
+      'ai-and-edtech',
     ],
   },
   {
@@ -79,6 +83,7 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-scientific-research',
       'ai-and-disability',
       'ai-for-accessibility',
+      'ai-and-mental-health-care',
     ],
   },
   {
