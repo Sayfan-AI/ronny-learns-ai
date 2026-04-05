@@ -27,6 +27,7 @@ const NAV_LINKS = [
   { to: '/quiz/what-next', label: 'What to learn next' },
   { to: '/quiz/guess-the-ai', label: 'Guess the AI' },
   { to: '/quiz/sort-it-out', label: 'Sort it out' },
+  { to: '/quiz/true-or-false', label: 'True or False' },
   { to: '/streak', label: 'My streak' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
