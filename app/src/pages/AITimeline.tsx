@@ -1,72 +1,83 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
-type Milestone = {
+interface Milestone {
   id: string
-  label: string
   year: number
-  explanation: string
+  title: string
+  description: string
+  icon: string
 }
 
 const MILESTONES: Milestone[] = [
   {
-    id: 'm1',
-    label: 'Alan Turing publishes "Computing Machinery and Intelligence", proposing the Turing Test',
+    id: 'turing',
     year: 1950,
-    explanation: '1950 — Alan Turing\'s paper asked "Can machines think?" and proposed a test: could a machine fool a human into thinking they were talking to another human? The Turing Test remains a touchstone for discussions about AI today.',
+    title: 'The Turing Test proposed',
+    description: 'Alan Turing published "Computing Machinery and Intelligence", introducing the idea of a test for machine intelligence.',
+    icon: '&#x1F9E0;',
   },
   {
-    id: 'm2',
-    label: 'The Dartmouth Conference coins the term "artificial intelligence"',
-    year: 1956,
-    explanation: '1956 — John McCarthy, Marvin Minsky, and colleagues held a summer workshop at Dartmouth College. McCarthy coined the phrase "artificial intelligence" here — the birth of AI as a formal academic discipline.',
+    id: 'checkers',
+    year: 1959,
+    title: 'First self-learning program',
+    description: "Arthur Samuel created a checkers-playing program that could improve its own performance by playing against itself — one of the first examples of machine learning.",
+    icon: '&#x265F;',
   },
   {
-    id: 'm3',
-    label: 'Deep Blue defeats world chess champion Garry Kasparov',
+    id: 'expert-systems',
+    year: 1980,
+    title: 'Expert systems boom',
+    description: 'Expert systems like XCON became widely adopted in industry, encoding human expertise in rules. This was the first commercial AI success story.',
+    icon: '&#x1F4BC;',
+  },
+  {
+    id: 'deep-blue',
     year: 1997,
-    explanation: "1997 — IBM's Deep Blue became the first computer to beat a reigning world chess champion in a formal match. It was a landmark moment that sparked widespread debate about machine intelligence.",
+    title: 'Deep Blue beats world chess champion',
+    description: "IBM's Deep Blue defeated Garry Kasparov in a six-game match — the first time a computer beat a reigning world chess champion under tournament conditions.",
+    icon: '&#x265A;',
   },
   {
-    id: 'm4',
-    label: 'ImageNet challenge launches, sparking the deep learning revolution',
-    year: 2010,
-    explanation: '2010 — The ImageNet Large Scale Visual Recognition Challenge began. In 2012, a deep learning model called AlexNet dramatically outperformed all other approaches, triggering the deep learning era we are still in today.',
+    id: 'imagenet',
+    year: 2009,
+    title: 'ImageNet launched',
+    description: 'Fei-Fei Li launched the ImageNet dataset — 14 million labelled images that would become the fuel for the deep learning revolution in computer vision.',
+    icon: '&#x1F5BC;&#xFE0F;',
   },
   {
-    id: 'm5',
-    label: 'AlphaGo defeats world Go champion Lee Sedol',
+    id: 'siri',
+    year: 2011,
+    title: 'Siri arrives on iPhone',
+    description: 'Apple launched Siri with the iPhone 4S, bringing conversational AI voice assistants to the mainstream for the first time.',
+    icon: '&#x1F4F1;',
+  },
+  {
+    id: 'alphago',
     year: 2016,
-    explanation: "2016 — Google DeepMind's AlphaGo defeated Lee Sedol, one of the world's best Go players. Unlike chess, Go has more possible positions than atoms in the universe — AlphaGo's victory was considered a decade ahead of expectations.",
+    title: 'AlphaGo beats Lee Sedol',
+    description: "DeepMind's AlphaGo defeated world Go champion Lee Sedol 4-1, shocking experts who thought Go was decades away from being solved by AI.",
+    icon: '&#x26AB;',
   },
   {
-    id: 'm6',
-    label: 'GPT-2 released by OpenAI — so capable OpenAI initially withheld it',
-    year: 2019,
-    explanation: "2019 — OpenAI's GPT-2 could generate convincingly human-like text. OpenAI controversially staged its release, initially withholding the full model over concerns it would be misused to generate misinformation at scale.",
-  },
-  {
-    id: 'm7',
-    label: 'GPT-3 launched — 175 billion parameters, a step-change in language AI',
+    id: 'gpt3',
     year: 2020,
-    explanation: '2020 — GPT-3 showed that scaling language models produced qualitatively better results. With 175 billion parameters, it could write code, essays, poetry, and hold conversations with impressive fluency, inspiring a wave of AI applications.',
+    title: 'GPT-3 released',
+    description: "OpenAI released GPT-3, a 175 billion parameter language model that could write coherent essays, code, and poetry — demonstrating the power of scale in AI.",
+    icon: '&#x1F4DD;',
   },
   {
-    id: 'm8',
-    label: 'AlphaFold 2 solves the protein folding problem — a breakthrough for biology',
+    id: 'dalle',
     year: 2021,
-    explanation: "2021 — Google DeepMind's AlphaFold 2 accurately predicted the 3D structure of virtually every known protein — a problem that had stumped biologists for 50 years. It accelerated drug discovery and won its creators the Nobel Prize in Chemistry in 2024.",
+    title: 'DALL-E launches',
+    description: 'OpenAI released DALL-E, an AI system that could generate images from text descriptions, igniting the generative AI art revolution.',
+    icon: '&#x1F3A8;',
   },
   {
-    id: 'm9',
-    label: 'ChatGPT launches and reaches 100 million users in two months',
+    id: 'chatgpt',
     year: 2022,
-    explanation: '2022 — OpenAI released ChatGPT in November. It became the fastest-growing consumer application in history, reaching 100 million users in just two months. It brought AI into everyday life in a way nothing had before.',
-  },
-  {
-    id: 'm10',
-    label: 'GPT-4 released — multimodal AI that can understand both text and images',
-    year: 2023,
-    explanation: '2023 — GPT-4 introduced multimodal capability: understanding both text and images. It passed bar exams, medical licensing tests, and scored in the top percentiles on standardised academic tests, marking another step-change in AI capability.',
+    title: 'ChatGPT launches',
+    description: 'OpenAI released ChatGPT in November 2022. It reached 100 million users in two months — the fastest-growing consumer application in history.',
+    icon: '&#x1F916;',
   },
 ]
 
@@ -79,220 +90,171 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-function getScore(order: string[], correct: Milestone[]): number {
-  let score = 0
-  order.forEach((id, i) => {
-    if (id === correct[i].id) score++
-  })
-  return score
-}
+type Phase = 'playing' | 'revealed'
 
 export function AITimeline() {
-  const [items, setItems] = useState<Milestone[]>(() => shuffle([...MILESTONES]))
-  const [submitted, setSubmitted] = useState(false)
-  const [draggedId, setDraggedId] = useState<string | null>(null)
-  const [dragOverId, setDragOverId] = useState<string | null>(null)
+  const [items, setItems] = useState<Milestone[]>(() => shuffle(MILESTONES))
+  const [dragging, setDragging] = useState<string | null>(null)
+  const [phase, setPhase] = useState<Phase>('playing')
+  const [score, setScore] = useState(0)
 
-  const correctOrder = [...MILESTONES].sort((a, b) => a.year - b.year)
+  const handleDragStart = useCallback((id: string) => {
+    setDragging(id)
+  }, [])
 
-  function handleDragStart(id: string) {
-    setDraggedId(id)
-  }
+  const handleDragOver = useCallback(
+    (e: React.DragEvent, targetId: string) => {
+      e.preventDefault()
+      if (!dragging || dragging === targetId) return
+      setItems(prev => {
+        const from = prev.findIndex(m => m.id === dragging)
+        const to = prev.findIndex(m => m.id === targetId)
+        if (from === -1 || to === -1) return prev
+        const next = [...prev]
+        const [moved] = next.splice(from, 1)
+        next.splice(to, 0, moved)
+        return next
+      })
+    },
+    [dragging],
+  )
 
-  function handleDragOver(e: React.DragEvent, id: string) {
-    e.preventDefault()
-    setDragOverId(id)
-  }
+  const handleDragEnd = useCallback(() => {
+    setDragging(null)
+  }, [])
 
-  function handleDrop(e: React.DragEvent, targetId: string) {
-    e.preventDefault()
-    if (!draggedId || draggedId === targetId) {
-      setDraggedId(null)
-      setDragOverId(null)
-      return
-    }
-    setItems((prev) => {
-      const fromIndex = prev.findIndex((m) => m.id === draggedId)
-      const toIndex = prev.findIndex((m) => m.id === targetId)
-      const next = [...prev]
-      const [moved] = next.splice(fromIndex, 1)
-      next.splice(toIndex, 0, moved)
-      return next
-    })
-    setDraggedId(null)
-    setDragOverId(null)
-  }
+  const handleSubmit = useCallback(() => {
+    const correct = items.filter((m, i) => {
+      const sorted = [...MILESTONES].sort((a, b) => a.year - b.year)
+      return m.id === sorted[i].id
+    }).length
+    setScore(correct)
+    setPhase('revealed')
+  }, [items])
 
-  function handleDragEnd() {
-    setDraggedId(null)
-    setDragOverId(null)
-  }
+  const handleReset = useCallback(() => {
+    setItems(shuffle(MILESTONES))
+    setPhase('playing')
+    setScore(0)
+  }, [])
 
-  function moveUp(index: number) {
-    if (index === 0) return
-    setItems((prev) => {
-      const next = [...prev]
-      ;[next[index - 1], next[index]] = [next[index], next[index - 1]]
-      return next
-    })
-  }
-
-  function moveDown(index: number) {
-    if (index === items.length - 1) return
-    setItems((prev) => {
-      const next = [...prev]
-      ;[next[index], next[index + 1]] = [next[index + 1], next[index]]
-      return next
-    })
-  }
-
-  function handleSubmit() {
-    setSubmitted(true)
-  }
-
-  function handleRestart() {
-    setItems(shuffle([...MILESTONES]))
-    setSubmitted(false)
-  }
-
-  const score = submitted ? getScore(items.map((m) => m.id), correctOrder) : 0
+  const sortedCorrect = [...MILESTONES].sort((a, b) => a.year - b.year)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
-      <div className="max-w-2xl w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-8">
 
-        <div className="text-center space-y-2">
-          <div className="text-5xl">&#x23F3;</div>
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">AI Timeline</h1>
-          <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
-            Place these 10 real AI milestones in the correct chronological order — earliest at the top, most recent at the bottom.
+        <div className="text-center space-y-4">
+          <div className="text-6xl">&#x23F3;</div>
+          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+            AI Timeline
+          </h1>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            Drag the milestones into the correct chronological order &mdash; earliest first.
           </p>
-          {!submitted && (
-            <p className="text-gray-400 dark:text-gray-500 text-sm">
-              Drag to reorder, or use the up/down arrows.
-            </p>
-          )}
+          <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 text-sm px-4 py-2 rounded-full">
+            <span>{MILESTONES.length} milestones to order</span>
+          </div>
         </div>
 
-        {submitted && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-cyan-100 dark:border-cyan-900 p-5 text-center space-y-2">
-            <p className="text-xl font-bold text-gray-800 dark:text-gray-100">
-              You got <span className="text-cyan-600 dark:text-cyan-400">{score} / {MILESTONES.length}</span> in the correct position
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              {score === MILESTONES.length
-                ? 'Perfect score — you know your AI history!'
-                : score >= 7
-                ? 'Great effort! Check the correct years below.'
-                : 'Nice try — read the explanations to fill in the gaps.'}
-            </p>
-            <button
-              onClick={handleRestart}
-              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-5 py-2 rounded-xl transition-colors text-sm mt-1"
-            >
-              &#x1F504; Try again
-            </button>
-          </div>
-        )}
+        {phase === 'playing' && (
+          <>
+            <div className="bg-indigo-50 rounded-2xl p-4 text-center">
+              <p className="text-indigo-700 text-sm font-medium">
+                Drag each card up or down to place it in the order you think it happened.
+                Earliest event at the top, most recent at the bottom.
+              </p>
+            </div>
 
-        <div className="space-y-2">
-          {items.map((milestone, index) => {
-            const correctIndex = correctOrder.findIndex((m) => m.id === milestone.id)
-            const isCorrect = submitted && index === correctIndex
-            const isWrong = submitted && index !== correctIndex
-            const isDragging = draggedId === milestone.id
-            const isDragTarget = dragOverId === milestone.id
-
-            let cardColor = 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
-            if (isCorrect) cardColor = 'bg-green-50 dark:bg-green-950 border-green-300 dark:border-green-700'
-            if (isWrong) cardColor = 'bg-red-50 dark:bg-red-950 border-red-300 dark:border-red-700'
-            if (isDragTarget) cardColor = 'bg-cyan-50 dark:bg-cyan-950 border-cyan-300 dark:border-cyan-700 ring-2 ring-cyan-400'
-
-            return (
-              <div key={milestone.id} className="space-y-1">
+            <div className="space-y-2">
+              {items.map((milestone, index) => (
                 <div
-                  draggable={!submitted}
+                  key={milestone.id}
+                  draggable
                   onDragStart={() => handleDragStart(milestone.id)}
-                  onDragOver={(e) => handleDragOver(e, milestone.id)}
-                  onDrop={(e) => handleDrop(e, milestone.id)}
+                  onDragOver={e => handleDragOver(e, milestone.id)}
                   onDragEnd={handleDragEnd}
-                  className={`border-2 rounded-xl p-3 transition-all ${cardColor} ${isDragging ? 'opacity-50' : ''} ${!submitted ? 'cursor-grab active:cursor-grabbing' : ''}`}
+                  className={`bg-white rounded-xl border-2 p-4 flex items-center gap-4 cursor-grab active:cursor-grabbing transition-all select-none ${
+                    dragging === milestone.id
+                      ? 'border-indigo-400 shadow-lg opacity-70 scale-[1.02]'
+                      : 'border-gray-200 hover:border-indigo-300 hover:shadow-sm'
+                  }`}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="flex flex-col gap-0.5 flex-shrink-0">
-                      {!submitted && (
-                        <>
-                          <button
-                            onClick={() => moveUp(index)}
-                            disabled={index === 0}
-                            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 disabled:opacity-20 text-xs leading-none p-0.5"
-                            aria-label="Move up"
-                          >
-                            &#x25B2;
-                          </button>
-                          <button
-                            onClick={() => moveDown(index)}
-                            disabled={index === items.length - 1}
-                            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 disabled:opacity-20 text-xs leading-none p-0.5"
-                            aria-label="Move down"
-                          >
-                            &#x25BC;
-                          </button>
-                        </>
-                      )}
-                      {submitted && (
-                        <span className="text-lg">
-                          {isCorrect ? '&#x2705;' : '&#x274C;'}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start gap-2">
-                        <span className="flex-shrink-0 text-cyan-600 dark:text-cyan-400 font-bold text-sm mt-0.5">{index + 1}.</span>
-                        <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed">{milestone.label}</p>
-                      </div>
-                      {submitted && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-5 leading-relaxed">{milestone.explanation}</p>
-                      )}
-                    </div>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold text-sm flex items-center justify-center">
+                    {index + 1}
                   </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        {!submitted && (
-          <div className="text-center">
-            <button
-              onClick={handleSubmit}
-              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
-            >
-              Check my order
-            </button>
-          </div>
-        )}
-
-        {submitted && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-cyan-100 dark:border-cyan-900 p-5 space-y-3">
-            <h2 className="font-bold text-gray-800 dark:text-gray-100">The correct order</h2>
-            <div className="space-y-1">
-              {correctOrder.map((m, i) => (
-                <div key={m.id} className="flex gap-2 items-start text-sm">
-                  <span className="text-cyan-600 dark:text-cyan-400 font-bold flex-shrink-0">{i + 1}.</span>
-                  <p className="text-gray-600 dark:text-gray-300">{m.year} — {m.label}</p>
+                  <span className="text-2xl flex-shrink-0" dangerouslySetInnerHTML={{ __html: milestone.icon }} />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-gray-800 text-sm leading-tight">{milestone.title}</p>
+                  </div>
+                  <span className="text-gray-400 text-lg flex-shrink-0">&#x2630;</span>
                 </div>
               ))}
             </div>
-          </div>
+
+            <button
+              onClick={handleSubmit}
+              className="w-full bg-indigo-600 text-white font-bold py-4 rounded-2xl text-lg hover:bg-indigo-700 active:scale-95 transition-all"
+            >
+              Submit my order
+            </button>
+          </>
         )}
 
-        <div className="text-center">
-          <a href="#/" className="text-cyan-600 dark:text-cyan-400 text-sm hover:underline">
-            Back to home
-          </a>
-        </div>
+        {phase === 'revealed' && (
+          <>
+            <div className={`rounded-2xl p-6 text-center space-y-2 ${score >= 8 ? 'bg-green-50 border-2 border-green-200' : score >= 5 ? 'bg-amber-50 border-2 border-amber-200' : 'bg-red-50 border-2 border-red-200'}`}>
+              <div className="text-5xl font-bold text-gray-800">{score} / {MILESTONES.length}</div>
+              <p className="text-gray-600 font-medium">
+                {score >= 8
+                  ? 'Excellent! You know your AI history.'
+                  : score >= 5
+                  ? 'Good effort! Check the correct order below.'
+                  : 'Keep learning — the correct order is shown below.'}
+              </p>
+            </div>
 
+            <div className="bg-white rounded-2xl border border-gray-200 p-4 space-y-2">
+              <h2 className="text-lg font-bold text-gray-800 mb-4 text-center">The correct order</h2>
+              {sortedCorrect.map((milestone, index) => {
+                const userIndex = items.findIndex(m => m.id === milestone.id)
+                const correct = userIndex === index
+                return (
+                  <div
+                    key={milestone.id}
+                    className={`rounded-xl p-4 border-2 ${correct ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className={`flex-shrink-0 w-8 h-8 rounded-full font-bold text-sm flex items-center justify-center ${correct ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
+                        {index + 1}
+                      </div>
+                      <span className="text-2xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: milestone.icon }} />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <p className="font-bold text-gray-800 text-sm">{milestone.title}</p>
+                          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${correct ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
+                            {milestone.year}
+                          </span>
+                          {!correct && (
+                            <span className="text-xs text-gray-500">(you placed it #{userIndex + 1})</span>
+                          )}
+                        </div>
+                        <p className="text-gray-600 text-sm leading-relaxed mt-1">{milestone.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            <button
+              onClick={handleReset}
+              className="w-full bg-indigo-600 text-white font-bold py-4 rounded-2xl text-lg hover:bg-indigo-700 active:scale-95 transition-all"
+            >
+              Play again
+            </button>
+          </>
+        )}
       </div>
     </div>
   )

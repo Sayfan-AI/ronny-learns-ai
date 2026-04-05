@@ -1435,12 +1435,12 @@ const MODULE_GROUPS: ModuleGroup[] = [
       },
       {
         id: 'ai-and-content-moderation',
-        title: 'AI and social media content moderation — hate speech detection, misinformation, false positives, and the EU DSA',
-        description: "How platforms use AI to police billions of posts every day — the technology, the mistakes, the human cost, and the regulations being written to govern it.",
+        title: 'AI and content moderation — hate speech detection, misinformation, false positives, and the EU DSA',
+        description: 'How AI helps platforms police billions of posts, why it gets things wrong, and the human cost of keeping the internet safe.',
         readingTime: '7 min',
         icon: '🛡️',
         to: '/learn/ai-and-content-moderation',
-        color: 'rose',
+        color: 'purple',
         difficulty: 'Intermediate',
       },
     ],
@@ -2501,12 +2501,12 @@ export function HomePage() {
             </Link>
             <Link
               to="/quiz/ai-timeline"
-              className="bg-cyan-50 border border-cyan-200 rounded-xl p-4 hover:bg-cyan-100 transition-colors flex items-center gap-3"
+              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
             >
               <span className="text-2xl flex-shrink-0">&#x23F3;</span>
               <div>
-                <p className="font-semibold text-cyan-800 text-sm">AI Timeline</p>
-                <p className="text-cyan-600 text-xs">Place 10 real AI milestones in the correct chronological order.</p>
+                <p className="font-semibold text-indigo-800 text-sm">AI timeline game</p>
+                <p className="text-indigo-600 text-xs">Arrange 10 AI milestones in the correct order.</p>
               </div>
             </Link>
           </div>

@@ -1134,8 +1134,17 @@ const trueOrFalseQuizRoute = createRoute({
   component: withSuspense(TrueOrFalseQuiz),
 })
 // Milestone 68 routes
-const aiAndContentModerationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-content-moderation', component: withSuspense(AIAndContentModeration) })
-const aiTimelineRoute = createRoute({ getParentRoute: () => rootRoute, path: '/quiz/ai-timeline', component: withSuspense(AITimeline) })
+const aiAndContentModerationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-content-moderation',
+  component: withSuspense(AIAndContentModeration),
+})
+
+const aiTimelineRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/ai-timeline',
+  component: withSuspense(AITimeline),
+})
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
