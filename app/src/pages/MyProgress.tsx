@@ -100,6 +100,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-personal-finance',     title: 'AI and personal finance',             to: '/learn/ai-and-personal-finance' },
   { id: 'ai-and-cooking',              title: 'AI and cooking',                      to: '/learn/ai-and-cooking' },
   { id: 'ai-and-genetics',             title: 'AI and genetics',                     to: '/learn/ai-and-genetics' },
+  { id: 'ai-and-gig-economy',          title: 'AI and the gig economy',              to: '/learn/ai-and-gig-economy' },
+  { id: 'ai-and-edtech',               title: 'AI and education technology',         to: '/learn/ai-and-edtech' },
 ]
 
 interface QuizScoreEntry {

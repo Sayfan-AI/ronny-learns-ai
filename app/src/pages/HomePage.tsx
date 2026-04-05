@@ -17,6 +17,7 @@ import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
+import { ContinueYourSeries } from '../components/ContinueYourSeries'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1113,6 +1114,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-gig-economy',
+        title: 'AI and the gig economy — algorithmic management, surge pricing, automated deactivations, and worker rights',
+        description: 'How AI manages Uber drivers, Deliveroo couriers, and millions of other gig workers — and what the landmark 2021 Supreme Court ruling means for your rights.',
+        readingTime: '7 min',
+        icon: '🛵',
+        to: '/learn/ai-and-gig-economy',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-edtech',
+        title: 'AI and education technology (EdTech) — AI tutors, adaptive learning, essay marking, and exam surveillance',
+        description: 'From Century Tech to Khanmigo — how AI is personalising learning, detecting AI-written essays, and controversially watching students through their webcams.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/learn/ai-and-edtech',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1718,6 +1739,9 @@ export function HomePage() {
             <p className="text-emerald-600 text-sm">Head to My Progress to see your achievements and certificate.</p>
           </div>
         )}
+
+        {/* Continue your series */}
+        <ContinueYourSeries />
 
         {/* Interest quiz for new users */}
         {showInterestQuiz && <InterestQuiz />}
