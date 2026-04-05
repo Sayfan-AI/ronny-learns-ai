@@ -1,0 +1,1 @@
+import{B as e,R as t}from"./link-CSA0IxrO.js";var n=e(t(),1),r=`ronny-lesson-visit-counts`;function i(e){(0,n.useEffect)(()=>{if(e)try{let t=localStorage.getItem(r),n=t?JSON.parse(t):{};n[e]=(n[e]??0)+1,localStorage.setItem(r,JSON.stringify(n))}catch{}},[e])}function a(){try{let e=localStorage.getItem(r);return e?JSON.parse(e):{}}catch{return{}}}export{i as n,a as t};

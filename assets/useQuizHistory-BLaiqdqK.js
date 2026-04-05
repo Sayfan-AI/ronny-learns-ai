@@ -1,0 +1,1 @@
+var e=`ronny-quiz-history`;function t(){try{let t=localStorage.getItem(e);return t?JSON.parse(t):[]}catch{return[]}}function n(t){try{localStorage.setItem(e,JSON.stringify(t))}catch{}}function r(e){n([...t().filter(t=>!(t.lessonId===e.lessonId&&t.question===e.question)),e])}function i(e,r){n(t().filter(t=>!(t.lessonId===e&&t.question===r)))}export{r as n,i as r,t};
