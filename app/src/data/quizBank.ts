@@ -288,4 +288,32 @@ export const QUIZ_BANK: BankedQuestion[] = [
     correctIndex: 1,
     explanation: 'Many common diseases are not caused by a single gene but by the combined effect of hundreds of small genetic variants. Polygenic risk scores aggregate all these small effects using AI trained on data from hundreds of thousands of people, placing each person on a risk spectrum for conditions like heart disease or type 2 diabetes.',
   },
+  // --- AI and autonomous vehicles ---
+  {
+    lessonId: 'ai-and-autonomous-vehicles',
+    lessonTitle: 'AI and autonomous vehicles',
+    question: 'At SAE Level 2 vehicle autonomy, who is responsible for monitoring the road and staying ready to take control?',
+    options: [
+      'The vehicle manufacturer — if an accident occurs while Level 2 features are active, the maker is legally liable',
+      'The driver — Level 2 means the car can handle steering and speed together, but the driver must remain alert and ready to intervene immediately',
+      'A remote operator at the car company who monitors the vehicle via camera and can intervene if needed',
+      'Nobody — Level 2 is fully autonomous and requires no human supervision',
+    ],
+    correctIndex: 1,
+    explanation: 'SAE Level 2 is "partial automation" — the car can simultaneously control both steering and speed. However, the human driver must remain engaged, watch the road, and be prepared to take control at any moment. Level 2 is not self-driving, and treating it as such has been the cause of several serious incidents.',
+  },
+  // --- AI and 3D printing ---
+  {
+    lessonId: 'ai-and-3d-printing',
+    lessonTitle: 'AI and 3D printing',
+    question: 'What is generative design in AI-assisted 3D printing?',
+    options: [
+      'Software that scans a physical object with a camera and converts it into a printable 3D file automatically',
+      'An AI technique where you define requirements (weight, strength, material) and the software explores millions of possible shapes to find the optimal design',
+      'A process that generates random decorative patterns to apply to the surface of a 3D-printed object',
+      'AI software that monitors a print in progress and pauses it if a defect is detected',
+    ],
+    correctIndex: 1,
+    explanation: 'Generative design reverses the traditional engineering process. Instead of designing a part and checking if it meets requirements, you define the requirements and let the AI search for the best shape. The results are often organic-looking structures that remove material from everywhere it is not structurally needed — making parts lighter and stronger. These shapes are only manufacturable by 3D printing.',
+  },
 ]
