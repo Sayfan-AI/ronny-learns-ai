@@ -2,324 +2,290 @@ import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 
 interface Statement {
-  id: string
-  text: string
-  answer: boolean
+  id: number
+  statement: string
+  isTrue: boolean
   explanation: string
   topic: string
 }
 
 const STATEMENTS: Statement[] = [
   {
-    id: 's1',
-    text: 'AI systems can feel emotions and experience happiness or sadness.',
-    answer: false,
-    explanation: 'Current AI systems do not feel emotions. They process data and produce outputs, but there is no evidence of inner experience or feelings. Terms like "AI thinks" or "AI understands" are figures of speech, not literal descriptions.',
+    id: 1,
+    statement: 'AI can currently think, feel emotions, and have genuine opinions.',
+    isTrue: false,
+    explanation: "False. Today's AI systems — including the most advanced chatbots — do not think, feel, or hold opinions. They generate responses by recognising patterns in training data. What looks like emotion or opinion is a very convincing statistical prediction of what a human might say. There is no inner experience.",
     topic: 'AI capabilities',
   },
   {
-    id: 's2',
-    text: 'ChatGPT was trained on text from the internet, books, and other written sources.',
-    answer: true,
-    explanation: 'ChatGPT and similar large language models are trained on huge datasets of text gathered from the internet, digitised books, Wikipedia, code, and many other written sources. The model learns patterns in this text rather than being programmed with rules.',
-    topic: 'Training data',
+    id: 2,
+    statement: 'The UK has passed specific laws regulating how AI can be used.',
+    isTrue: false,
+    explanation: "False (as of 2024). The UK has not yet passed a dedicated AI law. Instead, it relies on existing laws (data protection, equality, product safety) to cover AI. The government published an AI Regulation White Paper in 2023 proposing a principles-based approach, but specific AI legislation had not been enacted. This contrasts with the EU's AI Act, which was passed in 2024.",
+    topic: 'UK regulation',
   },
   {
-    id: 's3',
-    text: 'AI is going to replace every single job within the next five years.',
-    answer: false,
-    explanation: 'While AI will automate some tasks and change many roles, most economists and researchers expect it to transform jobs rather than eliminate all of them. New jobs will emerge too. Wholesale replacement of all work in five years is not a credible prediction.',
+    id: 3,
+    statement: "ChatGPT's training data has a knowledge cutoff — it does not know about events after a certain date.",
+    isTrue: true,
+    explanation: "True. Large language models like ChatGPT are trained on data collected up to a specific date, after which they have no knowledge of events. ChatGPT's original training had a cutoff in early 2023, though OpenAI has released newer versions with more recent cutoffs and added browsing capabilities to some versions.",
+    topic: 'Famous AI systems',
+  },
+  {
+    id: 4,
+    statement: 'AI will definitely replace most human jobs within the next 10 years.',
+    isTrue: false,
+    explanation: "False. The impact of AI on jobs is genuinely uncertain and debated by economists. Historical evidence from previous automation waves shows technology eliminates some roles while creating others. Most economists expect AI to transform jobs — changing what tasks humans do — rather than eliminate most work entirely. The timescale and extent depend heavily on policy, regulation, and how AI capabilities develop.",
     topic: 'Job displacement',
   },
   {
-    id: 's4',
-    text: 'The UK has a law specifically called the AI Act.',
-    answer: false,
-    explanation: 'The EU passed an AI Act in 2024, but the UK has no equivalent single piece of legislation. Instead, the UK government takes a sector-by-sector approach, asking existing regulators (like the FCA and ICO) to handle AI in their domains.',
-    topic: 'UK regulation',
+    id: 5,
+    statement: "An AI system trained mainly on data from one country may perform worse for people from other countries.",
+    isTrue: true,
+    explanation: "True. This is a well-documented form of AI bias. A facial recognition system trained mostly on images of white faces performs worse on darker-skinned faces. A medical AI trained on US hospital data may give different results for patients in countries with different demographics, diets, or disease patterns. Diverse, representative training data is essential for fair AI.",
+    topic: 'AI bias',
   },
   {
-    id: 's5',
-    text: 'AlphaFold, developed by DeepMind in the UK, solved a 50-year-old problem in biology.',
-    answer: true,
-    explanation: 'AlphaFold, built by Google DeepMind in London, successfully predicted the 3D structure of proteins with remarkable accuracy — a challenge that had stumped scientists for over 50 years. This breakthrough has major implications for drug discovery and medicine.',
+    id: 6,
+    statement: 'AlphaGo was the first AI to beat a world champion at Go, in 2016.',
+    isTrue: true,
+    explanation: "True. DeepMind's AlphaGo defeated the world Go champion Lee Sedol 4-1 in March 2016, a landmark moment in AI history. Go had long been considered too complex for computers to master because the number of possible board positions exceeds the number of atoms in the observable universe. AlphaGo used a combination of deep learning and Monte Carlo tree search.",
     topic: 'Famous AI systems',
   },
   {
-    id: 's6',
-    text: 'AI systems always give the same answer to the same question.',
-    answer: false,
-    explanation: 'Many AI systems, including large language models, include randomness (called "temperature") in their outputs, so responses can vary even to identical questions. This is by design — it makes answers feel more natural and varied.',
+    id: 7,
+    statement: 'AI systems are always objective and free from the biases that affect human decision-making.',
+    isTrue: false,
+    explanation: "False. AI systems reflect biases present in their training data and the choices made by their creators. Examples include Amazon's hiring tool (scrapped because it penalised CVs mentioning women's colleges), facial recognition systems (higher error rates for darker-skinned faces), and predictive policing tools (which can amplify historical policing biases). Objectivity is not automatic — it requires deliberate effort.",
+    topic: 'AI bias',
+  },
+  {
+    id: 8,
+    statement: 'The EU\'s AI Act classifies some AI applications as "unacceptable risk" and bans them outright.',
+    isTrue: true,
+    explanation: "True. The EU AI Act, passed in 2024, uses a risk-based framework. Applications classified as unacceptable risk — including real-time remote biometric identification in public spaces for law enforcement (with limited exceptions), social scoring by governments, and AI that exploits vulnerable groups — are banned entirely. High-risk applications (like AI in hiring, credit scoring, and medical devices) face strict requirements but are permitted.",
+    topic: 'UK regulation',
+  },
+  {
+    id: 9,
+    statement: 'AI image generators like DALL-E and Midjourney create images by searching the internet for similar pictures and combining them.',
+    isTrue: false,
+    explanation: "False. Generative AI image models do not search the internet at runtime. They learn statistical patterns from millions of training images, then generate entirely new pixel values from scratch based on your prompt. The process is more like a learned intuition about what images look like than a search-and-combine operation. The images are genuinely new, though the style and content reflect the training data.",
     topic: 'AI capabilities',
   },
   {
-    id: 's7',
-    text: 'Facial recognition AI has been shown to be less accurate for people with darker skin tones.',
-    answer: true,
-    explanation: 'Research, notably the Gender Shades study by Joy Buolamwini, found that many commercial facial recognition systems had significantly higher error rates for women and people with darker skin tones. This is often due to training datasets that lack diversity.',
-    topic: 'Bias',
+    id: 10,
+    statement: "Deepfake technology can convincingly clone a person's voice from just a few seconds of audio.",
+    isTrue: true,
+    explanation: "True. Modern voice cloning AI requires surprisingly little source audio — sometimes as little as 3 seconds — to produce a convincing imitation of a person's voice. This has been used fraudulently: in 2019, criminals used AI voice cloning to impersonate a CEO and instruct a finance director to transfer £200,000. The NCSC has specifically warned about deepfake voice attacks.",
+    topic: 'AI capabilities',
   },
   {
-    id: 's8',
-    text: 'The Turing Test, proposed by Alan Turing, is still the gold standard measure of AI intelligence today.',
-    answer: false,
-    explanation: 'Alan Turing proposed the Turing Test in 1950 as a thought experiment, but most AI researchers no longer consider it a meaningful benchmark. Modern AI can pass certain versions of the test without being "intelligent" in any deep sense, and the field has moved on to more rigorous evaluations.',
+    id: 11,
+    statement: "If an AI makes a decision that harms you — for example, rejecting your loan application — you have no legal right to challenge it in the UK.",
+    isTrue: false,
+    explanation: "False. UK data protection law (UK GDPR) gives you rights when automated decisions have a significant effect on you. You have the right to request human review of automated decisions, to be given an explanation of the factors used, and to contest the decision. The right applies to decisions about loan applications, job applications, insurance, and similar significant matters.",
+    topic: 'UK regulation',
+  },
+  {
+    id: 12,
+    statement: 'Training a large AI model like GPT-4 uses roughly the same amount of energy as a single household uses in a year.',
+    isTrue: false,
+    explanation: "False. Training large AI models is enormously energy-intensive. Estimates for GPT-3 training suggested it used approximately 1,287 MWh of electricity — equivalent to the annual electricity use of around 120 average US homes, or producing the lifetime carbon footprint of several cars. GPT-4 and subsequent models are larger and more costly to train. AI's energy consumption is a growing concern for environmental sustainability.",
+    topic: 'AI capabilities',
+  },
+  {
+    id: 13,
+    statement: 'Siri, Alexa, and Google Assistant all use the same underlying AI technology.',
+    isTrue: false,
+    explanation: "False. Siri, Alexa, and Google Assistant are developed by different companies (Apple, Amazon, and Google respectively) using different technology stacks, training data, and AI architectures. They have different strengths and weaknesses. While all use voice recognition and natural language processing, the specific models, training approaches, and integrations are quite different.",
     topic: 'Famous AI systems',
   },
   {
-    id: 's9',
-    text: 'Machine learning models can be biased if the data they are trained on reflects historical inequalities.',
-    answer: true,
-    explanation: 'If training data reflects past discrimination — for example, historic hiring data that favoured one gender — the model can learn and replicate those biases. This is a well-documented problem, and responsible AI development requires careful attention to training data quality and diversity.',
-    topic: 'Bias',
+    id: 14,
+    statement: "An AI can be trained to be racist, sexist, or otherwise discriminatory, even without its creators intending that outcome.",
+    isTrue: true,
+    explanation: "True. If training data contains historical patterns of discrimination — for example, historical hiring data where women were systematically paid less — an AI trained on that data may learn and reproduce those patterns. This is not because the AI has prejudiced intent (it has no intent) but because it learns statistical regularities, including unfair ones. Preventing this requires careful dataset curation, bias testing, and ongoing monitoring.",
+    topic: 'AI bias',
   },
   {
-    id: 's10',
-    text: 'The UK government has banned the use of AI in public sector decision-making.',
-    answer: false,
-    explanation: 'The UK has not banned AI in public sector decisions. In fact, government bodies use AI for various tasks. The focus has been on transparency and accountability rather than prohibition — for example, publishing algorithmic transparency records.',
-    topic: 'UK regulation',
-  },
-  {
-    id: 's11',
-    text: 'Large language models like GPT-4 have access to real-time internet search by default.',
-    answer: false,
-    explanation: 'By default, most large language models are trained on a fixed dataset with a knowledge cut-off date. They do not browse the internet in real-time. Some products (like Bing AI or ChatGPT with browsing enabled) add a separate web-search tool, but this is an add-on, not how the base model works.',
-    topic: 'AI capabilities',
-  },
-  {
-    id: 's12',
-    text: 'AI-generated deepfake videos have been used in real fraud and scam cases in the UK.',
-    answer: true,
-    explanation: 'Deepfake technology has been used in real scams, including cases where video or audio of public figures was faked to trick people into financial transfers. The UK National Cyber Security Centre has issued warnings about deepfake fraud, and cases have been reported by UK businesses and individuals.',
-    topic: 'AI risks',
-  },
-  {
-    id: 's13',
-    text: 'If an AI system is wrong, the company that made it is always legally liable in the UK.',
-    answer: false,
-    explanation: 'UK law on AI liability is still evolving and is not straightforward. Liability may fall on developers, deployers, or users depending on the situation. There is no blanket rule that always makes the maker liable, and many contracts limit liability. The Law Commission has been examining how existing laws apply to AI.',
-    topic: 'UK regulation',
-  },
-  {
-    id: 's14',
-    text: 'Neural networks are loosely inspired by how the human brain works.',
-    answer: true,
-    explanation: 'Neural networks were originally inspired by biological neurons — cells in the brain that pass signals to each other. Artificial neural networks use layers of mathematical "nodes" that activate or suppress signals, loosely mimicking this structure. However, they are vastly simpler than real brains.',
+    id: 15,
+    statement: "The NHS has the legal right to share all patient data with AI companies for research purposes without requiring patient consent.",
+    isTrue: false,
+    explanation: "False. The NHS cannot share patient data with commercial AI companies without a lawful basis, which typically requires either patient consent, a specific legal power, or a public interest justification reviewed by an ethics committee. The Royal Free / DeepMind case (2016) was found by the ICO to have breached data protection law precisely because 1.6 million patients' data was shared without proper consent or legal basis. Patients can also opt out of research uses of their data.",
     topic: 'Training data',
   },
-  {
-    id: 's15',
-    text: 'An AI that beats humans at chess must also be better than humans at other reasoning tasks.',
-    answer: false,
-    explanation: 'This is a common misconception. Chess-playing AI like Deep Blue or Stockfish are "narrow AI" — they are exceptional at chess but cannot do anything else. Beating humans at one task does not transfer to general intelligence or other reasoning abilities.',
-    topic: 'AI capabilities',
-  },
 ]
-
-type GameState = 'playing' | 'finished'
 
 export function TrueOrFalse() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answered, setAnswered] = useState<boolean | null>(null)
+  const [userAnswer, setUserAnswer] = useState<boolean | null>(null)
   const [score, setScore] = useState(0)
-  const [gameState, setGameState] = useState<GameState>('playing')
-  const [results, setResults] = useState<Array<{ correct: boolean; statement: Statement }>>([])
+  const [completed, setCompleted] = useState(false)
+  const [results, setResults] = useState<Array<{ correct: boolean; statement: string }>>([])
 
-  const statement = STATEMENTS[currentIndex]
+  const current = STATEMENTS[currentIndex]
   const total = STATEMENTS.length
-  const isLast = currentIndex === total - 1
 
-  function handleAnswer(userAnswer: boolean) {
+  function handleAnswer(answer: boolean) {
     if (answered !== null) return
-    const correct = userAnswer === statement.answer
-    setAnswered(userAnswer)
-    if (correct) setScore((s) => s + 1)
-    setResults((prev) => [...prev, { correct, statement }])
+    const correct = answer === current.isTrue
+    setUserAnswer(answer)
+    setAnswered(answer)
+    if (correct) setScore(s => s + 1)
+    setResults(r => [...r, { correct, statement: current.statement }])
   }
 
   function handleNext() {
-    if (isLast) {
-      setGameState('finished')
-    } else {
-      setCurrentIndex((i) => i + 1)
+    if (currentIndex < total - 1) {
+      setCurrentIndex(i => i + 1)
       setAnswered(null)
+      setUserAnswer(null)
+    } else {
+      setCompleted(true)
     }
   }
 
   function handleRestart() {
     setCurrentIndex(0)
     setAnswered(null)
+    setUserAnswer(null)
     setScore(0)
-    setGameState('playing')
+    setCompleted(false)
     setResults([])
   }
 
-  if (gameState === 'finished') {
-    const pct = Math.round((score / total) * 100)
-    let verdict: string
-    let verdictColour: string
-    if (pct >= 80) {
-      verdict = 'Excellent! You really know your AI facts.'
-      verdictColour = 'text-green-700 dark:text-green-400'
-    } else if (pct >= 60) {
-      verdict = 'Good effort! A few things to look up.'
-      verdictColour = 'text-blue-700 dark:text-blue-400'
-    } else {
-      verdict = 'Keep exploring — there is a lot to learn about AI!'
-      verdictColour = 'text-orange-600 dark:text-orange-400'
-    }
+  if (completed) {
+    const percent = Math.round((score / total) * 100)
+    const grade =
+      percent >= 90 ? 'Outstanding' :
+      percent >= 75 ? 'Excellent' :
+      percent >= 60 ? 'Good' :
+      percent >= 40 ? 'Not bad' :
+      'Keep learning'
 
     return (
-      <div className="max-w-2xl mx-auto px-4 py-10 space-y-8">
-        <div className="text-center space-y-3">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Results</h1>
-          <p className="text-5xl font-extrabold text-blue-600 dark:text-blue-400">{score} / {total}</p>
-          <p className={`text-lg font-semibold ${verdictColour}`}>{verdict}</p>
-        </div>
-
-        <div className="space-y-4">
-          {results.map(({ correct, statement: s }, i) => (
-            <div
-              key={s.id}
-              className={`rounded-2xl border p-4 space-y-2 ${
-                correct
-                  ? 'border-green-300 bg-green-50 dark:bg-green-900/20 dark:border-green-700'
-                  : 'border-red-300 bg-red-50 dark:bg-red-900/20 dark:border-red-700'
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                <span className={`mt-0.5 text-lg font-bold ${correct ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                  {correct ? '\u2713' : '\u2717'}
-                </span>
-                <div className="space-y-1">
-                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-                    {i + 1}. {s.text}
-                  </p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
-                    <span className="font-medium">Answer:</span> {s.answer ? 'True' : 'False'} &mdash; {s.explanation}
-                  </p>
-                </div>
+      <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white px-4 py-10 flex flex-col items-center">
+        <div className="max-w-xl w-full space-y-6">
+          <div className="text-center space-y-4">
+            <div className="text-6xl">&#x1F3AF;</div>
+            <h1 className="text-3xl font-bold text-gray-800">Quiz complete!</h1>
+            <div className="bg-white rounded-2xl shadow-sm border border-violet-100 p-6 space-y-4">
+              <p className="text-5xl font-bold text-violet-600">{score}/{total}</p>
+              <p className="text-xl font-semibold text-gray-700">{grade}</p>
+              <p className="text-gray-500 text-sm">{percent}% correct</p>
+              <div className="w-full bg-gray-100 rounded-full h-3">
+                <div
+                  className="bg-violet-500 h-3 rounded-full transition-all duration-500"
+                  style={{ width: `${percent}%` }}
+                />
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-2">
-          <button
-            onClick={handleRestart}
-            className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
-          >
-            Play again
-          </button>
-          <Link
-            to="/"
-            className="flex-1 py-3 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold text-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            Back to home
-          </Link>
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-3">
+            <h2 className="font-bold text-gray-800 text-lg">Your answers</h2>
+            {results.map((r, i) => (
+              <div key={i} className={`flex items-start gap-3 p-3 rounded-xl ${r.correct ? 'bg-green-50' : 'bg-red-50'}`}>
+                <span className="text-lg flex-shrink-0 mt-0.5">{r.correct ? '✅' : '❌'}</span>
+                <p className="text-sm text-gray-700 leading-relaxed">{r.statement}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={handleRestart}
+              className="flex-1 bg-violet-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-violet-700 transition-colors"
+            >
+              Play again
+            </button>
+            <Link
+              to="/"
+              className="flex-1 text-center bg-white border border-slate-200 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-slate-50 transition-colors"
+            >
+              Back to home
+            </Link>
+          </div>
         </div>
       </div>
     )
   }
 
-  const isCorrect = answered === statement.answer
-  const progressPct = Math.round(((currentIndex) / total) * 100)
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-10 space-y-6">
-      {/* Header */}
-      <div className="space-y-1">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">True or False?</h1>
-          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-            Score: {score} / {currentIndex}
-          </span>
-        </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Question {currentIndex + 1} of {total} &middot; {statement.topic}
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white px-4 py-10 flex flex-col items-center">
+      <div className="max-w-xl w-full space-y-6">
 
-      {/* Progress bar */}
-      <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-        <div
-          className="h-2 bg-blue-500 rounded-full transition-all duration-500"
-          style={{ width: `${progressPct}%` }}
-        />
-      </div>
-
-      {/* Statement card */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 space-y-6">
-        <p className="text-lg font-medium text-gray-800 dark:text-gray-100 leading-snug">
-          {statement.text}
-        </p>
-
-        {/* True / False buttons */}
-        <div className="grid grid-cols-2 gap-4">
-          {([true, false] as boolean[]).map((val) => {
-            let classes =
-              'py-5 rounded-2xl text-xl font-extrabold tracking-wide transition-all border-2 '
-
-            if (answered === null) {
-              classes +=
-                val
-                  ? 'border-green-300 bg-green-50 dark:bg-green-900/20 dark:border-green-700 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/40 cursor-pointer'
-                  : 'border-red-300 bg-red-50 dark:bg-red-900/20 dark:border-red-700 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/40 cursor-pointer'
-            } else if (val === statement.answer) {
-              classes += 'border-green-500 bg-green-100 dark:bg-green-900/40 dark:border-green-500 text-green-800 dark:text-green-200 cursor-default'
-            } else if (val === answered && answered !== statement.answer) {
-              classes += 'border-red-500 bg-red-100 dark:bg-red-900/40 dark:border-red-500 text-red-800 dark:text-red-200 cursor-default'
-            } else {
-              classes +=
-                'border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-default opacity-60'
-            }
-
-            return (
-              <button
-                key={String(val)}
-                className={classes}
-                onClick={() => handleAnswer(val)}
-                disabled={answered !== null}
-              >
-                {val ? 'TRUE' : 'FALSE'}
-              </button>
-            )
-          })}
+        <div className="text-center space-y-3">
+          <div className="text-5xl">&#x2753;</div>
+          <h1 className="text-3xl font-bold text-gray-800">True or False</h1>
+          <p className="text-gray-500 text-sm">15 statements about AI &mdash; you decide</p>
         </div>
 
-        {/* Feedback */}
-        {answered !== null && (
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <span>Question {currentIndex + 1} of {total}</span>
+          <span className="font-semibold text-violet-600">Score: {score}</span>
+        </div>
+
+        <div className="w-full bg-gray-100 rounded-full h-2">
           <div
-            className={`rounded-xl p-4 space-y-1 ${
-              isCorrect
-                ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700'
-                : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700'
-            }`}
-          >
-            <p className={`font-semibold text-sm ${isCorrect ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
-              {isCorrect ? 'Correct!' : `Not quite — the answer is ${statement.answer ? 'True' : 'False'}.`}
-            </p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">{statement.explanation}</p>
+            className="bg-violet-400 h-2 rounded-full transition-all duration-300"
+            style={{ width: `${((currentIndex) / total) * 100}%` }}
+          />
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-violet-100 p-6 space-y-4">
+          <div className="inline-block bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full">
+            {current.topic}
+          </div>
+          <p className="text-xl font-semibold text-gray-800 leading-relaxed">
+            {current.statement}
+          </p>
+        </div>
+
+        {answered === null ? (
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              onClick={() => handleAnswer(true)}
+              className="bg-green-500 hover:bg-green-600 text-white text-2xl font-bold py-8 rounded-2xl transition-all duration-150 shadow-sm hover:shadow-md active:scale-95"
+            >
+              TRUE
+            </button>
+            <button
+              onClick={() => handleAnswer(false)}
+              className="bg-red-500 hover:bg-red-600 text-white text-2xl font-bold py-8 rounded-2xl transition-all duration-150 shadow-sm hover:shadow-md active:scale-95"
+            >
+              FALSE
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <div className={`rounded-2xl p-5 space-y-3 ${userAnswer === current.isTrue ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">{userAnswer === current.isTrue ? '✅' : '❌'}</span>
+                <div>
+                  <p className={`font-bold text-lg ${userAnswer === current.isTrue ? 'text-green-700' : 'text-red-700'}`}>
+                    {userAnswer === current.isTrue ? 'Correct!' : 'Not quite.'}
+                  </p>
+                  <p className={`text-sm font-semibold ${userAnswer === current.isTrue ? 'text-green-600' : 'text-red-600'}`}>
+                    This statement is <strong>{current.isTrue ? 'TRUE' : 'FALSE'}</strong>
+                  </p>
+                </div>
+              </div>
+              <p className={`text-sm leading-relaxed ${userAnswer === current.isTrue ? 'text-green-800' : 'text-red-800'}`}>
+                {current.explanation}
+              </p>
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-4 rounded-2xl transition-colors"
+            >
+              {currentIndex < total - 1 ? 'Next statement' : 'See results'}
+            </button>
           </div>
         )}
-      </div>
-
-      {/* Next button */}
-      {answered !== null && (
-        <button
-          onClick={handleNext}
-          className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
-        >
-          {isLast ? 'See my results' : 'Next question'}
-        </button>
-      )}
-
-      {/* Back link */}
-      <div className="text-center">
-        <Link to="/" className="text-sm text-gray-500 dark:text-gray-400 hover:underline">
-          Back to home
-        </Link>
       </div>
     </div>
   )

@@ -2490,33 +2490,13 @@ export function HomePage() {
               </div>
             </Link>
             <Link
-              to="/quiz/guess-the-ai"
-              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
-            >
-              <span className="text-2xl flex-shrink-0">&#x1F575;&#xFE0F;</span>
-              <div>
-                <p className="font-semibold text-indigo-800 text-sm">Guess the AI</p>
-                <p className="text-indigo-600 text-xs">10 rounds identifying AI systems from descriptions.</p>
-              </div>
-            </Link>
-            <Link
-              to="/quiz/sort-it-out"
-              className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 hover:bg-emerald-100 transition-colors flex items-center gap-3"
-            >
-              <span className="text-2xl flex-shrink-0">&#x1F9E9;</span>
-              <div>
-                <p className="font-semibold text-emerald-800 text-sm">Sort It Out</p>
-                <p className="text-emerald-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
-              </div>
-            </Link>
-            <Link
               to="/quiz/true-or-false"
-              className="bg-teal-50 border border-teal-200 rounded-xl p-4 hover:bg-teal-100 transition-colors flex items-center gap-3"
+              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
             >
-              <span className="text-2xl flex-shrink-0">&#x2714;&#xFE0F;</span>
+              <span className="text-2xl flex-shrink-0">&#x2753;</span>
               <div>
-                <p className="font-semibold text-teal-800 text-sm">True or False?</p>
-                <p className="text-teal-600 text-xs">15 AI statements — decide what is true and what is a myth.</p>
+                <p className="font-semibold text-violet-800 text-sm">True or false</p>
+                <p className="text-violet-600 text-xs">15 AI statements — test your knowledge of facts, myths, and regulation.</p>
               </div>
             </Link>
             <Link
