@@ -1443,6 +1443,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'purple',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-the-benefits-system',
+        title: 'AI and the benefits system — DWP, Universal Credit, fraud detection, and algorithmic decisions',
+        description: "How AI is being used inside the UK benefits system to detect fraud, assess claims, and make decisions that affect some of the most vulnerable people in society.",
+        readingTime: '8 min',
+        icon: '🏛️',
+        to: '/learn/ai-and-the-benefits-system',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-pregnancy-and-baby-care',
+        title: 'AI and pregnancy and baby care — ultrasound AI, baby monitors, smart sleep trackers, and pregnancy apps',
+        description: 'How AI is entering maternity care — from AI that spots complications in baby scans to smart monitors that track breathing and sleep in newborns.',
+        readingTime: '6 min',
+        icon: '👶',
+        to: '/learn/ai-and-pregnancy-and-baby-care',
+        color: 'pink',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -2507,6 +2527,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-indigo-800 text-sm">AI timeline game</p>
                 <p className="text-indigo-600 text-xs">Arrange 10 AI milestones in the correct order.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/jargon-match"
+              className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 hover:bg-emerald-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4AC;</span>
+              <div>
+                <p className="font-semibold text-emerald-800 text-sm">Jargon match</p>
+                <p className="text-emerald-600 text-xs">Match 10 AI terms to their plain-English definitions.</p>
               </div>
             </Link>
           </div>

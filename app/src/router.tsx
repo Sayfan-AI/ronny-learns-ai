@@ -189,6 +189,9 @@ const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => (
 // Milestone 68 pages
 const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
 const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
+const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
+const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
+const JargonMatch = lazy(() => import('./pages/JargonMatch').then(m => ({ default: m.JargonMatch })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1146,6 +1149,10 @@ const aiTimelineRoute = createRoute({
   component: withSuspense(AITimeline),
 })
 
+const aiAndBenefitsSystemRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-the-benefits-system', component: withSuspense(AIAndBenefitsSystem) })
+const aiAndPregnancyAndBabyCareRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-pregnancy-and-baby-care', component: withSuspense(AIAndPregnancyAndBabyCare) })
+const jargonMatchRoute = createRoute({ getParentRoute: () => rootRoute, path: '/quiz/jargon-match', component: withSuspense(JargonMatch) })
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1328,6 +1335,9 @@ const routeTree = rootRoute.addChildren([
   // Milestone 68
   aiAndContentModerationRoute,
   aiTimelineRoute,
+  aiAndBenefitsSystemRoute,
+  aiAndPregnancyAndBabyCareRoute,
+  jargonMatchRoute,
 ])
 
 const hashHistory = createHashHistory()
