@@ -24,6 +24,7 @@ const NAV_LINKS = [
   { to: '/learning-recap', label: 'Learning recap' },
   { to: '/quiz-review', label: 'Quiz review' },
   { to: '/quiz/ai-facts', label: 'AI facts quiz' },
+  { to: '/streak', label: 'My streak' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },
