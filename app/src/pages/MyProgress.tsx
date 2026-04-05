@@ -114,6 +114,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-the-home',             title: 'AI and the home',                     to: '/learn/ai-and-the-home' },
   { id: 'ai-and-immigration',          title: 'AI and immigration',                  to: '/learn/ai-and-immigration' },
   { id: 'ai-and-dentistry',            title: 'AI and dentistry',                    to: '/learn/ai-and-dentistry' },
+  { id: 'ai-and-nhs-waiting-lists',    title: 'AI and NHS waiting lists',            to: '/learn/ai-and-nhs-waiting-lists' },
+  { id: 'ai-and-social-media-algorithms', title: 'AI and social media algorithms',  to: '/learn/ai-and-social-media-algorithms' },
 ]
 
 interface QuizScoreEntry {
@@ -1451,6 +1453,57 @@ export function MyProgress() {
             )}
           </div>
         </div>
+
+        {/* Achievement certificate — shown when 10+ lessons completed */}
+        {quizScoreData.attempted.length >= 10 ? (
+          <div className="bg-gradient-to-b from-amber-50 to-white rounded-2xl shadow-md border-2 border-amber-200 p-6 space-y-4 print:shadow-none">
+            <div className="text-center space-y-1">
+              <div className="flex justify-center gap-2 text-2xl">
+                <span>&#x2B50;</span>
+                <span>&#x1F3C6;</span>
+                <span>&#x2B50;</span>
+              </div>
+              <p className="text-xs font-bold text-amber-600 uppercase tracking-widest">Certificate of Achievement</p>
+            </div>
+            <div className="text-center space-y-2">
+              <p className="text-gray-500">This certifies that</p>
+              <p className="text-3xl font-extrabold text-gray-800">{displayName}</p>
+              <p className="text-gray-500">has completed</p>
+              <p className="text-2xl font-bold text-amber-700">{quizScoreData.attempted.length} lessons</p>
+              <p className="text-gray-500 text-sm">on Ronny Learns AI</p>
+              {quizScoreData.attempted.length >= 100 && (
+                <p className="text-amber-700 font-semibold text-sm">&#x1F31F; Outstanding — you have mastered over 100 lessons!</p>
+              )}
+              {quizScoreData.attempted.length >= 50 && quizScoreData.attempted.length < 100 && (
+                <p className="text-amber-700 font-semibold text-sm">&#x1F4AA; Exceptional — halfway to 100 lessons!</p>
+              )}
+              {quizScoreData.attempted.length >= 25 && quizScoreData.attempted.length < 50 && (
+                <p className="text-amber-700 font-semibold text-sm">&#x1F680; Impressive progress — keep going!</p>
+              )}
+              {quizScoreData.attempted.length >= 10 && quizScoreData.attempted.length < 25 && (
+                <p className="text-amber-700 font-semibold text-sm">&#x1F389; Great start — you have built a solid foundation!</p>
+              )}
+            </div>
+            <div className="flex justify-between items-end pt-2 border-t border-amber-100 text-xs text-gray-400">
+              <span>Date: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              <span>Issued by: Genesis AI System</span>
+            </div>
+            <div className="flex justify-center print:hidden">
+              <button
+                onClick={() => window.print()}
+                className="px-5 py-2 rounded-xl border border-amber-300 text-amber-700 font-semibold text-sm hover:bg-amber-50 transition-colors"
+              >
+                &#x1F5A8; Print or save as PDF
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-center space-y-1">
+            <span className="text-2xl">&#x1F3C6;</span>
+            <p className="text-amber-800 font-semibold text-sm">Complete {10 - quizScoreData.attempted.length} more {10 - quizScoreData.attempted.length === 1 ? 'lesson' : 'lessons'} to unlock your certificate</p>
+            <p className="text-amber-600 text-xs">{quizScoreData.attempted.length} of 10 lessons needed</p>
+          </div>
+        )}
 
         {/* Export progress */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">

@@ -372,6 +372,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Beginner',
       },
       {
+        id: 'ai-and-social-media-algorithms',
+        title: 'AI and social media algorithms — how feeds work, filter bubbles, mental health, and taking back control',
+        description: 'How recommendation algorithms decide what you see, why outrage gets amplified, what filter bubbles really are, and practical steps to take back control of your feed.',
+        readingTime: '7 min',
+        icon: '&#x1F4F1;',
+        to: '/learn/ai-and-social-media-algorithms',
+        color: 'indigo',
+        difficulty: 'Beginner',
+      },
+      {
         id: 'ai-and-copyright',
         title: 'AI and the law',
         description: 'Copyright, liability, and who is responsible — what happens when AI creates or gets something wrong.',
@@ -875,6 +885,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-the-nhs',
         color: 'blue',
         difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-nhs-waiting-lists',
+        title: 'AI and NHS waiting lists — triage AI, no-show prediction, cancellation matching, and healthcare fairness',
+        description: 'How AI is helping manage 7 million NHS waiting list patients — prioritising urgency, predicting no-shows, and filling cancellation slots — plus the ethical questions about algorithmic healthcare.',
+        readingTime: '6 min',
+        icon: '&#x1F3E5;',
+        to: '/learn/ai-and-nhs-waiting-lists',
+        color: 'blue',
+        difficulty: 'Intermediate',
       },
       {
         id: 'ai-and-hiring',
