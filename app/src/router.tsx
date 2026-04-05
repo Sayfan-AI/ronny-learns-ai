@@ -185,6 +185,13 @@ const AIAndEducationTechnology = lazy(() => import('./pages/AIAndEducationTechno
 const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
 // Milestone 67 pages
 const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
+// Milestone 69 pages
+const AIAndCybercrime = lazy(() => import('./pages/AIAndCybercrime').then(m => ({ default: m.AIAndCybercrime })))
+const AIAndAutonomousVehicles = lazy(() => import('./pages/AIAndAutonomousVehicles').then(m => ({ default: m.AIAndAutonomousVehicles })))
+const AIAndFinancialAdvice = lazy(() => import('./pages/AIAndFinancialAdvice').then(m => ({ default: m.AIAndFinancialAdvice })))
+const AIAndShopping = lazy(() => import('./pages/AIAndShopping').then(m => ({ default: m.AIAndShopping })))
+const AIAndTranslation = lazy(() => import('./pages/AIAndTranslation').then(m => ({ default: m.AIAndTranslation })))
+const AIAndGigEconomy = lazy(() => import('./pages/AIAndGigEconomy').then(m => ({ default: m.AIAndGigEconomy })))
 // Milestone 68 pages
 const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
 const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
@@ -1130,6 +1137,14 @@ const trueOrFalseQuizRoute = createRoute({
   component: withSuspense(TrueOrFalseQuiz),
 })
 
+// Milestone 69 route definitions
+const aiAndCybercrimeRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-cybercrime', component: withSuspense(AIAndCybercrime) })
+const aiAndAutonomousVehiclesRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-autonomous-vehicles', component: withSuspense(AIAndAutonomousVehicles) })
+const aiAndFinancialAdviceRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-financial-advice', component: withSuspense(AIAndFinancialAdvice) })
+const aiAndShoppingRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-shopping', component: withSuspense(AIAndShopping) })
+const aiAndTranslationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-translation', component: withSuspense(AIAndTranslation) })
+const aiAndGigEconomyRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-gig-economy', component: withSuspense(AIAndGigEconomy) })
+
 const aiAndBenefitsSystemRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-the-benefits-system',
@@ -1338,6 +1353,13 @@ const routeTree = rootRoute.addChildren([
   sortItOutRoute,
   // Milestone 67
   trueOrFalseQuizRoute,
+  // Milestone 69
+  aiAndCybercrimeRoute,
+  aiAndAutonomousVehiclesRoute,
+  aiAndFinancialAdviceRoute,
+  aiAndShoppingRoute,
+  aiAndTranslationRoute,
+  aiAndGigEconomyRoute,
   // Milestone 68
   aiAndBenefitsSystemRoute,
   aiAndPregnancyAndBabyCareRoute,
