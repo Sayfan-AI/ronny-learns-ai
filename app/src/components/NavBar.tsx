@@ -40,10 +40,10 @@ export function NavBar() {
   }
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
         {/* Logo / brand */}
-        <Link to="/" className="font-bold text-blue-700 text-lg tracking-tight hover:text-blue-900 transition-colors flex-shrink-0">
+        <Link to="/" className="font-bold text-blue-700 dark:text-blue-400 text-lg tracking-tight hover:text-blue-900 dark:hover:text-blue-300 transition-colors flex-shrink-0">
           Ronny Learns AI
         </Link>
 
@@ -51,7 +51,7 @@ export function NavBar() {
         {profile && (
           <Link
             to="/profile"
-            className="hidden md:flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            className="hidden md:flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
             title="Edit your profile"
           >
             <span className="text-xl">{profile.avatar}</span>
@@ -61,7 +61,7 @@ export function NavBar() {
         {!profile && (
           <Link
             to="/profile"
-            className="hidden md:flex items-center gap-1 text-xs text-blue-500 hover:text-blue-700 transition-colors font-medium"
+            className="hidden md:flex items-center gap-1 text-xs text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
           >
             Set your name &rarr;
           </Link>
@@ -81,8 +81,8 @@ export function NavBar() {
               to={link.to}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive(link.to)
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               {link.label}
@@ -94,7 +94,7 @@ export function NavBar() {
         <button
           onClick={toggle}
           aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-          className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
           {dark ? (
@@ -131,7 +131,7 @@ export function NavBar() {
 
       {/* Mobile dropdown — all links */}
       {open && (
-        <div className="md:hidden border-t border-gray-100 bg-white px-4 pb-4 space-y-1">
+        <div className="md:hidden border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 pb-4 space-y-1">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.to}
@@ -139,8 +139,8 @@ export function NavBar() {
               onClick={() => setOpen(false)}
               className={`block px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-[44px] flex items-center ${
                 isActive(link.to)
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-600 hover:bg-gray-100'
+                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
             >
               {link.label}
