@@ -1225,16 +1225,6 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-space-exploration',
-        title: 'AI and space exploration',
-        description: 'How AI helps NASA and ESA analyse telescope data, navigate rovers, detect exoplanets, and manage the complexity of deep space missions.',
-        readingTime: '6 min',
-        icon: '&#x1F680;',
-        to: '/learn/ai-and-space-exploration',
-        color: 'indigo',
-        difficulty: 'Beginner',
-      },
-      {
         id: 'ai-and-ageing-and-elder-care',
         title: 'AI and ageing and elder care',
         description: 'AI hearing aids, medication reminders, companion robots for loneliness, and the ethics of AI surveillance for older people living independently.',
