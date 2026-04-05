@@ -1113,6 +1113,36 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-education-technology',
+        title: 'AI and education technology — AI tutors, adaptive learning, personalised feedback, and the UK EdTech landscape',
+        description: 'How AI is changing the classroom — from platforms that adapt to each student in real time to the debate about ChatGPT and academic integrity.',
+        readingTime: '7 min',
+        icon: '💻',
+        to: '/learn/ai-and-education-technology',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-personal-assistants',
+        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, how they work, and privacy concerns',
+        description: 'The AI voice assistants already in your home and phone — how they understand you, what data they collect, and how the new generation of conversational AI compares.',
+        readingTime: '6 min',
+        icon: '🎙️',
+        to: '/learn/ai-and-personal-assistants',
+        color: 'violet',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-legal-system',
+        title: 'AI and the legal system — contract review, legal research, predictive sentencing, and access to justice',
+        description: 'AI is transforming law — speeding up research, reviewing contracts in seconds, and raising serious questions about bias in criminal justice.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/learn/ai-and-legal-system',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -2130,6 +2160,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/sort-it-out"
+              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F500;</span>
+              <div>
+                <p className="font-semibold text-indigo-800 text-sm">Sort it out</p>
+                <p className="text-indigo-600 text-xs">Drag AI concepts into the right categories across 3 rounds.</p>
               </div>
             </Link>
           </div>
