@@ -173,6 +173,18 @@ const RELATED: Record<string, string[]> = {
   'ai-and-news':                 ['ai-and-misinformation', 'ai-and-journalism', 'ai-and-social-media'],
   'ai-and-smart-cities':         ['ai-and-elections', 'ai-and-transport', 'ai-and-energy'],
   'ai-and-charities':            ['ai-and-hiring', 'ai-bias', 'ai-and-privacy'],
+  'ai-and-volunteering':         ['ai-and-charities', 'ai-and-social-media', 'ai-and-jobs'],
+  'ai-and-adult-education':      ['ai-and-education', 'ai-and-creativity', 'ai-and-jobs'],
+  'ai-and-the-arts':             ['ai-and-art', 'ai-and-creativity', 'ai-and-copyright'],
+  'ai-and-architecture':         ['ai-and-smart-cities', 'ai-and-smart-homes', 'ai-and-environment'],
+  'ai-and-advertising':          ['ai-and-privacy', 'ai-and-social-media', 'ai-and-misinformation'],
+  'ai-and-emergency-services':   ['ai-in-healthcare', 'ai-and-transport', 'ai-and-smart-cities'],
+  'ai-and-virtual-reality':      ['ai-and-gaming', 'ai-and-creativity', 'ai-in-your-apps'],
+  'ai-and-supply-chains':        ['ai-and-manufacturing', 'ai-and-robotics', 'ai-and-retail'],
+  'ai-and-film-and-tv':          ['ai-and-creativity', 'ai-and-art', 'ai-and-copyright'],
+  'ai-and-water':                ['ai-and-climate-change', 'ai-and-environment', 'ai-and-scientific-research'],
+  'ai-and-sleep':                ['ai-and-fitness-apps', 'ai-and-mental-health-apps', 'ai-and-privacy'],
+  'ai-and-the-ocean':            ['ai-and-climate-change', 'ai-and-water', 'ai-and-scientific-research'],
 }
 
 const DIFFICULTY_COLOURS: Record<string, string> = {

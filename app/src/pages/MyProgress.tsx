@@ -12,6 +12,7 @@ import { countHelpfulLessons } from '../components/LessonFeedback'
 import { loadWeeklyGoal, saveWeeklyGoal, type WeeklyGoalData } from '../hooks/useWeeklyGoal'
 import { StreakCalendar } from '../components/StreakCalendar'
 import { useLearningCalendar } from '../hooks/useLearningCalendar'
+import { LearningStatsCard } from '../components/LearningStatsCard'
 
 // Lessons that have quizzes (ordered as they appear in the curriculum)
 const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
@@ -87,6 +88,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-banking',              title: 'AI and banking',                      to: '/learn/ai-and-banking' },
   { id: 'ai-and-manufacturing',        title: 'AI and manufacturing',                to: '/learn/ai-and-manufacturing' },
   { id: 'ai-and-drug-discovery',       title: 'AI and drug discovery',               to: '/learn/ai-and-drug-discovery' },
+  { id: 'ai-and-sleep',                title: 'AI and sleep',                        to: '/learn/ai-and-sleep' },
+  { id: 'ai-and-the-ocean',            title: 'AI and the ocean',                    to: '/learn/ai-and-the-ocean' },
 ]
 
 interface QuizScoreEntry {
@@ -314,6 +317,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-virtual-reality',    icon: '🥽', title: 'AI and virtual reality',                          to: '/learn/ai-and-virtual-reality' },
       { id: 'ai-and-film-and-tv',        icon: '🎬', title: 'AI and film and TV',                               to: '/learn/ai-and-film-and-tv' },
       { id: 'ai-and-water',              icon: '💧', title: 'AI and water',                                     to: '/learn/ai-and-water' },
+      { id: 'ai-and-sleep',              icon: '😴', title: 'AI and sleep',                                     to: '/learn/ai-and-sleep' },
+      { id: 'ai-and-the-ocean',          icon: '🌊', title: 'AI and the ocean',                                 to: '/learn/ai-and-the-ocean' },
     ],
   },
   {
@@ -745,6 +750,9 @@ export function MyProgress() {
             </>
           )}
         </div>
+
+        {/* Learning stats card */}
+        <LearningStatsCard />
 
         {/* Achievements summary + name change */}
         <div className="flex flex-col sm:flex-row gap-3">
