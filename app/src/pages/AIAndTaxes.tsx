@@ -105,7 +105,7 @@ export function AIAndTaxes() {
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
               <span>About 6 min read</span>
             </div>
-            <DifficultyBadge difficulty="Intermediate" />
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-taxes" />
           <ShareButton lessonTitle={LESSON_TITLE} />
