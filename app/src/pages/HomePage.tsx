@@ -16,6 +16,7 @@ import { InterestQuiz } from '../components/InterestQuiz'
 import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
+import { QuizOfTheDay } from '../components/QuizOfTheDay'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1092,6 +1093,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-cooking',
+        title: 'AI and cooking — smart kitchen gadgets, recipe apps, food scanning, and AI in your kitchen',
+        description: 'From AI recipe apps that know what is in your fridge to smart ovens that cook automatically — how AI is changing the way we plan, prepare, and enjoy food.',
+        readingTime: '6 min',
+        icon: '🍳',
+        to: '/learn/ai-and-cooking',
+        color: 'orange',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-genetics',
+        title: 'AI and genetics — DNA testing kits, personalised medicine, gene editing, and ethical questions',
+        description: 'How AI analyses your DNA, powers personalised cancer treatments, and accelerates gene editing — plus the profound ethical questions these technologies raise.',
+        readingTime: '7 min',
+        icon: '🧬',
+        to: '/learn/ai-and-genetics',
+        color: 'teal',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1706,6 +1727,9 @@ export function HomePage() {
 
         {/* AI facts ticker */}
         <AIFactsTicker facts={AI_FACTS} />
+
+        {/* Quiz of the day */}
+        {visited.size >= 1 && <QuizOfTheDay />}
 
         {/* Test yourself — mixed-topic quiz from completed lessons */}
         <TestYourself />

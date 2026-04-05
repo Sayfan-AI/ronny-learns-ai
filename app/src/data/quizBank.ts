@@ -260,4 +260,32 @@ export const QUIZ_BANK: BankedQuestion[] = [
     correctIndex: 1,
     explanation: "Modern spam and phishing filters use machine learning to analyse hundreds of signals simultaneously: sender IP reputation, domain age, email header anomalies, the language and urgency of the message, and the destination of any links. This multi-signal approach catches over 99.9% of spam.",
   },
+  // --- AI and cooking ---
+  {
+    lessonId: 'ai-and-cooking',
+    lessonTitle: 'AI and cooking',
+    question: 'What technology do food scanning and calorie tracking apps mainly rely on to identify food from a photo?',
+    options: [
+      'Barcode scanning linked to manufacturer nutritional data',
+      'Computer vision AI trained on millions of food images, combined with nutritional databases',
+      'Infrared sensors built into smartphones that analyse the molecular composition of food',
+      'A manual entry system where users type in ingredients and portion sizes',
+    ],
+    correctIndex: 1,
+    explanation: 'Apps like Lose It! and Calorie Mama use computer vision — the same technology behind facial recognition — trained on enormous datasets of food photos. Point your phone at a plate and the AI identifies the dish, estimates the portion size, and looks up the approximate nutritional content.',
+  },
+  // --- AI and genetics ---
+  {
+    lessonId: 'ai-and-genetics',
+    lessonTitle: 'AI and genetics',
+    question: 'What is a "polygenic risk score" in the context of AI and genetics?',
+    options: [
+      'A legal score that ranks how many genetic patents a company holds',
+      'An AI technique that combines hundreds of small genetic variants to estimate an individual\'s statistical risk of developing a condition like heart disease',
+      'A blood test that scores how quickly your genes are ageing',
+      'A scoring system that ranks the importance of individual genes in controlling a specific trait',
+    ],
+    correctIndex: 1,
+    explanation: 'Many common diseases are not caused by a single gene but by the combined effect of hundreds of small genetic variants. Polygenic risk scores aggregate all these small effects using AI trained on data from hundreds of thousands of people, placing each person on a risk spectrum for conditions like heart disease or type 2 diabetes.',
+  },
 ]
