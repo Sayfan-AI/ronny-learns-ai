@@ -148,8 +148,10 @@ const AIAndTaxesAndFinancialAdmin = lazy(() => import('./pages/AIAndTaxesAndFina
 const AIAndRealEstate = lazy(() => import('./pages/AIAndRealEstate').then(m => ({ default: m.AIAndRealEstate })))
 const AIAndSocialCare = lazy(() => import('./pages/AIAndSocialCare').then(m => ({ default: m.AIAndSocialCare })))
 const AIInTheNews = lazy(() => import('./pages/AIInTheNews').then(m => ({ default: m.AIInTheNews })))
-const AIAndDentistry = lazy(() => import('./pages/AIAndDentistry').then(m => ({ default: m.AIAndDentistry })))
+const AIAndShopping = lazy(() => import('./pages/AIAndShopping').then(m => ({ default: m.AIAndShopping })))
+const AIAndTheHome = lazy(() => import('./pages/AIAndTheHome').then(m => ({ default: m.AIAndTheHome })))
 const AIAndImmigration = lazy(() => import('./pages/AIAndImmigration').then(m => ({ default: m.AIAndImmigration })))
+const AIAndDentistry = lazy(() => import('./pages/AIAndDentistry').then(m => ({ default: m.AIAndDentistry })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1037,16 +1039,28 @@ const aiInTheNewsRoute = createRoute({
   component: withSuspense(AIInTheNews),
 })
 
-const aiAndDentistryRoute = createRoute({
+const aiAndShoppingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-dentistry',
-  component: withSuspense(AIAndDentistry),
+  path: '/learn/ai-and-shopping',
+  component: withSuspense(AIAndShopping),
+})
+
+const aiAndTheHomeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-the-home',
+  component: withSuspense(AIAndTheHome),
 })
 
 const aiAndImmigrationRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-immigration',
   component: withSuspense(AIAndImmigration),
+})
+
+const aiAndDentistryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-dentistry',
+  component: withSuspense(AIAndDentistry),
 })
 
 const routeTree = rootRoute.addChildren([
@@ -1190,8 +1204,10 @@ const routeTree = rootRoute.addChildren([
   aiAndRealEstateRoute,
   aiAndSocialCareRoute,
   aiInTheNewsRoute,
-  aiAndDentistryRoute,
+  aiAndShoppingRoute,
+  aiAndTheHomeRoute,
   aiAndImmigrationRoute,
+  aiAndDentistryRoute,
 ])
 
 const hashHistory = createHashHistory()

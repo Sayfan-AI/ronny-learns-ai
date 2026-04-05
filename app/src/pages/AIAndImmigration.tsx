@@ -14,78 +14,78 @@ import { KeyTakeaways } from '../components/KeyTakeaways'
 const LESSON_TITLE = 'AI and immigration'
 
 const KEY_TAKEAWAYS = [
-  'The UK Home Office uses AI to triage visa applications — sorting high-volume applications by risk and completeness so caseworkers focus on the cases that most need human attention.',
-  'Biometric border technology (eGates, facial recognition cameras, fingerprint databases) uses AI to match identities in seconds — the same technology that lets you check yourself through airport security without a border officer.',
-  'AI tools have been used to assess the credibility of asylum claims and analyse language to infer nationality — raising serious concerns about accuracy, bias, and the consequences of being wrong.',
-  'Documented research (Public Law Project, Amnesty International) has found algorithmic bias in immigration AI — systems that have treated applicants from certain countries or demographics less favourably without transparent justification.',
-  'Under UK GDPR and immigration law, individuals have rights to request human review of automated decisions — but exercising those rights is difficult and rarely communicated clearly.',
+  'The UK Home Office uses AI tools to help triage visa applications — sorting cases by risk and completeness — but a human caseworker still makes the final decision on each application.',
+  'AI-powered eGates at UK airports use facial recognition to match your face to your passport photo, making border crossing faster. The system has an error rate that disproportionately affects people with darker skin tones, which remains a known limitation.',
+  'AI tools have been used to help assess the credibility of asylum claims — including analysing accents to verify a stated country of origin. Campaigners argue these tools can be unreliable and introduce bias.',
+  'Documented cases of algorithmic bias in immigration AI have led to legal challenges. Under UK GDPR, individuals have the right to request a human review of any significant decision made partly by an automated system.',
+  'The tension between efficiency (AI processing thousands of cases quickly) and fairness (AI that may embed historic biases) is one of the most contested debates in public-sector AI today.',
 ]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How does the UK Home Office primarily use AI in visa processing?',
+    question: 'What role does AI currently play in UK visa application processing?',
     options: [
-      'AI makes the final decision on all visa applications, with no human caseworkers involved',
-      'AI triages applications by risk and completeness, prioritising which cases go to human caseworkers first',
-      'AI translates all application documents automatically and checks signatures for forgery',
-      'AI monitors visa holders in the UK to ensure they comply with the conditions of their stay',
+      'AI makes the final decision on all visa applications automatically, with no human involvement unless an appeal is lodged',
+      'AI helps triage and prioritise applications — flagging incomplete files or inconsistencies — while a human caseworker makes the final decision',
+      'AI translates documents from foreign languages but plays no role in assessing the application itself',
+      'AI only handles the online application form — once submitted, the process is entirely manual',
     ],
     correctIndex: 1,
     explanation:
-      "The Home Office processes millions of visa applications each year — student visas, work visas, family reunion visas, visitor visas. AI is used primarily as a triage and risk-scoring system: it analyses completeness of the application, flags inconsistencies between documents, cross-references against databases, and assigns a risk score that determines whether a caseworker reviews it quickly (low risk, straightforward) or more carefully (high risk or complex). The Home Office has been reluctant to publish details of exactly how these systems work, which has itself been the subject of legal challenge.",
-    hint: 'Think about sorting and prioritising rather than deciding.',
+      'The UK Home Office has used AI tools to help caseworkers manage the volume of applications. These tools sort cases, flag potential issues (such as missing documents or inconsistent information), and help prioritise workloads. However, the official position is that a human caseworker reviews each case and makes the final decision. Critics argue that in practice, caseworkers may heavily rely on AI recommendations without fully scrutinising them — a phenomenon sometimes called "automation bias".',
+    hint: 'Think about AI as a sorting assistant rather than a decision-maker.',
   },
   {
-    question: 'What are eGates at UK airports and how do they use AI?',
+    question: 'How do eGates at UK airports use AI?',
     options: [
-      'They are electronic turnstiles that count passengers and send numbers to the airline',
-      'They use facial recognition AI to compare the passenger\'s face with their passport chip, verifying identity without a border officer',
-      'They scan luggage automatically using AI to detect prohibited items',
-      'They are AI-controlled gates that open only for passengers whose flights are on time',
+      'They scan your luggage using X-ray AI to detect prohibited items, while a separate human checks your passport manually',
+      'They use facial recognition AI to compare your live face to the photo in your passport or on file, granting or flagging entry automatically',
+      'They read the chip in your passport and cross-reference it with flight booking data, using no visual AI whatsoever',
+      'They analyse your travel history using AI to predict the likelihood of overstaying, and flag high-risk travellers for interview',
     ],
     correctIndex: 1,
     explanation:
-      "eGates (found at UK airports and international rail terminals) take a live photograph of your face and compare it to the facial image stored on the chip in your passport or travel document. AI facial recognition matches the two and, if confident, opens the gate — taking about 10 seconds. A border officer monitors the gates and can intervene. The system works well for straightforward cases but has higher error rates for some demographics, particularly darker-skinned individuals, and can fail on people whose appearance has changed significantly since their passport photo. Where eGates fail, the traveller is directed to a staffed desk.",
-    hint: 'Think about matching the face in front of the camera to the face on the travel document.',
+      'eGates use cameras and facial recognition algorithms to verify that the person presenting a passport is the same person in the passport photo. Your face is scanned, compared to the stored image, and if the match score exceeds a threshold, you are admitted. Studies have shown that these systems perform less accurately for people with darker skin tones, older travellers, and women — reflecting biases in the training data.',
+    hint: 'Think about the camera matching your face to a document photo.',
   },
   {
-    question: 'What is the concern about using AI to analyse language in asylum claims?',
+    question: 'What is "language analysis" in the context of asylum claims, and why is it controversial?',
     options: [
-      'AI translation is inaccurate for some languages, causing misunderstandings in claim documents',
-      'AI language analysis to determine nationality can be unreliable and has wrongly denied claims by placing applicants in countries they fled',
-      'AI is used to read asylum seekers\' private messages without consent, violating privacy',
-      'AI language analysis cannot process written documents and can only analyse spoken speech',
+      "AI translation software that converts asylum seekers' statements from their native language to English — controversial because translations can contain errors",
+      "An AI tool that analyses a person's accent and speech patterns to try to verify which country or region they come from — controversial because accents are not reliable identifiers of nationality",
+      "A sentiment analysis tool that assesses whether an asylum seeker's account sounds emotionally genuine — controversial because trauma affects how people tell their stories",
+      'A document forgery detector that analyses the language style of written asylum applications to identify copy-pasted or AI-generated text',
     ],
     correctIndex: 1,
     explanation:
-      "Language analysis tools claim to determine an applicant's region or country of origin from their speech or writing patterns — the idea being to detect fraudulent claims about nationality. The problem is these tools have limited accuracy, especially for people who grew up across borders, in diaspora communities, or who speak regional dialects. A genuine refugee from one country might speak the dominant language of their persecutor's country. Several European countries have used language analysis to reject asylum claims, and researchers and legal organisations have documented cases where people who genuinely needed protection were disbelieved based on language AI that was simply wrong.",
-    hint: 'Think about what can go wrong when an algorithm tries to determine where someone is really from.',
+      "Language analysis tools — sometimes called Language Analysis for the Determination of Origin (LADO) — claim to identify where someone grew up based on their accent and vocabulary. Critics, including linguists and refugee charities, argue that accents are shaped by many factors beyond birthplace — migration within a country, education, diaspora communities, and time spent in other countries.",
+    hint: 'Think about what accents can and cannot tell you about where someone is from.',
   },
   {
-    question: 'What has research found about algorithmic bias in immigration AI systems?',
+    question: 'What right do people have under UK GDPR if an AI system has made or contributed to a significant decision about them?',
     options: [
-      'Research has found no evidence of bias — AI systems are more consistent than human decision-makers',
-      'Research has found that applicants from certain nationalities and demographics receive worse outcomes from AI-assisted processes, often without transparent explanation',
-      'Research has found that AI benefits applicants from developing countries because it removes subjective human prejudice',
-      'Research is not permitted in this area as immigration data is classified',
+      'The right to see the source code of the AI system and challenge its design in court',
+      'The right to request that a human reviews the decision, and to receive an explanation of how the automated system reached its conclusion',
+      'The right to have the AI decision automatically overturned and replaced with a fresh human assessment',
+      'No specific rights — immigration decisions are exempt from data protection law on national security grounds',
     ],
     correctIndex: 1,
     explanation:
-      'The Public Law Project (a UK legal charity), Amnesty International, and academic researchers have documented cases where AI and algorithmic systems in immigration have produced biased outcomes. These include risk-scoring systems that rated applicants from certain nationalities as higher risk without clear justification, interview scheduling systems that appeared to favour certain groups, and predictive tools that reinforced historical patterns of refusal. The opacity of these systems — the Home Office has resisted disclosing the criteria — makes independent audit extremely difficult. The EU AI Act now classifies migration AI as high-risk, requiring transparency and human oversight.',
-    hint: 'Think about what happens when a system learns from historical decisions that themselves reflected human bias.',
+      'Under UK GDPR Article 22, individuals have the right not to be subject to a decision based solely on automated processing that has a significant effect on them. They can request human review and receive an explanation. The right to an explanation is particularly important: it means the organisation must be able to articulate why an AI flagged a case, not just point to "the computer said so".',
+    hint: 'Think about the right to have a human look again.',
   },
   {
-    question: 'What rights does a person have if an AI system makes a negative immigration decision about them?',
+    question: 'What is "algorithmic bias" in immigration AI, and where has it been documented?',
     options: [
-      'None — immigration decisions are specifically exempt from all data protection and human rights law',
-      'Under UK GDPR they have the right to request human review of automated decisions and to challenge the decision with reasons',
-      'They can only appeal to the AI system itself, which reviews its own decisions',
-      'They must accept the AI decision as final; appeals are not possible for automated immigration decisions',
+      'When AI deliberately favours applicants from countries that have trade agreements with the UK, as programmed by policymakers',
+      'When an AI system produces systematically less accurate or less favourable outcomes for certain groups — such as applicants from particular countries — as a result of patterns in its training data or design',
+      'When immigration officers override AI recommendations more often for some nationalities than others, introducing human bias into an otherwise neutral system',
+      'When AI systems for different visa categories (work, study, family) use inconsistent criteria, creating unfair differences between applicant types',
     ],
     correctIndex: 1,
     explanation:
-      "Under UK GDPR, individuals have the right not to be subject to solely automated decisions that have legal or similarly significant effects on them — including visa refusals. They have the right to request human review and to be given a meaningful explanation of how the decision was reached. In practice, these rights are difficult to exercise: Home Office refusal notices often do not make clear when AI was involved, the criteria used are not publicly disclosed, and legal aid for immigration cases has been severely restricted. The Immigration Law Practitioners' Association and other organisations have raised repeated concerns about the gap between rights in theory and rights in practice.",
-    hint: 'Think about the right to ask a human to look at your case again.',
+      'Algorithmic bias occurs when an AI system treats people differently in ways that track protected characteristics — nationality, ethnicity, gender, age — usually because the training data reflects historic discrimination. One visa streaming tool was withdrawn in 2020 after it was found to use nationality as an input in a way that risked indirect racial discrimination.',
+    hint: 'Think about AI inheriting historic patterns of unfairness from its training data.',
   },
 ]
 
@@ -93,7 +93,7 @@ export function AIAndImmigration() {
   useMarkVisited('ai-and-immigration')
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
       <div className="max-w-2xl w-full space-y-8">
 
         <div className="text-center space-y-4">
@@ -102,8 +102,8 @@ export function AIAndImmigration() {
             AI and immigration
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            Visa processing AI, biometric border checks, asylum decision tools, algorithmic bias,
-            and your rights when an algorithm affects your case.
+            Visa processing AI, biometric border checks, asylum decision tools,
+            and the serious questions about algorithmic bias and your right to a fair hearing.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
@@ -119,65 +119,126 @@ export function AIAndImmigration() {
 
         <KeyTakeaways points={KEY_TAKEAWAYS} />
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI at the border — what is already happening</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Why AI is used in immigration</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Artificial intelligence is now embedded in UK immigration processes — from the moment you approach a border gate to the decisions made in Home Office case queues. Much of this happens without the people affected knowing.
+            The UK Home Office processes millions of visa and immigration applications each year. The volume is enormous, the documents are complex, and the decisions carry life-changing consequences. Governments worldwide have turned to AI to help manage the workload — but with significant controversy about whether the resulting decisions are fair.
           </p>
           <div className="space-y-2">
             {[
-              'Around 3 million visa applications are processed in the UK each year — AI helps manage this volume',
-              'eGates use facial recognition AI at all major UK airports and international rail terminals',
-              'AI risk-scoring affects which visa applications receive closer scrutiny',
-              'Language analysis AI has been used to try to determine applicants\' countries of origin',
-              'The Home Office has faced repeated legal challenges over the transparency of its algorithmic systems',
+              'The UK processes around 3 million visa applications per year, ranging from tourist visas to indefinite leave to remain',
+              'AI tools are used to sort applications, verify documents, flag inconsistencies, and score risk — all before a human caseworker formally reviews the file',
+              'Biometric eGates at UK airports now handle millions of border crossings per year, using facial recognition to match travellers to their passport photos',
+              "Language analysis AI is used in some asylum cases to help verify whether an applicant's dialect is consistent with their stated country of origin",
+              'Civil society organisations, lawyers, and academics have raised serious concerns about bias, opacity, and lack of accountability in these systems',
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
-                <span className="text-slate-600 dark:text-slate-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <span className="text-blue-600 dark:text-blue-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">eGates and biometric borders</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI in visa processing</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Automated border control uses AI to verify identity — making the process faster but raising important questions about accuracy and accountability.
+            Processing millions of applications requires sorting, prioritising, and checking for inconsistencies. AI is used at several points in this pipeline.
           </p>
           <div className="space-y-3">
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F6C2;</span>
+            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4CB;</span>
               <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">How eGates work</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">You scan your passport, a camera takes your photo, and AI compares your face to the image stored in the passport chip. If confident, the gate opens. The whole process takes around 10 seconds. A human officer monitors the gates and handles failures.</p>
+                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Document checking and triage</p>
+                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">AI tools scan application documents to check completeness, flag inconsistencies (such as dates that do not match), and assess the risk level of each case. High-risk or complex cases are directed to experienced caseworkers; simpler applications can be processed more quickly.</p>
               </div>
             </div>
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950 rounded-xl p-3">
               <span className="text-xl flex-shrink-0 mt-0.5">&#x26A0;&#xFE0F;</span>
               <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">The accuracy problem</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Facial recognition accuracy varies by demographic — multiple studies show higher error rates for darker-skinned individuals and women. When eGates fail, people are directed to staffed desks. But the experience can be stressful, and the reasons for failure are not explained.</p>
+                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">The automation bias problem</p>
+                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">When AI flags a case as low-risk or high-risk, human caseworkers may follow that recommendation without independently reviewing it — even if they technically have the power to override it. This is called "automation bias" and means the AI's errors get amplified in practice, even when official policy requires human oversight.</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4CA;</span>
+              <div>
+                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Nationality-based streaming — and why it was withdrawn</p>
+                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">The Home Office used a tool that placed visa applications into different processing streams partly based on nationality. In 2020, the Public Law Project found this risked indirect racial discrimination — treating applicants from certain countries as higher risk simply because of where they were from, not their individual circumstances. The tool was withdrawn following the campaign.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Algorithmic bias in immigration</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-indigo-100 dark:border-indigo-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">E-Borders and biometric checks</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            When AI systems are trained on historical data, they can learn and reproduce the biases in that data. In immigration, the stakes are very high.
+            At UK airports and international train stations, AI-powered biometric systems check travellers. You may have already used one.
           </p>
           <div className="space-y-2">
             {[
-              'AI risk-scoring systems that rate some nationalities as higher risk without transparent criteria',
-              'Language analysis tools used to assess credibility of asylum claims have been found to be unreliable',
-              'Interview scheduling algorithms that appeared to disadvantage applicants from certain countries',
-              'The Home Office has resisted disclosing how its algorithmic tools work, making independent audit impossible',
-              'The Public Law Project has documented multiple cases of unexplained algorithmic disadvantage in immigration decisions',
+              'eGates at UK airports use facial recognition: a camera captures your face, software compares it to the photo in your passport chip, and the gate opens if the match score is high enough',
+              'The system processes most travellers in a few seconds, reducing queue times significantly compared to manual passport checks',
+              'The UK Home Office has acknowledged that facial recognition accuracy is lower for people with darker skin tones — a known issue across most commercial facial recognition systems',
+              'Your biometric data is not permanently retained from a routine airport eGate check, but watchlist checks run against law enforcement databases do happen in real time',
+              "The UK's Advance Passenger Information system requires airlines to share passenger data before departure, allowing risk assessments before the plane lands",
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
-                <span className="text-amber-600 dark:text-amber-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;</span>
+                <span className="text-indigo-600 dark:text-indigo-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-indigo-50 dark:bg-indigo-950 rounded-xl p-4">
+            <p className="text-indigo-700 dark:text-indigo-300 text-sm leading-relaxed">
+              <span className="font-semibold">Already experienced it?</span> If you have walked through an eGate at Heathrow, Gatwick, or St Pancras, you have had your face compared to your passport photo by an AI system. For most people, it works seamlessly. When it fails — and you are directed to a manual desk — it is usually because the match score was too low, not because any suspicion attached to you.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI in asylum determination</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Asylum decisions — whether someone faces persecution if returned to their home country — are among the most consequential any government makes. AI is being used at several points in the process, raising profound questions about fairness.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                label: 'Language and dialect analysis',
+                detail: "AI software analyses speech patterns and vocabulary in a claimant's testimony to assess whether their dialect is consistent with their claimed region of origin. Critics note that many regions have mixed dialects, that people may have moved internally before fleeing, and that the training data for such tools is often limited.",
+              },
+              {
+                label: 'Document authentication',
+                detail: 'AI analyses identity documents and supporting evidence for signs of forgery or inconsistency. This can be helpful but also problematic: people fleeing persecution often cannot access official documents, and the quality of genuine documents varies enormously by country.',
+              },
+              {
+                label: 'Country of origin information tools',
+                detail: "AI systems synthesise large volumes of country reports, news, and human rights documentation to help caseworkers understand conditions in a claimant's home country. When working well, this reduces caseworker research burden. When biased or incomplete, it can produce systematically wrong assessments.",
+              },
+            ].map(({ label, detail }) => (
+              <div key={label} className="bg-amber-50 dark:bg-amber-950 rounded-xl p-4 space-y-1">
+                <p className="font-semibold text-amber-800 dark:text-amber-200 text-sm">{label}</p>
+                <p className="text-amber-700 dark:text-amber-300 text-sm leading-relaxed">{detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Algorithmic bias — when the system is unfair by design</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            In 2020, the Public Law Project exposed a Home Office visa streaming tool that sorted applications partly by nationality — before any individual assessment had taken place. Applicants from countries that the algorithm associated with higher risk were automatically routed to more intensive scrutiny, purely on the basis of where they were from.
+          </p>
+          <div className="space-y-2">
+            {[
+              'This constituted indirect discrimination under the Equality Act 2010 — treating people less favourably based on a protected characteristic (national origin)',
+              'The tool was affecting thousands of applications simultaneously, scaling discrimination in a way no individual caseworker could do',
+              'Following legal challenge and media coverage, the Home Office suspended the tool',
+              'The episode highlighted a wider problem: AI systems trained on historical immigration data will learn — and reproduce — whatever biases existed in past decisions',
+              'Without independent audit requirements, discriminatory AI tools in government can operate for years before being exposed',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-red-600 dark:text-red-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;</span>
                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
               </div>
             ))}
@@ -185,24 +246,43 @@ export function AIAndImmigration() {
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Your rights</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Your rights — how to challenge an AI-assisted decision</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            UK law provides some protections — though exercising them in practice can be difficult.
+            If an AI system has contributed to a decision about your immigration status, you have legal rights. Knowing about them is the first step.
           </p>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
-              'Under UK GDPR, you have the right to request human review of decisions made solely by automated systems',
-              'You have the right to ask for an explanation of how a significant decision was reached',
-              'If you believe an immigration decision was discriminatory, you can raise this with the Equality and Human Rights Commission',
-              'Immigration legal charities (ILPA, Bail for Immigration Detainees, Refugee Action) can advise on challenging automated decisions',
-              'The EU AI Act classifies immigration AI as high-risk, requiring transparency; the UK is developing its own framework',
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              {
+                icon: '&#x1F4DC;',
+                label: 'Right to human review (UK GDPR Article 22)',
+                text: 'You have the right not to be subject to a decision based solely on automated processing that has a significant legal effect on you. You can request that a human reviews the decision, express your point of view, and contest the outcome.',
+                color: 'green',
+              },
+              {
+                icon: '&#x1F4CB;',
+                label: 'Right to an explanation',
+                text: 'You can request a meaningful explanation of how a decision affecting you was made, including what role any automated system played. In practice this right is difficult to exercise without legal support — the Home Office does not proactively explain AI involvement.',
+                color: 'green',
+              },
+              {
+                icon: '&#x2696;&#xFE0F;',
+                label: 'Right to appeal',
+                text: 'Most immigration decisions carry a right of appeal to the First-tier Tribunal (Immigration and Asylum Chamber). If you believe AI bias affected your decision, this is an argument your solicitor can make in appeal proceedings.',
+                color: 'green',
+              },
+            ].map(({ icon, label, text, color }) => (
+              <div key={label} className={"flex gap-3 items-start bg-" + color + "-50 dark:bg-" + color + "-950 rounded-xl p-3"}>
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className={"font-semibold text-" + color + "-800 dark:text-" + color + "-200 text-sm mb-0.5"}>{label}</p>
+                  <p className={"text-" + color + "-700 dark:text-" + color + "-300 text-sm leading-relaxed"}>{text}</p>
+                </div>
               </div>
             ))}
           </div>
+          <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+            Organisations that can help include the Migrants' Rights Network, UNHCR UK, the Immigration Law Practitioners' Association (ILPA), and the Joint Council for the Welfare of Immigrants (JCWI).
+          </p>
         </div>
 
         <LessonNote lessonId="ai-and-immigration" />
