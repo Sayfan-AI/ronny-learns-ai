@@ -1147,6 +1147,7 @@ const aiAndShoppingRoute = createRoute({ getParentRoute: () => rootRoute, path: 
 const aiAndTranslationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-translation', component: withSuspense(AIAndTranslation) })
 const aiAndGigEconomyRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-gig-economy', component: withSuspense(AIAndGigEconomy) })
 
+// Milestone 68 routes
 const aiAndBenefitsSystemRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-the-benefits-system',

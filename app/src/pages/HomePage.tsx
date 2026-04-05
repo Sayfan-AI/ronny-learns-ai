@@ -2600,6 +2600,26 @@ export function HomePage() {
               </div>
             </Link>
             <Link
+              to="/quiz/true-or-false"
+              className="bg-teal-50 border border-teal-200 rounded-xl p-4 hover:bg-teal-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x2714;&#xFE0F;</span>
+              <div>
+                <p className="font-semibold text-teal-800 text-sm">True or False?</p>
+                <p className="text-teal-600 text-xs">15 AI statements — decide what is true and what is a myth.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/ai-timeline"
+              className="bg-purple-50 border border-purple-200 rounded-xl p-4 hover:bg-purple-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x23F3;</span>
+              <div>
+                <p className="font-semibold text-purple-800 text-sm">AI Timeline</p>
+                <p className="text-purple-600 text-xs">Put 10 real AI milestones in chronological order.</p>
+              </div>
+            </Link>
+            <Link
               to="/quiz/jargon-match"
               className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 hover:bg-emerald-100 transition-colors flex items-center gap-3"
             >
