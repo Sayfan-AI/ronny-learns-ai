@@ -57,7 +57,6 @@ const FutureOfAI = lazy(() => import('./pages/FutureOfAI').then(m => ({ default:
 const AIInYourApps = lazy(() => import('./pages/AIInYourApps').then(m => ({ default: m.AIInYourApps })))
 const AILawsAndRights = lazy(() => import('./pages/AILawsAndRights').then(m => ({ default: m.AILawsAndRights })))
 const KnowledgeCheck = lazy(() => import('./pages/KnowledgeCheck').then(m => ({ default: m.KnowledgeCheck })))
-const TrueOrFalse = lazy(() => import('./pages/TrueOrFalse').then(m => ({ default: m.TrueOrFalse })))
 const AIAndSocialMedia = lazy(() => import('./pages/AIAndSocialMedia').then(m => ({ default: m.AIAndSocialMedia })))
 const AIForAccessibility = lazy(() => import('./pages/AIForAccessibility').then(m => ({ default: m.AIForAccessibility })))
 const LearningPath = lazy(() => import('./pages/LearningPath').then(m => ({ default: m.LearningPath })))
@@ -187,8 +186,11 @@ const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m
 // Milestone 67 pages
 const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
 // Milestone 68 pages
+const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
+const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
 const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
 const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
+const JargonMatch = lazy(() => import('./pages/JargonMatch').then(m => ({ default: m.JargonMatch })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -528,12 +530,6 @@ const knowledgeCheckRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/quiz/knowledge-check',
   component: withSuspense(KnowledgeCheck),
-})
-
-const trueOrFalseRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/quiz/true-or-false',
-  component: withSuspense(TrueOrFalse),
 })
 
 const aiAndSocialMediaRoute = createRoute({
@@ -1133,7 +1129,19 @@ const trueOrFalseQuizRoute = createRoute({
   path: '/quiz/true-or-false',
   component: withSuspense(TrueOrFalseQuiz),
 })
-// Milestone 68 routes
+
+const aiAndBenefitsSystemRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-the-benefits-system',
+  component: withSuspense(AIAndBenefitsSystem),
+})
+
+const aiAndPregnancyAndBabyCareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-pregnancy-and-baby-care',
+  component: withSuspense(AIAndPregnancyAndBabyCare),
+})
+
 const aiAndContentModerationRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-content-moderation',
@@ -1144,6 +1152,12 @@ const aiTimelineRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/quiz/ai-timeline',
   component: withSuspense(AITimeline),
+})
+
+const jargonMatchRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/jargon-match',
+  component: withSuspense(JargonMatch),
 })
 
 const routeTree = rootRoute.addChildren([
@@ -1196,7 +1210,6 @@ const routeTree = rootRoute.addChildren([
   aiInYourAppsRoute,
   aiLawsAndRightsRoute,
   knowledgeCheckRoute,
-  trueOrFalseRoute,
   aiAndSocialMediaRoute,
   aiForAccessibilityRoute,
   learningPathRoute,
@@ -1326,8 +1339,11 @@ const routeTree = rootRoute.addChildren([
   // Milestone 67
   trueOrFalseQuizRoute,
   // Milestone 68
+  aiAndBenefitsSystemRoute,
+  aiAndPregnancyAndBabyCareRoute,
   aiAndContentModerationRoute,
   aiTimelineRoute,
+  jargonMatchRoute,
 ])
 
 const hashHistory = createHashHistory()
