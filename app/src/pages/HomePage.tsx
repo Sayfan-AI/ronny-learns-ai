@@ -13,6 +13,7 @@ import { LessonOfTheWeek } from '../components/LessonOfTheWeek'
 import { RecentlyViewed, loadRecentlyViewed } from '../components/RecentlyViewed'
 import { WhatsNew } from '../components/WhatsNew'
 import { InterestQuiz } from '../components/InterestQuiz'
+import { TestYourself } from '../components/TestYourself'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -524,6 +525,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'violet',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-the-arts',
+        title: 'AI and the arts — museums, galleries, theatres, and cultural AI',
+        description: 'How AI is being used in cultural institutions — from personalising museum visits and restoring ancient frescoes to the fierce debate over AI-generated art and artist rights.',
+        readingTime: '7 min',
+        icon: '🎭',
+        to: '/learn/ai-and-the-arts',
+        color: 'purple',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -928,6 +939,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-smart-homes',
         color: 'green',
         difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-architecture',
+        title: 'AI and architecture — generative design, smart buildings, and the future of the built environment',
+        description: 'How AI is reshaping building design, planning applications, construction site safety, and the way our buildings are managed and maintained.',
+        readingTime: '7 min',
+        icon: '🏛️',
+        to: '/learn/ai-and-architecture',
+        color: 'slate',
+        difficulty: 'Intermediate',
       },
     ],
   },
@@ -1505,6 +1526,9 @@ export function HomePage() {
 
         {/* Daily challenge */}
         <DailyChallenge />
+
+        {/* Test yourself — mixed-topic quiz from completed lessons */}
+        <TestYourself />
 
         {/* Continue where you left off */}
         {continueLesson && (
