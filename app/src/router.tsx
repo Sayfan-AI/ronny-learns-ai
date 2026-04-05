@@ -211,6 +211,7 @@ const AIAndEducationTech = lazy(() => import('./pages/AIAndEducationTech').then(
 const AIAndMentalHealthCare = lazy(() => import('./pages/AIAndMentalHealthCare').then(m => ({ default: m.AIAndMentalHealthCare })))
 const AIAndMusicCreation = lazy(() => import('./pages/AIAndMusicCreation').then(m => ({ default: m.AIAndMusicCreation })))
 const AIAndTaxes = lazy(() => import('./pages/AIAndTaxes').then(m => ({ default: m.AIAndTaxes })))
+const AIAndTaxesAndFinancialAdmin = lazy(() => import('./pages/AIAndTaxesAndFinancialAdmin').then(m => ({ default: m.AIAndTaxesAndFinancialAdmin })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1394,6 +1395,7 @@ const routeTree = rootRoute.addChildren([
   createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-mental-health-care', component: withSuspense(AIAndMentalHealthCare) }),
   createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-music-creation', component: withSuspense(AIAndMusicCreation) }),
   createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-taxes', component: withSuspense(AIAndTaxes) }),
+  createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-taxes-and-financial-admin', component: withSuspense(AIAndTaxesAndFinancialAdmin) }),
 ])
 
 const hashHistory = createHashHistory()

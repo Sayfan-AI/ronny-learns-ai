@@ -152,6 +152,7 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-mental-health-care',             title: 'AI and mental health care',                to: '/learn/ai-and-mental-health-care' },
   { id: 'ai-and-music-creation',                 title: 'AI and music creation',                    to: '/learn/ai-and-music-creation' },
   { id: 'ai-and-taxes',                          title: 'AI and taxes',                             to: '/learn/ai-and-taxes' },
+  { id: 'ai-and-taxes-and-financial-admin',      title: 'AI and taxes and financial admin',         to: '/learn/ai-and-taxes-and-financial-admin' },
 ]
 
 interface QuizScoreEntry {
