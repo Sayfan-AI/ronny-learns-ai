@@ -159,6 +159,20 @@ const RELATED: Record<string, string[]> = {
   'ai-and-creative-writing':     ['ai-and-creativity', 'ai-and-art', 'ai-and-copyright'],
   'ai-and-photography':          ['ai-and-misinformation', 'ai-and-art', 'ai-and-copyright'],
   'ai-and-mental-health-apps':   ['ai-and-mental-health', 'ai-for-accessibility', 'how-to-use-ai-safely'],
+  'ai-and-scams':                ['trusting-ai', 'ai-and-privacy', 'ai-and-cybersecurity'],
+  'ai-and-pets':                 ['ai-in-healthcare', 'ai-everyday-life', 'ai-in-your-apps'],
+  'ai-and-fitness-apps':         ['ai-in-healthcare', 'ai-and-privacy', 'ai-in-your-apps'],
+  'ai-and-disability':           ['ai-for-accessibility', 'ai-in-healthcare', 'ai-and-language'],
+  'ai-and-elections':            ['ai-and-misinformation', 'ai-and-democracy', 'ai-bias'],
+  'ai-and-banking':              ['ai-and-money', 'ai-and-privacy', 'ai-bias'],
+  'ai-and-manufacturing':        ['ai-and-jobs', 'ai-and-robotics', 'ai-and-environment'],
+  'ai-and-drug-discovery':       ['ai-in-healthcare', 'ai-and-scientific-research', 'ai-and-the-nhs'],
+  'ai-and-smart-homes':          ['ai-and-privacy', 'ai-everyday-life', 'ai-in-your-apps'],
+  'ai-and-the-military':         ['ai-safety', 'ai-and-the-law', 'ai-bias'],
+  'ai-and-streaming':            ['ai-in-your-apps', 'ai-and-misinformation', 'ai-and-social-media'],
+  'ai-and-news':                 ['ai-and-misinformation', 'ai-and-journalism', 'ai-and-social-media'],
+  'ai-and-smart-cities':         ['ai-and-elections', 'ai-and-transport', 'ai-and-energy'],
+  'ai-and-charities':            ['ai-and-hiring', 'ai-bias', 'ai-and-privacy'],
 }
 
 const DIFFICULTY_COLOURS: Record<string, string> = {
