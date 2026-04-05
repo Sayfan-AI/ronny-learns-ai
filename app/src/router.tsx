@@ -189,6 +189,9 @@ const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => (
 // Milestone 68 pages
 const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
 const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
+// Milestone 69 pages
+const AIAndWelfareBenefits = lazy(() => import('./pages/AIAndWelfareBenefits').then(m => ({ default: m.AIAndWelfareBenefits })))
+const WhoSaidItQuiz = lazy(() => import('./pages/WhoSaidItQuiz').then(m => ({ default: m.WhoSaidItQuiz })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1146,6 +1149,19 @@ const aiTimelineRoute = createRoute({
   component: withSuspense(AITimeline),
 })
 
+// Milestone 69 routes
+const aiAndWelfareBenefitsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-welfare-benefits',
+  component: withSuspense(AIAndWelfareBenefits),
+})
+
+const whoSaidItQuizRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/who-said-it',
+  component: withSuspense(WhoSaidItQuiz),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1328,6 +1344,9 @@ const routeTree = rootRoute.addChildren([
   // Milestone 68
   aiAndContentModerationRoute,
   aiTimelineRoute,
+  // Milestone 69
+  aiAndWelfareBenefitsRoute,
+  whoSaidItQuizRoute,
 ])
 
 const hashHistory = createHashHistory()

@@ -1443,6 +1443,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'purple',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-welfare-benefits',
+        title: 'AI and welfare benefits — DWP fraud detection, Universal Credit algorithms, SyRI case, and claimant rights',
+        description: 'How AI is used in the UK benefits system, the landmark SyRI court ruling on AI welfare surveillance, and what claimants can do to challenge automated decisions.',
+        readingTime: '8 min',
+        icon: '&#x1F4B0;',
+        to: '/learn/ai-and-welfare-benefits',
+        color: 'yellow',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -2507,6 +2517,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-indigo-800 text-sm">AI timeline game</p>
                 <p className="text-indigo-600 text-xs">Arrange 10 AI milestones in the correct order.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/who-said-it"
+              className="bg-purple-50 border border-purple-200 rounded-xl p-4 hover:bg-purple-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4AC;</span>
+              <div>
+                <p className="font-semibold text-purple-800 text-sm">Who said it?</p>
+                <p className="text-purple-600 text-xs">Famous AI quotes — can you name who said them?</p>
               </div>
             </Link>
           </div>
