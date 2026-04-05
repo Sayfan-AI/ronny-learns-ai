@@ -9,290 +9,176 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
+import { KeyTakeaways } from '../components/KeyTakeaways'
+
+const LESSON_TITLE = 'AI and social media content moderation — hate speech detection, misinformation, false positives, human moderation, and the EU DSA'
+
+const KEY_TAKEAWAYS = [
+  'The scale of social media content — billions of posts per day — makes human-only moderation impossible. AI classifiers automatically review text, images, video, and audio for violations of platform policies.',
+  'AI content moderation has a persistent false positive problem: it disproportionately removes content from marginalised communities, non-English speakers, and activists, while sometimes failing to catch well-disguised harmful content.',
+  'Human content moderators play an essential role reviewing borderline cases and building the labelled datasets AI is trained on. They are often employed by third-party contractors, paid poorly, and exposed to extremely distressing content at scale.',
+  'The EU Digital Services Act (DSA) requires large platforms to conduct annual risk assessments, allow independent audits, and give users explanations and appeal rights when content is removed — significantly raising accountability standards.',
+  'The Online Safety Act 2023 introduces similar obligations for UK platforms, requiring systems to identify and remove illegal content and protect children — with Ofcom as the enforcer.',
+]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'Approximately how many pieces of content do platforms like Meta remove every day using AI?',
+    question: 'Why is human-only content moderation impossible on large social media platforms?',
     options: [
-      'Around 10,000 items per day',
-      'Around 100,000 items per day',
-      'Millions of items per day',
-      'Fewer than 1,000 — most decisions are made by human reviewers',
+      'Human moderators are not qualified to judge what counts as harmful content',
+      'The volume of content — billions of posts per day — is far too large for human review of everything before publication',
+      'Privacy laws prevent platforms from employing people to read private messages',
+      'Human moderators are too slow because they must consult legal teams before removing any post',
+    ],
+    correctIndex: 1,
+    explanation: 'Facebook alone receives billions of posts, likes, and comments every day. Even with tens of thousands of human moderators, reviewing everything before publication is mathematically impossible. AI classifiers process content at scale, with humans reviewing borderline or appealed cases.',
+  },
+  {
+    question: 'What is the "false positive problem" in AI content moderation?',
+    options: [
+      'AI sometimes approves harmful content that should have been removed',
+      'AI removes legitimate content — such as news reporting, education, or marginalised voices — that it incorrectly classifies as a violation',
+      'AI incorrectly identifies users as bots when they are real people',
+      'AI content moderation tools are too expensive for smaller platforms to afford',
+    ],
+    correctIndex: 1,
+    explanation: 'Research has consistently found that AI content moderation over-removes content from certain groups — including LGBTQ+ users, Palestinian activists, and non-English speakers — while missing harmful content that uses coded language. This chilling effect on speech is a serious concern.',
+  },
+  {
+    question: 'What did research into the psychological impact of human content moderation find?',
+    options: [
+      'Most content moderators report the work is no different from any other office job',
+      'Content moderators are routinely exposed to extremely distressing material — violence, abuse, suicide — and face high rates of PTSD and mental health difficulties',
+      'The main challenge for content moderators is boredom, since most reviewed content is harmless',
+      'Content moderators are well-paid specialists who voluntarily choose the role for its high salaries',
+    ],
+    correctIndex: 1,
+    explanation: 'Content moderators at third-party contractors (used by Facebook, YouTube, and TikTok) are often paid near minimum wage while reviewing thousands of pieces of deeply disturbing content per day. Multiple investigations and lawsuits have documented high rates of PTSD and inadequate psychological support.',
+  },
+  {
+    question: 'What does the EU Digital Services Act (DSA) require of large platforms?',
+    options: [
+      'It requires platforms to remove all political content during election periods',
+      'It mandates that all AI moderation decisions must be reversed if a user appeals',
+      'It requires platforms to conduct risk assessments, accept independent audits, and give users explanations and appeal rights when content is removed',
+      'It bans AI from making any moderation decisions without simultaneous human review',
     ],
     correctIndex: 2,
-    explanation:
-      "Meta's AI systems remove millions of pieces of content every day across Facebook, Instagram, and WhatsApp. In its quarterly Community Standards Enforcement Reports, Meta consistently reports hundreds of millions of removals per quarter for categories like spam, fake accounts, and hate speech — the vast majority actioned automatically before any user reports them. At this scale, human-only moderation would be impossible.",
-    hint: 'Think about the scale of social media — billions of posts per day.',
+    explanation: 'The DSA, which applies to very large online platforms with over 45 million EU users, introduces significant transparency and accountability requirements. Platforms must explain why content was removed, allow meaningful appeals, and accept audits of their moderation systems.',
   },
   {
-    question: 'What is a "false positive" in the context of content moderation?',
+    question: 'What does the UK Online Safety Act 2023 require of platforms?',
     options: [
-      'When a harmful post is correctly identified and removed by the AI',
-      'When a legitimate, harmless piece of content is incorrectly removed by the AI',
-      'When a user successfully appeals and gets a removed post reinstated',
-      'When AI detects misinformation before it goes viral',
+      'It requires platforms to pre-screen all content before it is published, using AI',
+      'It requires systems to identify and remove illegal content and take steps to protect children from harmful content, with Ofcom as the regulator',
+      'It bans social media companies from using AI for any moderation decisions affecting UK users',
+      'It requires platforms to pay compensation to every user whose content is wrongly removed',
     ],
     correctIndex: 1,
-    explanation:
-      "A false positive occurs when the AI incorrectly flags or removes content that does not actually violate the platform's rules. This is a major problem: news reports about violence, historical discussion of hate speech for educational purposes, medical information, and satire have all been incorrectly removed. Facebook's AI has removed posts showing historical photos of wartime atrocities because it cannot distinguish documentation from glorification.",
-    hint: "False positive = the AI says 'this is bad' when it isn't.",
-  },
-  {
-    question: 'Which EU law requires very large online platforms to be more transparent and accountable about their content moderation systems?',
-    options: [
-      'The General Data Protection Regulation (GDPR)',
-      'The Digital Services Act (DSA)',
-      'The Online Safety Act (UK)',
-      'The Artificial Intelligence Act',
-    ],
-    correctIndex: 1,
-    explanation:
-      "The EU's Digital Services Act (DSA), which came into force for very large platforms in August 2023, requires platforms like Meta, TikTok, and YouTube to publish risk assessments, audit their recommender systems and moderation AI, provide researchers with data access, and give users the right to contest moderation decisions.",
-    hint: 'This EU law is specifically about digital services and went live in 2023.',
-  },
-  {
-    question: 'Why is moderating hate speech so difficult for AI?',
-    options: [
-      'AI can read text but not images, so it misses hate speech in memes',
-      'Hate speech often relies on cultural context, sarcasm, reclaimed language, and slang that AI systems struggle to interpret correctly',
-      'Hate speech rules are the same in every country, making it easy to apply globally',
-      'AI systems are only trained on English content, so non-English hate speech goes undetected',
-    ],
-    correctIndex: 1,
-    explanation:
-      'Detecting hate speech requires understanding context that is difficult for AI. The same word can be an insult or a reclaimed term of identity. Sarcasm and irony mean the surface reading is the opposite of intent. Regional slang and cultural references shift meaning. A phrase that is hate speech when directed at a group might be legitimate commentary when quoted critically.',
-    hint: 'Language is context-dependent — the same words mean different things in different situations.',
-  },
-  {
-    question: 'What conditions do many human content moderators face?',
-    options: [
-      'Human moderators work in relaxed office environments reviewing content at their own pace',
-      'Most moderation is now automated so human moderators only handle complex edge cases with ample time',
-      'Human moderators often review hundreds of disturbing items per day, under time pressure, with limited psychological support — leading to high rates of PTSD and burnout',
-      'Human moderators are paid very well because of the specialist nature of the work',
-    ],
-    correctIndex: 2,
-    explanation:
-      "Investigative journalism and lawsuits have revealed the difficult conditions facing human content moderators, many of whom work for outsourcing contractors rather than the platforms themselves. The Kenyan moderators who sued Meta revealed they were reviewing thousands of pieces of violent content per day. Many develop PTSD. Pay and psychological support are often inadequate.",
-    hint: 'Think about what it means to review the worst of the internet at scale, every day.',
+    explanation: 'The Online Safety Act introduces a duty of care framework. Platforms must proactively identify and remove illegal content (such as CSAM and terrorism material) and take steps to protect under-18s from harmful content. Ofcom can fine platforms up to 10% of global annual turnover for non-compliance.',
   },
 ]
 
 export function AIAndContentModeration() {
-  useMarkVisited('ai-and-content-moderation')
+  const lessonId = 'ai-and-content-moderation'
+  useMarkVisited(lessonId)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white px-4 py-10 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
       <div className="max-w-2xl w-full space-y-8">
 
-        <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F6E1;&#xFE0F;</div>
-          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
-            AI and content moderation
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            How AI helps platforms police billions of posts, why it gets things wrong,
-            and the human cost of keeping the internet safe.
+        <div className="text-center space-y-3">
+          <div className="text-5xl mb-2">&#x1F6A9;</div>
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">AI and content moderation</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            How AI polices what billions of people post online, why it often gets it wrong, the human cost of content moderation, and what new laws require platforms to do differently.
           </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
-              <span>About 7 min read</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
-          </div>
-          <CompletedBadge lessonId="ai-and-content-moderation" />
-          <ShareButton lessonTitle="AI and content moderation" />
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-sm border border-purple-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">The scale problem</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Every minute, people upload 500 hours of video to YouTube, post 350,000 tweets,
-            and share 66,000 photos on Instagram. No human workforce could review this in real time.
-            AI content moderation is not optional &mdash; it is the only way platforms can
-            operate at this scale.
-          </p>
-          <div className="bg-purple-50 rounded-xl p-4 space-y-2">
-            <p className="font-semibold text-purple-800 text-sm">What AI moderation covers</p>
-            <p className="text-purple-700 text-sm leading-relaxed">
-              Platforms use AI to detect and remove spam and fake accounts, hate speech and
-              harassment, terrorist content, child sexual abuse material (CSAM), graphic violence,
-              misinformation, and copyright violations &mdash; often before any user reports the content.
-              Meta reports removing hundreds of millions of items per quarter, mostly automatically.
-            </p>
-          </div>
-          <p className="text-gray-600 leading-relaxed text-sm">
-            The consequences of failure are severe in both directions. Leave harmful content up
-            and the platform enables abuse, radicalisation, or election interference. Remove too
-            aggressively and the platform silences legitimate speech, journalists, and activists.
-            There is no perfect calibration.
-          </p>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">How AI moderation works</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Platforms use several different AI techniques depending on what they are trying to detect.
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                icon: '&#x1F4F7;',
-                label: 'Image and video hashing',
-                text: "Every known image of child sexual abuse material is given a unique digital fingerprint (hash). When a new image is uploaded, its hash is compared against a shared database (PhotoDNA, operated by Microsoft). If there is a match, the image is blocked automatically. This is extremely accurate for known content but cannot detect new material.",
-              },
-              {
-                icon: '&#x1F4AC;',
-                label: 'Text classifiers',
-                text: "Natural language models are trained on millions of examples of hate speech, spam, and misinformation. When new text is posted, the classifier scores it against each category. Posts above a confidence threshold are removed automatically or routed to human review. These models struggle with sarcasm, slang, and context.",
-              },
-              {
-                icon: '&#x1F4F9;',
-                label: 'Computer vision',
-                text: "AI analyses video frame by frame to detect graphic violence, nudity, or terrorist imagery. YouTube's Content ID uses this to detect copyrighted footage. The system must work across billions of videos in hundreds of languages with context that varies enormously by culture.",
-              },
-              {
-                icon: '&#x1F310;',
-                label: 'Network analysis',
-                text: "AI maps the connections and behaviour patterns of accounts to detect coordinated inauthentic behaviour — networks of fake accounts spreading disinformation together. This looks at posting patterns, IP addresses, device fingerprints, and interaction graphs rather than content alone.",
-              },
-            ].map(({ icon, label, text }) => (
-              <div key={label} className="flex gap-3 items-start">
-                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
-                <div>
-                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
-                </div>
-              </div>
-            ))}
+          <div className="flex justify-center gap-3 flex-wrap">
+            <span className="inline-block bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 text-xs font-semibold px-3 py-1 rounded-full">Intermediate</span>
+            <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1 rounded-full">7 min read</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">The problem of false positives</h2>
-          <p className="text-gray-600 leading-relaxed">
-            A false positive is when AI removes content that should have been allowed.
-            False positives are not just an inconvenience &mdash; they can silence important voices
-            and erase history.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              {
-                icon: '&#x1F5BC;&#xFE0F;',
-                title: 'The Napalm Girl',
-                text: "Facebook's AI removed the iconic 1972 Vietnam War photograph showing a naked child fleeing a napalm attack — a Pulitzer Prize-winning image documenting a war crime. The AI saw nudity, not historical documentation. Norway's prime minister reposted it in protest and her post was also removed.",
-              },
-              {
-                icon: '&#x2695;&#xFE0F;',
-                title: 'Medical information',
-                text: 'Posts about breastfeeding, skin conditions, cancer screening, and harm reduction information for drug users have all been incorrectly removed. Health professionals report difficulty sharing legitimate medical content.',
-              },
-              {
-                icon: '&#x1F4F0;',
-                title: 'Journalism and activism',
-                text: 'Human rights organisations documenting atrocities for legal evidence have had their archives removed. Syrian Archive lost years of documentation of chemical weapons attacks when YouTube removed it.',
-              },
-              {
-                icon: '&#x1F3AD;',
-                title: 'Satire and criticism',
-                text: 'Satirical posts criticising hate speech sometimes quote the very language they are criticising. AI systems trained to detect words rather than intent remove these posts, making it harder to challenge hateful content.',
-              },
-            ].map(({ icon, title, text }) => (
-              <div key={title} className="bg-red-50 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl" dangerouslySetInnerHTML={{ __html: icon }} />
-                  <p className="font-semibold text-gray-800 text-sm">{title}</p>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
-              </div>
-            ))}
-          </div>
+        <CompletedBadge lessonId={lessonId} />
+
+        <div className="flex justify-end gap-2">
+          <ReviewLaterButton lessonId={lessonId} />
+          <ShareButton lessonTitle={LESSON_TITLE} />
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">The human cost: content moderators</h2>
-          <p className="text-gray-600 leading-relaxed">
-            AI handles volume, but the hardest decisions &mdash; and the content that does not
-            fit neatly into any category &mdash; goes to human reviewers. The conditions many of
-            them work in have become a serious ethical issue.
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">The impossible job</h2>
+          <p>
+            Every minute, people upload 500 hours of video to YouTube, send 500 million tweets, and post millions of pieces of content to Facebook, Instagram, TikTok, and hundreds of other platforms. Some of that content is illegal — child sexual abuse material, terrorist propaganda, incitement to violence. Much more of it is harmful but legal — coordinated harassment, health misinformation, intimate image abuse.
           </p>
-          <div className="bg-orange-50 rounded-xl p-4 space-y-3">
-            <p className="font-semibold text-orange-800 text-sm">What moderators face</p>
-            <ul className="text-orange-700 text-sm space-y-2 list-disc list-inside leading-relaxed">
-              <li>Reviewing hundreds of disturbing videos and images per day, including graphic violence and child abuse imagery</li>
-              <li>Strict quotas &mdash; hitting accuracy and volume targets regardless of content severity</li>
-              <li>Often employed by outsourcing contractors, not directly by the platform, with lower pay and fewer protections</li>
-              <li>High rates of PTSD, anxiety, and burnout documented across the industry</li>
-              <li>Moderators in Kenya who worked for Meta (through Sama, a contractor) sued Meta in 2023 over trauma, pay, and union-busting</li>
-            </ul>
-          </div>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            The platforms save money by outsourcing moderation. The psychological cost falls on
-            workers in lower-income countries who often have limited legal recourse. Critics argue
-            that the business model of engagement-maximising social media creates the content problem
-            that moderators then have to clean up at great personal cost.
+          <p>
+            Reviewing all of it before it reaches an audience is mathematically impossible for human teams alone. AI content moderation has become the essential infrastructure of the modern internet — and one of the most complex and contested applications of AI in daily life.
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-green-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">Regulation: the EU Digital Services Act</h2>
-          <p className="text-gray-600 leading-relaxed">
-            The EU&apos;s Digital Services Act (DSA) is the most comprehensive attempt to regulate
-            platform content moderation. It came into force for very large platforms in August 2023.
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">How AI content moderation works</h2>
+          <p>
+            AI content moderation systems are trained on huge datasets of content labelled by human reviewers as violating or not violating specific policies — hate speech, graphic violence, spam, misinformation, and so on. The resulting classifiers can process text, images, video, and audio at enormous scale.
           </p>
-          <div className="space-y-3">
-            {[
-              {
-                icon: '&#x1F4CB;',
-                label: 'Risk assessments',
-                text: 'Very large platforms (those with over 45 million EU users) must conduct annual risk assessments of how their systems &mdash; including recommendation algorithms and moderation AI &mdash; may cause harm, and publish the results.',
-              },
-              {
-                icon: '&#x1F9EA;',
-                label: 'Independent audits',
-                text: 'Platforms must submit to annual independent audits of their risk assessments and the measures they have taken to reduce risk. The results must be shared with regulators.',
-              },
-              {
-                icon: '&#x1F4E4;',
-                label: 'Transparency reports',
-                text: "Platforms must publish detailed information about how many items they removed, why, and at what stage. They must also publish information about their recommender systems and give users the option to use chronological feeds.",
-              },
-              {
-                icon: '&#x2696;&#xFE0F;',
-                label: 'Right to appeal',
-                text: 'Users whose content is removed must be given clear reasons and an effective way to appeal. Platforms must have internal complaint-handling systems and must cooperate with certified out-of-court dispute settlement bodies.',
-              },
-            ].map(({ icon, label, text }) => (
-              <div key={label} className="flex gap-3 items-start">
-                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
-                <div>
-                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="bg-green-50 rounded-xl p-4">
-            <p className="text-green-800 text-sm font-semibold mb-1">UK Online Safety Act</p>
-            <p className="text-green-700 text-sm leading-relaxed">
-              The UK has its own framework. The Online Safety Act 2023 requires platforms to assess
-              risks of illegal content and content harmful to children, with Ofcom as the regulator.
-              Critics argue it is less detailed than the DSA and gives platforms more discretion.
-            </p>
-          </div>
+          <p>
+            Different types of harmful content use different AI approaches. Illegal content like CSAM uses perceptual hashing — essentially a digital fingerprint — to match known illegal images even when slightly altered. Hate speech detection uses natural language models trained to identify dehumanising language, slurs, and incitement. Misinformation detection increasingly uses claim-checking databases and source credibility signals alongside text analysis.
+          </p>
+          <p>
+            Platforms use AI both proactively (scanning content before or immediately after upload) and reactively (reviewing content flagged by users). Human moderators handle borderline cases, appeals, and the ongoing work of building better training data.
+          </p>
         </div>
 
-        <ReviewLaterButton lessonId="ai-and-content-moderation" />
-        <LessonNote lessonId="ai-and-content-moderation" />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">The false positive problem</h2>
+          <p>
+            AI content moderation makes mistakes — and those mistakes are not evenly distributed. Research consistently finds that AI systems over-moderate content from marginalised groups: LGBTQ+ users whose coming-out posts are flagged as sexual content; Palestinian users whose documentation of conflict is removed as violent content; Black users whose descriptions of their own experiences of racism are removed as hate speech.
+          </p>
+          <p>
+            This is partly a training data problem: if the labelled examples used to train a classifier reflect the biases of the people who labelled them, the classifier will replicate those biases at scale. It is also a context problem: language that is reclaimed within a community may look identical to slurs used by outsiders. AI struggles with nuance, code-switching, satire, and protest documentation.
+          </p>
+          <p>
+            The false positive problem has a chilling effect: activists, journalists, and marginalised communities self-censor because they know their content is more likely to be removed. Meanwhile, well-resourced actors who understand how to avoid AI triggers can continue spreading harmful content.
+          </p>
+        </div>
 
-        <Quiz questions={quizQuestions} lessonId="ai-and-content-moderation" lessonTitle="AI and content moderation" />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">The human moderators behind the AI</h2>
+          <p>
+            Behind every AI content moderation system is a human workforce that built it and maintains it. Content moderators review borderline cases, build and check training data, and handle appeals. Many work for third-party contractors in countries with lower labour costs — the Philippines, Kenya, India — reviewing content for platforms headquartered in the US or Europe.
+          </p>
+          <p>
+            Multiple investigations and lawsuits have documented the psychological toll. Moderators at Facebook's contract facility in Austin, Texas, described reviewing hundreds of pieces of violent and disturbing content per day, inadequate mental health support, and dismissal for speaking publicly about conditions. A 2023 lawsuit by Kenyan moderators working for Meta resulted in a settlement and commitments to improve standards.
+          </p>
+          <p>
+            The paradox is stark: the people whose daily labour makes social media safe enough to use are among the most exploited workers in the technology supply chain.
+          </p>
+        </div>
 
-        <LessonFeedback lessonId="ai-and-content-moderation" />
-        <LessonRating lessonId="ai-and-content-moderation" />
-        <RelatedLessons currentId="ai-and-content-moderation" />
-        <NextLesson currentId="ai-and-content-moderation" />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">What the law now requires: the DSA and the Online Safety Act</h2>
+          <p>
+            For most of social media's history, platforms could remove content based on opaque policies, with no obligation to explain decisions or provide meaningful appeals. That is changing.
+          </p>
+          <p>
+            The EU's Digital Services Act (DSA), which applied to very large platforms from August 2023, requires them to conduct annual risk assessments of how their systems contribute to societal harms, accept independent audits, give users clear explanations when content is removed, and provide effective appeal mechanisms. Platforms that fail to comply can be fined up to 6% of global annual turnover.
+          </p>
+          <p>
+            The UK's Online Safety Act 2023, enforced by Ofcom, takes a different approach: it imposes a duty of care, requiring platforms to proactively identify and remove illegal content and to protect children from a wider range of harmful content. Platforms must publish transparency reports showing how their moderation systems perform. Ofcom can fine platforms up to 10% of global annual turnover.
+          </p>
+        </div>
+
+        <KeyTakeaways points={KEY_TAKEAWAYS} />
+
+        <LessonNote lessonId={lessonId} />
+
+        <Quiz lessonId={lessonId} questions={quizQuestions} />
+
+        <LessonRating lessonId={lessonId} />
+        <LessonFeedback lessonId={lessonId} />
+
+        <RelatedLessons currentId={lessonId} />
+        <NextLesson currentId={lessonId} />
       </div>
     </div>
   )

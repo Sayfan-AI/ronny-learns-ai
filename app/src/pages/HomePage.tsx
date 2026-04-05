@@ -1434,13 +1434,33 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Beginner',
       },
       {
+        id: 'ai-and-the-benefits-system',
+        title: 'AI and the benefits system — DWP, Universal Credit, fraud detection, and algorithmic decisions',
+        description: 'How the DWP uses AI to detect benefit fraud, what algorithmic decision-making means for claimants, and your rights when AI affects your Universal Credit.',
+        readingTime: '8 min',
+        icon: '&#x1F3DB;&#xFE0F;',
+        to: '/learn/ai-and-the-benefits-system',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-pregnancy-and-baby-care',
+        title: 'AI and pregnancy and baby care — apps, ultrasound AI, smart monitors, and sleep trackers',
+        description: 'How AI is used in pregnancy apps, ultrasound scanning, newborn monitoring, and the questions every parent should ask about data and safety.',
+        readingTime: '6 min',
+        icon: '&#x1F476;',
+        to: '/learn/ai-and-pregnancy-and-baby-care',
+        color: 'pink',
+        difficulty: 'Beginner',
+      },
+      {
         id: 'ai-and-content-moderation',
-        title: 'AI and content moderation — hate speech detection, misinformation, false positives, and the EU DSA',
-        description: 'How AI helps platforms police billions of posts, why it gets things wrong, and the human cost of keeping the internet safe.',
+        title: 'AI and social media content moderation — hate speech, misinformation, false positives, and the Online Safety Act',
+        description: 'How AI polices what billions of people post online, why it often gets it wrong, the human cost of content moderation, and what new laws require.',
         readingTime: '7 min',
-        icon: '🛡️',
+        icon: '&#x1F6A9;',
         to: '/learn/ai-and-content-moderation',
-        color: 'purple',
+        color: 'orange',
         difficulty: 'Intermediate',
       },
       {
@@ -2510,23 +2530,23 @@ export function HomePage() {
               </div>
             </Link>
             <Link
-              to="/quiz/true-or-false"
-              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
+              to="/quiz/guess-the-ai"
+              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
             >
-              <span className="text-2xl flex-shrink-0">&#x2753;</span>
+              <span className="text-2xl flex-shrink-0">&#x1F575;&#xFE0F;</span>
               <div>
-                <p className="font-semibold text-violet-800 text-sm">True or false</p>
-                <p className="text-violet-600 text-xs">15 AI statements — test your knowledge of facts, myths, and regulation.</p>
+                <p className="font-semibold text-indigo-800 text-sm">Guess the AI</p>
+                <p className="text-indigo-600 text-xs">10 rounds identifying AI systems from descriptions.</p>
               </div>
             </Link>
             <Link
-              to="/quiz/ai-timeline"
-              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
+              to="/quiz/sort-it-out"
+              className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 hover:bg-emerald-100 transition-colors flex items-center gap-3"
             >
-              <span className="text-2xl flex-shrink-0">&#x23F3;</span>
+              <span className="text-2xl flex-shrink-0">&#x1F9E9;</span>
               <div>
-                <p className="font-semibold text-indigo-800 text-sm">AI timeline game</p>
-                <p className="text-indigo-600 text-xs">Arrange 10 AI milestones in the correct order.</p>
+                <p className="font-semibold text-emerald-800 text-sm">Sort It Out</p>
+                <p className="text-emerald-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
               </div>
             </Link>
             <Link
