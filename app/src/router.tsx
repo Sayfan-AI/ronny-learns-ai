@@ -157,6 +157,8 @@ const AIAndSocialMediaAlgorithms = lazy(() => import('./pages/AIAndSocialMediaAl
 const AIAndClimateActivism = lazy(() => import('./pages/AIAndClimateActivism').then(m => ({ default: m.AIAndClimateActivism })))
 const AIAndSportsMedicine = lazy(() => import('./pages/AIAndSportsMedicine').then(m => ({ default: m.AIAndSportsMedicine })))
 const AIAndFraudAndIdentityTheft = lazy(() => import('./pages/AIAndFraudAndIdentityTheft').then(m => ({ default: m.AIAndFraudAndIdentityTheft })))
+const AIAndFraud = lazy(() => import('./pages/AIAndFraud').then(m => ({ default: m.AIAndFraud })))
+const AIAndTaxes = lazy(() => import('./pages/AIAndTaxes').then(m => ({ default: m.AIAndTaxes })))
 const AIAndGigEconomy = lazy(() => import('./pages/AIAndGigEconomy').then(m => ({ default: m.AIAndGigEconomy })))
 const AIAndEdTech = lazy(() => import('./pages/AIAndEdTech').then(m => ({ default: m.AIAndEdTech })))
 const AIAndSportFanExperience = lazy(() => import('./pages/AIAndSportFanExperience').then(m => ({ default: m.AIAndSportFanExperience })))
@@ -1118,6 +1120,18 @@ const aiAndFraudAndIdentityTheftRoute = createRoute({
   component: withSuspense(AIAndFraudAndIdentityTheft),
 })
 
+const aiAndFraudRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-fraud',
+  component: withSuspense(AIAndFraud),
+})
+
+const aiAndTaxesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-taxes',
+  component: withSuspense(AIAndTaxes),
+})
+
 const aiAndGigEconomyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-gig-economy',
@@ -1388,6 +1402,8 @@ const routeTree = rootRoute.addChildren([
   aiAndClimateActivismRoute,
   aiAndSportsMedicineRoute,
   aiAndFraudAndIdentityTheftRoute,
+  aiAndFraudRoute,
+  aiAndTaxesRoute,
   aiAndGigEconomyRoute,
   aiAndEdTechRoute,
   aiAndSportFanExperienceRoute,

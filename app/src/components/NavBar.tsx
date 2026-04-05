@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { to: '/learn/neural-network', label: 'Neural networks' },
   { to: '/learn/language-models', label: 'Language models' },
   { to: '/ai-history', label: 'AI history' },
+  { to: '/ai-in-the-news', label: 'AI in the news' },
   { to: '/learn/ai-everyday-life', label: 'AI in everyday life' },
   { to: '/learn/ai-pros-and-cons', label: 'AI pros and cons' },
   { to: '/learn/what-is-api', label: 'What is an API?' },

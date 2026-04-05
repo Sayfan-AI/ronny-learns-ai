@@ -1221,6 +1221,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-taxes',
+        title: 'AI and taxes — automated returns, fraud detection, and how AI is changing the tax system',
+        description: 'How AI helps people complete tax returns, detects fraud worth billions of pounds, and is being used by HMRC to investigate suspicious cases.',
+        readingTime: '6 min',
+        icon: '📝',
+        to: '/learn/ai-and-taxes',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-real-estate',
         title: 'AI and real estate — property valuations, AI letting agents, smart home tech, and the future of the UK property market',
         description: 'How AI is changing the way homes are valued, bought, rented, and financed — from instant property estimates to AI mortgage decisions and fraud detection.',
@@ -1309,6 +1319,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-fraud-and-identity-theft',
         color: 'red',
         difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-fraud',
+        title: 'AI and fraud — how AI detects scams, stops payment fraud, and protects your accounts',
+        description: 'How banks and businesses use AI to catch fraudsters in real time — and how criminals are using AI to create more convincing scams.',
+        readingTime: '6 min',
+        icon: '🔒',
+        to: '/learn/ai-and-fraud',
+        color: 'orange',
+        difficulty: 'Intermediate',
       },
       {
         id: 'ai-and-gig-economy',
