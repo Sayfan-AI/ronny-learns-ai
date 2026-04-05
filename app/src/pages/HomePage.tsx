@@ -1175,6 +1175,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Beginner',
       },
       {
+        id: 'ai-and-space-exploration',
+        title: 'AI and space exploration — Mars rovers, exoplanets, satellite constellations, and UK space ambitions',
+        description: 'How AI navigates Mars rovers autonomously, finds new planets from telescope data, manages satellite constellations, tracks space debris, and supports the UK space sector.',
+        readingTime: '7 min',
+        icon: '&#x1F680;',
+        to: '/learn/ai-and-space-exploration',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+            {
         id: 'ai-and-sport-betting',
         title: 'AI and sport betting — algorithmic odds, trading bots, in-play AI, and addiction profiling',
         description: 'How Bet365 and Sky Bet use AI to set odds, Betfair trading bots, in-play betting AI, personalised promotions, problem gambling detection, and the 2023 Gambling White Paper.',

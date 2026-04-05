@@ -146,6 +146,7 @@ const SeriesPage = lazy(() => import('./pages/SeriesPage').then(m => ({ default:
 const AIAndLogistics = lazy(() => import('./pages/AIAndLogistics').then(m => ({ default: m.AIAndLogistics })))
 const AIAndTheHome = lazy(() => import('./pages/AIAndTheHome').then(m => ({ default: m.AIAndTheHome })))
 const StreakPage = lazy(() => import('./pages/StreakPage').then(m => ({ default: m.StreakPage })))
+const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
 const AIAndSportBetting = lazy(() => import('./pages/AIAndSportBetting').then(m => ({ default: m.AIAndSportBetting })))
 const AIAndPrisonsAndCriminalJustice = lazy(() => import('./pages/AIAndPrisonsAndCriminalJustice').then(m => ({ default: m.AIAndPrisonsAndCriminalJustice })))
 const WhatNextQuiz = lazy(() => import('./pages/WhatNextQuiz').then(m => ({ default: m.WhatNextQuiz })))
@@ -1026,6 +1027,12 @@ const streakPageRoute = createRoute({
   component: withSuspense(StreakPage),
 })
 
+const aiAndSpaceExplorationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-space-exploration',
+  component: withSuspense(AIAndSpaceExploration),
+})
+
 const aiAndSportBettingRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-sport-betting',
@@ -1195,6 +1202,7 @@ const routeTree = rootRoute.addChildren([
   aiAndLogisticsRoute,
   aiAndTheHomeRoute,
   streakPageRoute,
+  aiAndSpaceExplorationRoute,
   aiAndSportBettingRoute,
   aiAndPrisonsAndCriminalJusticeRoute,
   whatNextQuizRoute,
