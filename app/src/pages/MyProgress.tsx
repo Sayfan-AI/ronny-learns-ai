@@ -104,6 +104,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-space-exploration',    title: 'AI and space exploration',            to: '/learn/ai-and-space-exploration' },
   { id: 'ai-and-autonomous-vehicles',  title: 'AI and autonomous vehicles',          to: '/learn/ai-and-autonomous-vehicles' },
   { id: 'ai-and-3d-printing',          title: 'AI and 3D printing',                  to: '/learn/ai-and-3d-printing' },
+  { id: 'ai-and-pregnancy-and-baby-care',       title: 'AI and pregnancy and baby care',      to: '/learn/ai-and-pregnancy-and-baby-care' },
+  { id: 'ai-and-taxes-and-financial-admin',     title: 'AI and taxes and financial admin',    to: '/learn/ai-and-taxes-and-financial-admin' },
 ]
 
 interface QuizScoreEntry {
