@@ -134,6 +134,7 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-the-benefits-system',            title: 'AI and the benefits system',               to: '/learn/ai-and-the-benefits-system' },
   { id: 'ai-and-pregnancy-and-baby-care',        title: 'AI and pregnancy and baby care',           to: '/learn/ai-and-pregnancy-and-baby-care' },
   { id: 'ai-and-content-moderation',             title: 'AI and content moderation',                to: '/learn/ai-and-content-moderation' },
+  { id: 'ai-and-welfare-benefits',               title: 'AI and welfare benefits',                  to: '/learn/ai-and-welfare-benefits' },
 ]
 
 interface QuizScoreEntry {

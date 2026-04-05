@@ -1464,24 +1464,14 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-the-benefits-system',
-        title: 'AI and the benefits system — DWP, Universal Credit, fraud detection, and algorithmic decisions',
-        description: "How AI is being used inside the UK benefits system to detect fraud, assess claims, and make decisions that affect some of the most vulnerable people in society.",
+        id: 'ai-and-welfare-benefits',
+        title: 'AI and welfare benefits — DWP fraud detection, Universal Credit algorithms, SyRI case, and claimant rights',
+        description: 'How AI is used inside the UK benefits system — and the serious questions it raises about automated decisions, fairness, and your rights as a claimant.',
         readingTime: '8 min',
-        icon: '🏛️',
-        to: '/learn/ai-and-the-benefits-system',
+        icon: '&#x1F3DB;&#xFE0F;',
+        to: '/learn/ai-and-welfare-benefits',
         color: 'orange',
         difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-pregnancy-and-baby-care',
-        title: 'AI and pregnancy and baby care — ultrasound AI, baby monitors, smart sleep trackers, and pregnancy apps',
-        description: 'How AI is entering maternity care — from AI that spots complications in baby scans to smart monitors that track breathing and sleep in newborns.',
-        readingTime: '6 min',
-        icon: '👶',
-        to: '/learn/ai-and-pregnancy-and-baby-care',
-        color: 'pink',
-        difficulty: 'Beginner',
       },
     ],
   },
@@ -2557,6 +2547,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-emerald-800 text-sm">Jargon match</p>
                 <p className="text-emerald-600 text-xs">Match 10 AI terms to their plain-English definitions.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/who-said-it"
+              className="bg-amber-50 border border-amber-200 rounded-xl p-4 hover:bg-amber-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4AC;</span>
+              <div>
+                <p className="font-semibold text-amber-800 text-sm">Who said it?</p>
+                <p className="text-amber-600 text-xs">Guess who made 10 famous quotes about AI — scientists, critics, and tech leaders.</p>
               </div>
             </Link>
           </div>
