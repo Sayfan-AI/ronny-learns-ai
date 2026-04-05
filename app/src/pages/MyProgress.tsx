@@ -312,6 +312,8 @@ const SECTION_GROUPS: SectionGroup[] = [
       { id: 'ai-and-advertising',        icon: '📢', title: 'AI and advertising',                              to: '/learn/ai-and-advertising' },
       { id: 'ai-and-emergency-services', icon: '🚨', title: 'AI and emergency services',                       to: '/learn/ai-and-emergency-services' },
       { id: 'ai-and-virtual-reality',    icon: '🥽', title: 'AI and virtual reality',                          to: '/learn/ai-and-virtual-reality' },
+      { id: 'ai-and-film-and-tv',        icon: '🎬', title: 'AI and film and TV',                               to: '/learn/ai-and-film-and-tv' },
+      { id: 'ai-and-water',              icon: '💧', title: 'AI and water',                                     to: '/learn/ai-and-water' },
     ],
   },
   {

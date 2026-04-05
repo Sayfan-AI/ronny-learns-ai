@@ -15,6 +15,7 @@ import { WhatsNew } from '../components/WhatsNew'
 import { InterestQuiz } from '../components/InterestQuiz'
 import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
+import { AIFactsTicker } from '../components/AIFactsTicker'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -575,6 +576,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-supply-chains',
         color: 'orange',
         difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-film-and-tv',
+        title: 'AI and film and TV — de-ageing effects, AI scriptwriting, dubbing, and the Hollywood debate',
+        description: 'How AI is used behind the scenes — de-ageing actors, streaming recommendations, AI dubbing, and the 2023 Hollywood strikes over AI and creative jobs.',
+        readingTime: '7 min',
+        icon: '🎬',
+        to: '/learn/ai-and-film-and-tv',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-water',
+        title: 'AI and water — smart networks, flood prediction, drought monitoring, and the global water crisis',
+        description: 'How AI is helping manage the world\'s most precious resource — detecting leaks in real time, predicting floods days ahead, and monitoring droughts from space.',
+        readingTime: '7 min',
+        icon: '💧',
+        to: '/learn/ai-and-water',
+        color: 'blue',
+        difficulty: 'Beginner',
       },
     ],
   },
@@ -1601,6 +1622,9 @@ export function HomePage() {
 
         {/* Daily challenge */}
         <DailyChallenge />
+
+        {/* AI facts ticker */}
+        <AIFactsTicker facts={AI_FACTS} />
 
         {/* Test yourself — mixed-topic quiz from completed lessons */}
         <TestYourself />
