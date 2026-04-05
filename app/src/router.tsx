@@ -164,6 +164,10 @@ const AIAndOffensiveCybersecurity = lazy(() => import('./pages/AIAndOffensiveCyb
 const SeriesPage = lazy(() => import('./pages/SeriesPage').then(m => ({ default: m.SeriesPage })))
 const AIAndGigWorkers = lazy(() => import('./pages/AIAndGigWorkers').then(m => ({ default: m.AIAndGigWorkers })))
 const AIAndAgeing = lazy(() => import('./pages/AIAndAgeing').then(m => ({ default: m.AIAndAgeing })))
+const AIAndMentalHealthCare = lazy(() => import('./pages/AIAndMentalHealthCare').then(m => ({ default: m.AIAndMentalHealthCare })))
+const AIAndFinancialAdvice = lazy(() => import('./pages/AIAndFinancialAdvice').then(m => ({ default: m.AIAndFinancialAdvice })))
+const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
+const AIAndMusicCreation = lazy(() => import('./pages/AIAndMusicCreation').then(m => ({ default: m.AIAndMusicCreation })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1147,6 +1151,30 @@ const aiAndAgeingRoute = createRoute({
   component: withSuspense(AIAndAgeing),
 })
 
+const aiAndMentalHealthCareRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-mental-health-care',
+  component: withSuspense(AIAndMentalHealthCare),
+})
+
+const aiAndFinancialAdviceRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-financial-advice',
+  component: withSuspense(AIAndFinancialAdvice),
+})
+
+const aiAndBenefitsSystemRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-benefits-system',
+  component: withSuspense(AIAndBenefitsSystem),
+})
+
+const aiAndMusicCreationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-music-creation',
+  component: withSuspense(AIAndMusicCreation),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1304,6 +1332,10 @@ const routeTree = rootRoute.addChildren([
   seriesPageRoute,
   aiAndGigWorkersRoute,
   aiAndAgeingRoute,
+  aiAndMentalHealthCareRoute,
+  aiAndFinancialAdviceRoute,
+  aiAndBenefitsSystemRoute,
+  aiAndMusicCreationRoute,
 ])
 
 const hashHistory = createHashHistory()

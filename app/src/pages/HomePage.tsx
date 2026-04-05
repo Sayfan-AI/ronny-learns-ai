@@ -22,6 +22,7 @@ import { LessonSeriesNavigator } from '../components/LessonSeriesNavigator'
 import { LessonOfTheDay } from '../components/LessonOfTheDay'
 import { ContinueYourSeries } from '../components/ContinueYourSeries'
 import { StreakReward } from '../components/StreakReward'
+import { StreakChallenge } from '../components/StreakChallenge'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1368,6 +1369,46 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'violet',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-mental-health-care',
+        title: 'AI and mental health care (professionals) — AI-assisted CBT, clinical decision support, risk assessment, and the therapeutic relationship',
+        description: 'How NHS mental health services are using AI tools like Woebot and clinical risk assessment algorithms — and the important debate about whether AI can ever replace human therapy.',
+        readingTime: '7 min',
+        icon: '&#x1F9E0;',
+        to: '/learn/ai-and-mental-health-care',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-financial-advice',
+        title: 'AI and financial advice — robo-advisors, AI pension planning, credit scoring, and your rights',
+        description: 'How AI manages your investments, models your pension, and determines your creditworthiness — and what consumer rights you have when AI makes financial decisions about you.',
+        readingTime: '7 min',
+        icon: '&#x1F4B0;',
+        to: '/learn/ai-and-financial-advice',
+        color: 'emerald',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-benefits-system',
+        title: 'AI and the benefits system — Universal Credit AI, fraud detection, algorithmic decisions, and how to appeal',
+        description: 'How AI processes Universal Credit claims, detects fraud, and makes decisions affecting millions — and your rights when the algorithm gets it wrong.',
+        readingTime: '7 min',
+        icon: '&#x1F4CB;',
+        to: '/learn/ai-and-benefits-system',
+        color: 'teal',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-music-creation',
+        title: 'AI and music creation — AI composers, voice cloning, Spotify algorithms, and what it means for musicians',
+        description: 'AI music generators, the Drake voice cloning controversy, how Spotify recommends music, and what it means for working musicians.',
+        readingTime: '7 min',
+        icon: '&#x1F3B5;',
+        to: '/learn/ai-and-music-creation',
+        color: 'violet',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1762,6 +1803,9 @@ export function HomePage() {
 
         {/* Continue your series — prompt for users part-way through a learning series */}
         <ContinueYourSeries lessons={MODULES} />
+
+        {/* Streak challenge — encourages users with active streaks to keep going */}
+        <StreakChallenge />
 
         {/* Search */}
         <SearchBar />
