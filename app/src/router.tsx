@@ -179,7 +179,9 @@ const AIAndCreativeEconomy = lazy(() => import('./pages/AIAndCreativeEconomy').t
 // Milestone 66 pages
 const AIAndPersonalAssistants = lazy(() => import('./pages/AIAndPersonalAssistants').then(m => ({ default: m.AIAndPersonalAssistants })))
 const AIAndLegalSystem = lazy(() => import('./pages/AIAndLegalSystem').then(m => ({ default: m.AIAndLegalSystem })))
+const AIAndTheLegalSystem = lazy(() => import('./pages/AIAndTheLegalSystem').then(m => ({ default: m.AIAndTheLegalSystem })))
 const AIAndEdTech = lazy(() => import('./pages/AIAndEdTech').then(m => ({ default: m.AIAndEdTech })))
+const AIAndEducationTechnology = lazy(() => import('./pages/AIAndEducationTechnology').then(m => ({ default: m.AIAndEducationTechnology })))
 const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
 // Milestone 67 pages
 const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
@@ -1112,6 +1114,8 @@ const aiAndCreativeEconomyRoute = createRoute({ getParentRoute: () => rootRoute,
 const aiAndPersonalAssistantsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-personal-assistants', component: withSuspense(AIAndPersonalAssistants) })
 const aiAndLegalSystemRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-legal-system', component: withSuspense(AIAndLegalSystem) })
 const aiAndEdTechRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-edtech', component: withSuspense(AIAndEdTech) })
+const aiAndEducationTechnologyRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-education-technology', component: withSuspense(AIAndEducationTechnology) })
+const aiAndTheLegalSystemRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-the-legal-system', component: withSuspense(AIAndTheLegalSystem) })
 const sortItOutRoute = createRoute({ getParentRoute: () => rootRoute, path: '/quiz/sort-it-out', component: withSuspense(SortItOut) })
 // Milestone 67 routes
 const trueOrFalseQuizRoute = createRoute({
@@ -1293,6 +1297,8 @@ const routeTree = rootRoute.addChildren([
   aiAndPersonalAssistantsRoute,
   aiAndLegalSystemRoute,
   aiAndEdTechRoute,
+  aiAndEducationTechnologyRoute,
+  aiAndTheLegalSystemRoute,
   sortItOutRoute,
   // Milestone 67
   trueOrFalseQuizRoute,

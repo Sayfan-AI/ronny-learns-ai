@@ -1134,6 +1134,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-education-technology',
+        title: 'AI and education technology — AI tutors, adaptive learning, essay feedback, and UK EdTech',
+        description: 'How AI is changing the way we learn — from adaptive platforms like Sparx Maths to AI tutors like Khanmigo, and the risks of over-reliance on algorithmic teaching.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/lessons/ai-and-education-technology',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-wildlife-conservation',
         title: 'AI and wildlife conservation — camera traps, acoustic monitoring, anti-poaching AI, and satellite deforestation tracking',
         description: 'How AI is helping scientists identify species, detect illegal logging in real time, track deforestation from space, and predict where poachers will strike — and the ethical questions this raises.',
@@ -2486,7 +2496,7 @@ export function HomePage() {
               <span className="text-2xl flex-shrink-0">&#x1F9E9;</span>
               <div>
                 <p className="font-semibold text-emerald-800 text-sm">Sort It Out</p>
-                <p className="text-emerald-600 text-xs">Drag and sort AI concepts into the right categories.</p>
+                <p className="text-emerald-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
               </div>
             </Link>
           </div>
