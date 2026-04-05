@@ -9,6 +9,7 @@ import { LessonRating } from '../components/LessonRating'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { LessonFeedback } from '../components/LessonFeedback'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const LESSON_TITLE = 'AI and disability'
 
@@ -87,9 +88,7 @@ export function AIAndDisability() {
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
               <span>About 6 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-disability" />
           <ShareButton lessonTitle={LESSON_TITLE} />

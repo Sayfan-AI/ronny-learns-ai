@@ -1113,6 +1113,326 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'teal',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-small-businesses',
+        title: 'AI and small businesses — AI bookkeeping, chatbots, inventory management, and the future of the high street',
+        description: 'How AI is helping independent shops and small businesses compete — from Xero and QuickBooks to customer chatbots and stock prediction tools.',
+        readingTime: '7 min',
+        icon: '🛍️',
+        to: '/learn/ai-and-small-businesses',
+        color: 'green',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-local-government',
+        title: 'AI and local government — pothole detection, planning AI, social services prediction, and your rights',
+        description: 'How UK councils are using AI to fix roads faster, speed up planning applications, optimise bin collections — and the serious questions about algorithmic accountability.',
+        readingTime: '7 min',
+        icon: '🏛️',
+        to: '/learn/ai-and-local-government',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-education-technology',
+        title: 'AI and education technology — AI tutors, adaptive learning, essay feedback, and UK EdTech',
+        description: 'How AI is changing the way we learn — from adaptive platforms like Sparx Maths to AI tutors like Khanmigo, and the risks of over-reliance on algorithmic teaching.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/lessons/ai-and-education-technology',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-wildlife-conservation',
+        title: 'AI and wildlife conservation — camera traps, acoustic monitoring, anti-poaching AI, and satellite deforestation tracking',
+        description: 'How AI is helping scientists identify species, detect illegal logging in real time, track deforestation from space, and predict where poachers will strike — and the ethical questions this raises.',
+        readingTime: '7 min',
+        icon: '🦏',
+        to: '/learn/ai-and-wildlife-conservation',
+        color: 'emerald',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-addiction-and-recovery',
+        title: 'AI and addiction and recovery — NHS screening tools, recovery chatbots, relapse prediction, and privacy',
+        description: 'How AI is helping the NHS identify addiction earlier, support people in recovery between appointments, personalise treatment, and predict relapse — with important questions about data privacy.',
+        readingTime: '7 min',
+        icon: '💚',
+        to: '/learn/ai-and-addiction-and-recovery',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-sport-betting',
+        title: 'AI and sport betting — algorithmic odds, trading bots, in-play AI, addiction profiling, and UK regulation',
+        description: 'How AI transforms the gambling industry — from odds-making and Betfair trading bots to personalised promotions that target vulnerable gamblers, and how the UK Gambling Commission is responding.',
+        readingTime: '7 min',
+        icon: '🎰',
+        to: '/learn/ai-and-sport-betting',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-prisons-and-criminal-justice',
+        title: 'AI and prisons and criminal justice — risk assessment, facial recognition, licence monitoring, and bias',
+        description: 'How AI tools are used in UK criminal justice — from OGRS risk scores to facial recognition at courts — and the serious concerns about racial bias and algorithmic accountability.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/learn/ai-and-prisons-and-criminal-justice',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-space-exploration',
+        title: 'AI and space exploration — Mars rovers, satellite constellations, exoplanet discovery, and UK space',
+        description: 'From Perseverance navigating Mars autonomously to AI discovering new planets — how artificial intelligence is transforming what we can explore beyond Earth.',
+        readingTime: '7 min',
+        icon: '🚀',
+        to: '/learn/ai-and-space-exploration',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-logistics-and-delivery',
+        title: 'AI and logistics and delivery — route planning, parcel sorting, drone delivery, and algorithmic management',
+        description: 'How Amazon, Royal Mail, DPD, and Ocado use AI to plan routes, sort millions of parcels, predict orders, and trial drone delivery — and what this means for delivery workers.',
+        readingTime: '7 min',
+        icon: '📦',
+        to: '/learn/ai-and-logistics-and-delivery',
+        color: 'orange',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-the-home',
+        title: 'AI and the home — smart thermostats, AI cameras, voice assistants, energy management, and privacy',
+        description: 'From Hive and Nest thermostats to Ring doorbells and Alexa — how AI is changing the home, what it is doing with your data, and what your rights are.',
+        readingTime: '7 min',
+        icon: '🏠',
+        to: '/learn/ai-and-the-home',
+        color: 'teal',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-gig-workers',
+        title: 'AI and gig workers — algorithmic management, Uber, Deliveroo, and the future of platform work',
+        description: 'How algorithms assign jobs, rate performance, and can deactivate accounts — the realities of working for an AI boss and the legal battles reshaping gig economy rights.',
+        readingTime: '7 min',
+        icon: '🛵',
+        to: '/learn/ai-and-gig-workers',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-ageing',
+        title: 'AI and ageing — care robots, fall detection, dementia support, and the ethics of AI for older people',
+        description: 'From AI fall sensors that call for help to companion robots reducing loneliness in care homes — how technology is changing what it means to grow old in the UK.',
+        readingTime: '7 min',
+        icon: '👴',
+        to: '/learn/ai-and-ageing',
+        color: 'amber',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-critical-thinking',
+        title: 'AI and critical thinking — how to evaluate AI claims, spot misinformation, and think clearly about AI',
+        description: 'The skills you need to cut through AI hype and fear — how to evaluate evidence, spot logical fallacies, and ask the right questions when an AI claim sounds too good to be true.',
+        readingTime: '6 min',
+        icon: '🧩',
+        to: '/learn/ai-and-critical-thinking',
+        color: 'purple',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-sport-fan-experience',
+        title: 'AI and the sport fan experience — personalised broadcasts, live stats, fan apps, and AI pundits',
+        description: 'How AI is transforming how fans watch, follow, and engage with sport — from personalised highlight reels and VAR to AI commentators and predictive fantasy football.',
+        readingTime: '6 min',
+        icon: '⚽',
+        to: '/learn/ai-and-sport-fan-experience',
+        color: 'green',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-offensive-cybersecurity',
+        title: 'AI and offensive cybersecurity — AI-powered attacks, deepfake phishing, and cyber defence',
+        description: 'How criminals are using AI to make cyberattacks faster, more convincing, and harder to detect — and how the same AI tools are being used to defend against them.',
+        readingTime: '7 min',
+        icon: '🔓',
+        to: '/learn/ai-and-offensive-cybersecurity',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-real-estate',
+        title: 'AI and real estate — property valuation AI, virtual viewings, predictive analytics, and Rightmove',
+        description: 'How AI is changing how homes are valued, marketed, and bought — from Zoopla\'s algorithm to virtual property tours and AI mortgage underwriting.',
+        readingTime: '7 min',
+        icon: '🏡',
+        to: '/learn/ai-and-real-estate',
+        color: 'blue',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-social-care',
+        title: 'AI and social care — needs assessment AI, care robots, workforce tools, and safeguarding ethics',
+        description: 'How AI is being used in adult social care in the UK — from automated needs assessments and care planning tools to robot carers and the profound ethical questions these raise.',
+        readingTime: '7 min',
+        icon: '🤝',
+        to: '/learn/ai-and-social-care',
+        color: 'teal',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-immigration',
+        title: 'AI and immigration — visa processing AI, border facial recognition, Home Office algorithms, and bias',
+        description: 'How AI is used in UK immigration — from automated visa decision systems and e-passport gates to the serious concerns about bias, lack of transparency, and the consequences of algorithmic errors.',
+        readingTime: '7 min',
+        icon: '✈️',
+        to: '/learn/ai-and-immigration',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-dentistry',
+        title: 'AI and dentistry — AI diagnosis, dental imaging, NHS waiting lists, and the future of the dentist',
+        description: 'How AI is changing dental care in the UK — from AI that spots tooth decay in X-rays to tools helping overstretched NHS dentists manage patient lists.',
+        readingTime: '6 min',
+        icon: '🦷',
+        to: '/learn/ai-and-dentistry',
+        color: 'blue',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-nhs-waiting-lists',
+        title: 'AI and NHS waiting lists — prioritisation AI, admin automation, and the waiting list crisis',
+        description: 'How AI is being deployed to tackle the NHS waiting list backlog — from tools that triage patients by urgency to AI that spots appointment no-shows before they happen.',
+        readingTime: '7 min',
+        icon: '🏥',
+        to: '/learn/ai-and-nhs-waiting-lists',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-social-media-algorithms',
+        title: 'AI and social media algorithms — recommendation engines, filter bubbles, and the Online Safety Act',
+        description: 'How TikTok, Instagram, and YouTube decide what you see — the mechanics of recommendation algorithms, their effects on mental health and democracy, and the new UK rules.',
+        readingTime: '7 min',
+        icon: '📱',
+        to: '/learn/ai-and-social-media-algorithms',
+        color: 'violet',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-fraud',
+        title: 'AI and fraud — deepfake bank calls, AI phishing, authorised push payment fraud, and how to stay safe',
+        description: 'How AI is supercharging fraud — from voice cloning that fools your relatives to AI-generated phishing emails indistinguishable from the real thing — and what banks, regulators, and you can do.',
+        readingTime: '7 min',
+        icon: '🕵️',
+        to: '/learn/ai-and-fraud',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-climate-activism',
+        title: 'AI and climate activism — AI tools for campaigning, greenwashing detection, and climate disinformation',
+        description: 'How environmental groups use AI to analyse satellite data, track corporate emissions claims, coordinate campaigns — and how AI is also used to spread climate disinformation.',
+        readingTime: '6 min',
+        icon: '🌍',
+        to: '/learn/ai-and-climate-activism',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-music-industry',
+        title: 'AI and the music industry — Suno, AI copyright battles, deepfake voices, and what this means for musicians',
+        description: 'From AI that generates complete songs in seconds to AI voice clones of famous artists — how AI is transforming music creation, the legal battles, and what this means for human musicians.',
+        readingTime: '7 min',
+        icon: '🎵',
+        to: '/learn/ai-and-music-industry',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-fashion-tech',
+        title: 'AI and fashion technology — virtual try-on, trend forecasting, sustainable fashion, and fast fashion AI',
+        description: 'How AI is reshaping fashion — from virtual fitting rooms and AI-designed garments to algorithms that predict next season\'s trends and the environmental questions these raise.',
+        readingTime: '6 min',
+        icon: '👗',
+        to: '/learn/ai-and-fashion-tech',
+        color: 'pink',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-climate-tech',
+        title: 'AI and climate tech — wind and solar optimisation, smart grid AI, carbon capture, and UK Net Zero',
+        description: 'How AI is accelerating the clean energy transition — from optimising wind farm output and balancing the UK grid to discovering new carbon capture materials.',
+        readingTime: '7 min',
+        icon: '⚡',
+        to: '/learn/ai-and-climate-tech',
+        color: 'emerald',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-creative-economy',
+        title: 'AI and the creative economy — musicians, writers, designers, UK copyright, and how creatives are adapting',
+        description: 'How AI is changing what it means to be a creative professional in the UK — the copyright disputes, the tools creatives are using, and the debate about human artistry versus generative AI.',
+        readingTime: '7 min',
+        icon: '🎨',
+        to: '/learn/ai-and-creative-economy',
+        color: 'amber',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-sport-nutrition',
+        title: 'AI and sport nutrition — calorie tracking, gut microbiome AI, and the risks of algorithmic diet advice',
+        description: 'From apps that photograph your meal and estimate calories to gut microbiome AI that reads your bacteria — how AI is transforming nutrition for athletes and everyone else.',
+        readingTime: '6 min',
+        icon: '🥦',
+        to: '/learn/ai-and-sport-nutrition',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-mental-health-chatbots',
+        title: 'AI and mental health chatbots — Woebot, Wysa, Kooth, evidence, MHRA regulation, and important limits',
+        description: 'The apps offering therapy through conversation — what CBT-based chatbots can do, what the evidence shows, the regulatory grey area, and when to seek human help instead.',
+        readingTime: '7 min',
+        icon: '🧠',
+        to: '/learn/ai-and-mental-health-chatbots',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-personal-assistants',
+        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, privacy, and what they really do with your data',
+        description: 'How voice assistants work, what they are always listening for, the privacy questions about audio data, and how to use them without compromising your privacy.',
+        readingTime: '6 min',
+        icon: '🔊',
+        to: '/learn/ai-and-personal-assistants',
+        color: 'indigo',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-legal-system',
+        title: 'AI and the legal system — contract AI, predictive justice, access to legal advice, and UK regulation',
+        description: 'How AI is used in UK legal practice, the US case of risk assessment tools in sentencing, the access to justice opportunity, and the principle that AI cannot be a lawyer.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/learn/ai-and-legal-system',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-edtech',
+        title: 'AI and education technology — AI tutors, personalised learning, cheating detection, and the future of school',
+        description: 'How AI is entering classrooms — from adaptive learning platforms that tailor content to each student to AI essay detectors and the ethics of algorithmic grading.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/learn/ai-and-edtech',
+        color: 'blue',
+        difficulty: 'Beginner',
+      },
     ],
   },
   {
@@ -1548,7 +1868,7 @@ export function HomePage() {
 
         {/* Learning streak */}
         {streak > 0 && (
-          <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4">
+          <Link to="/streak" className="block bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4 hover:bg-orange-100 transition-colors">
             <span className="text-3xl flex-shrink-0">&#x1F525;</span>
             <div className="flex-1 min-w-0">
               <p className="font-bold text-orange-800 text-base leading-tight">
@@ -1562,9 +1882,10 @@ export function HomePage() {
                 {bestStreak === streak && streak > 1 && (
                   <span className="ml-1 text-orange-500">That is your best yet!</span>
                 )}
+                <span className="ml-1 text-orange-500 text-xs">View your streak &rarr;</span>
               </p>
             </div>
-          </div>
+          </Link>
         )}
 
         {/* Weekly learning goal ring */}
@@ -1792,6 +2113,32 @@ export function HomePage() {
             </div>
           </div>
         )}
+
+        {/* Not sure where to start? */}
+        <div className="bg-violet-600 dark:bg-violet-800 rounded-2xl p-5 text-white space-y-3">
+          <p className="font-bold text-lg leading-tight">Not sure where to start?</p>
+          <p className="text-violet-100 text-sm leading-relaxed">Answer 5 quick questions and we will suggest the perfect lessons for you based on your interests and experience.</p>
+          <Link
+            to="/quiz/what-next"
+            className="inline-flex items-center gap-2 bg-white text-violet-700 rounded-xl px-5 py-2.5 font-semibold text-sm hover:bg-violet-50 transition-colors"
+          >
+            Find my perfect lesson &rarr;
+          </Link>
+        </div>
+
+        {/* True or False quiz game */}
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-amber-800 mb-0.5">&#x2753; True or False?</p>
+            <p className="text-sm text-amber-700">15 statements about AI — can you tell fact from fiction?</p>
+          </div>
+          <Link
+            to="/quiz/true-or-false"
+            className="flex-shrink-0 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          >
+            Play &rarr;
+          </Link>
+        </div>
 
         {/* Recently completed */}
         {recentlyCompletedModules.length > 0 && (

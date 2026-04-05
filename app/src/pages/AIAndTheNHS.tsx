@@ -9,6 +9,7 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const LESSON_TITLE = 'AI and the NHS'
 
@@ -69,7 +70,7 @@ const quizQuestions: QuizQuestion[] = [
       'AI tools for the NHS are too expensive for any NHS trust to afford without government grants',
       'UK data protection law prohibits the use of patient data to train AI models',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
       "Multiple reviews, including the Topol Review, have identified several barriers: NHS procurement processes are slow and risk-averse; legacy IT systems in many trusts cannot easily integrate new AI tools; clinical staff need training to understand and trust AI outputs; and the regulatory pathway for approving AI as a medical device (via the MHRA) takes time. The result is that even AI tools with strong clinical evidence often take years to move from trial to routine NHS use.",
   },
@@ -278,6 +279,46 @@ export function AIAndTheNHS() {
                 icon: '&#x2696;&#xFE0F;',
                 label: 'Regulatory pathway',
                 text: "AI that qualifies as a medical device must be approved by the MHRA. The pathway is clearer than it was, but still takes time — and AI models that are updated or retrained may need re-approval.",
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Barriers to AI adoption in the NHS</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Despite the promise, AI is spreading slowly through the NHS. Several real obstacles
+            stand in the way.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F4B8;',
+                label: 'Procurement complexity',
+                text: "NHS trusts are independent organisations that buy technology separately. There is no single national procurement route for AI tools, meaning the same AI product might go through a different approval process at every trust. This is slow, expensive, and creates a patchwork of different tools across the country.",
+              },
+              {
+                icon: '&#x1F9E9;',
+                label: 'Integration with legacy systems',
+                text: "Much of the NHS runs on outdated IT systems, many of which cannot easily exchange data with modern AI tools. Connecting a cutting-edge diagnostic AI to a hospital running on a 1990s patient records system is often an expensive and difficult technical project.",
+              },
+              {
+                icon: '&#x1F468;&#x200D;&#x2695;&#xFE0F;',
+                label: 'Workforce confidence and training',
+                text: "Clinicians need to trust AI tools before they will rely on them. This requires training, evidence of performance in real NHS settings, and clear guidance on when to override an AI recommendation. Many AI tools are deployed without adequate support for the staff using them.",
+              },
+              {
+                icon: '&#x2696;&#xFE0F;',
+                label: 'Regulation and liability',
+                text: "Who is responsible if an AI system makes an error that harms a patient — the hospital, the AI developer, or the clinician who trusted it? UK regulation is still developing clear answers to these questions, creating uncertainty that slows adoption.",
               },
             ].map(({ icon, label, text }) => (
               <div key={label} className="flex gap-3 items-start">

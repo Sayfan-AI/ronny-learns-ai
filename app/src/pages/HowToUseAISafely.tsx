@@ -5,6 +5,7 @@ import { useLessonVisit } from '../hooks/useLessonVisit'
 import { NextLesson } from '../components/NextLesson'
 import { LessonNote } from '../components/LessonNote'
 import { CompletedBadge } from '../components/CompletedBadge'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 import { RelatedLessons } from '../components/RelatedLessons'
 import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
@@ -93,9 +94,7 @@ export function HowToUseAISafely() {
             <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full">
               <span>About 5 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Beginner</span>
-            </div>
+            <DifficultyBadge level="Beginner" />
           </div>
           <CompletedBadge lessonId="how-to-use-ai-safely" />
         </div>
