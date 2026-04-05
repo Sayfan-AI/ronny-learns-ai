@@ -1433,6 +1433,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'blue',
         difficulty: 'Beginner',
       },
+      {
+        id: 'ai-and-content-moderation',
+        title: 'AI and content moderation — hate speech detection, misinformation, false positives, and the EU DSA',
+        description: 'How AI helps platforms police billions of posts, why it gets things wrong, and the human cost of keeping the internet safe.',
+        readingTime: '7 min',
+        icon: '🛡️',
+        to: '/learn/ai-and-content-moderation',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -2487,6 +2497,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-violet-800 text-sm">True or false</p>
                 <p className="text-violet-600 text-xs">15 AI statements — test your knowledge of facts, myths, and regulation.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/ai-timeline"
+              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x23F3;</span>
+              <div>
+                <p className="font-semibold text-indigo-800 text-sm">AI timeline game</p>
+                <p className="text-indigo-600 text-xs">Arrange 10 AI milestones in the correct order.</p>
               </div>
             </Link>
           </div>

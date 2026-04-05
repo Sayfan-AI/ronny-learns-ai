@@ -186,6 +186,9 @@ const AIAndEducationTechnology = lazy(() => import('./pages/AIAndEducationTechno
 const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
 // Milestone 67 pages
 const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
+// Milestone 68 pages
+const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
+const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1130,6 +1133,18 @@ const trueOrFalseQuizRoute = createRoute({
   path: '/quiz/true-or-false',
   component: withSuspense(TrueOrFalseQuiz),
 })
+// Milestone 68 routes
+const aiAndContentModerationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-content-moderation',
+  component: withSuspense(AIAndContentModeration),
+})
+
+const aiTimelineRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/ai-timeline',
+  component: withSuspense(AITimeline),
+})
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
@@ -1310,6 +1325,9 @@ const routeTree = rootRoute.addChildren([
   sortItOutRoute,
   // Milestone 67
   trueOrFalseQuizRoute,
+  // Milestone 68
+  aiAndContentModerationRoute,
+  aiTimelineRoute,
 ])
 
 const hashHistory = createHashHistory()
