@@ -1139,7 +1139,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         description: 'How AI is changing the way we learn — from adaptive platforms like Sparx Maths to AI tutors like Khanmigo, and the risks of over-reliance on algorithmic teaching.',
         readingTime: '7 min',
         icon: '📚',
-        to: '/lessons/ai-and-education-technology',
+        to: '/learn/ai-and-education-technology',
         color: 'blue',
         difficulty: 'Intermediate',
       },
