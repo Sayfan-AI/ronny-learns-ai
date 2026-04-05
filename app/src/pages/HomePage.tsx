@@ -1520,6 +1520,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'purple',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-sport-betting',
+        title: 'AI and sport betting — algorithmic odds, trading bots, in-play AI, and addiction profiling',
+        description: 'How Bet365 and Sky Bet use AI to set odds, Betfair\'s trading bots, in-play betting AI, personalised promotions, problem gambling detection, and the 2023 Gambling White Paper.',
+        readingTime: '8 min',
+        icon: '&#x1F3B0;',
+        to: '/learn/ai-and-sport-betting',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-prisons-and-criminal-justice',
+        title: 'AI and prisons and criminal justice — risk assessment, facial recognition, and algorithmic accountability',
+        description: 'OASys risk scoring, the Bridges facial recognition case, GPS licence monitoring, algorithmic parole decisions, racial bias, and your rights to challenge AI decisions.',
+        readingTime: '8 min',
+        icon: '&#x2696;',
+        to: '/learn/ai-and-prisons-and-criminal-justice',
+        color: 'gray',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -1923,6 +1943,20 @@ export function HomePage() {
 
         {/* Streak challenge — encourages users with active streaks to keep going */}
         <StreakChallenge />
+
+        {/* What should I learn next? — personalised quiz for new/returning users */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border border-blue-200 dark:border-blue-800 rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-0.5">Not sure where to start?</p>
+            <p className="text-sm text-blue-700 dark:text-blue-300">Answer 5 quick questions to get personalised lesson recommendations.</p>
+          </div>
+          <Link
+            to="/quiz/what-next"
+            className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          >
+            Find my lessons &rarr;
+          </Link>
+        </div>
 
         {/* Search */}
         <SearchBar />

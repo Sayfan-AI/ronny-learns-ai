@@ -179,6 +179,9 @@ const AIAndAddictionAndRecovery = lazy(() => import('./pages/AIAndAddictionAndRe
 const AIFactsQuiz = lazy(() => import('./pages/AIFactsQuiz').then(m => ({ default: m.AIFactsQuiz })))
 const AIAndFashionTech = lazy(() => import('./pages/AIAndFashionTech').then(m => ({ default: m.AIAndFashionTech })))
 const AIAndMusicIndustry = lazy(() => import('./pages/AIAndMusicIndustry').then(m => ({ default: m.AIAndMusicIndustry })))
+const AIAndSportBetting = lazy(() => import('./pages/AIAndSportBetting').then(m => ({ default: m.AIAndSportBetting })))
+const AIAndPrisonsAndCriminalJustice = lazy(() => import('./pages/AIAndPrisonsAndCriminalJustice').then(m => ({ default: m.AIAndPrisonsAndCriminalJustice })))
+const WhatNextQuiz = lazy(() => import('./pages/WhatNextQuiz').then(m => ({ default: m.WhatNextQuiz })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1252,6 +1255,24 @@ const aiAndMusicIndustryRoute = createRoute({
   component: withSuspense(AIAndMusicIndustry),
 })
 
+const aiAndSportBettingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-sport-betting',
+  component: withSuspense(AIAndSportBetting),
+})
+
+const aiAndPrisonsAndCriminalJusticeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-prisons-and-criminal-justice',
+  component: withSuspense(AIAndPrisonsAndCriminalJustice),
+})
+
+const whatNextQuizRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/what-next',
+  component: withSuspense(WhatNextQuiz),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1424,6 +1445,9 @@ const routeTree = rootRoute.addChildren([
   aiFactsQuizRoute,
   aiAndFashionTechRoute,
   aiAndMusicIndustryRoute,
+  aiAndSportBettingRoute,
+  aiAndPrisonsAndCriminalJusticeRoute,
+  whatNextQuizRoute,
 ])
 
 const hashHistory = createHashHistory()
