@@ -185,6 +185,12 @@ const AIAndEducationTechnology = lazy(() => import('./pages/AIAndEducationTechno
 const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
 // Milestone 67 pages
 const TrueOrFalseQuiz = lazy(() => import('./pages/TrueOrFalseQuiz').then(m => ({ default: m.TrueOrFalseQuiz })))
+// Milestone 68 pages
+const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
+const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
+const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
+const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
+const JargonMatch = lazy(() => import('./pages/JargonMatch').then(m => ({ default: m.JargonMatch })))
 // Milestone 69 pages
 const AIAndCybercrime = lazy(() => import('./pages/AIAndCybercrime').then(m => ({ default: m.AIAndCybercrime })))
 const AIAndAutonomousVehicles = lazy(() => import('./pages/AIAndAutonomousVehicles').then(m => ({ default: m.AIAndAutonomousVehicles })))
@@ -192,15 +198,8 @@ const AIAndFinancialAdvice = lazy(() => import('./pages/AIAndFinancialAdvice').t
 const AIAndShopping = lazy(() => import('./pages/AIAndShopping').then(m => ({ default: m.AIAndShopping })))
 const AIAndTranslation = lazy(() => import('./pages/AIAndTranslation').then(m => ({ default: m.AIAndTranslation })))
 const AIAndGigEconomy = lazy(() => import('./pages/AIAndGigEconomy').then(m => ({ default: m.AIAndGigEconomy })))
-// Milestone 68 pages
-const AIAndBenefitsSystem = lazy(() => import('./pages/AIAndBenefitsSystem').then(m => ({ default: m.AIAndBenefitsSystem })))
-// Milestone 69 pages
 const AIAndWelfareBenefits = lazy(() => import('./pages/AIAndWelfareBenefits').then(m => ({ default: m.AIAndWelfareBenefits })))
 const WhoSaidItQuiz = lazy(() => import('./pages/WhoSaidItQuiz').then(m => ({ default: m.WhoSaidItQuiz })))
-const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBabyCare').then(m => ({ default: m.AIAndPregnancyAndBabyCare })))
-const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
-const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
-const JargonMatch = lazy(() => import('./pages/JargonMatch').then(m => ({ default: m.JargonMatch })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1140,15 +1139,6 @@ const trueOrFalseQuizRoute = createRoute({
   component: withSuspense(TrueOrFalseQuiz),
 })
 
-// Milestone 69 route definitions
-const aiAndCybercrimeRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-cybercrime', component: withSuspense(AIAndCybercrime) })
-const aiAndAutonomousVehiclesRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-autonomous-vehicles', component: withSuspense(AIAndAutonomousVehicles) })
-const aiAndFinancialAdviceRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-financial-advice', component: withSuspense(AIAndFinancialAdvice) })
-const aiAndShoppingRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-shopping', component: withSuspense(AIAndShopping) })
-const aiAndTranslationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-translation', component: withSuspense(AIAndTranslation) })
-const aiAndGigEconomyRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-gig-economy', component: withSuspense(AIAndGigEconomy) })
-
-// Milestone 68 routes
 const aiAndBenefitsSystemRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/learn/ai-and-the-benefits-system',
@@ -1179,17 +1169,15 @@ const jargonMatchRoute = createRoute({
   component: withSuspense(JargonMatch),
 })
 
-const aiAndWelfareBenefitsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-welfare-benefits',
-  component: withSuspense(AIAndWelfareBenefits),
-})
-
-const whoSaidItQuizRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/quiz/who-said-it',
-  component: withSuspense(WhoSaidItQuiz),
-})
+// Milestone 69 routes
+const aiAndCybercrimeRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-cybercrime', component: withSuspense(AIAndCybercrime) })
+const aiAndAutonomousVehiclesRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-autonomous-vehicles', component: withSuspense(AIAndAutonomousVehicles) })
+const aiAndFinancialAdviceRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-financial-advice', component: withSuspense(AIAndFinancialAdvice) })
+const aiAndShoppingRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-shopping', component: withSuspense(AIAndShopping) })
+const aiAndTranslationRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-translation', component: withSuspense(AIAndTranslation) })
+const aiAndGigEconomyRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-gig-economy', component: withSuspense(AIAndGigEconomy) })
+const aiAndWelfareBenefitsRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-welfare-benefits', component: withSuspense(AIAndWelfareBenefits) })
+const whoSaidItQuizRoute = createRoute({ getParentRoute: () => rootRoute, path: '/quiz/who-said-it', component: withSuspense(WhoSaidItQuiz) })
 
 const routeTree = rootRoute.addChildren([
   homeRoute,
@@ -1369,13 +1357,6 @@ const routeTree = rootRoute.addChildren([
   sortItOutRoute,
   // Milestone 67
   trueOrFalseQuizRoute,
-  // Milestone 69
-  aiAndCybercrimeRoute,
-  aiAndAutonomousVehiclesRoute,
-  aiAndFinancialAdviceRoute,
-  aiAndShoppingRoute,
-  aiAndTranslationRoute,
-  aiAndGigEconomyRoute,
   // Milestone 68
   aiAndBenefitsSystemRoute,
   aiAndPregnancyAndBabyCareRoute,
@@ -1383,6 +1364,12 @@ const routeTree = rootRoute.addChildren([
   aiTimelineRoute,
   jargonMatchRoute,
   // Milestone 69
+  aiAndCybercrimeRoute,
+  aiAndAutonomousVehiclesRoute,
+  aiAndFinancialAdviceRoute,
+  aiAndShoppingRoute,
+  aiAndTranslationRoute,
+  aiAndGigEconomyRoute,
   aiAndWelfareBenefitsRoute,
   whoSaidItQuizRoute,
 ])
