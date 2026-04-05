@@ -201,8 +201,6 @@ const AIAndPregnancyAndBabyCare = lazy(() => import('./pages/AIAndPregnancyAndBa
 const AIAndContentModeration = lazy(() => import('./pages/AIAndContentModeration').then(m => ({ default: m.AIAndContentModeration })))
 const AITimeline = lazy(() => import('./pages/AITimeline').then(m => ({ default: m.AITimeline })))
 const JargonMatch = lazy(() => import('./pages/JargonMatch').then(m => ({ default: m.JargonMatch })))
-const AIAndWelfareBenefits = lazy(() => import('./pages/AIAndWelfareBenefits').then(m => ({ default: m.AIAndWelfareBenefits })))
-const WhoSaidItQuiz = lazy(() => import('./pages/WhoSaidItQuiz').then(m => ({ default: m.WhoSaidItQuiz })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
