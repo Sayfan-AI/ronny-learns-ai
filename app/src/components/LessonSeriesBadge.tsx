@@ -1,56 +1,66 @@
-import { LESSON_SERIES } from '../data/lessonSeries'
+import { useMemo } from 'react'
+import { getSeriesForLesson, getSeriesProgress } from '../data/lessonSeries'
 
-interface LessonSeriesBadgeProps {
-  lessonId: string
-}
+const VISITED_KEY = 'ronny-visited-modules'
 
-function loadCompletedIds(): Set<string> {
+function loadVisited(): Set<string> {
   try {
-    const raw = localStorage.getItem('ronny-quiz-completed')
-    if (!raw) return new Set()
-    return new Set(JSON.parse(raw) as string[])
+    const raw = localStorage.getItem(VISITED_KEY)
+    const arr: string[] = raw ? JSON.parse(raw) : []
+    return new Set(arr)
   } catch {
     return new Set()
   }
 }
 
+interface LessonSeriesBadgeProps {
+  lessonId: string
+}
+
 /**
- * Displays a small 'Part of series' banner if the lesson belongs to a named series.
- * Shows series name and how many lessons in that series the user has completed.
+ * Shows a small banner for each series this lesson belongs to,
+ * with a progress bar indicating how many lessons in the series
+ * the user has completed.
  */
 export function LessonSeriesBadge({ lessonId }: LessonSeriesBadgeProps) {
-  const series = LESSON_SERIES.find(s => s.lessonIds.includes(lessonId))
-  if (!series) return null
+  const seriesList = useMemo(() => getSeriesForLesson(lessonId), [lessonId])
+  const visited = useMemo(() => loadVisited(), [])
 
-  const completed = loadCompletedIds()
-  const completedInSeries = series.lessonIds.filter(id => completed.has(id)).length
-  const total = series.lessonIds.length
-  const pct = Math.round((completedInSeries / total) * 100)
+  if (seriesList.length === 0) return null
 
   return (
-    <div className="bg-violet-50 dark:bg-violet-950 border border-violet-200 dark:border-violet-800 rounded-xl p-3 flex items-center gap-3">
-      <span className="text-xl flex-shrink-0" dangerouslySetInnerHTML={{ __html: series.icon }} />
-      <div className="flex-1 min-w-0 space-y-1">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-violet-800 dark:text-violet-200 text-xs font-semibold leading-tight">
-            Series: {series.name}
-          </p>
-          <span className="text-violet-600 dark:text-violet-400 text-xs flex-shrink-0">
-            {completedInSeries}/{total} lessons
-          </span>
-        </div>
-        <div className="h-1.5 bg-violet-200 dark:bg-violet-800 rounded-full overflow-hidden">
+    <div className="space-y-2 mb-6">
+      {seriesList.map(series => {
+        const { completed, total } = getSeriesProgress(series, visited)
+        const pct = Math.round((completed / total) * 100)
+        return (
           <div
-            className="h-full bg-violet-500 rounded-full transition-all"
-            style={{ width: `${pct}%` }}
-          />
-        </div>
-        <p className="text-violet-500 dark:text-violet-400 text-xs">
-          {completedInSeries === total
-            ? 'You have completed this series!'
-            : `${completedInSeries} of ${total} series lessons completed`}
-        </p>
-      </div>
+            key={series.slug}
+            className="flex items-center gap-3 bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-xl px-4 py-3"
+          >
+            <span className="text-xl flex-shrink-0" aria-hidden="true" dangerouslySetInnerHTML={{ __html: series.icon }} />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide mb-0.5">
+                Series
+              </p>
+              <p className="text-sm font-medium text-indigo-900 dark:text-indigo-100 truncate">
+                {series.name}
+              </p>
+              <div className="flex items-center gap-2 mt-1.5">
+                <div className="flex-1 bg-indigo-200 dark:bg-indigo-800 rounded-full h-1.5 overflow-hidden">
+                  <div
+                    className="bg-indigo-500 dark:bg-indigo-400 h-1.5 rounded-full transition-all duration-500"
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+                <span className="text-xs text-indigo-600 dark:text-indigo-400 flex-shrink-0">
+                  {completed} of {total}
+                </span>
+              </div>
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

@@ -10,6 +10,8 @@ import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { DifficultyBadge } from '../components/DifficultyBadge'
+import { LessonSeriesBadge } from '../components/LessonSeriesBadge'
+
 
 const LESSON_TITLE = 'AI and banking'
 
@@ -94,6 +96,8 @@ export function AIAndBanking() {
           <CompletedBadge lessonId="ai-and-banking" />
           <ShareButton lessonTitle={LESSON_TITLE} />
         </div>
+
+        <LessonSeriesBadge lessonId="ai-and-banking" />
 
         <div className="bg-white rounded-2xl shadow-sm border border-green-100 p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-800">AI is already in your bank account</h2>
