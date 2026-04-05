@@ -1134,6 +1134,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-education-technology',
+        title: 'AI and education technology — AI tutors, adaptive learning, essay feedback, and UK EdTech',
+        description: 'How AI is changing the way we learn — from adaptive platforms like Sparx Maths to AI tutors like Khanmigo, and the risks of over-reliance on algorithmic teaching.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/lessons/ai-and-education-technology',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-wildlife-conservation',
         title: 'AI and wildlife conservation — camera traps, acoustic monitoring, anti-poaching AI, and satellite deforestation tracking',
         description: 'How AI is helping scientists identify species, detect illegal logging in real time, track deforestation from space, and predict where poachers will strike — and the ethical questions this raises.',
@@ -1202,6 +1212,26 @@ const MODULE_GROUPS: ModuleGroup[] = [
         to: '/learn/ai-and-the-home',
         color: 'teal',
         difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-personal-assistants',
+        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, privacy, and limitations',
+        description: 'How voice assistants work, what they can and cannot do, and the privacy questions that come with a device that is always listening for your wake word.',
+        readingTime: '6 min',
+        icon: '🎙️',
+        to: '/lessons/ai-and-personal-assistants',
+        color: 'indigo',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-the-legal-system',
+        title: 'AI and the legal system — contract review, legal research, access to justice, and UK courts',
+        description: 'How AI is transforming law firms, helping ordinary people access legal advice, and the serious concerns about algorithmic tools used in criminal justice.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/lessons/ai-and-the-legal-system',
+        color: 'slate',
+        difficulty: 'Intermediate',
       },
     ],
   },
@@ -2247,6 +2277,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/sort-it-out"
+              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F500;</span>
+              <div>
+                <p className="font-semibold text-violet-800 text-sm">Sort it out</p>
+                <p className="text-violet-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
               </div>
             </Link>
           </div>
