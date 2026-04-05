@@ -57,6 +57,7 @@ const FutureOfAI = lazy(() => import('./pages/FutureOfAI').then(m => ({ default:
 const AIInYourApps = lazy(() => import('./pages/AIInYourApps').then(m => ({ default: m.AIInYourApps })))
 const AILawsAndRights = lazy(() => import('./pages/AILawsAndRights').then(m => ({ default: m.AILawsAndRights })))
 const KnowledgeCheck = lazy(() => import('./pages/KnowledgeCheck').then(m => ({ default: m.KnowledgeCheck })))
+const TrueOrFalse = lazy(() => import('./pages/TrueOrFalse').then(m => ({ default: m.TrueOrFalse })))
 const AIAndSocialMedia = lazy(() => import('./pages/AIAndSocialMedia').then(m => ({ default: m.AIAndSocialMedia })))
 const AIForAccessibility = lazy(() => import('./pages/AIForAccessibility').then(m => ({ default: m.AIForAccessibility })))
 const LearningPath = lazy(() => import('./pages/LearningPath').then(m => ({ default: m.LearningPath })))
@@ -476,6 +477,12 @@ const knowledgeCheckRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/quiz/knowledge-check',
   component: withSuspense(KnowledgeCheck),
+})
+
+const trueOrFalseRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/true-or-false',
+  component: withSuspense(TrueOrFalse),
 })
 
 const aiAndSocialMediaRoute = createRoute({
@@ -1008,6 +1015,7 @@ const routeTree = rootRoute.addChildren([
   aiInYourAppsRoute,
   aiLawsAndRightsRoute,
   knowledgeCheckRoute,
+  trueOrFalseRoute,
   aiAndSocialMediaRoute,
   aiForAccessibilityRoute,
   learningPathRoute,

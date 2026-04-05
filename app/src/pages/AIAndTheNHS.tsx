@@ -14,69 +14,64 @@ const LESSON_TITLE = 'AI and the NHS'
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: "What does DeepMind's AlphaFold do?",
+    question: 'What is the NHS AI Lab and what does it do?',
     options: [
-      'It diagnoses patients by reading their medical records',
-      'It predicts the three-dimensional shape of proteins, helping scientists understand diseases and find new drugs',
-      'It manages NHS appointment scheduling and waiting lists',
-      'It writes clinical letters to reduce admin workload for doctors',
+      'It is a research hospital that treats patients using AI-only diagnosis',
+      'It is a government body that funds, tests, and coordinates AI adoption across the NHS in England',
+      'It is a commercial company that sells AI software to NHS trusts',
+      'It is part of GCHQ and focuses on cybersecurity for NHS data systems',
     ],
     correctIndex: 1,
     explanation:
-      "AlphaFold, developed by DeepMind (part of Google), solved one of biology's hardest problems: predicting the 3D structure of a protein from its amino acid sequence. This matters because the shape of a protein determines what it does in the body. Scientists can now use AlphaFold to understand how diseases work and design drugs that target specific proteins — work that would previously have taken years of lab experiments.",
-    hint: 'Think about the 50-year scientific puzzle DeepMind solved. It is about the physical shape of molecules, not patient care.',
+      'The NHS AI Lab, run by NHS England and NHSX (now merged into NHS England), was set up to accelerate safe and ethical adoption of AI across the health service. It funds trials of AI diagnostic tools, works with regulators on approval pathways, and publishes guidance for NHS trusts evaluating AI products. The AI and Digital Regulations Service (ADRS) works alongside it to help staff understand what regulatory requirements apply to AI tools they are considering buying or building.',
   },
   {
-    question: 'Which NHS service uses an AI-powered symptom checker to help patients online?',
+    question: 'What did the Moorfields Eye Hospital / DeepMind partnership achieve?',
     options: [
-      '999 — the emergency service',
-      '111 online — the non-emergency health advice service',
-      'NHS Direct — the nurse helpline',
-      'GP surgeries — for booking routine appointments',
+      'It created an AI system that replaces ophthalmologists in routine appointments',
+      'It developed an AI that can detect over 50 eye conditions from retinal scans with specialist-level accuracy',
+      'It built a system that books eye appointment slots automatically based on GP referrals',
+      'It created an AI that monitors patients remotely and alerts staff when vision deteriorates',
     ],
     correctIndex: 1,
     explanation:
-      "NHS 111 online uses an AI-guided symptom checker to help people who are not sure whether they need urgent care. Users answer questions about their symptoms and the system recommends whether to treat themselves at home, contact a GP, visit a pharmacy, or go to A&E. This reduces unnecessary A&E visits and helps staff prioritise the people who genuinely need emergency care.",
-    hint: 'Think about the non-emergency number — not 999, which is for life-threatening emergencies.',
+      "Moorfields Eye Hospital partnered with DeepMind to develop an AI that analyses optical coherence tomography (OCT) retinal scans. The AI can detect more than 50 eye conditions — including diabetic retinopathy, age-related macular degeneration, and glaucoma — with accuracy matching world-leading specialists. It also recommends the urgency of referral. The work was published in Nature Medicine in 2018 and is being rolled out more widely in NHS eye clinics.",
   },
   {
-    question: 'What was the main concern about the 2016 Royal Free Hospital / DeepMind data-sharing arrangement?',
+    question: 'What was the controversy around Babylon Health and GP at Hand?',
     options: [
-      'That DeepMind replaced Royal Free doctors with AI, putting clinical staff out of work',
-      "That 1.6 million NHS patients' data was shared with DeepMind without proper consent or a lawful basis",
-      'That the AI app made clinical errors that harmed patients',
-      'That the Royal Free Hospital charged patients extra for AI-assisted care',
+      'Babylon was found to have fabricated its AI accuracy statistics in clinical trials',
+      'GP at Hand selectively attracted younger, healthier patients, potentially underfunding traditional GP surgeries serving older populations',
+      'Babylon was hacked and patient data was leaked to a foreign government',
+      'GP at Hand was shut down after its AI chatbot gave dangerous medical advice',
     ],
     correctIndex: 1,
     explanation:
-      "In 2016, the Royal Free NHS Trust shared data on about 1.6 million patients with DeepMind to help develop an app called Streams for detecting acute kidney injury. The UK's data watchdog (the ICO) later found the arrangement breached data protection law because patients had not been properly informed and there was no clear lawful basis for sharing identifiable patient data. The case prompted NHS England to tighten rules around commercial data-sharing deals.",
-    hint: 'The concern was about privacy and whether patients knew their data was being shared — not about the technology itself.',
+      "Babylon Health's GP at Hand app, which offered AI symptom checking and video GP consultations, attracted a disproportionately young, healthy, and urban patient population. Critics argued this 'cream-skimming' risked destabilising traditional GP practices, which receive NHS funding partly based on patient numbers and face higher costs serving older, more complex patients. The controversy raised wider questions about whether digital-first healthcare services cherry-pick profitable patients and leave conventional GPs with underfunded, more demanding lists.",
   },
   {
-    question: 'What is AI-assisted diabetic retinopathy screening designed to detect?',
+    question: 'What was the GPDPR controversy about in 2021?',
     options: [
-      'High blood sugar levels in a blood sample',
-      'Early signs of eye disease by analysing photographs of the back of the eye',
-      "Whether a patient's glasses prescription needs updating",
-      'Symptoms of Type 2 diabetes before they appear in blood tests',
+      'GPDPR was an NHS AI system that was found to make racially biased diagnostic recommendations',
+      'NHS England planned to extract and share GP patient data with researchers without patients being able to easily opt out in time',
+      'GPDPR was a Babylon Health product that was found to be collecting patient data without NHS permission',
+      'The government proposed using GP data to train a commercial AI model that would be sold internationally',
     ],
     correctIndex: 1,
     explanation:
-      "Diabetic retinopathy is damage to the blood vessels in the retina caused by high blood sugar — and it is one of the leading causes of blindness in working-age adults in the UK. Moorfields Eye Hospital partnered with DeepMind to develop an AI that analyses retinal scans and can detect early signs of diabetic retinopathy (and other eye conditions) as accurately as a specialist. Catching it early means treatment can start before sight is lost.",
-    hint: 'The clue is in the name: retinopathy means damage to the retina — the light-sensitive layer at the back of the eye.',
+      "The General Practice Data for Planning and Research (GPDPR) programme proposed extracting pseudonymised GP records for NHS data analysts and approved researchers. A campaign by privacy groups argued that the opt-out process was not sufficiently publicised and that the definition of 'approved researcher' was too broad. The programme was delayed twice after public backlash, with NHS England eventually committing to a new public communications campaign and a clearer opt-out process before data collection began.",
   },
   {
-    question: 'How can AI help reduce the NHS admin burden on clinical staff?',
+    question: 'What are the main barriers to AI adoption in the NHS?',
     options: [
-      'By seeing patients instead of doctors, freeing up clinical time',
-      'By automatically coding diagnoses and drafting routine clinical letters, so doctors and nurses spend less time on paperwork',
-      'By managing hospital budgets and procurement',
-      'By training junior doctors to make fewer diagnostic errors',
+      'NHS staff are opposed to AI on ethical grounds and refuse to use AI diagnostic tools',
+      'Procurement rules, legacy IT systems, integration challenges, and workforce training requirements all slow NHS AI adoption',
+      'AI tools for the NHS are too expensive for any NHS trust to afford without government grants',
+      'UK data protection law prohibits the use of patient data to train AI models',
     ],
     correctIndex: 1,
     explanation:
-      'NHS doctors and nurses spend a significant portion of their working day on administrative tasks: coding diagnoses for billing and statistics, writing referral and discharge letters, and updating patient records. AI tools can handle much of this automatically — transcribing consultations, extracting diagnostic codes, and drafting routine letters for a clinician to review and sign off. This does not replace clinical judgement but gives staff more time to spend with patients.',
-    hint: 'Think about the non-clinical tasks that take up clinical time — paperwork, not patient care.',
+      "Multiple reviews, including the Topol Review, have identified several barriers: NHS procurement processes are slow and risk-averse; legacy IT systems in many trusts cannot easily integrate new AI tools; clinical staff need training to understand and trust AI outputs; and the regulatory pathway for approving AI as a medical device (via the MHRA) takes time. The result is that even AI tools with strong clinical evidence often take years to move from trial to routine NHS use.",
   },
 ]
 
@@ -93,15 +88,15 @@ export function AIAndTheNHS() {
             AI and the NHS
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            How artificial intelligence is helping the UK&apos;s health service diagnose
-            diseases earlier, reduce waiting times, and give staff more time with patients.
+            The NHS AI Lab, diagnostic AI, deployment challenges, patient data controversies,
+            and what Babylon Health&apos;s GP at Hand revealed about AI in primary care.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
-              <span>About 5 min read</span>
+              <span>About 7 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Beginner</span>
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-sm px-4 py-2 rounded-full font-semibold">
+              <span>Intermediate</span>
             </div>
           </div>
           <CompletedBadge lessonId="ai-and-the-nhs" />
@@ -109,49 +104,58 @@ export function AIAndTheNHS() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">The NHS and the pressure to change</h2>
+          <h2 className="text-2xl font-bold text-gray-800">The NHS AI Lab and AI and Digital Regulations Service</h2>
           <p className="text-gray-600 leading-relaxed">
-            The NHS is one of the largest employers in the world, treating millions of people every year.
-            But it faces enormous pressures: an ageing population, rising demand, long waiting lists,
-            and stretched clinical staff. AI is being tested as a way to help &mdash; not to replace
-            doctors and nurses, but to spot things earlier, handle admin, and make better use of
-            limited resources.
+            The NHS AI Lab was set up to accelerate safe and ethical adoption of AI across
+            the NHS in England. It funds clinical trials of AI tools, develops guidance for
+            NHS trusts, and works with regulators to create clearer approval pathways.
           </p>
-          <div className="bg-blue-50 rounded-xl p-4 space-y-2">
-            <p className="font-semibold text-blue-800 text-sm">Where AI is being used in the NHS right now</p>
-            <ul className="text-blue-700 text-sm leading-relaxed space-y-1 list-disc list-inside">
-              <li>Reading medical scans (X-rays, MRIs, retinal photos)</li>
-              <li>Triaging patients through the 111 symptom checker</li>
-              <li>Coding diagnoses and drafting clinical letters</li>
-              <li>Predicting which patients are most likely to need urgent care</li>
-              <li>Drug discovery research (AlphaFold)</li>
-            </ul>
+          <div className="bg-blue-50 rounded-xl p-4 space-y-3">
+            <div>
+              <p className="font-semibold text-blue-800 text-sm">AI and Digital Regulations Service (ADRS)</p>
+              <p className="text-blue-700 text-sm leading-relaxed mt-1">
+                The ADRS helps NHS staff navigate the regulatory landscape when evaluating AI products.
+                In the UK, AI that qualifies as a medical device must be approved by the Medicines and
+                Healthcare products Regulatory Agency (MHRA). The ADRS helps trusts understand which
+                category an AI tool falls into, what evidence is required, and what post-market
+                surveillance is needed once it is deployed.
+              </p>
+            </div>
+            <div>
+              <p className="font-semibold text-blue-800 text-sm">Where AI is being used in the NHS right now</p>
+              <ul className="text-blue-700 text-sm leading-relaxed space-y-1 list-disc list-inside mt-1">
+                <li>Reading retinal scans, mammograms, and chest X-rays</li>
+                <li>Triaging patients through the 111 online symptom checker</li>
+                <li>Clinical coding and drafting discharge letters</li>
+                <li>Predicting which patients are at highest risk of deterioration</li>
+                <li>Skin cancer detection in dermatology outpatient clinics</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-indigo-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">AI diagnostics: seeing what humans might miss</h2>
+          <h2 className="text-2xl font-bold text-gray-800">Diagnostic AI: Moorfields and DeepMind</h2>
           <p className="text-gray-600 leading-relaxed">
-            One of the most promising uses of AI in healthcare is reading medical images &mdash; scans,
-            X-rays, and photographs of the eye. The AI is trained on millions of labelled images
-            and can spot patterns that indicate disease.
+            One of the most cited examples of AI in the NHS is the partnership between
+            Moorfields Eye Hospital and DeepMind, published in <em>Nature Medicine</em> in 2018.
           </p>
           <div className="space-y-3">
             {[
               {
                 icon: '&#x1F441;&#xFE0F;',
-                label: 'Diabetic retinopathy screening',
-                text: "Moorfields Eye Hospital partnered with DeepMind to develop an AI that reads retinal scans and detects early signs of diabetic retinopathy (damage to blood vessels in the eye). It matches the accuracy of a specialist. Early detection means treatment can begin before sight is lost. This is now being rolled out more widely in NHS eye clinics.",
+                label: 'What the AI does',
+                text: 'The AI analyses optical coherence tomography (OCT) retinal scans and can detect more than 50 eye conditions — including diabetic retinopathy, age-related macular degeneration, and glaucoma — with accuracy matching world-leading specialists. It also recommends urgency of referral.',
               },
               {
                 icon: '&#x1FA7B;',
-                label: 'Cancer detection',
-                text: 'AI tools are being trialled in NHS breast cancer screening programmes, analysing mammograms to flag suspicious areas for a radiologist to review. Studies suggest AI can reduce the number of cancers missed and the time radiologists spend reviewing routine, clearly normal scans.',
+                label: 'Chest X-ray AI',
+                text: 'AI tools are being trialled in NHS chest X-ray reporting to detect signs of pneumonia, tuberculosis, and lung cancer. In busy radiology departments, AI can prioritise which scans need urgent attention, helping the most seriously ill patients be seen faster.',
               },
               {
-                icon: '&#x1F9EA;',
-                label: 'Chest X-rays',
-                text: 'Tools like those from Qure.ai analyse chest X-rays for signs of pneumonia, TB, and other conditions. In busy A&E departments, AI can prioritise which scans need urgent attention, helping the most seriously ill patients be seen faster.',
+                icon: '&#x1F9EC;',
+                label: 'Skin cancer AI',
+                text: "Studies have shown AI can detect malignant melanoma from photographs of skin lesions with accuracy comparable to dermatologists. NHS dermatology services are piloting AI triage tools to help GPs decide which lesions need urgent specialist review.",
               },
             ].map(({ icon, label, text }) => (
               <div key={label} className="flex gap-3 items-start">
@@ -165,113 +169,115 @@ export function AIAndTheNHS() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-emerald-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">AlphaFold: the drug discovery revolution</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Babylon Health and the GP at Hand controversy</h2>
           <p className="text-gray-600 leading-relaxed">
-            In 2020, DeepMind&apos;s AlphaFold solved one of biology&apos;s greatest challenges &mdash;
-            a problem scientists had worked on for fifty years.
-          </p>
-          <div className="bg-emerald-50 rounded-xl p-4 space-y-3">
-            <div>
-              <p className="font-semibold text-emerald-800 text-sm">The protein folding problem</p>
-              <p className="text-emerald-700 text-sm leading-relaxed mt-1">
-                Proteins are the molecules that do almost everything in your body &mdash; they are enzymes,
-                antibodies, structural components, and signal carriers. A protein&apos;s function is
-                determined by its three-dimensional shape. But working out that shape from the protein&apos;s
-                chemical recipe (its amino acid sequence) was extraordinarily difficult. It could take
-                years of laboratory experiments to solve the structure of a single protein.
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold text-emerald-800 text-sm">What AlphaFold changed</p>
-              <p className="text-emerald-700 text-sm leading-relaxed mt-1">
-                AlphaFold can predict the shape of a protein from its sequence in minutes, with accuracy
-                close to laboratory methods. DeepMind released the structures of 200 million proteins &mdash;
-                essentially every protein known to science &mdash; for free. This has dramatically
-                accelerated research into diseases like Parkinson&apos;s, cancer, and antibiotic resistance,
-                and is helping scientists design new drugs faster and at lower cost.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-sm border border-sky-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">NHS 111 and AI triage</h2>
-          <p className="text-gray-600 leading-relaxed">
-            The 111 online symptom checker uses AI to help people work out how urgently they need care.
-            You enter your symptoms and answer follow-up questions; the system recommends whether to
-            call 999, go to A&amp;E, contact a GP, visit a pharmacy, or manage things at home.
-          </p>
-          <p className="text-gray-600 leading-relaxed text-sm">
-            This kind of AI triage reduces unnecessary A&amp;E visits and helps people get the right level
-            of care more quickly. Hospitals also use predictive AI to forecast how many patients are
-            likely to arrive on any given day, helping managers plan staffing levels.
-          </p>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">Patient data and privacy</h2>
-          <p className="text-gray-600 leading-relaxed">
-            AI systems need data to learn &mdash; and healthcare data is among the most sensitive
-            that exists. The NHS holds medical records for almost everyone in England.
-            This is enormously valuable for research, but raises serious privacy questions.
+            Babylon Health&apos;s GP at Hand app launched in London in 2017, offering AI-powered
+            symptom checking and same-day video GP consultations. It attracted hundreds of
+            thousands of users &mdash; but also significant controversy.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               {
+                icon: '&#x2714;&#xFE0F;',
+                title: 'What worked',
+                text: 'Patients loved the convenience: appointments available within hours, from your phone, at any time. For younger, mobile patients with straightforward needs, it was genuinely transformative.',
+              },
+              {
                 icon: '&#x26A0;&#xFE0F;',
-                title: 'The Royal Free / DeepMind case',
-                text: 'In 2016, Royal Free NHS Trust shared data on 1.6 million patients with DeepMind without properly informing patients or establishing a lawful basis. The ICO (data watchdog) found this breached data protection law. The case prompted new rules around NHS data deals with commercial companies.',
+                title: 'The cream-skimming concern',
+                text: "GP at Hand disproportionately attracted young, healthy, urban patients — the cheapest to treat. Traditional GP practices, funded partly by patient numbers, faced losing income while serving older, more complex patients with greater needs.",
               },
               {
-                icon: '&#x1F512;',
-                title: 'Your rights',
-                text: 'You can opt out of your NHS data being used for research or planning (Type 1 opt-out for GP data; National Data Opt-out for NHS data more broadly). Your data cannot be used to make decisions about your care without your knowledge.',
+                icon: '&#x1F4CA;',
+                title: 'Accuracy claims disputed',
+                text: "Babylon's claims about its AI outperforming GPs were disputed by NHS clinicians and researchers, who argued the benchmarking methodology was flawed and the comparisons misleading.",
               },
               {
-                icon: '&#x1F91D;',
-                title: 'The benefit side',
-                text: 'NHS data, used responsibly, has real public benefit. It helped speed up COVID-19 vaccine research, identify which treatments were working, and monitor disease trends. The question is not whether to use data, but how to do it safely and fairly.',
-              },
-              {
-                icon: '&#x2696;&#xFE0F;',
-                title: 'The balance',
-                text: 'Researchers and patient groups broadly support using anonymised NHS data for research, with proper oversight. The challenge is ensuring commercial companies do not profit disproportionately from public data while the NHS bears all the risk.',
+                icon: '&#x1F3E2;',
+                title: 'Wider lesson',
+                text: "The GP at Hand case illustrated how digital health services can disrupt funding models designed for a different world. Regulators have since worked on updated frameworks to prevent cherry-picking of low-cost patients.",
               },
             ].map(({ icon, title, text }) => (
-              <div key={title} className="bg-gray-50 rounded-xl p-4">
+              <div key={title} className="bg-orange-50 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xl" dangerouslySetInnerHTML={{ __html: icon }} />
-                  <p className="font-semibold text-gray-800 text-sm">{title}</p>
+                  <p className="font-semibold text-orange-800 text-sm">{title}</p>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                <p className="text-orange-700 text-sm leading-relaxed">{text}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-violet-100 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">Helping NHS staff — less paperwork, more patients</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-amber-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Patient data: GPDPR and the Royal Free case</h2>
           <p className="text-gray-600 leading-relaxed">
-            Clinical staff in the NHS spend a large part of their day on administrative tasks.
-            AI tools are beginning to take some of that burden away.
+            AI systems need large amounts of data to learn &mdash; and healthcare data is among
+            the most sensitive that exists. The NHS has faced two high-profile controversies
+            about how patient data is handled in AI partnerships.
+          </p>
+          <div className="space-y-4">
+            <div className="bg-amber-50 rounded-xl p-4">
+              <p className="font-semibold text-amber-800 text-sm mb-1">Royal Free Hospital / DeepMind (2016)</p>
+              <p className="text-amber-700 text-sm leading-relaxed">
+                Royal Free NHS Trust shared data on 1.6 million patients with DeepMind to develop an
+                app called Streams for detecting acute kidney injury. The ICO (data watchdog) found
+                the arrangement breached data protection law: patients had not been properly informed
+                and there was no clear lawful basis for sharing identifiable data. The case prompted
+                new rules around NHS data deals with commercial companies.
+              </p>
+            </div>
+            <div className="bg-amber-50 rounded-xl p-4">
+              <p className="font-semibold text-amber-800 text-sm mb-1">GPDPR (2021)</p>
+              <p className="text-amber-700 text-sm leading-relaxed">
+                The General Practice Data for Planning and Research (GPDPR) programme proposed
+                extracting pseudonymised GP records for approved researchers. Privacy campaigners
+                argued the opt-out process was not well publicised and the definition of &quot;approved
+                researcher&quot; was too broad. The programme was delayed twice after public backlash.
+                NHS England eventually committed to improved public communications and a clearer
+                opt-out process before data collection began.
+              </p>
+            </div>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-4 space-y-2">
+            <p className="font-semibold text-slate-800 text-sm">Your rights</p>
+            <p className="text-slate-700 text-sm leading-relaxed">
+              You can opt out of your NHS data being used for research (Type 1 opt-out for GP data;
+              National Data Opt-out for NHS data more broadly). Your data cannot be used to make
+              decisions about your individual care without your knowledge.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Barriers to AI adoption in the NHS</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Despite strong evidence for some AI tools, adoption across the NHS has been slower
+            than in some other health systems. The Topol Review and subsequent NHS reports
+            have identified several recurring barriers.
           </p>
           <div className="space-y-3">
             {[
               {
-                icon: '&#x1F4CB;',
-                label: 'Clinical coding',
-                text: 'Every hospital visit must be coded with standardised diagnosis and procedure codes for NHS billing and statistics. AI tools can read clinical notes and suggest the correct codes automatically, a task that currently requires trained clinical coders and takes significant time.',
+                icon: '&#x1F6D2;',
+                label: 'Procurement',
+                text: "NHS procurement processes are slow and risk-averse. An AI tool that has strong clinical evidence can still take years to navigate contracting, information governance, and legal review before it reaches patients.",
               },
               {
-                icon: '&#x270D;&#xFE0F;',
-                label: 'Letter drafting',
-                text: 'Doctors write hundreds of letters: referrals to specialists, discharge summaries, letters to GPs. AI tools can transcribe a consultation and draft a letter for the doctor to review and approve, cutting the time spent on dictation and typing.',
+                icon: '&#x1F9F1;',
+                label: 'Legacy IT',
+                text: "Many NHS trusts run on IT infrastructure that is decades old. Integrating a modern AI tool with a system running on outdated software, different data standards, and fragmented records is technically complex and expensive.",
               },
               {
-                icon: '&#x1F4C5;',
-                label: 'Appointment management',
-                text: 'Predictive AI can identify patients who are likely to miss appointments (based on factors like distance, time of day, and past behaviour) so that the NHS can send targeted reminders or rebook proactively, reducing the costly problem of DNA (did not attend).',
+                icon: '&#x1F9D1;&#x200D;&#x2695;&#xFE0F;',
+                label: 'Workforce training',
+                text: "Clinicians need training to understand what an AI tool can and cannot do, how to interpret its outputs, and when to override it. Without this, there is a risk of both over-reliance and under-use.",
+              },
+              {
+                icon: '&#x2696;&#xFE0F;',
+                label: 'Regulatory pathway',
+                text: "AI that qualifies as a medical device must be approved by the MHRA. The pathway is clearer than it was, but still takes time — and AI models that are updated or retrained may need re-approval.",
               },
             ].map(({ icon, label, text }) => (
               <div key={label} className="flex gap-3 items-start">
@@ -286,17 +292,18 @@ export function AIAndTheNHS() {
         </div>
 
         <div className="bg-blue-50 rounded-2xl p-6 space-y-3 border border-blue-100">
-          <h2 className="text-xl font-bold text-blue-800">What it means for you as a patient</h2>
+          <h2 className="text-xl font-bold text-blue-800">The future of AI in the NHS</h2>
           <p className="text-blue-700 text-sm leading-relaxed">
-            AI in the NHS should mean faster diagnoses, earlier detection of disease, and more time
-            from clinical staff who are freed from paperwork. But there are real concerns too: if an
-            AI misses a cancer or incorrectly prioritises a patient, who is responsible? The NHS,
-            the AI company, or the doctor who trusted the system?
+            The NHS has enormous potential to benefit from AI &mdash; its population-scale datasets,
+            if used responsibly, could train diagnostic tools that save lives. But the path from
+            promising research to routine clinical use is long, and the controversies around data
+            privacy and commercial partnerships have made patients and clinicians rightly cautious.
           </p>
           <p className="text-blue-700 text-sm leading-relaxed">
-            For now, NHS policy is that AI supports clinicians &mdash; it flags things for a human
-            to review, rather than making final clinical decisions on its own. That is likely to
-            remain the case for years to come.
+            For now, NHS policy is clear: AI supports clinicians rather than replacing them. AI flags
+            findings for a human to review; it does not make final clinical decisions alone. Whether
+            that remains the case as AI capabilities improve is one of the most important questions
+            facing UK healthcare.
           </p>
         </div>
 

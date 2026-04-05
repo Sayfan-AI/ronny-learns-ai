@@ -2132,6 +2132,16 @@ export function HomePage() {
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
               </div>
             </Link>
+            <Link
+              to="/quiz/true-or-false"
+              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x2753;</span>
+              <div>
+                <p className="font-semibold text-violet-800 text-sm">True or false</p>
+                <p className="text-violet-600 text-xs">15 AI statements — test your knowledge of facts, myths, and regulation.</p>
+              </div>
+            </Link>
           </div>
         </div>
 
