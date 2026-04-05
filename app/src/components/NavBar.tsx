@@ -29,6 +29,7 @@ const NAV_LINKS = [
   { to: '/my-progress', label: 'My progress' },
   { to: '/series', label: 'Series' },
   { to: '/bookmarks', label: 'Bookmarks' },
+  { to: '/streak', label: 'My streak' },
 ]
 
 export function NavBar() {
@@ -79,6 +80,7 @@ export function NavBar() {
             { to: '/collections', label: 'Collections' },
             { to: '/ask', label: 'Ask' },
             { to: '/my-progress', label: 'My progress' },
+            { to: '/streak', label: 'My streak' },
           ].map((link) => (
             <Link
               key={link.to}
