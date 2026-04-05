@@ -141,6 +141,17 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-shopping',                       title: 'AI and shopping',                          to: '/learn/ai-and-shopping' },
   { id: 'ai-and-translation',                    title: 'AI and translation',                       to: '/learn/ai-and-translation' },
   { id: 'ai-and-gig-economy',                    title: 'AI and the gig economy',                   to: '/learn/ai-and-gig-economy' },
+  { id: 'ai-and-welfare-benefits',               title: 'AI and welfare benefits',                  to: '/learn/ai-and-welfare-benefits' },
+  { id: 'ai-and-3d-printing',                    title: 'AI and 3D printing',                       to: '/learn/ai-and-3d-printing' },
+  { id: 'ai-and-addiction-recovery',             title: 'AI and addiction recovery',                to: '/learn/ai-and-addiction-recovery' },
+  { id: 'ai-and-ageing-and-elder-care',          title: 'AI and ageing and elder care',             to: '/learn/ai-and-ageing-and-elder-care' },
+  { id: 'ai-and-fraud-and-identity-theft',       title: 'AI and fraud and identity theft',          to: '/learn/ai-and-fraud-and-identity-theft' },
+  { id: 'ai-and-logistics',                      title: 'AI and logistics',                         to: '/learn/ai-and-logistics' },
+  { id: 'ai-and-sports-medicine',                title: 'AI and sports medicine',                   to: '/learn/ai-and-sports-medicine' },
+  { id: 'ai-and-education-tech',                 title: 'AI and education tech',                    to: '/learn/ai-and-education-tech' },
+  { id: 'ai-and-mental-health-care',             title: 'AI and mental health care',                to: '/learn/ai-and-mental-health-care' },
+  { id: 'ai-and-music-creation',                 title: 'AI and music creation',                    to: '/learn/ai-and-music-creation' },
+  { id: 'ai-and-taxes',                          title: 'AI and taxes',                             to: '/learn/ai-and-taxes' },
 ]
 
 interface QuizScoreEntry {
