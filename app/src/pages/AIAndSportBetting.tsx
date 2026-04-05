@@ -11,76 +11,81 @@ import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
 
-const LESSON_TITLE = 'AI and sport betting — algorithmic odds, AI trading bots, in-play betting, and addiction profiling'
+const LESSON_TITLE = 'AI and sport betting'
 
 const KEY_TAKEAWAYS = [
-  'Bookmakers like Bet365 and Sky Bet use AI to calculate and adjust odds in real time, processing thousands of data points far faster than any human trader could.',
-  'Betfair\'s Exchange is dominated by automated AI trading bots — ordinary punters are often competing against algorithms rather than other humans.',
-  'In-play betting uses AI to update odds within milliseconds of a match event — a goal, red card, or injury triggers instant repricing across all markets.',
-  'AI systems in betting apps analyse user behaviour to identify both high-value customers (for promotions) and at-risk gamblers (who UK law requires firms to treat with care).',
-  'The 2023 UK Gambling White Paper proposed reforms including affordability checks and deposit limits — the industry is using AI to implement compliance while also continuing to use it for commercial targeting.',
+  'AI allows bookmakers like Bet365, Sky Bet, and William Hill to calculate and adjust betting odds in milliseconds — far faster than any human trader could manage, using real-time data from matches around the world.',
+  'Betting exchanges like Betfair are dominated by AI trading bots that react to in-play events almost instantaneously — making it very difficult for ordinary punters to compete.',
+  'Personalised promotions powered by AI target individual gamblers based on their behaviour — what they bet on, how much they stake, and how often they bet — raising serious concerns about addiction profiling.',
+  'GAMSTOP and the UK Gambling Commission are working to require betting companies to use AI to identify at-risk gamblers and intervene before harm escalates.',
+  'The UK Gambling Act is being reformed — a 2023 White Paper proposed mandatory affordability checks, stake limits on online slots, and new rules around AI-driven personalised promotions.',
 ]
 
-const QUIZ_QUESTIONS: QuizQuestion[] = [
+const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How do bookmakers like Bet365 and Sky Bet use AI to set odds?',
+    question: 'How do major UK bookmakers use AI to set and adjust betting odds?',
     options: [
-      'Human traders set all odds manually, with AI used only to check their calculations for errors',
-      'AI processes thousands of real-time data points — team news, weather, form, market sentiment, betting volumes — to calculate probabilities and automatically adjust odds far faster than any human',
-      'All UK bookmakers use the same AI system provided by the UK Gambling Commission to ensure consistent odds across the industry',
-      'AI is only used for less popular markets — all football and horse racing odds are still set by human traders',
+      'They employ large teams of human traders who use AI as a tool to help them make faster decisions, but all odds are ultimately set by humans',
+      'They use AI systems that ingest real-time data from thousands of markets and adjust odds automatically within milliseconds — far faster than human traders could manage',
+      'They use a fixed mathematical formula that generates odds before an event and does not change once betting opens, to ensure fairness for all customers',
+      'They buy standardised odds from a central UK authority that regulates all bookmakers, ensuring the same odds are available across all betting platforms',
     ],
     correctIndex: 1,
     explanation:
-      'Modern bookmaking is almost entirely automated. AI models process real-time data from multiple sources — team news, injury reports, historical form, weather conditions, betting patterns from other markets globally — to calculate implied probabilities and set prices. When a major team announces an injury, the odds update within seconds. This speed advantage is one reason why professional gamblers find it increasingly difficult to find value in bookmaker markets.',
+      'Modern bookmakers use sophisticated AI systems that process vast amounts of real-time data — team news, injury updates, weather conditions, betting patterns from other markets, live match statistics — and continuously adjust odds to manage risk. Bet365, Flutter Entertainment (owner of Sky Bet, Paddy Power, and Betfair), and William Hill all use proprietary AI pricing models. An odds movement that would have taken a human trader several minutes to calculate and implement can happen automatically in under a second. This is why you sometimes see odds change dramatically between clicking and placing a bet.',
+    hint: 'Think about how fast odds need to change when a goal is scored or a player is injured during a live match.',
   },
   {
-    question: 'What are AI trading bots on the Betfair Exchange, and why do they matter for ordinary punters?',
+    question: 'Why is it difficult for ordinary bettors to compete on betting exchanges like Betfair?',
     options: [
-      'Betfair\'s trading bots are customer service chatbots that help users navigate the platform',
-      'Trading bots are automated algorithms that bet and trade on the Exchange matching engine at high speed, meaning ordinary customers are often competing against sophisticated automated systems rather than other human punters',
-      'Trading bots are used by Betfair to ensure there is always liquidity in every market, acting as a guaranteed market maker',
-      'Trading bots on Betfair are illegal and have been banned by the UK Gambling Commission since 2020',
+      'Betting exchanges charge higher commission rates to individual punters than they do to professional betting companies',
+      'AI trading bots react to in-play events almost instantaneously, meaning a human who sees a goal scored will find the odds have already moved by the time they can act',
+      'Betfair has a minimum bet size that effectively excludes casual punters from the most valuable betting opportunities',
+      'AI systems can predict match outcomes with such accuracy that all the value has been removed from the market before individual bettors can find it',
     ],
     correctIndex: 1,
     explanation:
-      'Betfair Exchange is a peer-to-peer betting marketplace where customers bet against each other rather than against the bookmaker. A significant proportion of the volume on the Exchange is generated by automated trading bots — algorithms that place and trade bets at very high speed, exploiting tiny price discrepancies. For ordinary punters, this creates an uneven playing field: you are not just competing with other human bettors, but with sophisticated algorithmic systems that can react to new information in milliseconds.',
+      'Betfair operates as an exchange where punters bet against each other rather than against a bookmaker. This sounds fairer — and it is, in principle — but in practice the exchange is dominated by professional betting syndicates and algorithmic traders. These bots monitor data feeds from television broadcasts, official data suppliers, and court-side cameras, and can detect events like goals, red cards, or set points within milliseconds — before the average viewer watching at home has even seen them happen. By the time a human reacts and places a bet, the bot has already moved the odds. This is called "latency arbitrage" and makes the exchange environment very hostile for casual bettors.',
+    hint: 'Think about the speed advantage of a computer compared to a human reacting to a live event.',
   },
   {
-    question: 'How does in-play betting use AI to update odds during a live match?',
+    question: 'How do AI systems in betting apps build profiles of individual customers?',
     options: [
-      'Odds during in-play betting are frozen when a significant event occurs and only updated during natural breaks in play',
-      'AI systems monitor live match data feeds (goals, red cards, injuries, possession, shots on target) and reprice all affected markets within milliseconds of an event being reported',
-      'In-play odds are set by a team of human traders watching the match who adjust prices manually using tablets on a trading floor',
-      'In-play betting is powered by the same AI as pre-match betting — no special real-time systems are needed',
+      'They access customers\' bank accounts directly to understand their financial situation and assess whether they can afford to lose money',
+      'They analyse betting history, stake sizes, bet types, timing patterns, and response to offers to classify customers by profitability and risk of harm',
+      'They use facial recognition cameras in betting shops to identify customers and link their in-person and online betting behaviour',
+      'They purchase data from social media companies to understand customers\' social lives and personal circumstances and use this to time promotional offers',
     ],
     correctIndex: 1,
     explanation:
-      'In-play (live) betting requires AI systems that can process live match data feeds and rapidly reprice all markets — match result, next goalscorer, Asian handicaps, total goals, and dozens of others — within milliseconds of a significant event. A goal being scored might require simultaneous repricing of hundreds of markets. The latency between an event happening and the odds updating is now measured in milliseconds, driven by dedicated real-time AI pricing engines.',
+      'Betting companies build detailed behavioural profiles of every customer using their own data. This includes: which sports and markets they bet on, how often they place bets, the size of their stakes, whether they bet impulsively (late at night, after a loss), how they respond to different types of promotions, and how long they spend on the app. These profiles are used to identify "valuable" customers (high-staking, emotionally driven bettors who lose money consistently) and serve them targeted promotions designed to maximise their spend. They are also theoretically used to identify at-risk gamblers — but critics argue the commercial incentive to keep these customers betting has historically outweighed the harm reduction motive.',
+    hint: 'Think about what data the betting app itself can collect from how you use it.',
   },
   {
-    question: 'How do AI systems in betting apps identify at-risk gamblers, and what does UK law require firms to do?',
+    question: 'What is GAMSTOP and how does AI relate to it?',
     options: [
-      'UK law does not require betting firms to identify problem gamblers — this is entirely voluntary',
-      'AI analyses behavioural signals (deposit frequency, chasing losses, session length, response to losing) to identify customers showing signs of problem gambling — UK law under the Gambling Act and LCCP requires firms to interact with and protect at-risk customers',
-      'AI is only used to identify at-risk gamblers for the purpose of offering them self-exclusion options; no other commercial use of this data is permitted',
-      'At-risk gamblers are identified through mandatory self-reporting via annual surveys that all registered customers must complete',
+      'GAMSTOP is an AI system that analyses every bet placed in the UK and automatically blocks bets it identifies as being made by problem gamblers',
+      'GAMSTOP is the UK\'s national self-exclusion scheme — betting companies are required to check it before accepting bets, and AI can help identify customers who should be referred to it',
+      'GAMSTOP is a government-run AI that monitors betting company profits and automatically adjusts industry regulation when profits exceed permitted levels',
+      'GAMSTOP is a voluntary AI certification scheme that betting companies can join to demonstrate their AI systems meet ethical standards for gambling harm reduction',
     ],
     correctIndex: 1,
     explanation:
-      'The UK Gambling Act and the Gambling Commission\'s Licence Conditions and Codes of Practice (LCCP) require betting operators to identify customers showing signs of problem gambling and take proportionate action — ranging from a welfare check message to account restrictions or closure. Operators use AI to analyse behavioural markers: unusual deposit patterns, chasing losses, gambling during unusual hours, high session frequency. The same AI systems that identify at-risk customers are also used to identify high-value customers for promotions — a tension the 2023 Gambling White Paper sought to address through stricter affordability checks.',
+      'GAMSTOP is the national online self-exclusion service. When someone registers with GAMSTOP, all licensed UK gambling operators are required to block that person from gambling on their platforms. AI comes in at the stage before self-exclusion: the UK Gambling Commission and harm reduction organisations have been pushing betting companies to use AI to proactively identify customers showing signs of problem gambling — increasing bet frequency, chasing losses, betting at unusual hours — and interact with them before they reach a crisis point. The 2023 Gambling White Paper proposed mandatory requirements for betting companies to use AI-based harm detection, rather than leaving it voluntary as it has largely been.',
+    hint: 'Think about what happens when someone decides they want to stop gambling.',
   },
   {
-    question: 'What did the UK government\'s 2023 Gambling White Paper propose to address AI-driven harm in betting?',
+    question: 'What does the 2023 UK Gambling White Paper propose to regulate AI in betting?',
     options: [
-      'It proposed banning all AI from the betting industry and requiring human traders to set all odds manually',
-      'It proposed measures including mandatory affordability checks for customers spending above certain thresholds, deposit limits, and new requirements on operators to use their data systems to identify and protect at-risk gamblers',
-      'It proposed a publicly owned gambling exchange to replace commercial bookmakers and ensure all profits went to public health',
-      'It proposed no new requirements, finding that existing AI-based responsible gambling tools were sufficient',
+      'It proposes banning all AI from the gambling industry, requiring all odds to be calculated by human traders to make the industry fairer',
+      'It proposes mandatory affordability checks, limits on online slot stakes, and new rules around AI-driven personalised promotions to reduce harm',
+      'It proposes requiring all betting companies to open-source their AI algorithms so independent researchers can audit them for fairness',
+      'It proposes creating a government-owned AI system that all betting companies must use to set odds, eliminating competitive advantage from proprietary AI',
     ],
     correctIndex: 1,
     explanation:
-      'The UK Gambling White Paper (April 2023) was the first major review of gambling regulation since the Gambling Act 2005. Key proposals included: mandatory frictionless affordability checks for customers spending over defined thresholds; maximum stake limits for online slots; requirements for operators to proactively identify and contact at-risk customers; and enhanced powers for the Gambling Commission. The paper acknowledged that operators\' AI systems could and should be used for consumer protection as well as commercial purposes. Implementation was still ongoing as of 2024.',
+      'The Gambling Act review, which resulted in the 2023 White Paper ("High Stakes: Gambling Reform for the Digital Age"), did not attempt to eliminate AI from betting — that would be impossible and counterproductive. Instead, it proposed using regulation to shape how AI is deployed. Key proposals included: mandatory frictionless affordability checks for customers spending significant amounts, limits on online slot stakes (£5 for most adults, £2 for under-25s), a statutory levy on gambling companies to fund research and treatment, and restrictions on AI-driven personalised bonuses and promotions that target vulnerable customers. The White Paper acknowledged the dual nature of AI in gambling — it can both drive harm through addictive design and detect and reduce harm through monitoring.',
+    hint: 'Think about balancing the commercial use of AI in gambling with protecting people from harm.',
   },
 ]
 
@@ -88,81 +93,135 @@ export function AIAndSportBetting() {
   useMarkVisited('ai-and-sport-betting')
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">{LESSON_TITLE}</h1>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">8 min read &middot; Intermediate</p>
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-8">
 
-      <CompletedBadge lessonId="ai-and-sport-betting" />
-      <ShareButton lessonTitle={LESSON_TITLE} />
+        <div className="text-center space-y-4">
+          <div className="text-6xl">&#x1F3B0;</div>
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
+            AI and sport betting
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+            How AI is transforming the gambling industry — from algorithmic odds and trading bots to addiction
+            profiling and the UK government's attempts to regulate it.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
+              <span>About 7 min read</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-sm px-4 py-2 rounded-full font-semibold">
+              <span>Intermediate</span>
+            </div>
+          </div>
+          <CompletedBadge lessonId="ai-and-sport-betting" />
+          <ShareButton lessonTitle={LESSON_TITLE} />
+        </div>
 
-      <KeyTakeaways points={KEY_TAKEAWAYS} />
+        <KeyTakeaways points={KEY_TAKEAWAYS} />
 
-      <div className="prose prose-gray dark:prose-invert max-w-none mt-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">The size of the UK gambling market</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            The UK has one of the largest and most regulated gambling markets in the world — and AI is now embedded in virtually every part of it.
+          </p>
+          <div className="space-y-2">
+            {[
+              'The UK gambling industry generates approximately £14 billion in gross gambling yield (revenue) each year',
+              'Flutter Entertainment — owner of Betfair, Paddy Power, Sky Bet, and Tombola — is one of the world\'s largest gambling companies, headquartered in Dublin',
+              'Around 24 million adults in the UK gamble in some form each year, with online gambling growing rapidly since the pandemic',
+              'The UK Gambling Commission licences and regulates all commercial gambling in Great Britain, with a particular focus on consumer protection',
+              'Problem gambling affects an estimated 0.4% of UK adults, with further millions classified as "at risk" of developing gambling harm',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <h2>The invisible infrastructure of modern betting</h2>
-        <p>
-          When you place a bet on a football match, the odds you see are not set by a person sitting at a desk watching the game. They are calculated by AI systems processing thousands of data points &mdash; historical results, current form, team news, weather conditions, global market sentiment, and the real-time betting volumes on your own platform and others &mdash; and updating continuously.
-        </p>
-        <p>
-          The UK gambling industry generates around &pound;15 billion in gross gambling yield annually. AI sits at the heart of almost every part of it: setting prices, managing risk, targeting promotions, and increasingly, attempting to identify problem gamblers before harm escalates.
-        </p>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI odds-making — the end of the human trader</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Setting betting odds used to require human expertise and judgement. AI has transformed this into an almost fully automated process.
+          </p>
+          <div className="space-y-3">
+            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x26A1;</span>
+              <div>
+                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Real-time in-play markets</p>
+                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">In-play betting — betting on events as they happen during a match — is where AI is most visible. When a goal is scored, an odds movement that would have taken a human minutes must happen in milliseconds to avoid arbitrage. AI pricing engines process official data feeds, adjust every affected market simultaneously, and suspend betting when uncertainty is too high — all automatically.</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4CA;</span>
+              <div>
+                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Risk management</p>
+                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">AI also manages the bookmaker's overall risk position — tracking how much money has been bet on each outcome, identifying if a result would cause unusually large losses, and adjusting odds to encourage betting on the underexposed side. This is called liability management and used to require a team of experienced traders. Now it is largely automated.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <h2>How AI sets betting odds</h2>
-        <p>
-          A bookmaker&apos;s core business model involves pricing risk. For every event, they need to set odds that reflect the true probability of outcomes (so they do not lose money by pricing things wrong) while also building in a margin (so they make a profit over time). AI has transformed both the accuracy and the speed of this process.
-        </p>
-        <p>
-          Modern odds-setting algorithms at firms like Bet365, Sky Bet, and Ladbrokes process data from dozens of sources simultaneously: injury and team news, referee statistics, historical head-to-head records, current league form, goal timing patterns, and the real-time betting patterns of their own customers. When major new information arrives &mdash; a key player ruled out hours before a match &mdash; prices update within seconds across all affected markets.
-        </p>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Addiction profiling — using AI to identify and target vulnerable gamblers</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            The same AI that could identify problem gamblers and offer them help is also used to identify high-value customers and maximise their spend. This is the central ethical tension in AI gambling technology.
+          </p>
+          <div className="bg-red-50 dark:bg-red-950 rounded-xl p-4">
+            <p className="font-semibold text-red-800 dark:text-red-200 text-sm mb-1">The commercial incentive problem</p>
+            <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">
+              Research by GamCare and the Gambling Commission has found that a significant proportion of gambling industry revenue comes from a small proportion of customers who are problem gamblers. This creates a structural conflict of interest: the AI knows who the vulnerable customers are; the business benefits financially from keeping them gambling. Without strong regulation, commercial incentives push in the wrong direction.
+            </p>
+          </div>
+          <div className="space-y-2">
+            {[
+              'Signs of problem gambling that AI can detect: betting late at night, chasing losses (placing larger bets after losses), declining to set deposit limits when prompted',
+              'The Gambling Commission requires operators to have processes to identify and interact with customers at risk — but enforcement has historically been inconsistent',
+              'GamCare operates the National Gambling Helpline and works with operators on voluntary safer gambling programmes',
+              'The 2023 White Paper proposed mandatory requirements for operators to use AI-based harm detection rather than leaving it voluntary',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-red-600 dark:text-red-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;&#xFE0F;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <h2>AI trading bots on the Betfair Exchange</h2>
-        <p>
-          Betfair Exchange is a peer-to-peer betting platform where customers bet against each other rather than against the bookmaker. It has become heavily influenced by automated trading bots &mdash; algorithms that place and trade bets at very high speed, exploiting small price discrepancies.
-        </p>
-        <p>
-          A significant proportion of the liquidity on the Exchange is generated by these bots. This has several effects: it keeps prices tighter and more efficient, which is good for the market overall, but it also means ordinary punters are competing against sophisticated automated systems. A human bettor looking for value in a pre-match market may already be trading against algorithms that have already priced in the same information.
-        </p>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-purple-100 dark:border-purple-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Your rights as a gambler</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            If you or someone you know is concerned about gambling, these protections and resources exist.
+          </p>
+          <div className="space-y-2">
+            {[
+              'GAMSTOP (gamstop.co.uk) — register to exclude yourself from all UK licensed gambling sites for 6 months, 1 year, or 5 years',
+              'GamCare National Helpline — 0808 8020 133, free, confidential, available 24/7',
+              'Deposit limits and reality checks — all UK licensed operators must offer these and cannot discourage you from using them',
+              'Under UK GDPR, you can request to see all data a gambling company holds about you, including your behavioural profile',
+              'The Financial Ombudsman Service can help if you believe a gambling company has treated you unfairly',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-purple-600 dark:text-purple-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <h2>In-play betting and real-time AI</h2>
-        <p>
-          In-play betting &mdash; placing bets during a live sporting event &mdash; requires the most technically demanding AI systems in gambling. After a goal is scored, hundreds of markets need repricing simultaneously: the match result, the Asian handicap, the total goals line, next goalscorer markets, and more. This has to happen within milliseconds, before the information becomes publicly visible and arbitrageurs can exploit the stale prices.
-        </p>
-        <p>
-          Live data feeds from official providers (Opta, Stats Perform, BetGenius) deliver real-time match events directly to pricing engines. The AI processes the new information and immediately adjusts every affected market. The time between a goal being flagged in the data feed and the odds updating on a major bookmaker&apos;s platform is typically under a second.
-        </p>
-
+        <ReviewLaterButton lessonId="ai-and-sport-betting" />
         <LessonNote lessonId="ai-and-sport-betting" />
 
-        <h2>Personalisation, promotions, and addiction profiling</h2>
-        <p>
-          Betting apps use AI to personalise the user experience. Promotional offers are targeted based on your betting history: if you mostly bet on Premier League matches, you will receive offers related to upcoming Premier League fixtures. This targeting is designed to maximise engagement and spending.
-        </p>
-        <p>
-          The same behavioural data that enables commercial targeting is also used &mdash; or should be used &mdash; to identify problem gambling. Patterns like: depositing and immediately losing, then depositing again; gambling at unusual hours; session lengths that suggest distressed play; or responding unusually to losing streaks are signals that an automated monitoring system can detect.
-        </p>
-        <p>
-          UK law under the Gambling Commission&apos;s Licence Conditions and Codes of Practice (LCCP) requires operators to have systems in place to identify at-risk customers and take action. What &ldquo;action&rdquo; means varies from a welfare pop-up message to an account restriction or closure.
-        </p>
+        <Quiz questions={quizQuestions} lessonId="ai-and-sport-betting" />
 
-        <h2>The 2023 Gambling White Paper and reform</h2>
-        <p>
-          The UK Gambling White Paper of April 2023 was the first major review of gambling regulation since the Gambling Act 2005 &mdash; passed before smartphones existed. Its proposals acknowledged that the gambling landscape had been transformed by technology and that AI-driven personalisation and targeting required new safeguards.
-        </p>
-        <p>
-          Key proposals included mandatory affordability checks for customers spending above defined thresholds, maximum stake limits for online slots, and stronger requirements for operators to use their data to proactively identify and protect at-risk customers. GAMSTOP &mdash; the national self-exclusion register &mdash; remains a key tool, with AI systems required to match customers who self-exclude across all licensed UK operators.
-        </p>
+        <LessonRating lessonId="ai-and-sport-betting" />
+        <LessonFeedback lessonId="ai-and-sport-betting" />
 
+        <RelatedLessons currentId="ai-and-sport-betting" />
+
+        <NextLesson currentId="ai-and-sport-betting" />
       </div>
-
-      <div className="mt-10">
-        <Quiz questions={QUIZ_QUESTIONS} lessonId="ai-and-sport-betting" />
-      </div>
-
-      <ReviewLaterButton lessonId="ai-and-sport-betting" />
-      <LessonRating lessonId="ai-and-sport-betting" />
-      <LessonFeedback lessonId="ai-and-sport-betting" />
-      <RelatedLessons currentId="ai-and-sport-betting" />
-      <NextLesson currentId="ai-and-sport-betting" />
     </div>
   )
 }

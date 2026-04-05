@@ -140,28 +140,16 @@ const AIAndGenetics = lazy(() => import('./pages/AIAndGenetics').then(m => ({ de
 const AIAndSmallBusinesses = lazy(() => import('./pages/AIAndSmallBusinesses').then(m => ({ default: m.AIAndSmallBusinesses })))
 const AIAndLocalGovernment = lazy(() => import('./pages/AIAndLocalGovernment').then(m => ({ default: m.AIAndLocalGovernment })))
 const AIAndWildlifeConservation = lazy(() => import('./pages/AIAndWildlifeConservation').then(m => ({ default: m.AIAndWildlifeConservation })))
-const AIAndAddictionRecovery = lazy(() => import('./pages/AIAndAddictionRecovery').then(m => ({ default: m.AIAndAddictionRecovery })))
+const AIAndAddictionAndRecovery = lazy(() => import('./pages/AIAndAddictionAndRecovery').then(m => ({ default: m.AIAndAddictionAndRecovery })))
 const AIFactsAndMythsQuiz = lazy(() => import('./pages/AIFactsAndMythsQuiz').then(m => ({ default: m.AIFactsAndMythsQuiz })))
 const SeriesPage = lazy(() => import('./pages/SeriesPage').then(m => ({ default: m.SeriesPage })))
-const AIAndLogistics = lazy(() => import('./pages/AIAndLogistics').then(m => ({ default: m.AIAndLogistics })))
-const AIAndTheHome = lazy(() => import('./pages/AIAndTheHome').then(m => ({ default: m.AIAndTheHome })))
-const StreakPage = lazy(() => import('./pages/StreakPage').then(m => ({ default: m.StreakPage })))
-const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
 const AIAndSportBetting = lazy(() => import('./pages/AIAndSportBetting').then(m => ({ default: m.AIAndSportBetting })))
 const AIAndPrisonsAndCriminalJustice = lazy(() => import('./pages/AIAndPrisonsAndCriminalJustice').then(m => ({ default: m.AIAndPrisonsAndCriminalJustice })))
 const WhatNextQuiz = lazy(() => import('./pages/WhatNextQuiz').then(m => ({ default: m.WhatNextQuiz })))
-const AIAndClimateTech = lazy(() => import('./pages/AIAndClimateTech').then(m => ({ default: m.AIAndClimateTech })))
-const AIAndCreativeEconomy = lazy(() => import('./pages/AIAndCreativeEconomy').then(m => ({ default: m.AIAndCreativeEconomy })))
-const AIAndGigWorkers = lazy(() => import('./pages/AIAndGigWorkers').then(m => ({ default: m.AIAndGigWorkers })))
-const AIAndAgeingAndElderCare = lazy(() => import('./pages/AIAndAgeingAndElderCare').then(m => ({ default: m.AIAndAgeingAndElderCare })))
-const AIAndCriticalThinking = lazy(() => import('./pages/AIAndCriticalThinking').then(m => ({ default: m.AIAndCriticalThinking })))
-const AIAndSportNutrition = lazy(() => import('./pages/AIAndSportNutrition').then(m => ({ default: m.AIAndSportNutrition })))
-const AIAndMentalHealthChatbots = lazy(() => import('./pages/AIAndMentalHealthChatbots').then(m => ({ default: m.AIAndMentalHealthChatbots })))
-const GuessTheAIGame = lazy(() => import('./pages/GuessTheAIGame').then(m => ({ default: m.GuessTheAIGame })))
-const AIAndEdTech = lazy(() => import('./pages/AIAndEdTech').then(m => ({ default: m.AIAndEdTech })))
-const AIAndPersonalAssistants = lazy(() => import('./pages/AIAndPersonalAssistants').then(m => ({ default: m.AIAndPersonalAssistants })))
-const AIAndLegalSystem = lazy(() => import('./pages/AIAndLegalSystem').then(m => ({ default: m.AIAndLegalSystem })))
-const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
+const AIAndSpaceExploration = lazy(() => import('./pages/AIAndSpaceExploration').then(m => ({ default: m.AIAndSpaceExploration })))
+const AIAndLogisticsAndDelivery = lazy(() => import('./pages/AIAndLogisticsAndDelivery').then(m => ({ default: m.AIAndLogisticsAndDelivery })))
+const AIAndTheHome = lazy(() => import('./pages/AIAndTheHome').then(m => ({ default: m.AIAndTheHome })))
+const StreakChallengePage = lazy(() => import('./pages/StreakChallengePage').then(m => ({ default: m.StreakChallengePage })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1001,16 +989,10 @@ const aiAndWildlifeConservationRoute = createRoute({
   component: withSuspense(AIAndWildlifeConservation),
 })
 
-const aiAndAddictionRecoveryRoute = createRoute({
+const aiAndAddictionAndRecoveryRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-addiction-recovery',
-  component: withSuspense(AIAndAddictionRecovery),
-})
-
-const aiFactsAndMythsQuizRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/quiz/ai-facts',
-  component: withSuspense(AIFactsAndMythsQuiz),
+  path: '/learn/ai-and-addiction-and-recovery',
+  component: withSuspense(AIAndAddictionAndRecovery),
 })
 
 const seriesPageRoute = createRoute({
@@ -1019,28 +1001,10 @@ const seriesPageRoute = createRoute({
   component: withSuspense(SeriesPage),
 })
 
-const aiAndLogisticsRoute = createRoute({
+const aiFactsQuizRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-logistics',
-  component: withSuspense(AIAndLogistics),
-})
-
-const aiAndTheHomeRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-the-home',
-  component: withSuspense(AIAndTheHome),
-})
-
-const streakPageRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/streak',
-  component: withSuspense(StreakPage),
-})
-
-const aiAndSpaceExplorationRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-space-exploration',
-  component: withSuspense(AIAndSpaceExploration),
+  path: '/quiz/ai-facts',
+  component: withSuspense(AIFactsAndMythsQuiz),
 })
 
 const aiAndSportBettingRoute = createRoute({
@@ -1061,62 +1025,28 @@ const whatNextQuizRoute = createRoute({
   component: withSuspense(WhatNextQuiz),
 })
 
-const aiAndClimateTechRoute = createRoute({
+const aiAndSpaceExplorationRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-climate-tech',
-  component: withSuspense(AIAndClimateTech),
+  path: '/learn/ai-and-space-exploration',
+  component: withSuspense(AIAndSpaceExploration),
 })
 
-const aiAndCreativeEconomyRoute = createRoute({
+const aiAndLogisticsAndDeliveryRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-creative-economy',
-  component: withSuspense(AIAndCreativeEconomy),
+  path: '/learn/ai-and-logistics-and-delivery',
+  component: withSuspense(AIAndLogisticsAndDelivery),
 })
 
-const aiAndGigWorkersRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-gig-workers', component: withSuspense(AIAndGigWorkers) })
-const aiAndAgeingAndElderCareRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-ageing-and-elder-care', component: withSuspense(AIAndAgeingAndElderCare) })
-const aiAndCriticalThinkingRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-critical-thinking', component: withSuspense(AIAndCriticalThinking) })
-
-const aiAndSportNutritionRoute = createRoute({
+const aiAndTheHomeRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-sport-nutrition',
-  component: withSuspense(AIAndSportNutrition),
+  path: '/learn/ai-and-the-home',
+  component: withSuspense(AIAndTheHome),
 })
 
-const aiAndMentalHealthChatbotsRoute = createRoute({
+const streakChallengeRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-mental-health-chatbots',
-  component: withSuspense(AIAndMentalHealthChatbots),
-})
-
-const guessTheAIGameRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/quiz/guess-the-ai',
-  component: withSuspense(GuessTheAIGame),
-})
-
-const aiAndEdTechRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-edtech',
-  component: withSuspense(AIAndEdTech),
-})
-
-const aiAndPersonalAssistantsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-personal-assistants',
-  component: withSuspense(AIAndPersonalAssistants),
-})
-
-const aiAndLegalSystemRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/learn/ai-and-legal-system',
-  component: withSuspense(AIAndLegalSystem),
-})
-
-const sortItOutRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/quiz/sort-it-out',
-  component: withSuspense(SortItOut),
+  path: '/streak',
+  component: withSuspense(StreakChallengePage),
 })
 
 const routeTree = rootRoute.addChildren([
@@ -1252,28 +1182,16 @@ const routeTree = rootRoute.addChildren([
   aiAndSmallBusinessesRoute,
   aiAndLocalGovernmentRoute,
   aiAndWildlifeConservationRoute,
-  aiAndAddictionRecoveryRoute,
-  aiFactsAndMythsQuizRoute,
+  aiAndAddictionAndRecoveryRoute,
   seriesPageRoute,
-  aiAndLogisticsRoute,
-  aiAndTheHomeRoute,
-  streakPageRoute,
-  aiAndSpaceExplorationRoute,
+  aiFactsQuizRoute,
   aiAndSportBettingRoute,
   aiAndPrisonsAndCriminalJusticeRoute,
   whatNextQuizRoute,
-  aiAndClimateTechRoute,
-  aiAndCreativeEconomyRoute,
-  aiAndGigWorkersRoute,
-  aiAndAgeingAndElderCareRoute,
-  aiAndCriticalThinkingRoute,
-  aiAndSportNutritionRoute,
-  aiAndMentalHealthChatbotsRoute,
-  guessTheAIGameRoute,
-  aiAndEdTechRoute,
-  aiAndPersonalAssistantsRoute,
-  aiAndLegalSystemRoute,
-  sortItOutRoute,
+  aiAndSpaceExplorationRoute,
+  aiAndLogisticsAndDeliveryRoute,
+  aiAndTheHomeRoute,
+  streakChallengeRoute,
 ])
 
 const hashHistory = createHashHistory()

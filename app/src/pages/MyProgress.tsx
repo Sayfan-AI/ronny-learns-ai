@@ -15,7 +15,6 @@ import { useLearningCalendar } from '../hooks/useLearningCalendar'
 import { LearningStatsCard } from '../components/LearningStatsCard'
 import { TopicCompletionTracker } from '../components/TopicCompletionTracker'
 import { EstimatedCompletion } from '../components/EstimatedCompletion'
-import { LESSON_SERIES, getSeriesProgress } from '../data/lessonSeries'
 
 // Lessons that have quizzes (ordered as they appear in the curriculum)
 const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
@@ -99,56 +98,17 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-sport-analytics',      title: 'AI and sport analytics',              to: '/learn/ai-and-sport-analytics' },
   { id: 'ai-and-construction',         title: 'AI and construction',                 to: '/learn/ai-and-construction' },
   { id: 'ai-and-personal-finance',     title: 'AI and personal finance',             to: '/learn/ai-and-personal-finance' },
-  { id: 'ai-and-cooking',              title: 'AI and cooking',                      to: '/learn/ai-and-cooking' },
-  { id: 'ai-and-genetics',             title: 'AI and genetics',                     to: '/learn/ai-and-genetics' },
-  { id: 'ai-and-cybercrime',           title: 'AI and cybercrime',                   to: '/learn/ai-and-cybercrime' },
-  { id: 'ai-and-space-exploration',    title: 'AI and space exploration',            to: '/learn/ai-and-space-exploration' },
-  { id: 'ai-and-autonomous-vehicles',  title: 'AI and autonomous vehicles',          to: '/learn/ai-and-autonomous-vehicles' },
-  { id: 'ai-and-3d-printing',          title: 'AI and 3D printing',                  to: '/learn/ai-and-3d-printing' },
-  { id: 'ai-and-translation',          title: 'AI and translation',                  to: '/learn/ai-and-translation' },
-  { id: 'ai-and-logistics',            title: 'AI and logistics',                    to: '/learn/ai-and-logistics' },
-  { id: 'ai-and-pregnancy-and-baby-care',       title: 'AI and pregnancy and baby care',      to: '/learn/ai-and-pregnancy-and-baby-care' },
-  { id: 'ai-and-taxes-and-financial-admin',     title: 'AI and taxes and financial admin',    to: '/learn/ai-and-taxes-and-financial-admin' },
-  { id: 'ai-and-real-estate',          title: 'AI and real estate',                  to: '/learn/ai-and-real-estate' },
-  { id: 'ai-and-social-care',          title: 'AI and social care',                  to: '/learn/ai-and-social-care' },
-  { id: 'ai-and-shopping',             title: 'AI and shopping',                     to: '/learn/ai-and-shopping' },
-  { id: 'ai-and-the-home',             title: 'AI and the home',                     to: '/learn/ai-and-the-home' },
-  { id: 'ai-and-immigration',          title: 'AI and immigration',                  to: '/learn/ai-and-immigration' },
-  { id: 'ai-and-dentistry',            title: 'AI and dentistry',                    to: '/learn/ai-and-dentistry' },
-  { id: 'ai-and-nhs-waiting-lists',    title: 'AI and NHS waiting lists',            to: '/learn/ai-and-nhs-waiting-lists' },
-  { id: 'ai-and-social-media-algorithms', title: 'AI and social media algorithms',  to: '/learn/ai-and-social-media-algorithms' },
-  { id: 'ai-and-climate-activism',     title: 'AI and climate activism',             to: '/learn/ai-and-climate-activism' },
-  { id: 'ai-and-sports-medicine',      title: 'AI and sports medicine',              to: '/learn/ai-and-sports-medicine' },
-  { id: 'ai-and-fraud-and-identity-theft', title: 'AI and fraud and identity theft', to: '/learn/ai-and-fraud-and-identity-theft' },
-  { id: 'ai-and-fraud',                title: 'AI and fraud',                        to: '/learn/ai-and-fraud' },
-  { id: 'ai-and-taxes',                title: 'AI and taxes',                        to: '/learn/ai-and-taxes' },
-  { id: 'ai-and-gig-economy',          title: 'AI and the gig economy',              to: '/learn/ai-and-gig-economy' },
-  { id: 'ai-and-edtech',               title: 'AI and education technology',          to: '/learn/ai-and-edtech' },
-  { id: 'ai-and-sport-fan-experience', title: 'AI and the sports fan experience',     to: '/learn/ai-and-sport-fan-experience' },
-  { id: 'ai-and-offensive-cybersecurity', title: 'AI and offensive cybersecurity',    to: '/learn/ai-and-offensive-cybersecurity' },
-  { id: 'ai-and-gig-workers',          title: 'AI and gig workers',                  to: '/learn/ai-and-gig-workers' },
-  { id: 'ai-and-ageing',               title: 'AI and ageing',                       to: '/learn/ai-and-ageing' },
-  { id: 'ai-and-mental-health-care',      title: 'AI and mental health care',          to: '/learn/ai-and-mental-health-care' },
-  { id: 'ai-and-financial-advice',         title: 'AI and financial advice',            to: '/learn/ai-and-financial-advice' },
-  { id: 'ai-and-benefits-system',        title: 'AI and the benefits system',         to: '/learn/ai-and-benefits-system' },
-  { id: 'ai-and-music-creation',         title: 'AI and music creation',              to: '/learn/ai-and-music-creation' },
-  { id: 'ai-and-ageing-and-elder-care',   title: 'AI and ageing and elder care',      to: '/learn/ai-and-ageing-and-elder-care' },
-  { id: 'ai-and-critical-thinking',       title: 'AI and critical thinking',          to: '/learn/ai-and-critical-thinking' },
-  { id: 'ai-and-small-businesses',        title: 'AI and small businesses',           to: '/learn/ai-and-small-businesses' },
-  { id: 'ai-and-local-government',        title: 'AI and local government',           to: '/learn/ai-and-local-government' },
-  { id: 'ai-and-wildlife-conservation',   title: 'AI and wildlife conservation',      to: '/learn/ai-and-wildlife-conservation' },
-  { id: 'ai-and-addiction-and-recovery',  title: 'AI and addiction and recovery',     to: '/learn/ai-and-addiction-and-recovery' },
-  { id: 'ai-and-fashion-tech',            title: 'AI and fashion technology',         to: '/learn/ai-and-fashion-tech' },
-  { id: 'ai-and-music-industry',          title: 'AI and the music industry',         to: '/learn/ai-and-music-industry' },
-  { id: 'ai-and-sport-betting',           title: 'AI and sport betting',              to: '/learn/ai-and-sport-betting' },
-  { id: 'ai-and-prisons-and-criminal-justice', title: 'AI and prisons and criminal justice', to: '/learn/ai-and-prisons-and-criminal-justice' },
-  { id: 'ai-and-climate-tech',            title: 'AI and climate tech',               to: '/learn/ai-and-climate-tech' },
-  { id: 'ai-and-creative-economy',        title: 'AI and the creative economy',       to: '/learn/ai-and-creative-economy' },
-  { id: 'ai-and-sport-nutrition',         title: 'AI and sport nutrition',            to: '/learn/ai-and-sport-nutrition' },
-  { id: 'ai-and-mental-health-chatbots',  title: 'AI and mental health chatbots',     to: '/learn/ai-and-mental-health-chatbots' },
-  { id: 'ai-and-edtech',                  title: 'AI and education technology',        to: '/learn/ai-and-edtech' },
-  { id: 'ai-and-personal-assistants',     title: 'AI and personal assistants',         to: '/learn/ai-and-personal-assistants' },
-  { id: 'ai-and-legal-system',            title: 'AI and the legal system',            to: '/learn/ai-and-legal-system' },
+  { id: 'ai-and-cooking',                         title: 'AI and cooking',                         to: '/learn/ai-and-cooking' },
+  { id: 'ai-and-genetics',                        title: 'AI and genetics',                         to: '/learn/ai-and-genetics' },
+  { id: 'ai-and-small-businesses',               title: 'AI and small businesses',                  to: '/learn/ai-and-small-businesses' },
+  { id: 'ai-and-local-government',               title: 'AI and local government',                  to: '/learn/ai-and-local-government' },
+  { id: 'ai-and-wildlife-conservation',          title: 'AI and wildlife conservation',             to: '/learn/ai-and-wildlife-conservation' },
+  { id: 'ai-and-addiction-and-recovery',         title: 'AI and addiction and recovery',            to: '/learn/ai-and-addiction-and-recovery' },
+  { id: 'ai-and-sport-betting',                  title: 'AI and sport betting',                     to: '/learn/ai-and-sport-betting' },
+  { id: 'ai-and-prisons-and-criminal-justice',   title: 'AI and prisons and criminal justice',      to: '/learn/ai-and-prisons-and-criminal-justice' },
+  { id: 'ai-and-space-exploration',              title: 'AI and space exploration',                 to: '/learn/ai-and-space-exploration' },
+  { id: 'ai-and-logistics-and-delivery',         title: 'AI and logistics and delivery',            to: '/learn/ai-and-logistics-and-delivery' },
+  { id: 'ai-and-the-home',                       title: 'AI and the home',                          to: '/learn/ai-and-the-home' },
 ]
 
 interface QuizScoreEntry {
@@ -818,99 +778,8 @@ export function MyProgress() {
         {/* Estimated completion panel */}
         <EstimatedCompletion completedCount={completedCount} totalCount={total} />
 
-        {/* Lesson completion certificate */}
-        {(() => {
-          const quizDoneCount = quizScoreData.attempted.length
-          const CERTIFICATE_THRESHOLD = 10
-          if (quizDoneCount >= CERTIFICATE_THRESHOLD) {
-            const certDate = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
-            return (
-              <div className="bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-2xl p-6 space-y-4 print:border-amber-400 print:shadow-none">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">&#x1F396;&#xFE0F;</span>
-                  <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide">Certificate of Achievement</p>
-                </div>
-                <div className="text-center space-y-2 py-2">
-                  <p className="text-amber-900 font-bold text-2xl leading-tight">This certifies that</p>
-                  <p className="text-amber-800 font-extrabold text-3xl">{displayName}</p>
-                  <p className="text-amber-700 text-lg">has successfully completed</p>
-                  <p className="text-amber-900 font-bold text-4xl">{quizDoneCount}</p>
-                  <p className="text-amber-700 text-lg">lessons on Ronny Learns AI</p>
-                  <p className="text-amber-600 text-sm mt-2">Awarded on {certDate}</p>
-                </div>
-                <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
-                  <button
-                    onClick={() => window.print()}
-                    className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors print:hidden"
-                  >
-                    &#x1F5A8;&#xFE0F; Print or save as PDF
-                  </button>
-                  <p className="text-amber-600 text-xs text-center sm:text-left print:hidden">
-                    In your browser print dialog, choose &ldquo;Save as PDF&rdquo; to save a copy.
-                  </p>
-                </div>
-              </div>
-            )
-          }
-          const remaining = CERTIFICATE_THRESHOLD - quizDoneCount
-          return (
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3">
-              <span className="text-2xl flex-shrink-0">&#x1F3C5;</span>
-              <div>
-                <p className="font-semibold text-amber-800 text-sm">Certificate of Achievement</p>
-                <p className="text-amber-700 text-xs mt-0.5 leading-relaxed">
-                  Complete {remaining} more lesson{remaining === 1 ? '' : 's'} with a quiz to unlock your printable certificate.
-                  {quizDoneCount > 0 && ` (${quizDoneCount} of ${CERTIFICATE_THRESHOLD} done)`}
-                </p>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Topic completion tracker */}
         <TopicCompletionTracker />
-
-        {/* Learning series */}
-        <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">&#x1F4DA;</span>
-            <h2 className="text-xl font-semibold text-gray-700">Learning series</h2>
-          </div>
-          <p className="text-sm text-gray-500">
-            Related lessons grouped into themed series. Work through a series to build a deep understanding of a topic.
-          </p>
-          <div className="space-y-3">
-            {LESSON_SERIES.map(series => {
-              const { completed, total } = getSeriesProgress(series, visited)
-              const pct = Math.round((completed / total) * 100)
-              const done = completed === total
-              return (
-                <div
-                  key={series.slug}
-                  className={`rounded-xl border p-4 space-y-2 ${done ? 'border-emerald-200 bg-emerald-50' : 'border-indigo-100 bg-indigo-50'}`}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl" aria-hidden="true" dangerouslySetInnerHTML={{ __html: series.icon }} />
-                    <p className={`font-semibold text-sm ${done ? 'text-emerald-800' : 'text-indigo-900'}`}>{series.name}</p>
-                    {done && <span className="ml-auto text-emerald-500 font-bold text-lg">&#x2713;</span>}
-                  </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">{series.description}</p>
-                  <div className="flex items-center gap-3">
-                    <div className={`flex-1 h-2 rounded-full overflow-hidden ${done ? 'bg-emerald-200' : 'bg-indigo-200'}`}>
-                      <div
-                        className={`h-2 rounded-full transition-all duration-500 ${done ? 'bg-emerald-500' : 'bg-indigo-500'}`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <span className={`text-xs font-medium flex-shrink-0 ${done ? 'text-emerald-700' : 'text-indigo-600'}`}>
-                      {completed} / {total} lessons
-                    </span>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
 
         {/* Achievements summary + name change */}
         <div className="flex flex-col sm:flex-row gap-3">
@@ -1577,57 +1446,6 @@ export function MyProgress() {
             )}
           </div>
         </div>
-
-        {/* Achievement certificate — shown when 10+ lessons completed */}
-        {quizScoreData.attempted.length >= 10 ? (
-          <div className="bg-gradient-to-b from-amber-50 to-white rounded-2xl shadow-md border-2 border-amber-200 p-6 space-y-4 print:shadow-none">
-            <div className="text-center space-y-1">
-              <div className="flex justify-center gap-2 text-2xl">
-                <span>&#x2B50;</span>
-                <span>&#x1F3C6;</span>
-                <span>&#x2B50;</span>
-              </div>
-              <p className="text-xs font-bold text-amber-600 uppercase tracking-widest">Certificate of Achievement</p>
-            </div>
-            <div className="text-center space-y-2">
-              <p className="text-gray-500">This certifies that</p>
-              <p className="text-3xl font-extrabold text-gray-800">{displayName}</p>
-              <p className="text-gray-500">has completed</p>
-              <p className="text-2xl font-bold text-amber-700">{quizScoreData.attempted.length} lessons</p>
-              <p className="text-gray-500 text-sm">on Ronny Learns AI</p>
-              {quizScoreData.attempted.length >= 100 && (
-                <p className="text-amber-700 font-semibold text-sm">&#x1F31F; Outstanding — you have mastered over 100 lessons!</p>
-              )}
-              {quizScoreData.attempted.length >= 50 && quizScoreData.attempted.length < 100 && (
-                <p className="text-amber-700 font-semibold text-sm">&#x1F4AA; Exceptional — halfway to 100 lessons!</p>
-              )}
-              {quizScoreData.attempted.length >= 25 && quizScoreData.attempted.length < 50 && (
-                <p className="text-amber-700 font-semibold text-sm">&#x1F680; Impressive progress — keep going!</p>
-              )}
-              {quizScoreData.attempted.length >= 10 && quizScoreData.attempted.length < 25 && (
-                <p className="text-amber-700 font-semibold text-sm">&#x1F389; Great start — you have built a solid foundation!</p>
-              )}
-            </div>
-            <div className="flex justify-between items-end pt-2 border-t border-amber-100 text-xs text-gray-400">
-              <span>Date: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-              <span>Issued by: Genesis AI System</span>
-            </div>
-            <div className="flex justify-center print:hidden">
-              <button
-                onClick={() => window.print()}
-                className="px-5 py-2 rounded-xl border border-amber-300 text-amber-700 font-semibold text-sm hover:bg-amber-50 transition-colors"
-              >
-                &#x1F5A8; Print or save as PDF
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-center space-y-1">
-            <span className="text-2xl">&#x1F3C6;</span>
-            <p className="text-amber-800 font-semibold text-sm">Complete {10 - quizScoreData.attempted.length} more {10 - quizScoreData.attempted.length === 1 ? 'lesson' : 'lessons'} to unlock your certificate</p>
-            <p className="text-amber-600 text-xs">{quizScoreData.attempted.length} of 10 lessons needed</p>
-          </div>
-        )}
 
         {/* Export progress */}
         <div className="bg-white rounded-2xl shadow-md p-6 space-y-4">

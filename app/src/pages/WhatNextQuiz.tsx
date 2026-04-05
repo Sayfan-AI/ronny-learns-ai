@@ -2,66 +2,9 @@ import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 
 interface Question {
-  id: string
-  text: string
-  options: { label: string; value: string }[]
+  question: string
+  options: string[]
 }
-
-const QUESTIONS: Question[] = [
-  {
-    id: 'reason',
-    text: 'What brings you here?',
-    options: [
-      { label: 'I want to understand how AI affects my job', value: 'job' },
-      { label: "I'm curious about AI in daily life", value: 'daily' },
-      { label: 'I want to help my children understand AI', value: 'children' },
-      { label: 'I work in a public sector or healthcare role', value: 'public' },
-      { label: "I'm worried about AI safety and rights", value: 'rights' },
-    ],
-  },
-  {
-    id: 'area',
-    text: 'Which area do you care most about?',
-    options: [
-      { label: 'Health and care', value: 'health' },
-      { label: 'Money and finance', value: 'money' },
-      { label: 'Technology and apps', value: 'tech' },
-      { label: 'Society and politics', value: 'society' },
-      { label: 'Work and careers', value: 'work' },
-    ],
-  },
-  {
-    id: 'experience',
-    text: 'How would you describe your experience with AI so far?',
-    options: [
-      { label: 'Complete beginner — I barely know what AI is', value: 'beginner' },
-      { label: 'I use some apps that probably use AI', value: 'casual' },
-      { label: 'I follow AI news and understand the basics', value: 'informed' },
-      { label: 'I work with AI tools regularly', value: 'experienced' },
-    ],
-  },
-  {
-    id: 'concern',
-    text: 'Are you concerned about any of these?',
-    options: [
-      { label: 'Job losses from automation', value: 'jobs' },
-      { label: 'Privacy and surveillance', value: 'privacy' },
-      { label: 'Misinformation and deepfakes', value: 'misinfo' },
-      { label: 'AI bias and unfair decisions', value: 'bias' },
-      { label: 'Climate and energy impact', value: 'climate' },
-    ],
-  },
-  {
-    id: 'style',
-    text: 'What type of content do you prefer?',
-    options: [
-      { label: 'Real-world UK examples', value: 'uk' },
-      { label: 'Science and how things work', value: 'science' },
-      { label: 'Ethical debates and rights', value: 'ethics' },
-      { label: 'Practical how-to guides', value: 'practical' },
-    ],
-  },
-]
 
 interface Recommendation {
   title: string
@@ -69,232 +12,350 @@ interface Recommendation {
   reason: string
 }
 
-function getRecommendations(answers: Record<string, string>): Recommendation[] {
-  const recs: Recommendation[] = []
+const questions: Question[] = [
+  {
+    question: 'What brings you to this app?',
+    options: [
+      'I want to understand how AI affects my job',
+      'I am curious about AI in daily life',
+      'I want to help my children understand AI',
+      'I work in a public sector role',
+      'I am worried about AI safety and rights',
+    ],
+  },
+  {
+    question: 'Which area do you care most about?',
+    options: [
+      'Health and care',
+      'Money and finance',
+      'Technology and apps',
+      'Society and politics',
+      'Work and careers',
+    ],
+  },
+  {
+    question: 'How would you describe your experience with AI so far?',
+    options: [
+      'Complete beginner — I have never really thought about it',
+      'I use some apps like ChatGPT or Siri but do not know much about how they work',
+      'I follow AI news and feel reasonably informed',
+      'I work with AI tools in my job',
+    ],
+  },
+  {
+    question: 'Are you concerned about any of these?',
+    options: [
+      'Job losses because of AI',
+      'Privacy and personal data',
+      'Misinformation and deepfakes',
+      'AI bias and discrimination',
+      'AI\'s impact on the environment',
+    ],
+  },
+  {
+    question: 'What type of content do you prefer?',
+    options: [
+      'Real-world UK examples I can relate to',
+      'Science and technology explained simply',
+      'Ethical debates and big questions',
+      'Practical how-to guides',
+    ],
+  },
+]
 
-  const reason = answers.reason
-  const area = answers.area
-  const concern = answers.concern
+function getRecommendations(answers: number[]): Recommendation[] {
+  const [q0, q1, q2, q3] = answers
 
-  // Health focus
-  if (area === 'health' || reason === 'public') {
-    recs.push({
-      title: 'AI and the NHS',
-      to: '/learn/ai-and-the-nhs',
-      reason: 'Since you care about health, this lesson on how AI is transforming NHS diagnosis, waiting lists, and care is a great place to start.',
-    })
-  }
-
-  // Work/job focus
-  if (reason === 'job' || area === 'work' || concern === 'jobs') {
-    recs.push({
+  const all: Recommendation[] = [
+    // Job-related
+    {
+      title: 'AI and jobs',
+      to: '/learn/ai-and-jobs',
+      reason: 'Since you are thinking about how AI affects employment, this lesson explains which jobs are most at risk and how to adapt.',
+    },
+    {
       title: 'AI and the workplace',
       to: '/learn/ai-and-the-workplace',
-      reason: 'Since you are thinking about AI and your career, this lesson covers what AI means for jobs, hiring, and working life.',
-    })
-  }
-
-  // Money/finance
-  if (area === 'money') {
-    recs.push({
+      reason: 'This lesson covers how AI is changing everyday office work — from writing assistants to meeting summaries.',
+    },
+    // Health
+    {
+      title: 'AI in healthcare',
+      to: '/learn/ai-in-healthcare',
+      reason: 'This lesson explains how AI is being used in diagnosis, drug discovery, and NHS waiting lists.',
+    },
+    {
+      title: 'AI and the NHS',
+      to: '/learn/ai-and-the-nhs',
+      reason: 'A focused look at how the NHS is using AI — and what it means for patients and staff.',
+    },
+    // Money
+    {
       title: 'AI and personal finance',
       to: '/learn/ai-and-personal-finance',
-      reason: 'Since money and finance is your focus, this lesson covers AI in banking, budgeting apps, and financial advice.',
-    })
-  }
-
-  // Children/education
-  if (reason === 'children') {
-    recs.push({
-      title: 'AI and critical thinking',
-      to: '/learn/ai-and-critical-thinking',
-      reason: 'Since you want to help young people understand AI, this lesson on ChatGPT in schools and critical thinking is essential reading.',
-    })
-    recs.push({
-      title: 'AI and children',
-      to: '/learn/ai-and-children',
-      reason: 'This lesson covers how AI affects children — in education, social media, and safety.',
-    })
-  }
-
-  // Privacy/rights concern
-  if (concern === 'privacy' || reason === 'rights') {
-    recs.push({
-      title: 'AI and the law',
-      to: '/learn/ai-and-the-law',
-      reason: 'Since privacy and rights concern you, this lesson explains your legal rights in an AI-powered world.',
-    })
-  }
-
-  // Misinformation
-  if (concern === 'misinfo') {
-    recs.push({
-      title: 'AI and elections',
-      to: '/learn/ai-and-elections',
-      reason: 'Since you are concerned about misinformation, this lesson on AI deepfakes and election influence is highly relevant.',
-    })
-  }
-
-  // Bias
-  if (concern === 'bias') {
-    recs.push({
-      title: 'AI and prisons and criminal justice',
-      to: '/learn/ai-and-prisons-and-criminal-justice',
-      reason: 'Since AI bias concerns you, this lesson on algorithmic risk assessments in the criminal justice system is a powerful real-world example.',
-    })
-    recs.push({
-      title: 'AI and hiring',
-      to: '/learn/ai-and-hiring',
-      reason: 'AI bias in hiring affects millions — this lesson explains how automated recruitment tools work and how to challenge unfair decisions.',
-    })
-  }
-
-  // Climate
-  if (concern === 'climate') {
-    recs.push({
-      title: 'AI and climate change',
-      to: '/learn/ai-and-climate-change',
-      reason: 'Since climate matters to you, this lesson covers both how AI can help tackle climate change and its own growing energy footprint.',
-    })
-  }
-
-  // Technology/beginner
-  if (answers.experience === 'beginner' || area === 'tech') {
-    recs.push({
+      reason: 'This lesson covers robo-advisors, budgeting apps, and how AI is changing the way we manage money.',
+    },
+    {
+      title: 'AI and banking',
+      to: '/learn/ai-and-banking',
+      reason: 'Covers fraud detection, open banking AI, and how banks use algorithms to make decisions about you.',
+    },
+    // Tech/apps
+    {
       title: 'What is AI?',
       to: '/learn/what-is-ai',
-      reason: 'This is the perfect starting point — a clear, plain-language explanation of what AI actually is and how it works.',
-    })
-  }
-
-  // Society
-  if (area === 'society') {
-    recs.push({
-      title: 'AI and democracy',
-      to: '/learn/ai-and-democracy',
-      reason: 'Since society and politics interest you, this lesson on how AI is reshaping democratic debate is essential.',
-    })
-  }
-
-  // Deduplicate and return top 3
-  const seen = new Set<string>()
-  const unique: Recommendation[] = []
-  for (const rec of recs) {
-    if (!seen.has(rec.to) && unique.length < 3) {
-      seen.add(rec.to)
-      unique.push(rec)
-    }
-  }
-
-  // If we have fewer than 3, add defaults
-  const defaults: Recommendation[] = [
-    { title: 'What is AI?', to: '/learn/what-is-ai', reason: 'The best place to start — a clear explanation of what AI is and how it affects everyday life.' },
-    { title: 'AI in everyday life', to: '/learn/ai-everyday-life', reason: 'Discover how AI is already part of your daily routines without you realising it.' },
-    { title: 'AI and the NHS', to: '/learn/ai-and-the-nhs', reason: 'One of the most impactful places AI is being used right now — in healthcare and medical diagnosis.' },
+      reason: 'The perfect starting point — a friendly explanation of what AI actually is and how it works.',
+    },
+    {
+      title: 'AI in your apps',
+      to: '/learn/ai-in-your-apps',
+      reason: 'Explores the AI already built into the apps you use every day — from maps to music streaming.',
+    },
+    // Society
+    {
+      title: 'AI and policing',
+      to: '/learn/ai-and-policing',
+      reason: 'Covers facial recognition, predictive policing, and the debate about AI in law enforcement.',
+    },
+    {
+      title: 'AI and elections',
+      to: '/learn/ai-and-elections',
+      reason: 'How AI is being used in political campaigns — and the risks it poses to democracy.',
+    },
+    // Privacy
+    {
+      title: 'AI and privacy',
+      to: '/learn/ai-and-privacy',
+      reason: 'Explains how AI systems collect and use personal data, and what your rights are.',
+    },
+    {
+      title: 'AI laws and rights',
+      to: '/learn/ai-laws-and-rights',
+      reason: 'A guide to your rights when AI makes decisions that affect you — including how to challenge them.',
+    },
+    // Children
+    {
+      title: 'AI and children',
+      to: '/learn/ai-and-children',
+      reason: 'Covers how AI affects children online — from social media algorithms to AI tutors and age verification.',
+    },
+    {
+      title: 'AI and education',
+      to: '/learn/ai-and-education',
+      reason: 'How AI is changing schools and learning — including ChatGPT in classrooms and AI tutoring tools.',
+    },
+    // Misinformation
+    {
+      title: 'AI and misinformation',
+      to: '/learn/ai-and-misinformation',
+      reason: 'How AI is being used to create and spread false information — and how to spot it.',
+    },
+    {
+      title: 'Trusting AI',
+      to: '/learn/trusting-ai',
+      reason: 'A thoughtful exploration of when to trust AI outputs and when to question them.',
+    },
+    // Environment
+    {
+      title: 'AI and the environment',
+      to: '/learn/ai-and-the-environment',
+      reason: 'Covers the energy cost of AI and how it is being used to tackle environmental problems.',
+    },
+    {
+      title: 'AI and climate change',
+      to: '/learn/ai-and-climate-change',
+      reason: 'How AI is being used to model climate, optimise energy use, and support the green transition.',
+    },
+    // Public sector
+    {
+      title: 'AI and local government',
+      to: '/learn/ai-and-local-government',
+      reason: 'Covers pothole detection, planning AI, social services prediction, and your rights as a citizen.',
+    },
+    {
+      title: 'AI and smart cities',
+      to: '/learn/ai-and-smart-cities',
+      reason: 'How AI is being used to manage transport, energy, and public services in urban areas.',
+    },
+    // Beginners
+    {
+      title: 'How does AI training work?',
+      to: '/learn/how-ai-training-works',
+      reason: 'A clear, jargon-free explanation of how AI systems learn from data.',
+    },
+    // Bias
+    {
+      title: 'AI bias',
+      to: '/learn/ai-bias',
+      reason: 'Explains how AI systems can be unfair, why this happens, and what is being done about it.',
+    },
   ]
-  for (const d of defaults) {
-    if (unique.length >= 3) break
-    if (!seen.has(d.to)) {
-      seen.add(d.to)
-      unique.push(d)
-    }
+
+  const selected: Recommendation[] = []
+
+  // Q0: What brings you here
+  if (q0 === 0) selected.push(all[0], all[1]) // jobs
+  else if (q0 === 1) selected.push(all[6], all[7]) // daily life
+  else if (q0 === 2) selected.push(all[12], all[13]) // children
+  else if (q0 === 3) selected.push(all[18], all[19]) // public sector
+  else if (q0 === 4) selected.push(all[10], all[11]) // rights
+
+  // Q1: Which area
+  if (q1 === 0 && !selected.find(r => r.to === '/learn/ai-in-healthcare')) selected.push(all[2])
+  else if (q1 === 1 && !selected.find(r => r.to === '/learn/ai-and-personal-finance')) selected.push(all[4])
+  else if (q1 === 2 && !selected.find(r => r.to === '/learn/what-is-ai')) selected.push(all[6])
+  else if (q1 === 3 && !selected.find(r => r.to === '/learn/ai-and-policing')) selected.push(all[8])
+  else if (q1 === 4 && !selected.find(r => r.to === '/learn/ai-and-jobs')) selected.push(all[0])
+
+  // Q2: Experience level
+  if (q2 === 0 && selected.length < 3) {
+    const beginner = all[20] // How does AI training work
+    if (!selected.find(r => r.to === beginner.to)) selected.push(beginner)
   }
 
-  return unique.slice(0, 3)
+  // Q3: Concerns
+  if (q3 === 2) { // misinformation
+    const m = all[14]
+    if (!selected.find(r => r.to === m.to)) selected.push(m)
+  } else if (q3 === 3) { // bias
+    const b = all[21]
+    if (!selected.find(r => r.to === b.to)) selected.push(b)
+  } else if (q3 === 4) { // environment
+    const e = all[16]
+    if (!selected.find(r => r.to === e.to)) selected.push(e)
+  }
+
+  // Ensure we always have exactly 3 recommendations
+  const defaults = [all[6], all[0], all[2]]
+  let i = 0
+  while (selected.length < 3 && i < defaults.length) {
+    if (!selected.find(r => r.to === defaults[i].to)) {
+      selected.push(defaults[i])
+    }
+    i++
+  }
+
+  return selected.slice(0, 3)
 }
 
 export function WhatNextQuiz() {
-  const [currentQ, setCurrentQ] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, string>>({})
-  const [done, setDone] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [answers, setAnswers] = useState<number[]>([])
+  const [finished, setFinished] = useState(false)
 
-  function handleAnswer(value: string) {
-    const newAnswers = { ...answers, [QUESTIONS[currentQ].id]: value }
+  function handleSelect(idx: number) {
+    const newAnswers = [...answers, idx]
     setAnswers(newAnswers)
-    if (currentQ < QUESTIONS.length - 1) {
-      setCurrentQ(currentQ + 1)
+    if (currentQuestion + 1 >= questions.length) {
+      setFinished(true)
     } else {
-      setDone(true)
+      setCurrentQuestion(q => q + 1)
     }
   }
 
-  const recommendations = done ? getRecommendations(answers) : []
+  function handleRestart() {
+    setCurrentQuestion(0)
+    setAnswers([])
+    setFinished(false)
+  }
 
-  return (
-    <div className="max-w-2xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">What should I learn next?</h1>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">Answer 5 quick questions to get personalised lesson recommendations.</p>
-
-      {!done ? (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">Question {currentQ + 1} of {QUESTIONS.length}</span>
-              <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-full h-1.5">
-                <div
-                  className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
-                  style={{ width: `${((currentQ + 1) / QUESTIONS.length) * 100}%` }}
-                />
-              </div>
-            </div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{QUESTIONS[currentQ].text}</h2>
-          </div>
-
-          <div className="space-y-3">
-            {QUESTIONS[currentQ].options.map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => handleAnswer(opt.value)}
-                className="w-full text-left px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950 text-gray-800 dark:text-gray-200 text-sm font-medium transition-colors"
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">Your personalised recommendations</h2>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">Based on your answers, here are the three lessons that will be most useful for you right now.</p>
+  if (finished) {
+    const recommendations = getRecommendations(answers)
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+        <div className="max-w-2xl w-full space-y-8">
+          <div className="text-center space-y-3">
+            <div className="text-6xl">&#x1F9ED;</div>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Your personalised lessons</h1>
+            <p className="text-gray-600 dark:text-gray-300">Based on your answers, here are three lessons that are a great fit for you.</p>
           </div>
 
           <div className="space-y-4">
             {recommendations.map((rec, i) => (
-              <div key={rec.to} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 flex gap-4 items-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-sm">
-                  {i + 1}
+              <Link
+                key={i}
+                to={rec.to}
+                className="block bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-5 space-y-2 hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl flex-shrink-0">
+                    {i === 0 ? '&#x1F947;' : i === 1 ? '&#x1F948;' : '&#x1F949;'}
+                  </span>
+                  <div className="space-y-1">
+                    <p className="font-semibold text-gray-800 dark:text-gray-100">{rec.title}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{rec.reason}</p>
+                    <p className="text-sm text-violet-600 dark:text-violet-400 font-medium">Start this lesson &rarr;</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{rec.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">{rec.reason}</p>
-                  <Link
-                    to={rec.to}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    Start this lesson &rarr;
-                  </Link>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
 
-          <div className="mt-8 flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
-              onClick={() => { setCurrentQ(0); setAnswers({}); setDone(false) }}
-              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              onClick={handleRestart}
+              className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl py-3 font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
             >
-              Start again
+              Try again
             </button>
             <Link
               to="/"
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors"
+              className="flex-1 bg-violet-600 text-white rounded-xl py-3 font-semibold hover:bg-violet-700 transition-colors text-center"
             >
-              Back to home
+              Browse all lessons
             </Link>
           </div>
         </div>
-      )}
+      </div>
+    )
+  }
+
+  const q = questions[currentQuestion]
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-6">
+
+        <div className="text-center space-y-2">
+          <div className="text-5xl">&#x1F9ED;</div>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">What should I learn next?</h1>
+          <p className="text-gray-600 dark:text-gray-300">Answer 5 quick questions and we will suggest the best lessons for you.</p>
+        </div>
+
+        <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+          <span>Question {currentQuestion + 1} of {questions.length}</span>
+          <span>{Math.round((currentQuestion / questions.length) * 100)}% done</span>
+        </div>
+
+        <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div
+            className="bg-violet-500 h-2 rounded-full transition-all duration-300"
+            style={{ width: `${(currentQuestion / questions.length) * 100}%` }}
+          />
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-6 space-y-5">
+          <p className="text-gray-800 dark:text-gray-100 font-semibold text-lg leading-snug">{q.question}</p>
+
+          <div className="space-y-3">
+            {q.options.map((option, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSelect(idx)}
+                className="w-full text-left rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900 hover:border-violet-300 dark:hover:border-violet-600 text-gray-800 dark:text-gray-100 p-4 text-sm leading-snug transition-colors"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <Link to="/" className="text-sm text-gray-500 dark:text-gray-400 hover:underline">
+            Skip — browse all lessons instead
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }

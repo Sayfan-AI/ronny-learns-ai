@@ -14,78 +14,78 @@ import { KeyTakeaways } from '../components/KeyTakeaways'
 const LESSON_TITLE = 'AI and the home'
 
 const KEY_TAKEAWAYS = [
-  "Smart speakers (Amazon Echo with Alexa, Google Nest, Apple HomePod) use AI voice recognition and natural language processing to answer questions, control smart devices, play music, and set reminders — but they are always listening for their wake word, which raises genuine privacy questions.",
-  "AI thermostats like Nest, Hive, and Tado learn your daily schedule and heating preferences over time and adjust automatically — studies show they save households around 10-15% on heating bills.",
-  "Robot vacuums like the Roomba use AI to map your home, learn where obstacles are, and plan efficient cleaning routes — newer models can even identify and avoid pet mess.",
-  "Smart security cameras use AI to distinguish between a person, a car, an animal, or a waving tree branch — sending you an alert only when something worth knowing about happens, rather than recording constantly.",
-  "AI-managed energy systems can shift your high-consumption appliances (dishwasher, washing machine, EV charging) to off-peak times automatically, reducing bills and reducing strain on the national grid.",
+  'Smart thermostats like Hive (by British Gas) and Nest (by Google) learn your heating preferences, detect when you are home, and automatically adjust temperature — UK households can save up to 30% on heating bills.',
+  'AI security cameras and doorbells like Ring and Google Nest use computer vision to distinguish between a person, a car, and an animal — only alerting you to what matters and recording faces with detail.',
+  'Voice assistants (Alexa, Siri, Google Assistant) are always listening for their wake word and process your voice through cloud servers — not entirely on the device — raising real questions about what is stored.',
+  'AI-powered home energy management can automatically run high-energy appliances like washing machines and dishwashers during off-peak hours when electricity is cheapest and greenest.',
+  'You have GDPR rights over data collected in your home by smart devices — including the right to access it, correct errors, and request deletion.',
 ]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: "How does a smart speaker like Amazon Echo know when you are talking to it?",
+    question: 'How does a smart thermostat like Hive or Nest use AI to save energy?',
     options: [
-      "It constantly records everything said in the room and sends it to Amazon's servers for analysis",
-      "It listens locally for its specific wake word (such as 'Alexa') and only connects to the internet and records audio after it hears that word",
-      "It uses facial recognition via a built-in camera to detect when you are looking at it and ready to speak",
-      "It turns on only when you press a physical button on the top of the device, then processes your voice command offline",
+      'It connects to a smart grid and automatically turns heating off whenever the National Grid has too much electricity demand, saving energy nationally',
+      'It learns your daily routine and heating preferences, detects when you are home using sensors, and adjusts temperature automatically to heat your home only when needed',
+      'It remotely controls every radiator valve in the home individually and monitors room-by-room temperature to maintain perfect conditions in every room simultaneously',
+      'It connects to your calendar and automatically heats the home when you have social events listed, anticipating guests before you arrive home',
     ],
     correctIndex: 1,
     explanation:
-      "Smart speakers use a small amount of on-device processing to continuously listen for their wake word. This wake word detection happens on the device itself, without sending audio to the internet. Only after hearing the wake word does the device start recording and sending audio to cloud servers for full processing. This is why the device's ring light turns on when you say the wake word — it is telling you it has started recording. It is possible for the device to mishear something as a wake word and accidentally record snippets of conversation.",
-    hint: "Think about what the device needs to do before it can understand your command.",
+      'Smart thermostats like Hive (made by British Gas) and Nest (made by Google) use several types of AI. Occupancy detection — using motion sensors or your phone\'s GPS location — tells the thermostat when you are home, away, or on your way back. Learning algorithms observe your manual adjustments over the first few weeks and begin to anticipate them: if you always turn the heating up at 7am, it starts doing this automatically. Some models also connect to weather forecasts and pre-heat the home before cold snaps. The net result is that you heat your home less when it is not occupied and heat it exactly as much as you want when it is. Studies suggest UK households can save up to 30% on heating bills — significant given how expensive gas has become.',
+    hint: 'Think about when your home is currently heated when no one is in it.',
   },
   {
-    question: "How does an AI thermostat like Nest learn when to heat your home?",
+    question: 'What can AI security cameras and doorbells do that older cameras could not?',
     options: [
-      "You programme it once with your complete weekly schedule and it follows that schedule exactly, never deviating",
-      "It monitors when you manually adjust the temperature and over one to two weeks learns your patterns, then creates a schedule automatically — adjusting further based on outside temperature and whether anyone is home",
-      "It connects to your work calendar and your family members' calendars to predict when the house will be occupied",
-      "It uses a built-in microphone to detect sounds of activity in the house and turns heating up when it hears movement",
+      'They can call the police automatically when they detect an intruder, bypassing the homeowner and eliminating the delay before emergency services are dispatched',
+      'They use computer vision to distinguish between people, vehicles, animals, and other movement — reducing false alerts and providing more useful notifications and recordings',
+      'They encrypt recordings so strongly that neither the manufacturer, police, nor hackers can access the footage without a physical key held by the homeowner',
+      'They connect to neighbourhood watch networks and automatically share footage of suspicious activity with surrounding cameras without requiring the homeowner to share anything manually',
     ],
     correctIndex: 1,
     explanation:
-      "In the first week, you simply use your heating normally — turning it up when you are cold, down when you leave. Nest watches and records every adjustment. After about a week it has built a model of your routine and starts heating the house proactively — warming up before you usually wake, cooling down just before you leave for work. It also uses motion sensors to detect when the house is empty and goes into an energy-saving mode. Independent studies typically show energy savings of 10-15%.",
-    hint: "Think about how it could learn without you needing to programme it.",
+      'Older motion-activated cameras would alert you whenever a leaf blew past or a cat walked through the garden. AI-powered cameras like Ring, Google Nest Cam, and Arlo Pro use computer vision models trained to distinguish between different types of moving objects. A person triggers a person alert; a car triggers a vehicle alert; the neighbourhood fox triggers an animal notification rather than a security alert. Some cameras can now recognise familiar faces and tell you "Gigi has arrived" rather than "person at door". They can also detect packages being left or taken, and some can read number plates. The trade-off is that all this image analysis requires either significant onboard processing power or sending footage to the cloud — where it is stored on company servers.',
+    hint: 'Think about the difference between detecting movement and understanding what caused the movement.',
   },
   {
-    question: "What does AI add to a robot vacuum cleaner like the Roomba?",
+    question: 'What happens to your voice when you speak to Alexa, Siri, or Google Assistant?',
     options: [
-      "It makes the vacuum louder and more powerful, since AI processing requires more electricity which generates extra suction as a side effect",
-      "It enables the vacuum to create a map of your home, remember where furniture and obstacles are, plan efficient cleaning routes, and on some models identify and avoid hazards like pet mess",
-      "It connects the vacuum to your smartphone so you can watch a live camera feed of your floors from anywhere in the world",
-      "It allows the vacuum to clean in complete darkness using infrared sensors, so you can run it overnight without disturbing anyone",
+      'Your voice is processed entirely on the device — nothing is sent to the internet — which is why these assistants work without a Wi-Fi connection',
+      'Your device listens for a wake word locally, and when it hears it, sends the audio clip to cloud servers for processing — where it is analysed and often stored',
+      'Your voice is converted to text immediately on the device and only the text is sent to the internet — the actual audio recording is never transmitted',
+      'Your voice triggers a direct connection between your device and the assistant\'s servers, but the audio is automatically deleted from both ends within one second of processing',
     ],
     correctIndex: 1,
     explanation:
-      "Early robot vacuums used random bouncing patterns. AI changed this completely. Modern Roombas use SLAM (Simultaneous Localisation and Mapping) technology — the same navigation approach used in self-driving cars. They build a detailed map of your home on their first clean and remember it. They plan systematic routes to cover every area efficiently. Higher-end models can identify different rooms and let you schedule cleaning room by room. Some models (like Roomba j7+) have cameras and AI to identify pet waste and avoid it.",
-    hint: "Think about the difference between randomly bouncing around and navigating intelligently.",
+      'All major voice assistants use a two-stage process. The device itself runs a small, efficient model that listens continuously for the wake word (Hey Alexa, Hey Siri, OK Google). This part works locally and uses relatively little power. When the wake word is detected, the subsequent audio clip is compressed and sent to the company\'s cloud servers where much larger, more powerful AI models transcribe your speech and determine your intent. The response is generated in the cloud and sent back. This means your voice clips are transmitted to and stored on Amazon\'s, Apple\'s, or Google\'s servers. Both Amazon and Google have admitted that human reviewers sometimes listen to samples of voice recordings to improve accuracy. You can review and delete your voice history in the relevant app settings.',
+    hint: 'Think about why these assistants need an internet connection to work — what does that tell you about where the processing happens?',
   },
   {
-    question: "How do AI security cameras reduce unnecessary alerts?",
+    question: 'How does AI help manage home energy costs?',
     options: [
-      "They only record when motion is detected, reducing storage, but still send an alert for every movement whether it is a person, a leaf, or a shadow",
-      "They use computer vision AI to distinguish between a person, a vehicle, an animal, and other movement like swaying trees or changes in light — sending alerts only for the categories you have configured",
-      "They require you to watch a live feed yourself and press a button to confirm whether an alert should be escalated to the police",
-      "They use time-based restrictions so they only alert you during the hours you set — typically while you are asleep or away",
+      'AI negotiates energy tariffs with providers automatically, switching you to the cheapest available tariff each morning based on wholesale energy prices',
+      'AI can schedule high-energy appliances like washing machines and dishwashers to run during off-peak hours when electricity is cheapest — and can connect home batteries to store cheap energy for later use',
+      'AI monitors your energy consumption and automatically contacts your energy provider to report unusually high usage, which triggers a visit from an engineer to identify faults',
+      'AI generates a personalised energy report each month and submits it to Ofgem on your behalf, which adjusts your energy bill to reflect any efficiency improvements you have made',
     ],
     correctIndex: 1,
     explanation:
-      "The biggest frustration with early motion-triggered cameras was alert fatigue — constant notifications for cars driving past, foxes in the garden, or a tree blowing in the wind. AI object detection solved this. A camera like Ring, Arlo, or Nest Cam uses computer vision to classify every movement. It can tell the difference between a person walking up your path, a car parking outside, a cat in the garden, or a spider walking across the lens. You can configure which categories trigger alerts.",
-    hint: "Think about what made early security cameras annoying and how AI solves that.",
+      'The UK electricity grid is moving towards variable pricing — at times when lots of renewable energy is being generated (windy nights, sunny middays), electricity is cheaper and greener. Smart appliances and home energy management systems can take advantage of this. A smart washing machine connected to an energy management system like Hive, Nest, or an Octopus Energy smart tariff can automatically delay its cycle to start at 2am when electricity costs a fraction of peak-time rates. Home batteries (like Tesla Powerwall, which can be paired with solar panels) use AI to decide when to charge from the grid (when cheap and green) and when to power the home from stored energy (when expensive). Some UK energy suppliers including Octopus offer "agile" tariffs where AI fully automates this optimisation.',
+    hint: 'Think about which appliances use the most electricity and when the cheapest time to run them might be.',
   },
   {
-    question: "How do AI energy management systems reduce household electricity bills?",
+    question: 'What are your rights regarding data collected by smart home devices?',
     options: [
-      "They automatically switch your household to a different energy supplier whenever a cheaper tariff becomes available, without you needing to do anything",
-      "They identify which appliances use the most electricity, shift high-consumption tasks like dishwasher cycles and EV charging to cheaper off-peak times, and can reduce usage when the grid is under strain",
-      "They turn off all non-essential appliances remotely when you leave the house by detecting that your phone has moved outside a set geographic radius",
-      "They negotiate lower unit rates directly with your energy supplier using AI chatbots that call on your behalf each quarter",
+      'Smart home devices are classed as entertainment products rather than data processors, so normal data protection law does not apply to them',
+      'Under UK GDPR, you have the right to access data collected by smart devices, correct errors, and request deletion — and companies must tell you what they collect and how they use it',
+      'Your rights only apply to data processed by UK-based companies — foreign companies like Amazon and Google are not subject to UK data protection law',
+      'Smart home devices sold in the UK must process all data on the device itself with no cloud storage, making data access rights irrelevant in practice',
     ],
     correctIndex: 1,
     explanation:
-      "Smart energy management systems work by shifting flexible electricity use to cheaper times. Most people pay the same rate for electricity regardless of when they use it, but some tariffs charge far less overnight when demand is low and renewable energy is plentiful. An AI system connected to your smart meter, EV charger, smart appliances, and solar panels can automatically schedule your dishwasher to run at 2am and charge your electric car overnight when electricity is cheapest. National Grid also pays households to reduce usage at times of high demand — AI systems can respond to these signals automatically.",
-    hint: "Think about when electricity is cheaper and which of your appliances can work at unusual times.",
+      'Under the UK General Data Protection Regulation (UK GDPR), any company processing personal data about UK residents — including American companies like Amazon, Google, and Apple — must comply with UK data protection law. Smart home data is personal data. Your rights include: the right to access the data collected about you (make a Subject Access Request), the right to correct inaccurate data, the right to request deletion (the "right to be forgotten"), and the right to be told clearly what data is being collected and how it is used. The Information Commissioner\'s Office (ICO) published a specific code of practice for smart devices in 2023, setting minimum standards for transparency, security, and data minimisation. If you believe a smart device company is mishandling your data, you can complain to the ICO.',
+    hint: 'Think about whether a UK data protection law would apply to a US company whose devices are sold and used in the UK.',
   },
 ]
 
@@ -93,7 +93,7 @@ export function AIAndTheHome() {
   useMarkVisited('ai-and-the-home')
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
       <div className="max-w-2xl w-full space-y-8">
 
         <div className="text-center space-y-4">
@@ -102,12 +102,12 @@ export function AIAndTheHome() {
             AI and the home
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            Smart speakers, AI thermostats, robot vacuums, security cameras, and energy management
-            — how AI has moved into every room of your house.
+            From smart thermostats and AI security cameras to voice assistants and energy management — how AI is
+            changing the home, and the important privacy questions this raises.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
-              <span>About 6 min read</span>
+              <span>About 7 min read</span>
             </div>
             <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-sm px-4 py-2 rounded-full font-semibold">
               <span>Beginner</span>
@@ -119,155 +119,84 @@ export function AIAndTheHome() {
 
         <KeyTakeaways points={KEY_TAKEAWAYS} />
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">The smart home — hype and reality</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-teal-100 dark:border-teal-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Smart thermostats — heating AI you might already have</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            &quot;Smart home&quot; has been a marketing buzzword for a decade, but the technology has genuinely
-            matured. Here is what AI actually adds to everyday home life.
+            Hive (by British Gas) and Nest (by Google) are the two most popular smart thermostats in the UK. They represent some of the most accessible AI most people will ever use.
           </p>
-          <div className="space-y-2">
-            {[
-              "Over 10 million smart speakers are now in UK homes — Amazon Echo is the most popular, followed by Google Nest and Apple HomePod",
-              "AI thermostats are available from most UK energy suppliers and can pay for themselves in energy savings within one to two years",
-              "Robot vacuum sales increased by 40% during the pandemic as people noticed their floors more — AI mapping has made them genuinely useful rather than a novelty",
-              "Smart doorbells and security cameras are now in roughly one in four UK homes",
-              "The biggest barrier to smart home adoption is not cost but complexity — AI is gradually making setup and management much simpler",
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-amber-600 dark:text-amber-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+          <div className="space-y-3">
+            <div className="flex gap-3 items-start bg-teal-50 dark:bg-teal-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F321;&#xFE0F;</span>
+              <div>
+                <p className="font-semibold text-teal-800 dark:text-teal-200 text-sm mb-0.5">Hive (British Gas)</p>
+                <p className="text-teal-700 dark:text-teal-300 text-sm leading-relaxed">Hive uses occupancy sensors and your smartphone's location to detect when you're home, away, or approaching. It learns your preferred temperatures and schedules and begins applying them automatically. The app lets you control the heating from anywhere — a genuinely useful feature if you return home early or go on holiday.</p>
               </div>
-            ))}
+            </div>
+            <div className="flex gap-3 items-start bg-teal-50 dark:bg-teal-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4A1;</span>
+              <div>
+                <p className="font-semibold text-teal-800 dark:text-teal-200 text-sm mb-0.5">Nest (Google)</p>
+                <p className="text-teal-700 dark:text-teal-300 text-sm leading-relaxed">Nest's learning algorithm watches your manual adjustments for the first week or two and then begins automatically creating a schedule based on your actual behaviour. It also has a built-in sensor that detects motion — if no one moves past the thermostat for a few hours, it drops into an energy-saving mode automatically. Nest claims UK users save an average of £130 a year on energy bills.</p>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Smart speakers — AI in your kitchen</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI security cameras — more than motion detection</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Smart speakers are probably the most visible AI in most UK homes. Here is what they can
-            do — and what to think about before getting one.
+            Ring (owned by Amazon) and Google Nest cameras have transformed home security — but also raised new questions about surveillance.
           </p>
-          <div className="space-y-3">
+          <div className="space-y-2">
             {[
-              {
-                icon: "&#x1F4E2;",
-                label: "What they do well",
-                text: "Setting timers while your hands are covered in flour, adding items to your shopping list as you run out of them, playing music, answering quick questions, controlling other smart devices by voice, and making phone calls without picking up your phone.",
-                color: "blue",
-              },
-              {
-                icon: "&#x26A0;&#xFE0F;",
-                label: "Privacy considerations",
-                text: "Smart speakers are always listening for their wake word. Accidental activations do happen. Amazon, Google, and Apple have all used human contractors to review voice recordings to improve their AI — though you can opt out of this in the privacy settings. Check and delete your voice history regularly in the app.",
-                color: "blue",
-              },
-              {
-                icon: "&#x1F4A1;",
-                label: "Practical tip",
-                text: "Most smart speakers have a physical mute button that disconnects the microphone entirely. Use it when having sensitive conversations. Also check what permissions you have given any third-party skills or actions you have added — some have access to your account information.",
-                color: "blue",
-              },
-            ].map(({ icon, label, text, color }) => (
-              <div key={label} className={`flex gap-3 items-start bg-${color}-50 dark:bg-${color}-950 rounded-xl p-3`}>
-                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
-                <div>
-                  <p className={`font-semibold text-${color}-800 dark:text-${color}-200 text-sm mb-0.5`}>{label}</p>
-                  <p className={`text-${color}-700 dark:text-${color}-300 text-sm leading-relaxed`}>{text}</p>
+              'Ring doorbells can distinguish between a person approaching, a vehicle passing, and a package being delivered — sending different alerts for each',
+              'Some Ring and Nest cameras can recognise familiar faces and send personalised notifications — but this requires enrolling faces in the app',
+              'Footage from Ring cameras can be shared with police via Amazon\'s Neighbors app — a practice that has attracted significant scrutiny in the UK and USA',
+              'The UK Information Commissioner\'s Office has produced guidance on using home CCTV — if cameras capture a neighbour\'s property, additional data protection obligations apply',
+              'You can set Ring and Nest cameras to process footage locally rather than storing it in the cloud — though this limits features like remote viewing',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-blue-600 dark:text-blue-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-purple-100 dark:border-purple-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Voice assistants — always listening</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Amazon Echo, Google Home, and Apple HomePod are in millions of UK homes. Understanding how they actually work helps you make informed choices about using them.
+          </p>
+          <div className="bg-purple-50 dark:bg-purple-950 rounded-xl p-4 space-y-2">
+            <p className="font-semibold text-purple-800 dark:text-purple-200 text-sm">How to manage your privacy</p>
+            <div className="space-y-1">
+              {[
+                'In the Alexa app: Settings > Alexa Privacy > Review Voice History — you can delete recordings individually or all at once',
+                'In Google Home app: Settings > More Settings > My Activity — shows all Google Assistant interactions with audio',
+                'For Apple Siri: Settings > Siri and Search > Siri History — you can opt out of sharing recordings with Apple',
+                'You can turn the microphone off physically on Amazon Echo and Google Home using the mute button — a hardware switch that cuts the microphone circuit',
+                'Consider whether always-on microphones in the bedroom are something you are comfortable with',
+              ].map((item) => (
+                <div key={item} className="flex gap-2 items-start">
+                  <span className="text-purple-600 dark:text-purple-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                  <p className="text-purple-700 dark:text-purple-300 text-sm leading-relaxed">{item}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI thermostats — heating that thinks</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Heating accounts for around 55% of the average UK energy bill. AI thermostats are one
-            of the most practical ways to reduce this.
-          </p>
-          <div className="space-y-2">
-            {[
-              "Nest (Google), Hive (British Gas), and Tado are the three most popular AI thermostat brands in the UK",
-              "All three learn your routine in the first week or two, then heat proactively — your home is warm when you need it, not when you get around to turning the heating on",
-              "Geofencing (using your phone's location) lets the thermostat know when you are heading home and start heating in time for your arrival",
-              "Multi-zone systems can heat individual rooms differently — no more heating the whole house to warm one room",
-              "Most AI thermostats provide a monthly energy report showing you exactly how much gas or electricity you used",
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-orange-600 dark:text-orange-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Robot vacuums — AI on the floor</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Robot vacuums have come a long way from the random-bouncing devices of ten years ago.
-            AI navigation has made them genuinely effective.
-          </p>
-          <div className="bg-green-50 dark:bg-green-950 rounded-xl p-4 space-y-2">
-            <p className="font-semibold text-green-800 dark:text-green-200 text-sm">How AI navigation works</p>
-            <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">
-              A modern robot vacuum uses LIDAR (laser distance sensing) or camera-based SLAM to build a
-              precise floor plan of your home on its first clean. It remembers where walls, furniture, and
-              hazards are, and on subsequent cleans follows an efficient parallel-row pattern. You can view
-              the map in the app, name rooms, set no-go zones, and schedule different rooms on different days.
-            </p>
-          </div>
-          <div className="space-y-2">
-            {[
-              "Roomba i-series and j-series can empty their own dustbin into a bag in the base station — you might only need to empty it every 30-60 days",
-              "Combination robot vacuum and mop models (like Roborock and Dreame) can vacuum and mop in a single pass",
-              "AI pet-waste avoidance (on models like Roomba j7+) uses cameras to identify and navigate around hazards on the floor",
-              "Multi-floor mapping lets the robot remember the layout of every floor of your house",
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">What to consider before you buy</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Smart home devices are not all created equal. Here are the key questions to ask.
-          </p>
-          <div className="space-y-3">
-            <div className="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F510;</span>
-              <div>
-                <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-0.5">Privacy and data</p>
-                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Where is your data stored? Can the company sell it or share it with third parties? Does the device work if the company goes bust or discontinues the product? Choose established brands with clear privacy policies.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F517;</span>
-              <div>
-                <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-0.5">Ecosystem lock-in</p>
-                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Amazon, Google, and Apple smart home ecosystems do not always work seamlessly together. The Matter smart home standard (launched in 2022) is intended to make devices from different brands work together, but adoption is still incomplete. Think about whether you want to be tied to one company&apos;s ecosystem.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4A1;</span>
-              <div>
-                <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-0.5">What genuinely adds value</p>
-                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Smart thermostats and robot vacuums have clear, measurable value (energy savings and time saved respectively). Smart speakers are genuinely useful for voice control and quick tasks. Smart lightbulbs that require an app to turn on are often more frustrating than helpful. Be selective — not every &quot;smart&quot; product earns its premium.</p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
+
+        <ReviewLaterButton lessonId="ai-and-the-home" />
+        <LessonNote lessonId="ai-and-the-home" />
 
         <Quiz questions={quizQuestions} lessonId="ai-and-the-home" />
 
-        <LessonNote lessonId="ai-and-the-home" />
-        <ReviewLaterButton lessonId="ai-and-the-home" />
         <LessonRating lessonId="ai-and-the-home" />
         <LessonFeedback lessonId="ai-and-the-home" />
+
         <RelatedLessons currentId="ai-and-the-home" />
+
         <NextLesson currentId="ai-and-the-home" />
       </div>
     </div>

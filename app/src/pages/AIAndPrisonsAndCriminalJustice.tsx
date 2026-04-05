@@ -11,76 +11,81 @@ import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
 
-const LESSON_TITLE = 'AI and prisons and criminal justice — risk assessment, facial recognition, algorithmic parole, and your rights'
+const LESSON_TITLE = 'AI and prisons and criminal justice'
 
 const KEY_TAKEAWAYS = [
-  'Risk assessment tools like OASys (Offender Assessment System) are used by HMPPS to score the likelihood of reoffending — these scores influence sentencing, parole, and release decisions.',
-  'Facial recognition technology has been piloted by South Wales Police and the Metropolitan Police at courts and public spaces — the Bridges case established legal limits on its use.',
-  'AI-powered GPS tagging and automated curfew monitoring are used to supervise people released on licence, with automated alerts triggering potential recall to prison.',
-  'Research consistently shows that risk assessment algorithms can encode historical racial and socioeconomic bias — if the training data reflects past discrimination, the predictions will too.',
-  'Under GDPR and the Police Act, people have rights to challenge algorithmic decisions about them in the criminal justice system, including a right to explanation and human review.',
+  'OGRS (Offender Group Reconviction Scale) and OASys (Offender Assessment System) are AI-influenced tools used by HMPPS to score the risk that someone will reoffend — these scores can affect sentencing, parole, and release decisions.',
+  'Facial recognition has been piloted by South Wales Police and the Metropolitan Police at courts and custody suites, with legal challenges reaching the Court of Appeal in the Bridges case.',
+  'AI licence monitoring uses GPS tagging data and algorithms to detect curfew breaches automatically — removing a significant amount of human judgement from compliance decisions.',
+  'Research shows that predictive criminal justice tools can encode racial and socioeconomic bias from historical data — the UN and the UK Equalities and Human Rights Commission have raised serious concerns.',
+  'Anyone affected by an algorithmic criminal justice decision has the right to a meaningful explanation under UK GDPR and can request a human review.',
 ]
 
-const QUIZ_QUESTIONS: QuizQuestion[] = [
+const quizQuestions: QuizQuestion[] = [
   {
-    question: 'What is OASys and how is it used in the UK criminal justice system?',
+    question: 'What are OGRS and OASys and how are they used in the UK criminal justice system?',
     options: [
-      'OASys is the UK\'s national prison CCTV management system, used to monitor prisoner movements inside custody',
-      'OASys (Offender Assessment System) is a risk assessment tool used by HMPPS to score the probability of reoffending — these scores inform decisions about sentencing, prison category, release on licence, and parole',
-      'OASys is the case management software used by criminal defence solicitors to manage their client files',
-      'OASys is a real-time facial recognition system used at UK courts to verify the identity of defendants',
+      'They are AI systems used by the Crown Prosecution Service to decide whether to bring charges, analysing the strength of evidence before a case goes to court',
+      'They are risk assessment tools used by HMPPS that score the likelihood of reoffending — these scores can influence sentencing recommendations, parole decisions, and licence conditions',
+      'They are AI systems used by police forces to predict which individuals are likely to commit crimes in the future, allowing pre-emptive intervention before any offence is committed',
+      'They are secure communication platforms used by the Parole Board to allow prisoners to present their cases without attending hearings in person',
     ],
     correctIndex: 1,
     explanation:
-      'OASys (Offender Assessment System) is used by His Majesty\'s Prison and Probation Service (HMPPS) to assess the risk and needs of adults in the criminal justice system. It combines structured professional judgement with statistical scoring based on factors including criminal history, age, employment status, accommodation, and substance misuse. The resulting risk scores influence decisions throughout a person\'s journey through the justice system — from initial sentencing guidance to prison category assignment, to release on licence conditions, to Parole Board recommendations. Critics argue that because these scores are based on historical data that reflects past discrimination, they can systematically disadvantage people from marginalised groups.',
+      'OGRS (Offender Group Reconviction Scale) uses statistical analysis to estimate the probability that someone will be reconvicted within two years, based on factors like age, gender, and criminal history. OASys (Offender Assessment System) is a broader risk and needs assessment used by the National Probation Service and prison service to assess the risk an individual poses and their rehabilitation needs. These tools are used at multiple decision points: by probation officers preparing pre-sentence reports for courts, by the Parole Board when considering release, and by prison governors when making decisions about conditions and progression. Critics argue that because these tools are based on group statistics, they may not accurately reflect the actual risk posed by an individual.',
+    hint: 'Think about how risk is assessed in decisions about sentencing and release.',
   },
   {
-    question: 'What was the significance of the Bridges case for facial recognition in the UK?',
+    question: 'What happened in the Bridges case involving facial recognition?',
     options: [
-      'The Bridges case established that all use of facial recognition technology by UK police forces is lawful as long as it is proportionate',
-      'The Bridges case (Bridges v. Chief Constable of South Wales Police) found that South Wales Police\'s use of live facial recognition in public places breached data protection law and the Human Rights Act — setting legal limits on how police can deploy the technology',
-      'The Bridges case was a government inquiry into facial recognition that concluded more investment in the technology was needed to reduce crime',
-      'The Bridges case involved a private company, not a police force, and has no legal relevance to police use of facial recognition',
+      'The Court of Appeal ruled that facial recognition technology was completely lawful and that South Wales Police could deploy it freely without any restrictions or oversight',
+      'The Court of Appeal ruled that South Wales Police\'s deployment of live facial recognition breached human rights law and data protection law — the first such ruling in the UK',
+      'The case was settled out of court when South Wales Police agreed to pay compensation and withdraw all facial recognition technology from use',
+      'The High Court ruled that facial recognition was unlawful, but this ruling was overturned on appeal and the technology was approved for widespread deployment',
     ],
     correctIndex: 1,
     explanation:
-      'Ed Bridges challenged South Wales Police\'s use of Automated Facial Recognition (AFR) technology in public spaces. In 2020, the Court of Appeal ruled in his favour, finding that the use of AFR was unlawful because: the legal framework governing its use was not sufficiently precise; there was inadequate assessment of its impact on privacy rights; and there were no adequate guidelines about when and how the technology could be used. The ruling did not prohibit facial recognition entirely but set requirements for lawful deployment. The Metropolitan Police has subsequently used facial recognition under updated guidelines, but legal challenges continue.',
+      'Ed Bridges, a civil liberties activist, challenged South Wales Police\'s use of live facial recognition technology at public events. In 2020, the Court of Appeal ruled in his favour — finding that South Wales Police had breached his human rights (right to privacy under Article 8 of the European Convention on Human Rights), had not complied with the public sector equality duty (failing to consider whether the technology discriminated on grounds of race or sex), and had no sufficient legal basis for the processing of biometric data. This was a landmark ruling in the UK. The government subsequently began developing a new surveillance framework, and the Metropolitan Police continued to deploy live facial recognition at events despite the legal concerns — a highly contested decision.',
+    hint: 'Think about what a legal challenge to facial recognition technology might argue.',
   },
   {
-    question: 'How does AI-powered electronic monitoring (GPS tagging) work for people released on licence?',
+    question: 'How does AI monitor prisoners and offenders on licence?',
     options: [
-      'Licence monitoring is entirely manual — a probation officer calls or visits the person each day to check their location',
-      'GPS ankle tags record the wearer\'s location continuously; AI systems compare this against permitted locations and curfew conditions, automatically generating alerts when conditions appear to be breached — which can trigger recall proceedings',
-      'GPS tagging only records whether the person is at home during their curfew — it cannot track their location when they are outside',
-      'Electronic monitoring AI can only send alerts to probation officers; it has no connection to the recall-to-prison process',
+      'AI reads the digital correspondence of offenders on licence — emails, texts, and social media — and flags any communication suggesting planning of further offences',
+      'GPS electronic tags transmit location data which AI analyses continuously to detect curfew breaches, exclusion zone violations, and unusual patterns of movement',
+      'AI-equipped drones follow high-risk offenders on release and transmit live video to a monitoring centre where staff watch for concerning behaviour',
+      'AI analyses employment and benefits records to detect whether offenders on licence are meeting the conditions of rehabilitation programmes',
     ],
     correctIndex: 1,
     explanation:
-      'GPS electronic monitoring tags worn by people released on licence record continuous location data. AI systems analyse this data against the conditions of the licence — for example, exclusion zones, curfew hours, and prohibited contacts. When the system detects a potential breach, it generates an automated alert to the monitoring centre. This can trigger a review by a probation officer and, if confirmed, recall proceedings to return the person to custody. The automation of this monitoring raises questions about false positives and whether decisions with serious consequences (recall to prison) are being made too quickly on algorithmic grounds.',
+      'Electronic monitoring (tagging) has been used in the UK since the 1990s, but modern systems are significantly more sophisticated. GPS tags transmit location data multiple times per minute. AI analyses this data in real time: if someone breaches their curfew by entering their home address 10 minutes late, or enters an area they have been excluded from, an automated alert is generated. This removes a lot of human judgement from the monitoring process. The Ministry of Justice uses a centrally managed system, and the data generated can also be used as evidence in recall proceedings if someone is suspected of breaching their licence conditions.',
+    hint: 'Think about what GPS tagging data can tell you about someone\'s movements and what AI can do with that data.',
   },
   {
-    question: 'Why do researchers argue that risk assessment algorithms in criminal justice can be racially biased?',
+    question: 'Why do critics say predictive criminal justice tools can be racially biased?',
     options: [
-      'Risk assessment algorithms are explicitly programmed with racial categories, which is why they produce biased outputs',
-      'Because the algorithms are trained on historical criminal justice data that already reflects racial and socioeconomic disparities — over-policing of certain communities, differential charging and sentencing rates — the algorithm learns patterns that encode past discrimination rather than true risk',
-      'Risk assessment algorithms are only biased in the US; UK-developed tools like OASys have been independently verified as bias-free',
-      'The racial bias concern is theoretical — no real-world examples of AI producing racially disparate outcomes in criminal justice have been documented',
+      'The tools are explicitly programmed with different thresholds for different ethnic groups, which is illegal but difficult to detect and enforce against',
+      'Because they are trained on historical criminal justice data that reflects historical discrimination — groups who were historically over-policed and over-imprisoned score as higher risk even if their actual behaviour is the same',
+      'The tools use facial analysis to infer ethnicity and assign higher risk scores based on stereotypes embedded in the training data',
+      'Researchers have found that the tools were deliberately designed to discriminate, because the companies developing them had links to right-wing political movements',
     ],
     correctIndex: 1,
     explanation:
-      'Risk assessment tools are trained on historical data about who was arrested, charged, convicted, and reoffended. If Black people and people from lower socioeconomic backgrounds are over-represented in that data — because of over-policing of certain neighbourhoods, differential stop-and-search, or disparities in charging and sentencing — the algorithm will learn those patterns. It will then apply them to new cases, effectively predicting that people who share those demographic characteristics are higher risk. This is not because those people are actually more likely to reoffend, but because the system has learned the patterns of a biased past. The Equalities and Human Rights Commission and academic researchers have raised these concerns specifically about UK tools.',
+      'This is a well-documented mechanism called "feedback loop bias" or "historical bias". Black and minority ethnic people in the UK have historically been subject to more policing, more stops and searches, and higher rates of prosecution and imprisonment — partly as a result of systemic discrimination in the criminal justice system. When a risk assessment tool is trained on this historical data, it learns to associate characteristics correlated with these communities (which may include postcode, socioeconomic background, and prior contact with the criminal justice system) with higher risk. The result is that the tool recommends stricter conditions or longer sentences for people from these communities — even if their actual behaviour is identical to someone from a majority community who receives a lower score. This is not intentional discrimination, but the outcome is discriminatory.',
+    hint: 'Think about what happens when you train a model on data that already reflects centuries of discrimination.',
   },
   {
-    question: 'What rights does a person have if they believe an AI tool made a wrong decision about them in the criminal justice system?',
+    question: 'What right does someone have if an AI tool influenced a criminal justice decision about them?',
     options: [
-      'There are no formal rights to challenge AI decisions in the criminal justice system — courts and the Parole Board have complete discretion',
-      'Under UK GDPR and data protection law, individuals have the right to know when solely automated decision-making has affected them, the right to a human review of that decision, and the right to request an explanation of how a risk score was calculated',
-      'Rights to challenge AI decisions only apply in employment law, not criminal justice',
-      'Any challenge to AI-assisted criminal justice decisions must be raised at the European Court of Human Rights, as UK courts have no jurisdiction',
+      'The right to see and challenge the AI\'s source code in court, and to have an independent AI expert appointed to verify the algorithm was applied correctly',
+      'The right to a meaningful explanation of how the algorithmic decision was made under UK GDPR, and the right to request a human review of any decision made substantially by automated means',
+      'The right to appeal to a specialist AI court separate from the normal criminal appeals process, specifically designed to handle algorithmic justice complaints',
+      'The right to opt out of all algorithmic assessment for the duration of their sentence and have their case managed entirely by human probation officers with no digital tools',
     ],
     correctIndex: 1,
     explanation:
-      'UK GDPR (Article 22) gives individuals the right not to be subject to decisions based solely on automated processing that have significant effects, and the right to request human review. In practice, decisions in the criminal justice system are supposed to involve human professional judgement — an OASys score should inform, not replace, a professional assessment. Where someone believes a risk assessment has been incorrectly calculated or has unfairly affected a decision, they can request a review through the relevant body (Parole Board, HMPPS, probation service) and in some cases through the courts. Subject access requests can be used to obtain copies of risk assessment data held about an individual.',
+      'Under UK GDPR and the Data Protection Act 2018, individuals have rights around automated decision-making that significantly affects them. In the criminal justice context, this includes the right to an explanation of how an algorithmic risk score was produced, what factors were considered, and what weight was given to each. They also have the right to request a human review — meaning a qualified human decision-maker must consider their case, rather than simply accepting the algorithmic recommendation. In practice, ensuring these rights are meaningful rather than just theoretical requires active advocacy — a solicitor, a probation officer who understands the system, or an organisation like Liberty or the Howard League for Penal Reform.',
+    hint: 'Think about data protection rights and the right to challenge decisions made by algorithms.',
   },
 ]
 
@@ -88,86 +93,111 @@ export function AIAndPrisonsAndCriminalJustice() {
   useMarkVisited('ai-and-prisons-and-criminal-justice')
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">{LESSON_TITLE}</h1>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">8 min read &middot; Intermediate</p>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-8">
 
-      <CompletedBadge lessonId="ai-and-prisons-and-criminal-justice" />
-      <ShareButton lessonTitle={LESSON_TITLE} />
+        <div className="text-center space-y-4">
+          <div className="text-6xl">&#x2696;&#xFE0F;</div>
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
+            AI and prisons and criminal justice
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+            How AI tools are being used in risk assessment, facial recognition, licence monitoring, and parole decisions
+            in the UK — and the serious concerns about racial bias and accountability.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
+              <span>About 7 min read</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-sm px-4 py-2 rounded-full font-semibold">
+              <span>Intermediate</span>
+            </div>
+          </div>
+          <CompletedBadge lessonId="ai-and-prisons-and-criminal-justice" />
+          <ShareButton lessonTitle={LESSON_TITLE} />
+        </div>
 
-      <KeyTakeaways points={KEY_TAKEAWAYS} />
+        <KeyTakeaways points={KEY_TAKEAWAYS} />
 
-      <div className="prose prose-gray dark:prose-invert max-w-none mt-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI in the UK justice system — what is already happening</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            AI tools are not science fiction in the UK criminal justice system — they are already influencing decisions about sentencing, release, and supervision.
+          </p>
+          <div className="space-y-2">
+            {[
+              'His Majesty\'s Prison and Probation Service (HMPPS) uses algorithmic tools at multiple decision points in a person\'s journey through the justice system',
+              'The National Probation Service uses OASys (Offender Assessment System) to assess risk and need for everyone on probation in England and Wales',
+              'Electronic monitoring (tagging) of people on licence uses AI to detect breaches automatically — over 20,000 people are monitored this way at any time',
+              'South Wales Police and the Metropolitan Police have piloted live facial recognition at courts, transport hubs, and public events',
+              'The Parole Board receives AI-generated risk assessments as part of the evidence it considers when deciding whether to release prisoners',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-slate-600 dark:text-slate-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <h2>When algorithms decide your fate</h2>
-        <p>
-          Few decisions in a person&apos;s life are more consequential than those made by the criminal justice system. Whether you are released on bail, how long your sentence is, whether you are deemed safe to release on parole &mdash; these decisions are increasingly informed by AI systems that score and rank individuals based on their predicted behaviour.
-        </p>
-        <p>
-          This lesson explores how AI is used in UK criminal justice, what the risks are, and what rights you have if you believe an algorithm has got it wrong.
-        </p>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">The racial bias problem</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            The most serious criticism of AI in criminal justice is that it can encode and amplify racial and socioeconomic discrimination.
+          </p>
+          <div className="bg-red-50 dark:bg-red-950 rounded-xl p-4 space-y-2">
+            <p className="font-semibold text-red-800 dark:text-red-200 text-sm">The feedback loop</p>
+            <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">
+              If Black people in the UK are historically more likely to be stopped, searched, prosecuted, and imprisoned — partly because of discrimination — then any AI trained on this historical data will learn to associate Blackness (or proxies for it, such as postcode) with higher risk. It will then recommend stricter conditions for Black individuals, who are then more likely to be monitored, breached, and recalled. The AI does not cause the original discrimination, but it can amplify and perpetuate it in a self-reinforcing cycle.
+            </p>
+          </div>
+          <div className="space-y-2">
+            {[
+              'The United Nations Special Rapporteur on Racism has called for a moratorium on predictive policing and criminal justice AI tools pending human rights assessment',
+              'The UK Equalities and Human Rights Commission has highlighted concerns about algorithmic discrimination in public sector decision-making',
+              'Research by organisations including the Ada Lovelace Institute has called for mandatory equality impact assessments before deploying algorithmic tools in criminal justice',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-red-600 dark:text-red-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;&#xFE0F;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <h2>Risk assessment: OASys and OGRS</h2>
-        <p>
-          His Majesty&apos;s Prison and Probation Service (HMPPS) uses the Offender Assessment System (OASys) to assess the risk and needs of adults in the criminal justice system. OASys combines professional judgement with statistical scoring based on factors including criminal history, age, employment, accommodation, substance use, and attitudes to offending.
-        </p>
-        <p>
-          The Offender Group Reconviction Scale (OGRS) is a purely statistical tool that uses age and criminal history to predict the probability of a further offence within a defined period. These scores are used at multiple points: pre-sentence reports, prison category assignment, release on licence conditions, and Parole Board recommendations.
-        </p>
-        <p>
-          The concern is that these tools are trained on historical criminal justice data that already reflects systemic disparities. If certain communities were historically over-policed, the algorithm will learn that people with those characteristics are higher risk &mdash; not because they truly are, but because they were more likely to be caught.
-        </p>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Your rights</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            If you or someone you know is affected by algorithmic criminal justice decisions, these rights apply.
+          </p>
+          <div className="space-y-2">
+            {[
+              'Under UK GDPR, you have the right to a meaningful explanation of how an algorithmic risk score was generated and what factors were used',
+              'You have the right to request a human review of any significant decision made substantially by automated means',
+              'You can make a Subject Access Request (SAR) to access your OASys assessment and any other data HMPPS holds about you',
+              'Organisations including the Howard League for Penal Reform, Liberty, and INQUEST can provide support and advice on challenging algorithmic decisions',
+              'If you believe an algorithmic tool has produced a discriminatory outcome, you can complain to the Parole Board, the Independent Monitor for Tagging, or the Information Commissioner\'s Office',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <h2>Facial recognition at courts and custody</h2>
-        <p>
-          South Wales Police and the Metropolitan Police have piloted Automated Facial Recognition (AFR) technology. The landmark legal case is <em>Bridges v. Chief Constable of South Wales Police</em> (2020), in which the Court of Appeal ruled that South Wales Police&apos;s use of AFR in public places was unlawful because the legal framework was insufficiently precise and there had been inadequate assessment of privacy rights.
-        </p>
-        <p>
-          Facial recognition is also used in custody settings &mdash; verifying the identity of people being processed through police custody suites. This is generally considered less controversial than public-space deployment, though civil liberties groups still raise concerns about data retention and the accuracy of systems for people with darker skin tones.
-        </p>
-
+        <ReviewLaterButton lessonId="ai-and-prisons-and-criminal-justice" />
         <LessonNote lessonId="ai-and-prisons-and-criminal-justice" />
 
-        <h2>AI monitoring on licence</h2>
-        <p>
-          People released from prison on licence can be required to wear GPS electronic monitoring tags. These tags record location continuously, and AI systems compare this data against licence conditions &mdash; curfew hours, exclusion zones, permitted locations. Automated alerts are generated when potential breaches are detected.
-        </p>
-        <p>
-          This automation raises questions about proportionality. A false positive &mdash; for example, a GPS signal error that suggests a person left their permitted area &mdash; can trigger recall proceedings with serious consequences. The speed of automated enforcement means human review can happen after the alert, rather than before it.
-        </p>
+        <Quiz questions={quizQuestions} lessonId="ai-and-prisons-and-criminal-justice" />
 
-        <h2>Algorithmic parole decisions</h2>
-        <p>
-          The Parole Board makes decisions about whether it is safe to release people who have served their tariff. These decisions involve risk assessment tools including OASys scores, but the Board is required to make an independent human judgement &mdash; the algorithm informs, it does not decide.
-        </p>
-        <p>
-          There is ongoing debate about whether AI tools should ever have a more direct role in parole decisions. Proponents argue AI can provide more consistent assessments than individual panel members. Critics argue that decisions with such profound consequences for individual liberty require human judgement and accountability that algorithms cannot provide.
-        </p>
+        <LessonRating lessonId="ai-and-prisons-and-criminal-justice" />
+        <LessonFeedback lessonId="ai-and-prisons-and-criminal-justice" />
 
-        <h2>Racial and socioeconomic bias</h2>
-        <p>
-          Research by academics, the Equalities and Human Rights Commission, and human rights groups has documented concerns about racial and socioeconomic bias in risk assessment tools. The core problem: if historical data reflects over-policing, differential charging, and disparities in sentencing, an algorithm trained on that data will encode those patterns.
-        </p>
-        <p>
-          The UN Special Rapporteur on Contemporary Forms of Racism has raised these concerns globally. In the UK, specific scrutiny has focused on whether algorithmic tools used in sentencing and parole disproportionately impact Black defendants and those from deprived backgrounds.
-        </p>
+        <RelatedLessons currentId="ai-and-prisons-and-criminal-justice" />
 
-        <h2>Your rights</h2>
-        <p>
-          Under UK GDPR, you have the right to know if a significant decision about you was made solely by automated processing, the right to request human review, and the right to an explanation of how a risk score was calculated. In practice, accessing and challenging this information requires persistence and often legal assistance &mdash; but the rights exist and have been successfully used.
-        </p>
-
+        <NextLesson currentId="ai-and-prisons-and-criminal-justice" />
       </div>
-
-      <div className="mt-10">
-        <Quiz questions={QUIZ_QUESTIONS} lessonId="ai-and-prisons-and-criminal-justice" />
-      </div>
-
-      <ReviewLaterButton lessonId="ai-and-prisons-and-criminal-justice" />
-      <LessonRating lessonId="ai-and-prisons-and-criminal-justice" />
-      <LessonFeedback lessonId="ai-and-prisons-and-criminal-justice" />
-      <RelatedLessons currentId="ai-and-prisons-and-criminal-justice" />
-      <NextLesson currentId="ai-and-prisons-and-criminal-justice" />
     </div>
   )
 }

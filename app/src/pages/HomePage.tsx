@@ -17,7 +17,6 @@ import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
-import { LessonMilestoneCard } from '../components/LessonMilestoneCard'
 
 const AI_FACTS = [
   'The first chatbot, ELIZA, was created in 1966 at MIT — it could hold simple conversations by matching patterns in text.',
@@ -1116,193 +1115,93 @@ const MODULE_GROUPS: ModuleGroup[] = [
       },
       {
         id: 'ai-and-small-businesses',
-        title: 'AI and small businesses — AI bookkeeping, chatbots, inventory AI, and the high street',
-        description: 'Automated bookkeeping, AI chatbots, smart stock management, and social media tools — how AI is changing life on the UK high street and what it means for small business owners.',
+        title: 'AI and small businesses — AI bookkeeping, chatbots, inventory management, and the future of the high street',
+        description: 'How AI is helping independent shops and small businesses compete — from Xero and QuickBooks to customer chatbots and stock prediction tools.',
         readingTime: '7 min',
         icon: '🛍️',
         to: '/learn/ai-and-small-businesses',
-        color: 'amber',
+        color: 'green',
         difficulty: 'Beginner',
       },
       {
         id: 'ai-and-local-government',
-        title: 'AI and local government — pothole detection, planning permissions, social services AI, and algorithmic accountability',
-        description: 'How AI is being used by UK councils and what residents need to know about their rights when algorithms inform decisions about them.',
+        title: 'AI and local government — pothole detection, planning AI, social services prediction, and your rights',
+        description: 'How UK councils are using AI to fix roads faster, speed up planning applications, optimise bin collections — and the serious questions about algorithmic accountability.',
         readingTime: '7 min',
         icon: '🏛️',
         to: '/learn/ai-and-local-government',
-        color: 'slate',
+        color: 'blue',
         difficulty: 'Intermediate',
       },
       {
         id: 'ai-and-wildlife-conservation',
-        title: 'AI and wildlife conservation — camera traps, acoustic monitoring, anti-poaching AI, and deforestation tracking',
-        description: 'How AI is transforming the effort to protect wildlife — from identifying individual animals in camera trap images to detecting illegal logging by sound.',
+        title: 'AI and wildlife conservation — camera traps, acoustic monitoring, anti-poaching AI, and satellite deforestation tracking',
+        description: 'How AI is helping scientists identify species, detect illegal logging in real time, track deforestation from space, and predict where poachers will strike — and the ethical questions this raises.',
         readingTime: '7 min',
         icon: '🦏',
         to: '/learn/ai-and-wildlife-conservation',
-        color: 'green',
+        color: 'emerald',
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-addiction-recovery',
-        title: 'AI and addiction and recovery — AI screening tools, chatbot recovery support, relapse prediction, and NHS treatment AI',
-        description: 'How AI is being used to identify hidden addiction, support people in recovery at any hour, and help the NHS plan treatment services more effectively.',
+        id: 'ai-and-addiction-and-recovery',
+        title: 'AI and addiction and recovery — NHS screening tools, recovery chatbots, relapse prediction, and privacy',
+        description: 'How AI is helping the NHS identify addiction earlier, support people in recovery between appointments, personalise treatment, and predict relapse — with important questions about data privacy.',
         readingTime: '7 min',
-        icon: '🌱',
-        to: '/learn/ai-and-addiction-recovery',
-        color: 'teal',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-logistics',
-        title: 'AI and logistics and delivery — route planning, parcel sorting, delivery drones, and warehouse robots',
-        description: 'How Amazon warehouse robots, delivery route AI, and parcel sorting automation work — and what they mean for jobs and the future of delivery.',
-        readingTime: '7 min',
-        icon: '📦',
-        to: '/learn/ai-and-logistics',
-        color: 'blue',
-        difficulty: 'Beginner',
-      },
-      {
-        id: 'ai-and-the-home',
-        title: 'AI and the home — smart thermostats, AI security cameras, voice assistants, and robot vacuums',
-        description: 'How AI-powered devices in your home learn your habits, save energy, and raise genuine questions about privacy and always-on listening.',
-        readingTime: '7 min',
-        icon: '🏠',
-        to: '/learn/ai-and-the-home',
-        color: 'indigo',
-        difficulty: 'Beginner',
-      },
-      {
-        id: 'ai-and-space-exploration',
-        title: 'AI and space exploration — Mars rovers, exoplanets, satellite constellations, and UK space ambitions',
-        description: 'How AI navigates Mars rovers autonomously, finds new planets from telescope data, manages satellite constellations, tracks space debris, and supports the UK space sector.',
-        readingTime: '7 min',
-        icon: '&#x1F680;',
-        to: '/learn/ai-and-space-exploration',
-        color: 'slate',
-        difficulty: 'Intermediate',
-      },
-            {
-        id: 'ai-and-sport-betting',
-        title: 'AI and sport betting — algorithmic odds, trading bots, in-play AI, and addiction profiling',
-        description: 'How Bet365 and Sky Bet use AI to set odds, Betfair trading bots, in-play betting AI, personalised promotions, problem gambling detection, and the 2023 Gambling White Paper.',
-        readingTime: '8 min',
-        icon: '&#x1F3B0;',
-        to: '/learn/ai-and-sport-betting',
-        color: 'red',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-prisons-and-criminal-justice',
-        title: 'AI and prisons and criminal justice — risk assessment, facial recognition, and algorithmic accountability',
-        description: 'OASys risk scoring, the Bridges facial recognition case, GPS licence monitoring, algorithmic parole decisions, racial bias, and your rights to challenge AI decisions.',
-        readingTime: '8 min',
-        icon: '&#x2696;',
-        to: '/learn/ai-and-prisons-and-criminal-justice',
-        color: 'gray',
-        difficulty: 'Advanced',
-      },
-      {
-        id: 'ai-and-climate-tech',
-        title: 'AI and climate tech — wind and solar optimisation, smart grids, carbon capture, and the AI energy paradox',
-        description: 'How AI is improving renewable energy output, managing smart electricity grids, accelerating materials discovery — and the uncomfortable question about its own carbon footprint.',
-        readingTime: '7 min',
-        icon: '&#x26A1;',
-        to: '/learn/ai-and-climate-tech',
-        color: 'green',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-creative-economy',
-        title: 'AI and the creative economy — musicians, writers, designers, the UK copyright debate, and how creatives are adapting',
-        description: 'How generative AI is reshaping creative industries, who is losing work, and the unresolved question of who owns what AI has learned from human creativity.',
-        readingTime: '7 min',
-        icon: '&#x1F3A8;',
-        to: '/learn/ai-and-creative-economy',
+        icon: '💚',
+        to: '/learn/ai-and-addiction-and-recovery',
         color: 'purple',
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-ageing-and-elder-care',
-        title: 'AI and ageing and elder care',
-        description: 'AI hearing aids, medication reminders, companion robots for loneliness, and the ethics of AI surveillance for older people living independently.',
-        readingTime: '6 min',
-        icon: '&#x1F9D3;',
-        to: '/learn/ai-and-ageing-and-elder-care',
-        color: 'rose',
-        difficulty: 'Beginner',
+        id: 'ai-and-sport-betting',
+        title: 'AI and sport betting — algorithmic odds, trading bots, in-play AI, addiction profiling, and UK regulation',
+        description: 'How AI transforms the gambling industry — from odds-making and Betfair trading bots to personalised promotions that target vulnerable gamblers, and how the UK Gambling Commission is responding.',
+        readingTime: '7 min',
+        icon: '🎰',
+        to: '/learn/ai-and-sport-betting',
+        color: 'green',
+        difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-gig-workers',
-        title: 'AI and gig workers',
-        description: 'How Uber, Deliveroo, and other platforms use algorithmic management to assign work, set pay, and deactivate workers — and what the law says.',
-        readingTime: '6 min',
-        icon: '&#x1F6F5;',
-        to: '/learn/ai-and-gig-workers',
+        id: 'ai-and-prisons-and-criminal-justice',
+        title: 'AI and prisons and criminal justice — risk assessment, facial recognition, licence monitoring, and bias',
+        description: 'How AI tools are used in UK criminal justice — from OGRS risk scores to facial recognition at courts — and the serious concerns about racial bias and algorithmic accountability.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/learn/ai-and-prisons-and-criminal-justice',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-space-exploration',
+        title: 'AI and space exploration — Mars rovers, satellite constellations, exoplanet discovery, and UK space',
+        description: 'From Perseverance navigating Mars autonomously to AI discovering new planets — how artificial intelligence is transforming what we can explore beyond Earth.',
+        readingTime: '7 min',
+        icon: '🚀',
+        to: '/learn/ai-and-space-exploration',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-logistics-and-delivery',
+        title: 'AI and logistics and delivery — route planning, parcel sorting, drone delivery, and algorithmic management',
+        description: 'How Amazon, Royal Mail, DPD, and Ocado use AI to plan routes, sort millions of parcels, predict orders, and trial drone delivery — and what this means for delivery workers.',
+        readingTime: '7 min',
+        icon: '📦',
+        to: '/learn/ai-and-logistics-and-delivery',
         color: 'orange',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-critical-thinking',
-        title: 'AI and critical thinking',
-        description: 'How AI tools like ChatGPT are changing the way students and workers think, and why human reasoning skills matter more than ever.',
-        readingTime: '6 min',
-        icon: '&#x1F9E0;',
-        to: '/learn/ai-and-critical-thinking',
-        color: 'violet',
         difficulty: 'Beginner',
       },
       {
-        id: 'ai-and-sport-nutrition',
-        title: 'AI and sport nutrition — personalised plans, calorie tracking, gut microbiome AI, and the risks of algorithmic advice',
-        description: 'How AI-powered nutrition apps like Zoe personalise dietary advice, how calorie-tracking photo recognition works (and where it fails), and the important limits of algorithmic diet advice.',
-        readingTime: '6 min',
-        icon: '&#x1F96C;',
-        to: '/learn/ai-and-sport-nutrition',
-        color: 'lime',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-mental-health-chatbots',
-        title: 'AI and mental health chatbots — Woebot, Wysa, Kooth, the evidence, and important limits',
-        description: 'How AI mental health chatbots work, what the clinical evidence shows, how they are (and are not) regulated in the UK, and when they are not enough.',
+        id: 'ai-and-the-home',
+        title: 'AI and the home — smart thermostats, AI cameras, voice assistants, energy management, and privacy',
+        description: 'From Hive and Nest thermostats to Ring doorbells and Alexa — how AI is changing the home, what it is doing with your data, and what your rights are.',
         readingTime: '7 min',
-        icon: '&#x1F4AC;',
-        to: '/learn/ai-and-mental-health-chatbots',
-        color: 'violet',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-edtech',
-        title: 'AI and education technology — AI tutors, adaptive learning, and personalised feedback',
-        description: 'How AI is changing classrooms — adaptive learning platforms, AI essay marking, exam proctoring software, and what it means for teachers and students.',
-        readingTime: '7 min',
-        icon: '&#x1F4DA;',
-        to: '/learn/ai-and-edtech',
-        color: 'blue',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-personal-assistants',
-        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, privacy, and limitations',
-        description: 'How voice assistants work, what the always-listening concern really means, your UK data rights, and what they are genuinely good (and not good) at.',
-        readingTime: '6 min',
-        icon: '&#x1F4F1;',
-        to: '/learn/ai-and-personal-assistants',
-        color: 'sky',
+        icon: '🏠',
+        to: '/learn/ai-and-the-home',
+        color: 'teal',
         difficulty: 'Beginner',
-      },
-      {
-        id: 'ai-and-legal-system',
-        title: 'AI and the legal system — contract review, predictive tools, access to justice, and the DABUS case',
-        description: 'How AI is changing legal practice, what COMPAS revealed about algorithmic bias in courts, why the UK Supreme Court ruled AI cannot be an inventor, and how AI could help ordinary people access justice.',
-        readingTime: '7 min',
-        icon: '&#x2696;',
-        to: '/learn/ai-and-legal-system',
-        color: 'amber',
-        difficulty: 'Intermediate',
       },
     ],
   },
@@ -1463,17 +1362,36 @@ const LESSON_POOL = MODULES.filter(m =>
   !['meet-the-agents'].includes(m.id) && m.readingTime !== undefined
 )
 
-/** Returns the top N lesson modules by view count with their counts, only lessons actually visited */
-function getPopularLessons(max: number): Array<{ module: Module; count: number }> {
+/** Curated fallback for Popular Lessons when not enough view data is available */
+const POPULAR_LESSONS_FALLBACK = [
+  'what-is-ai',
+  'ai-and-social-media',
+  'ai-and-privacy',
+]
+
+/** Returns the top N lesson modules by view count, with curated fallback for missing slots */
+function getPopularLessons(max: number): Module[] {
   try {
     const counts = loadLessonViewCounts()
-    return LESSON_POOL
+    const sorted = LESSON_POOL
       .filter(m => (counts[m.id] ?? 0) > 0)
       .sort((a, b) => (counts[b.id] ?? 0) - (counts[a.id] ?? 0))
       .slice(0, max)
-      .map(m => ({ module: m, count: counts[m.id] ?? 0 }))
+    if (sorted.length >= max) return sorted
+    // Fill remaining slots from curated fallback list
+    const existing = new Set(sorted.map(m => m.id))
+    for (const fallbackId of POPULAR_LESSONS_FALLBACK) {
+      if (sorted.length >= max) break
+      if (existing.has(fallbackId)) continue
+      const mod = LESSON_POOL.find(m => m.id === fallbackId)
+      if (mod) { sorted.push(mod); existing.add(fallbackId) }
+    }
+    return sorted.slice(0, max)
   } catch {
-    return []
+    return POPULAR_LESSONS_FALLBACK
+      .map(id => LESSON_POOL.find(m => m.id === id))
+      .filter((m): m is Module => m !== undefined)
+      .slice(0, max)
   }
 }
 
@@ -1561,7 +1479,7 @@ export function HomePage() {
 
   const bookmarkedModules = MODULES.filter(m => bookmarks.has(m.id))
   const continueLesson = getContinueLesson(visited, quizCompleted)
-  const popularLessons = getPopularLessons(5)
+  const popularLessons = getPopularLessons(3)
   const [recommendations] = useState<Recommendation[]>(() => getRecommendations())
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
@@ -1655,20 +1573,6 @@ export function HomePage() {
           </div>
         )}
 
-        {/* What should I learn next? — personalised quiz for new/returning users */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-5 flex items-center justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-blue-800 mb-0.5">Not sure where to start?</p>
-            <p className="text-sm text-blue-700">Answer 5 quick questions to get personalised lesson recommendations.</p>
-          </div>
-          <Link
-            to="/quiz/what-next"
-            className="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
-          >
-            Find my lessons &rarr;
-          </Link>
-        </div>
-
         {/* Search */}
         <SearchBar />
 
@@ -1732,12 +1636,9 @@ export function HomePage() {
           )}
         </div>
 
-        {/* Lesson milestone card */}
-        <LessonMilestoneCard completedCount={quizCompletedCount} />
-
         {/* Learning streak */}
         {streak > 0 && (
-          <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4">
+          <Link to="/streak" className="block bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4 hover:bg-orange-100 transition-colors">
             <span className="text-3xl flex-shrink-0">&#x1F525;</span>
             <div className="flex-1 min-w-0">
               <p className="font-bold text-orange-800 text-base leading-tight">
@@ -1751,9 +1652,10 @@ export function HomePage() {
                 {bestStreak === streak && streak > 1 && (
                   <span className="ml-1 text-orange-500">That is your best yet!</span>
                 )}
+                <span className="ml-1 text-orange-500 text-xs">View your streak &rarr;</span>
               </p>
             </div>
-          </div>
+          </Link>
         )}
 
         {/* Weekly learning goal ring */}
@@ -1949,14 +1851,14 @@ export function HomePage() {
           </div>
         )}
 
-        {/* Popular lessons — top 5 most visited */}
-        {popularLessons.length >= 3 && (
+        {/* Popular lessons */}
+        {popularLessons.length > 0 && (
           <div className="bg-violet-50 border border-violet-200 dark:bg-violet-950 dark:border-violet-800 rounded-2xl p-4 sm:p-5 space-y-3">
-            <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wide">Your most visited lessons</p>
-            <div className="space-y-3">
-              {(() => {
-                const maxCount = popularLessons[0]?.count ?? 1
-                return popularLessons.map(({ module: mod, count }) => (
+            <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wide">Popular lessons</p>
+            <div className="space-y-2">
+              {popularLessons.map(mod => {
+                const group = MODULE_GROUPS.find(g => g.modules.some(m => m.id === mod.id))
+                return (
                   <Link
                     key={mod.id}
                     to={mod.to as '/'}
@@ -1965,25 +1867,34 @@ export function HomePage() {
                     <span className="text-2xl flex-shrink-0" aria-hidden="true">{mod.icon}</span>
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-violet-900 dark:text-violet-100 text-sm group-hover:underline leading-tight">{mod.title}</p>
-                      <div className="mt-1 flex items-center gap-2">
-                        <div className="flex-1 bg-violet-200 dark:bg-violet-800 rounded-full h-1.5 max-w-[120px]">
-                          <div
-                            className="bg-violet-500 h-1.5 rounded-full"
-                            style={{ width: `${Math.max(10, Math.round((count / maxCount) * 100))}%` }}
-                          />
-                        </div>
-                        <span className="text-xs text-violet-500 dark:text-violet-400 flex-shrink-0">
-                          {count} {count === 1 ? 'visit' : 'visits'}
+                      <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                        {group && (
+                          <span className="text-xs text-violet-500 dark:text-violet-400">{group.heading}</span>
+                        )}
+                        <span className="inline-flex items-center gap-1 bg-violet-200 dark:bg-violet-800 text-violet-700 dark:text-violet-300 text-xs px-2 py-0.5 rounded-full font-medium">
+                          &#x2605; Popular
                         </span>
                       </div>
                     </div>
                     <span className="text-violet-400 text-base flex-shrink-0 group-hover:translate-x-1 transition-transform">&rarr;</span>
                   </Link>
-                ))
-              })()}
+                )
+              })}
             </div>
           </div>
         )}
+
+        {/* Not sure where to start? */}
+        <div className="bg-violet-600 dark:bg-violet-800 rounded-2xl p-5 text-white space-y-3">
+          <p className="font-bold text-lg leading-tight">Not sure where to start?</p>
+          <p className="text-violet-100 text-sm leading-relaxed">Answer 5 quick questions and we will suggest the perfect lessons for you based on your interests and experience.</p>
+          <Link
+            to="/quiz/what-next"
+            className="inline-flex items-center gap-2 bg-white text-violet-700 rounded-xl px-5 py-2.5 font-semibold text-sm hover:bg-violet-50 transition-colors"
+          >
+            Find my perfect lesson &rarr;
+          </Link>
+        </div>
 
         {/* Recently completed */}
         {recentlyCompletedModules.length > 0 && (
@@ -2322,26 +2233,6 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
-              </div>
-            </Link>
-            <Link
-              to="/quiz/guess-the-ai"
-              className="bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-xl p-4 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors flex items-center gap-3"
-            >
-              <span className="text-2xl flex-shrink-0">&#x1F916;</span>
-              <div>
-                <p className="font-semibold text-indigo-800 dark:text-indigo-200 text-sm">Guess the AI</p>
-                <p className="text-indigo-600 dark:text-indigo-400 text-xs">10 rounds — identify AI systems from descriptions</p>
-              </div>
-            </Link>
-            <Link
-              to="/quiz/sort-it-out"
-              className="bg-fuchsia-50 dark:bg-fuchsia-950 border border-fuchsia-200 dark:border-fuchsia-800 rounded-xl p-4 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition-colors flex items-center gap-3"
-            >
-              <span className="text-2xl flex-shrink-0">&#x1F4E6;</span>
-              <div>
-                <p className="font-semibold text-fuchsia-800 dark:text-fuchsia-200 text-sm">Sort it out</p>
-                <p className="text-fuchsia-600 dark:text-fuchsia-400 text-xs">3 rounds — drag and sort AI concepts into categories</p>
               </div>
             </Link>
           </div>
