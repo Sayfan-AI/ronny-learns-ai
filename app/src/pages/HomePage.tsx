@@ -1274,6 +1274,36 @@ const MODULE_GROUPS: ModuleGroup[] = [
         color: 'violet',
         difficulty: 'Intermediate',
       },
+      {
+        id: 'ai-and-edtech',
+        title: 'AI and education technology — AI tutors, adaptive learning, and personalised feedback',
+        description: 'How AI is changing classrooms — adaptive learning platforms, AI essay marking, exam proctoring software, and what it means for teachers and students.',
+        readingTime: '7 min',
+        icon: '&#x1F4DA;',
+        to: '/learn/ai-and-edtech',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-personal-assistants',
+        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, privacy, and limitations',
+        description: 'How voice assistants work, what the always-listening concern really means, your UK data rights, and what they are genuinely good (and not good) at.',
+        readingTime: '6 min',
+        icon: '&#x1F4F1;',
+        to: '/learn/ai-and-personal-assistants',
+        color: 'sky',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-legal-system',
+        title: 'AI and the legal system — contract review, predictive tools, access to justice, and the DABUS case',
+        description: 'How AI is changing legal practice, what COMPAS revealed about algorithmic bias in courts, why the UK Supreme Court ruled AI cannot be an inventor, and how AI could help ordinary people access justice.',
+        readingTime: '7 min',
+        icon: '&#x2696;',
+        to: '/learn/ai-and-legal-system',
+        color: 'amber',
+        difficulty: 'Intermediate',
+      },
     ],
   },
   {
@@ -2292,6 +2322,26 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/guess-the-ai"
+              className="bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-xl p-4 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F916;</span>
+              <div>
+                <p className="font-semibold text-indigo-800 dark:text-indigo-200 text-sm">Guess the AI</p>
+                <p className="text-indigo-600 dark:text-indigo-400 text-xs">10 rounds — identify AI systems from descriptions</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/sort-it-out"
+              className="bg-fuchsia-50 dark:bg-fuchsia-950 border border-fuchsia-200 dark:border-fuchsia-800 rounded-xl p-4 hover:bg-fuchsia-100 dark:hover:bg-fuchsia-900 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4E6;</span>
+              <div>
+                <p className="font-semibold text-fuchsia-800 dark:text-fuchsia-200 text-sm">Sort it out</p>
+                <p className="text-fuchsia-600 dark:text-fuchsia-400 text-xs">3 rounds — drag and sort AI concepts into categories</p>
               </div>
             </Link>
           </div>

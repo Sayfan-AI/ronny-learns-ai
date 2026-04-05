@@ -146,6 +146,9 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-creative-economy',        title: 'AI and the creative economy',       to: '/learn/ai-and-creative-economy' },
   { id: 'ai-and-sport-nutrition',         title: 'AI and sport nutrition',            to: '/learn/ai-and-sport-nutrition' },
   { id: 'ai-and-mental-health-chatbots',  title: 'AI and mental health chatbots',     to: '/learn/ai-and-mental-health-chatbots' },
+  { id: 'ai-and-edtech',                  title: 'AI and education technology',        to: '/learn/ai-and-edtech' },
+  { id: 'ai-and-personal-assistants',     title: 'AI and personal assistants',         to: '/learn/ai-and-personal-assistants' },
+  { id: 'ai-and-legal-system',            title: 'AI and the legal system',            to: '/learn/ai-and-legal-system' },
 ]
 
 interface QuizScoreEntry {

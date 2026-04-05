@@ -158,6 +158,10 @@ const AIAndCriticalThinking = lazy(() => import('./pages/AIAndCriticalThinking')
 const AIAndSportNutrition = lazy(() => import('./pages/AIAndSportNutrition').then(m => ({ default: m.AIAndSportNutrition })))
 const AIAndMentalHealthChatbots = lazy(() => import('./pages/AIAndMentalHealthChatbots').then(m => ({ default: m.AIAndMentalHealthChatbots })))
 const GuessTheAIGame = lazy(() => import('./pages/GuessTheAIGame').then(m => ({ default: m.GuessTheAIGame })))
+const AIAndEdTech = lazy(() => import('./pages/AIAndEdTech').then(m => ({ default: m.AIAndEdTech })))
+const AIAndPersonalAssistants = lazy(() => import('./pages/AIAndPersonalAssistants').then(m => ({ default: m.AIAndPersonalAssistants })))
+const AIAndLegalSystem = lazy(() => import('./pages/AIAndLegalSystem').then(m => ({ default: m.AIAndLegalSystem })))
+const SortItOut = lazy(() => import('./pages/SortItOut').then(m => ({ default: m.SortItOut })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1091,6 +1095,30 @@ const guessTheAIGameRoute = createRoute({
   component: withSuspense(GuessTheAIGame),
 })
 
+const aiAndEdTechRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-edtech',
+  component: withSuspense(AIAndEdTech),
+})
+
+const aiAndPersonalAssistantsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-personal-assistants',
+  component: withSuspense(AIAndPersonalAssistants),
+})
+
+const aiAndLegalSystemRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-legal-system',
+  component: withSuspense(AIAndLegalSystem),
+})
+
+const sortItOutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/sort-it-out',
+  component: withSuspense(SortItOut),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1242,6 +1270,10 @@ const routeTree = rootRoute.addChildren([
   aiAndSportNutritionRoute,
   aiAndMentalHealthChatbotsRoute,
   guessTheAIGameRoute,
+  aiAndEdTechRoute,
+  aiAndPersonalAssistantsRoute,
+  aiAndLegalSystemRoute,
+  sortItOutRoute,
 ])
 
 const hashHistory = createHashHistory()

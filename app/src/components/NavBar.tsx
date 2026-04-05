@@ -24,13 +24,15 @@ const NAV_LINKS = [
   { to: '/learning-recap', label: 'Learning recap' },
   { to: '/quiz-review', label: 'Quiz review' },
   { to: '/quiz/ai-facts', label: 'AI facts quiz' },
+  { to: '/quiz/what-next', label: 'What to learn next' },
+  { to: '/quiz/guess-the-ai', label: 'Guess the AI' },
+  { to: '/quiz/sort-it-out', label: 'Sort it out' },
   { to: '/streak', label: 'My streak' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },
   { to: '/series', label: 'Series' },
   { to: '/bookmarks', label: 'Bookmarks' },
-  { to: '/streak', label: 'My streak' },
 ]
 
 export function NavBar() {
