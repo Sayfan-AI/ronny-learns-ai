@@ -10,6 +10,7 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -94,9 +95,7 @@ export function AIAndMentalHealth() {
             <div className="inline-flex items-center gap-2 bg-violet-100 text-violet-700 text-sm px-4 py-2 rounded-full">
               <span>About 6 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Beginner</span>
-            </div>
+            <DifficultyBadge level="Beginner" />
           </div>
           <CompletedBadge lessonId="ai-and-mental-health" />
           <ShareButton lessonTitle="ai-and-mental-health" />

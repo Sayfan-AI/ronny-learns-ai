@@ -17,6 +17,7 @@ import { TestYourself } from '../components/TestYourself'
 import { AppFeedback } from '../components/AppFeedback'
 import { AIFactsTicker } from '../components/AIFactsTicker'
 import { QuizOfTheDay } from '../components/QuizOfTheDay'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 import { LessonSeriesNavigator } from '../components/LessonSeriesNavigator'
 
 const AI_FACTS = [
@@ -1115,13 +1116,43 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-cybercrime',
+        title: 'AI and cybercrime — AI-powered phishing, deepfake fraud, ransomware, and how to stay safe',
+        description: 'How criminals use AI to run cyberattacks — from perfect phishing emails to voice-cloning fraud — and the practical steps you can take to protect yourself online.',
+        readingTime: '7 min',
+        icon: '🔒',
+        to: '/learn/ai-and-cybercrime',
+        color: 'red',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-space-exploration',
+        title: 'AI and space exploration — Mars rovers, satellite AI, telescope data, and the search for alien life',
+        description: 'From Mars rovers that navigate alone to telescopes that discover planets automatically — how AI is transforming our understanding of the universe.',
+        readingTime: '7 min',
+        icon: '🚀',
+        to: '/learn/ai-and-space-exploration',
+        color: 'indigo',
+        difficulty: 'Beginner',
+      },
+      {
         id: 'ai-and-autonomous-vehicles',
-        title: 'AI and autonomous vehicles — self-driving cars, levels of autonomy, safety, and what is in your car today',
-        description: 'How self-driving cars work, the six levels of autonomy, who is leading the race, and the AI driver assistance already saving lives in your car.',
+        title: 'AI and autonomous vehicles — self-driving cars, the six levels of autonomy, robotaxis, and what is coming next',
+        description: 'How self-driving cars see the road, the SAE levels of autonomy explained, who is doing it today (Waymo, Tesla), and what the UK is doing about regulation.',
         readingTime: '7 min',
         icon: '🚗',
         to: '/learn/ai-and-autonomous-vehicles',
         color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-3d-printing',
+        title: 'AI and 3D printing — generative design, medical implants, aerospace parts, and additive manufacturing',
+        description: 'How AI designs parts no human engineer would conceive, prints custom prosthetics and dental crowns, and is making lighter aircraft and faster Formula 1 cars.',
+        readingTime: '7 min',
+        icon: '🖨️',
+        to: '/learn/ai-and-3d-printing',
+        color: 'cyan',
         difficulty: 'Intermediate',
       },
       {
@@ -1131,23 +1162,13 @@ const MODULE_GROUPS: ModuleGroup[] = [
         readingTime: '6 min',
         icon: '🗣',
         to: '/learn/ai-and-translation',
-        color: 'cyan',
+        color: 'teal',
         difficulty: 'Beginner',
-      },
-      {
-        id: 'ai-and-3d-printing',
-        title: 'AI and 3D printing — generative design, medical implants, lighter aircraft parts, and custom shoes',
-        description: 'How AI generates designs impossible to make any other way — from custom medical implants to running shoes shaped for your specific foot.',
-        readingTime: '6 min',
-        icon: '🧱',
-        to: '/learn/ai-and-3d-printing',
-        color: 'orange',
-        difficulty: 'Intermediate',
       },
       {
         id: 'ai-and-logistics',
         title: 'AI and logistics — warehouse robots, route optimisation, delivery drones, and demand forecasting',
-        description: 'The invisible AI machine behind every online order — from Amazon\'s warehouse robots to the algorithm that sends your "3 stops away" notification.',
+        description: "The invisible AI machine behind every online order — from Amazon's warehouse robots to the algorithm that sends your '3 stops away' notification.",
         readingTime: '6 min',
         icon: '🚚',
         to: '/learn/ai-and-logistics',
@@ -1155,23 +1176,43 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Beginner',
       },
       {
-        id: 'ai-and-space-exploration',
-        title: 'AI and space exploration — Mars rovers, satellite AI, telescope data, and the search for alien life',
-        description: 'How AI navigates rovers on Mars, watches the Earth from orbit, photographed a black hole, and searches for signs of extraterrestrial life.',
+        id: 'ai-and-pregnancy-and-baby-care',
+        title: 'AI and pregnancy and baby care — bump-tracking apps, AI ultrasound, smart baby monitors, and parental data',
+        description: 'How AI is supporting parents through pregnancy and the newborn stage — from apps that personalise week-by-week advice to smart monitors that track breathing, and what you need to know about your data.',
         readingTime: '7 min',
-        icon: '🚀',
-        to: '/learn/ai-and-space-exploration',
-        color: 'indigo',
+        icon: '👶',
+        to: '/learn/ai-and-pregnancy-and-baby-care',
+        color: 'pink',
         difficulty: 'Beginner',
       },
       {
-        id: 'ai-and-cybercrime',
-        title: 'AI and cybercrime — AI-powered phishing, deepfake fraud, ransomware, and how to stay safe',
-        description: 'How criminals use AI to run more sophisticated attacks at greater scale — and the practical steps to protect yourself.',
-        readingTime: '6 min',
-        icon: '🔒',
-        to: '/learn/ai-and-cybercrime',
-        color: 'red',
+        id: 'ai-and-taxes-and-financial-admin',
+        title: 'AI and taxes and financial admin — HMRC fraud detection, AI tax tools, expense scanning, and staying safe',
+        description: 'How HMRC uses AI to catch fraud, why AI-powered tax return tools are transforming self-assessment, how expense scanning apps work, and how to use these tools safely.',
+        readingTime: '7 min',
+        icon: '📊',
+        to: '/learn/ai-and-taxes-and-financial-admin',
+        color: 'amber',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-real-estate',
+        title: 'AI and real estate — property valuations, AI letting agents, smart home tech, and the future of the UK property market',
+        description: 'How AI is changing the way homes are valued, bought, rented, and financed — from instant property estimates to AI mortgage decisions and fraud detection.',
+        readingTime: '7 min',
+        icon: '🏠',
+        to: '/learn/ai-and-real-estate',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-social-care',
+        title: 'AI and social care — care robots, AI companions, monitoring, and what it means for care workers',
+        description: 'How AI is entering one of the most human parts of life — care for elderly and disabled people — and the profound questions it raises about dignity and loneliness.',
+        readingTime: '8 min',
+        icon: '🤝',
+        to: '/learn/ai-and-social-care',
+        color: 'rose',
         difficulty: 'Intermediate',
       },
     ],
@@ -1455,7 +1496,26 @@ export function HomePage() {
   const weeklyGoalData = loadWeeklyGoal()
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Beginner' | 'Intermediate' | 'Advanced'>('All')
   const [keywordFilter, setKeywordFilter] = useState('')
+  const [searchFocused, setSearchFocused] = useState(false)
+  const [searchHistory, setSearchHistory] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem('ronny-search-history')
+      return stored ? (JSON.parse(stored) as string[]) : []
+    } catch {
+      return []
+    }
+  })
   const showInterestQuiz = quizCompletedCount === 0 && localStorage.getItem('ronny-interest-quiz-done') === null
+
+  function addToSearchHistory(term: string) {
+    const trimmed = term.trim()
+    if (!trimmed) return
+    setSearchHistory(prev => {
+      const deduped = [trimmed, ...prev.filter(t => t !== trimmed)].slice(0, 5)
+      try { localStorage.setItem('ronny-search-history', JSON.stringify(deduped)) } catch { /* ignore */ }
+      return deduped
+    })
+  }
 
   function toggleBookmark(id: string) {
     const next = new Set(bookmarks)
@@ -1960,18 +2020,24 @@ export function HomePage() {
             <p className="text-gray-500 text-sm">Grouped by topic — start anywhere, or work through in order.</p>
           </div>
 
-          {/* Keyword filter */}
+          {/* Keyword filter with search history */}
           <div className="relative">
             <input
               type="search"
               placeholder="Search lessons by keyword..."
               value={keywordFilter}
               onChange={e => setKeywordFilter(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => {
+                // Delay hiding so clicks on history chips register first
+                setTimeout(() => setSearchFocused(false), 150)
+                if (keywordFilter.trim()) addToSearchHistory(keywordFilter)
+              }}
               aria-label="Filter lessons by keyword"
               className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 pl-10 text-sm text-gray-700 shadow-sm placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200"
             />
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" aria-hidden="true">
-              🔍
+              &#x1F50D;
             </span>
             {keywordFilter && (
               <button
@@ -1981,6 +2047,27 @@ export function HomePage() {
               >
                 &times;
               </button>
+            )}
+            {/* Search history panel — shown when focused, empty, and history exists */}
+            {searchFocused && !keywordFilter && searchHistory.length > 0 && (
+              <div className="absolute z-10 top-full mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-md p-3">
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">Recent searches</p>
+                <div className="flex flex-wrap gap-2">
+                  {searchHistory.map(term => (
+                    <button
+                      key={term}
+                      onMouseDown={e => {
+                        e.preventDefault()
+                        setKeywordFilter(term)
+                        setSearchFocused(false)
+                      }}
+                      className="px-3 py-1 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-full border border-gray-200 hover:border-blue-300 transition-colors"
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
 
@@ -2055,9 +2142,7 @@ export function HomePage() {
                               <span className="text-gray-400 text-xs">{mod.readingTime} read</span>
                             )}
                             {mod.difficulty && (
-                              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[mod.difficulty]}`}>
-                                {mod.difficulty}
-                              </span>
+                              <DifficultyBadge level={mod.difficulty} size="sm" />
                             )}
                             {modScore && (
                               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
@@ -2194,6 +2279,16 @@ export function HomePage() {
               <div>
                 <p className="font-semibold text-amber-800 text-sm">Quiz review</p>
                 <p className="text-amber-600 text-xs">Retry questions you got wrong to lock in your learning.</p>
+              </div>
+            </Link>
+            <Link
+              to="/ai-news"
+              className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:bg-slate-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x1F4F0;</span>
+              <div>
+                <p className="font-semibold text-slate-800 text-sm">AI in the news</p>
+                <p className="text-slate-600 text-xs">A timeline of the moments that shaped modern AI.</p>
               </div>
             </Link>
           </div>

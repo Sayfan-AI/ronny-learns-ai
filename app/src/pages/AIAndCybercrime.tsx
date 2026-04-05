@@ -10,82 +10,83 @@ import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const LESSON_TITLE = 'AI and cybercrime'
 
 const KEY_TAKEAWAYS = [
-  'AI has dramatically lowered the skill bar for cybercriminals — tools that once required technical expertise can now be operated by anyone using AI assistants, enabling far more sophisticated attacks at greater scale.',
-  'AI-powered phishing emails are near-perfect — grammatically correct, personalised, and written in the correct style and tone of the person or organisation being impersonated.',
-  'Deepfake technology (AI-generated fake video and audio) is being used to impersonate executives, celebrities, and family members to authorise fraudulent payments or spread disinformation.',
-  'Ransomware — malware that encrypts your files and demands payment to restore them — is increasingly automated and targeted using AI to identify the most valuable victims.',
-  'AI is also the main defence — security systems use machine learning to detect unusual patterns in network traffic, identify phishing emails, and respond to threats faster than any human team.',
+  'Criminals use AI to write highly convincing phishing emails in perfect English and to clone voices from just a few seconds of audio, enabling fake phone calls from people who sound exactly like your boss or family member.',
+  'Deepfake technology can generate realistic fake videos of real people saying or doing things they never did, which is being used for fraud, extortion, and political disinformation at increasing scale.',
+  'AI accelerates ransomware attacks by automating the identification of vulnerable systems, generating custom malicious code, and helping criminals negotiate ransoms — making attacks faster and cheaper to launch.',
+  'The same AI that powers attacks also powers defences: email filters now catch 99% of phishing attempts, fraud detection systems flag suspicious transactions in milliseconds, and AI systems monitor networks 24 hours a day for unusual behaviour.',
+  'Protecting yourself comes down to a few habits: be suspicious of unexpected urgency, verify surprising requests through a different channel, use strong unique passwords with a password manager, and enable two-factor authentication everywhere you can.',
 ]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How has AI changed the scale and sophistication of phishing attacks?',
+    question: 'How has AI changed phishing emails compared to older scam emails?',
     options: [
-      'AI has made phishing less common because security companies use AI to block all phishing emails before they reach inboxes',
-      'AI allows attackers to generate highly personalised, grammatically perfect phishing messages at scale — and to impersonate specific people convincingly',
-      'AI has made phishing attacks more obvious — the emails look artificial and are easy for recipients to spot',
-      'AI phishing only works against large corporations — individual people and small businesses are not targeted',
+      'AI has made phishing emails shorter and easier to spot because criminals rely on automation instead of writing long messages',
+      'AI enables criminals to generate perfectly written, highly personalised phishing emails at massive scale — removing the telltale spelling mistakes that used to give them away',
+      'AI has made phishing emails more colourful and visual, since criminals now use image generators to design them',
+      'AI has made phishing emails illegal to send in most countries, so criminals now rely on phone calls instead',
     ],
     correctIndex: 1,
     explanation:
-      "Traditional phishing emails were often easy to spot: poor grammar, obvious spelling mistakes, generic greetings ('Dear Customer'). AI-powered phishing is different. Large language models can write perfect English, tailor messages to the recipient (using publicly available information from LinkedIn, social media, or data breaches), and impersonate specific writing styles convincingly. Criminals feed AI a sample of someone's emails and it generates responses indistinguishable from the real person. This 'spear phishing' can now be done at scale — thousands of personalised emails per day instead of hundreds.",
-    hint: 'Think about what changes when a criminal can generate thousands of personalised, perfectly written messages automatically.',
+      'Traditional phishing emails were often easy to spot because of poor grammar, obvious spelling mistakes, and generic greetings. AI language models can now write flawless English (or any other language) and personalise the email with details about the target pulled from social media — making it much harder to distinguish a scam from a real message. AI also allows criminals to send millions of personalised emails simultaneously, dramatically increasing both scale and success rates.',
+    hint: 'Think about what used to make phishing emails easy to identify.',
   },
   {
-    question: 'What is a deepfake and how is it being used in fraud?',
+    question: 'What is voice cloning, and how is it being used in fraud?',
     options: [
-      'A deepfake is an extremely deep, complex fake website designed to impersonate a real company\'s online banking portal',
-      'A deepfake is AI-generated synthetic video or audio that realistically shows a real person saying or doing something they never said or did',
-      'A deepfake is a fraudulent cryptocurrency that mimics a legitimate coin to trick investors',
-      'A deepfake is a malicious AI model hidden inside legitimate software that activates when connected to a corporate network',
+      'Voice cloning is a technique where criminals record someone in person and then play the recording back over the phone to impersonate them',
+      "Voice cloning uses AI to create a synthetic copy of a real person's voice from a short audio sample, which is then used to make fake calls impersonating that person",
+      'Voice cloning is a type of malware that records your voice through your phone microphone and sends it to criminals automatically',
+      'Voice cloning is a legal tool used by call centres to standardise customer service voices, which criminals have repurposed to create fake accents',
     ],
     correctIndex: 1,
     explanation:
-      "Deepfake technology uses AI to generate realistic-looking synthetic video or audio. Criminals have used it to impersonate company CEOs on video calls to authorise large wire transfers to fraudulent accounts — a scam known as 'CEO fraud' or 'business email compromise'. A British engineering company reportedly lost $25 million in 2024 when an employee was tricked on a video call by deepfakes of multiple colleagues. Audio deepfakes are also used — generating a convincing imitation of a family member's voice claiming to be in trouble and needing money urgently.",
-    hint: "Think about receiving a video call from your boss asking for something urgent — but it isn't really them.",
+      "Modern AI voice cloning tools can generate a convincing replica of someone's voice from as little as three to ten seconds of audio — enough to be taken from a public video, voicemail, or social media clip. Criminals use these cloned voices in vishing (voice phishing) attacks. There have been well-documented cases of employees receiving calls from someone sounding exactly like their CEO asking them to transfer money urgently, and of families receiving distress calls from someone sounding exactly like a relative claiming to need emergency funds.",
+    hint: 'Think about how little audio is needed and what it enables.',
   },
   {
-    question: 'What is ransomware and how does AI help criminals deploy it more effectively?',
+    question: 'What makes deepfake fraud particularly dangerous compared to traditional image manipulation?',
     options: [
-      'Ransomware is a type of AI that encrypts your email to protect privacy — criminals sell access to decrypt it',
-      'Ransomware is malware that encrypts files and demands payment to restore them — AI helps identify high-value targets and automate the attack process',
-      'Ransomware is a social media platform that locks your account and demands payment to restore access',
-      'Ransomware refers to AI models that are trained on stolen data and must pay their original owners royalties',
+      'Deepfakes are dangerous because they require highly specialised equipment that only large criminal organisations can afford, concentrating the threat',
+      'Deepfakes are dangerous because they can only be created using government supercomputers, meaning nation-states are the primary threat',
+      'Deepfakes are dangerous because AI makes them increasingly realistic and accessible — creating convincing fake videos of real people no longer requires film industry expertise or expensive equipment',
+      'Deepfakes are dangerous because they are indistinguishable from real videos in every situation without exception, even for trained forensic experts',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "Ransomware encrypts all the files on a computer or network — documents, photos, databases — and displays a demand for payment (usually in cryptocurrency) to restore them. Without the decryption key, the files are unrecoverable. AI has made ransomware more dangerous in two ways. First, AI tools can identify which organisations are most vulnerable and have the most to lose — hospitals with patient records, law firms with confidential files — helping criminals prioritise targets. Second, AI automates the attack process, allowing criminal groups to run many simultaneous campaigns without proportionally increasing their staff.",
-    hint: 'Think about a criminal using AI to find the most valuable targets automatically.',
+      'Until recently, creating convincing fake video required significant technical skill and expensive software. Free and cheap AI tools have democratised deepfake creation — a convincing fake video can now be created by someone with a consumer laptop. This lowers the barrier to fraud, extortion, and political disinformation. Detection tools exist but are in a constant arms race with generation tools. Deepfakes are not yet always undetectable — trained eyes and forensic tools can often spot them — but quality is improving rapidly.',
+    hint: 'Think about what has changed in terms of who can create deepfakes and at what cost.',
   },
   {
-    question: 'How do AI security systems defend against cyber attacks?',
+    question: 'How does AI help cyber defenders protect against attacks?',
     options: [
-      'They lock down all internet connections the moment any suspicious activity is detected, disconnecting the organisation from the internet completely',
-      'They learn normal patterns of network traffic and user behaviour, and flag anomalies that might indicate an intrusion or data theft in real time',
-      'They automatically identify and arrest cybercriminals by cross-referencing their attack signatures with law enforcement databases',
-      'They store all company data offline in a secure bunker where no internet-connected system can access it',
+      'AI defenders work by pre-emptively attacking criminal infrastructure before it can be used',
+      'AI is used primarily to write clearer security policies and training documents that employees are more likely to read and remember',
+      'AI analyses huge volumes of data in real time to detect anomalies — flagging unusual login locations, unexpected file access, suspicious network traffic, and potential phishing emails faster than any human team could',
+      'AI defenders require criminals to register their attacks in advance through an international treaty system',
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "AI security systems (used by companies like CrowdStrike, Darktrace, and Microsoft) continuously learn what 'normal' looks like on a network — which users access which systems at what times, how much data typically flows between departments, where emails normally come from. When something deviates from the pattern — a user accessing systems they never use at 3am, large amounts of data being copied to an unfamiliar location, a flood of login attempts — the AI flags it as suspicious and can alert security staff or automatically block the activity. This threat detection can happen in milliseconds, far faster than a human monitoring a dashboard.",
-    hint: 'Think about the AI learning what normal looks like and spotting when something is different.',
+      'Cybersecurity AI systems work by learning what normal looks like for a given network, user, or email inbox and flagging deviations. A login from a new country at 3am, a user suddenly accessing thousands of files they have never opened before, or an email with a link to a domain registered yesterday — these patterns can be detected and acted on in milliseconds. Modern email security filters powered by AI catch over 99% of phishing attempts before they reach inboxes. Security operations centres use AI to process millions of security events per day — a volume impossible for human analysts alone.',
+    hint: 'Think about the scale of data that needs to be processed and what AI does well.',
   },
   {
-    question: 'What practical steps can individuals take to reduce their risk from AI-powered cyber attacks?',
+    question: 'Which of the following is the single most effective step an individual can take to protect their accounts from AI-powered attacks?',
     options: [
-      'Never use the internet — the only way to be completely safe is complete digital disconnection',
-      'Use a password manager, enable two-factor authentication, be sceptical of urgent requests even from known contacts, and keep software updated',
-      'Only use a phone for internet access — desktop computers are much more vulnerable to AI-powered attacks',
-      'Pay for the most expensive antivirus software available — price is directly correlated with protection quality',
+      'Deleting all social media accounts, since criminals use publicly available information to personalise attacks',
+      'Enabling two-factor authentication on important accounts, so that even if a password is stolen the account cannot be accessed without a second verification step',
+      'Changing your password every week, since frequent changes mean criminals have less time to use a stolen password before it becomes invalid',
+      'Only using websites that have a padlock icon in the browser address bar, which guarantees the site is operated by a legitimate business',
     ],
     correctIndex: 1,
     explanation:
-      "AI-powered attacks are more sophisticated but the defences remain largely the same good practices, now more important than ever. A strong, unique password for each account (use a password manager like Bitwarden or 1Password) means one compromised password cannot access everything. Two-factor authentication (a code to your phone as well as a password) stops stolen passwords from being enough. Scepticism about urgent requests is crucial — deepfakes and AI phishing often create urgency to short-circuit careful thinking. Call the person on a known number to verify unexpected requests. Keeping software updated closes known security vulnerabilities that attackers exploit.",
-    hint: 'Think about layers of defence — if one fails, the next one stops the attack.',
+      'Two-factor authentication (2FA) is widely considered the highest-impact single security measure for individuals. Even if a criminal has your password — obtained through phishing, a data breach, or credential stuffing — they cannot access your account without also having the second factor (usually your phone). A padlock in the address bar only means the connection is encrypted, not that the website is trustworthy. Frequent password changes are now considered less effective than using a unique strong password per site.',
+    hint: 'Think about what stops an attacker even when they already have your password.',
   },
 ]
 
@@ -97,21 +98,19 @@ export function AIAndCybercrime() {
       <div className="max-w-2xl w-full space-y-8">
 
         <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F512;</div>
+          <div className="text-6xl">&#x1F6A8;</div>
           <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
             AI and cybercrime
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            How criminals use AI to run more sophisticated attacks — and how AI defends against them.
-            What you need to know to stay safe.
+            How criminals are using AI for phishing, voice cloning, deepfake fraud, and ransomware
+            — and how the same technology is being used to fight back.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
-              <span>About 6 min read</span>
+              <span>About 7 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-cybercrime" />
           <ShareButton lessonTitle={LESSON_TITLE} />
@@ -120,20 +119,20 @@ export function AIAndCybercrime() {
         <KeyTakeaways points={KEY_TAKEAWAYS} />
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI has lowered the barrier for criminals</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">The changing face of cybercrime</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Sophisticated cyber attacks once required significant technical skill. AI has changed that — tools that needed programming expertise can now be operated through natural language by anyone.
+            Cybercrime has existed since the internet began — but AI has changed the game dramatically. Attacks that previously required significant technical skill, time, and resources can now be automated, personalised, and scaled at almost no cost.
           </p>
           <div className="space-y-2">
             {[
-              'AI can write convincing phishing emails, impersonate writing styles, and translate attacks into any language instantly',
-              'AI can identify software vulnerabilities and suggest how to exploit them without requiring security expertise',
-              'Criminal groups use AI assistants (including jailbroken versions of legitimate AI tools) to automate parts of their operations',
-              'The scale of attacks has grown — AI makes it viable to target thousands of individuals simultaneously with personalised approaches',
-              'AI voice cloning can replicate someone\'s voice from a few seconds of audio — enabling fraud calls impersonating family or colleagues',
+              'UK businesses lost over £1.1 billion to cybercrime in 2023 — a figure that has risen sharply as AI-powered attacks become cheaper to launch',
+              'AI can write phishing emails indistinguishable from genuine messages from banks, employers, or delivery companies — with perfect grammar and personalised details',
+              'Voice cloning tools available for free online can replicate any voice from a 10-second audio clip found on social media',
+              'The average ransomware payment demanded from UK businesses in 2024 was over £500,000',
+              'Cybercrime costs the global economy an estimated $8 trillion per year — more than the GDP of most countries',
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
-                <span className="text-red-600 dark:text-red-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;</span>
+                <span className="text-red-600 dark:text-red-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
               </div>
             ))}
@@ -141,43 +140,110 @@ export function AIAndCybercrime() {
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI-powered phishing</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI-powered phishing — a scam that knows your name</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Phishing — sending a fake message designed to steal information or money — has been transformed by AI.
+            Phishing — tricking someone into revealing a password or clicking a malicious link by pretending to be someone trustworthy — is one of the oldest tricks on the internet. AI has made it dramatically more effective.
           </p>
           <div className="space-y-3">
             <div className="flex gap-3 items-start bg-orange-50 dark:bg-orange-950 rounded-xl p-3">
               <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4E7;</span>
               <div>
-                <p className="font-semibold text-orange-800 dark:text-orange-200 text-sm mb-0.5">Before AI: easy to spot</p>
-                <p className="text-orange-700 dark:text-orange-300 text-sm leading-relaxed">Old phishing emails had obvious tells: grammatical errors, "Dear Valued Customer" instead of your name, suspicious links. Most people learned to spot them.</p>
+                <p className="font-semibold text-orange-800 dark:text-orange-200 text-sm mb-0.5">Personalised at scale</p>
+                <p className="text-orange-700 dark:text-orange-300 text-sm leading-relaxed">Traditional phishing emails were easy to spot — generic greetings, spelling mistakes, obvious pressure tactics. AI can now generate thousands of emails per second, each personalised with the target's name, employer, recent activity, and written in flawless English. It can scan a target's LinkedIn profile to tailor a fake job offer, or read their social media to fake an urgent message from someone they know.</p>
               </div>
             </div>
             <div className="flex gap-3 items-start bg-orange-50 dark:bg-orange-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F916;</span>
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4F1;</span>
               <div>
-                <p className="font-semibold text-orange-800 dark:text-orange-200 text-sm mb-0.5">After AI: much harder</p>
-                <p className="text-orange-700 dark:text-orange-300 text-sm leading-relaxed">AI generates perfect prose, researches targets from LinkedIn and social media, writes in the correct tone and style of the person being impersonated, and tailors the message to the specific individual. Security researchers now say AI-generated phishing can fool people who successfully spotted traditional phishing attempts.</p>
+                <p className="font-semibold text-orange-800 dark:text-orange-200 text-sm mb-0.5">Voice cloning — your CEO calling</p>
+                <p className="text-orange-700 dark:text-orange-300 text-sm leading-relaxed">In several high-profile cases, employees have received phone calls from someone sounding exactly like their chief executive asking them to make an urgent wire transfer. The voice was a clone created from public audio. One UK engineering firm lost £200,000 to a single AI voice phishing call. The audio used to train the clone can be taken from a corporate video, podcast, or press interview.</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-orange-50 dark:bg-orange-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F46A;</span>
+              <div>
+                <p className="font-semibold text-orange-800 dark:text-orange-200 text-sm mb-0.5">Family emergency scams</p>
+                <p className="text-orange-700 dark:text-orange-300 text-sm leading-relaxed">Criminals now target families with AI-cloned voices of children or grandchildren, calling elderly relatives claiming to be in an emergency — arrested, in hospital, or stranded abroad — and begging for money urgently. The voice sounds so convincing that victims believe it is their real family member. These scams have caused significant financial and emotional harm to victims across the UK and US.</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-purple-100 dark:border-purple-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Deepfake fraud</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Deepfakes — when seeing is no longer believing</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI can now generate convincing video and audio of real people saying things they never said. This is being exploited for fraud.
+            Deepfake technology uses AI to convincingly place a real person's face and voice into video footage they were never part of. The implications for fraud, reputation, and trust are profound.
           </p>
           <div className="space-y-2">
             {[
-              'In 2024, a Hong Kong company employee was tricked on a video call with deepfakes of multiple colleagues into transferring $25 million (£20 million) to fraudsters',
-              'Audio deepfakes of family members claiming to be in emergency situations are used to extract urgent money transfers',
-              'Deepfake CEO video messages authorising unusual financial instructions or policy changes',
-              'Political deepfakes put words in politicians\' mouths — spreading in social media before fact-checkers can respond',
-              'Romance scammers use deepfake video calls to convincingly impersonate attractive people to build emotional relationships and then request money',
+              'Deepfake videos have been used to create fake video calls impersonating executives — one company transferred $25 million after a deepfake video conference in 2024',
+              'Criminals create fake investment videos using the faces and voices of celebrities to promote scams',
+              'Deepfake pornography — creating fake intimate images of real people without consent — has become a widespread problem affecting mostly women',
+              'Political deepfakes — fake videos of politicians making statements they never made — pose a serious risk to elections and public trust in video evidence',
+              'Detection tools exist and are improving, but so are generation tools — it is an ongoing technological arms race',
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
-                <span className="text-purple-600 dark:text-purple-400 font-bold mt-0.5 flex-shrink-0">&#x26A0;</span>
+                <span className="text-purple-600 dark:text-purple-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-purple-50 dark:bg-purple-950 rounded-xl p-4">
+            <p className="text-purple-700 dark:text-purple-300 text-sm leading-relaxed">
+              <span className="font-semibold">A practical rule:</span> if you receive an unexpected video or audio message asking you to take urgent action — especially involving money — verify through an entirely separate channel before acting. Call the person on a number you already know, or speak to them in person.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-rose-100 dark:border-rose-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Ransomware — AI accelerates the arms race</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Ransomware is malicious software that encrypts all the files on a computer system and demands payment to restore access. It has crippled hospitals, councils, schools, and businesses. AI is making these attacks faster and cheaper to execute.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F50D;',
+                label: 'Finding targets faster',
+                text: 'AI can scan the internet for vulnerable systems — unpatched software, misconfigured servers, weak passwords — far faster than human hackers, identifying targets in minutes that would previously have taken weeks to find.',
+              },
+              {
+                icon: '&#x1F4BB;',
+                label: 'Writing malware automatically',
+                text: 'AI coding tools can generate custom malicious code variants that evade specific security software. This was previously a skilled job requiring experienced criminal coders — AI makes it accessible to less technically skilled criminals.',
+              },
+              {
+                icon: '&#x1F4AC;',
+                label: 'Automated ransom negotiation',
+                text: 'Some ransomware operators use AI chatbots to handle ransom negotiations — determining how much to demand based on the apparent financial health of the victim organisation, and maintaining pressure through automated messaging.',
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start bg-rose-50 dark:bg-rose-950 rounded-xl p-3">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-rose-800 dark:text-rose-200 text-sm mb-0.5">{label}</p>
+                  <p className="text-rose-700 dark:text-rose-300 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">How AI fights back — the defenders</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            The same AI capabilities that power attacks are being used to defend against them — and in many areas, the defenders have the advantage because they have access to larger, better-labelled datasets of known attacks.
+          </p>
+          <div className="space-y-2">
+            {[
+              'Email security AI filters catch over 99% of phishing and malware emails before they reach inboxes — analysing writing style, link destinations, sending patterns, and metadata',
+              'Bank fraud detection AI analyses every transaction in milliseconds, comparing it against your normal behaviour — if your card is used in Lagos immediately after being used in London, it flags the anomaly instantly',
+              'Network monitoring AI watches traffic across entire corporate networks 24 hours a day, identifying patterns that indicate a breach in progress — often before the attacker has done significant damage',
+              'Identity verification AI checks for signs that a login is being made by a bot or a stolen credential rather than the real account holder, using typing patterns, mouse movements, and device fingerprints',
+              'Threat intelligence AI aggregates data from millions of attacks globally, identifying new attack techniques and sharing warnings faster than any human analyst network could',
+            ].map((item) => (
+              <div key={item} className="flex gap-2 items-start">
+                <span className="text-blue-600 dark:text-blue-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
               </div>
             ))}
@@ -185,26 +251,37 @@ export function AIAndCybercrime() {
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">How to protect yourself</h2>
-          <div className="space-y-2">
-            {[
-              'Use a password manager — unique, strong passwords for every account mean one breach cannot cascade to all your accounts',
-              'Enable two-factor authentication (2FA) on every account that offers it — a stolen password is not enough if the attacker also needs your phone',
-              'Be sceptical of urgency — AI attacks often create a sense of panic to bypass careful thinking. Slow down, verify through a different channel',
-              'Call the person on a number you already know, not one given in the suspicious message, to verify unexpected requests',
-              'Keep software updated — most successful attacks exploit known vulnerabilities that updates fix',
-              'Be cautious about what personal information is publicly available on social media — it feeds AI personalisation of attacks',
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">How to protect yourself — practical steps</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            You do not need to be a security expert to protect yourself well. A few consistent habits provide the vast majority of protection against AI-powered attacks.
+          </p>
+          <div className="space-y-3">
+            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F6A7;</span>
+              <div>
+                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">Treat urgency as a red flag</p>
+                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">Most scams — AI-powered or otherwise — rely on urgency to prevent you thinking clearly. Genuine organisations almost never demand instant irreversible action. Pause, slow down, and verify through a channel you initiate yourself.</p>
               </div>
-            ))}
+            </div>
+            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F511;</span>
+              <div>
+                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">Use a password manager and two-factor authentication</p>
+                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">A password manager (such as Bitwarden, which is free) generates and stores a unique strong password for every website. Two-factor authentication adds a second barrier even if a password is stolen — most banks, email providers, and social networks now offer it, and enabling it is one of the highest-impact security steps available.</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4DE;</span>
+              <div>
+                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">Verify surprising requests through a different channel</p>
+                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">If you receive an unexpected email, call, or video message asking you to transfer money, share a password, or take urgent action — even from someone you recognise — hang up and call them back on a number you already have. Do not use the number in the message. This simple habit defeats most voice cloning and deepfake attacks.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <LessonNote lessonId="ai-and-cybercrime" />
         <ReviewLaterButton lessonId="ai-and-cybercrime" />
+        <LessonNote lessonId="ai-and-cybercrime" />
 
         <Quiz lessonId="ai-and-cybercrime" questions={quizQuestions} />
 
