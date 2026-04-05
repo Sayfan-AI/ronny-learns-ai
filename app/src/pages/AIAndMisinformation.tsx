@@ -10,6 +10,7 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
@@ -94,9 +95,7 @@ export function AIAndMisinformation() {
             <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 text-sm px-4 py-2 rounded-full">
               <span>About 6 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-misinformation" />
           <ShareButton lessonTitle="ai-and-misinformation" />

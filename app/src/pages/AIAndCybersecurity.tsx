@@ -9,43 +9,32 @@ import { LessonRating } from '../components/LessonRating'
 import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'How does AI help catch phishing emails?',
+    question: 'What do AI-powered SIEM tools like Darktrace do that traditional security tools cannot?',
     options: [
-      'It blocks every email from an unknown sender automatically',
-      'It analyses patterns like unusual sender domains, suspicious links, and mismatched writing styles to flag likely scams',
-      'It reads every email and forwards suspicious ones to the police',
-      'It only works with emails that contain attachments',
+      'They store backups of your files so you can recover them after a cyberattack',
+      'They learn what normal network behaviour looks like and alert security teams when something unusual happens — even if no one has seen that threat before',
+      'They automatically report cybercrime to the police without human involvement',
+      'They encrypt all data leaving a network so hackers cannot read it',
     ],
     correctIndex: 1,
     explanation:
-      'AI phishing filters learn from millions of known scam emails. They look for signals like mismatched sender addresses, urgent language designed to panic you, strange link destinations, and writing patterns that match known scams — catching threats that a simple spam filter would miss.',
-  },
-  {
-    question: 'What makes modern antivirus software different from older versions?',
-    options: [
-      'Modern antivirus only checks files when you open them, not when they arrive',
-      'Older antivirus used AI; modern versions use simple rule lists',
-      'Modern antivirus uses AI behaviour analysis to spot suspicious activity, rather than just matching known threat signatures',
-      'Modern antivirus is entirely cloud-based and needs a constant internet connection to work',
-    ],
-    correctIndex: 2,
-    explanation:
-      'Traditional antivirus matched files against a database of known malware signatures — useless against brand-new threats. AI-powered tools watch how software behaves: if a program suddenly starts encrypting all your files or tries to send data to an unfamiliar server, the AI flags it even if it has never seen that exact malware before.',
+      'SIEM (Security Information and Event Management) tools like Darktrace, Splunk, and Microsoft Sentinel use AI to create a baseline of normal activity across a network. When behaviour deviates — such as an employee account suddenly downloading thousands of files at 3 am — the AI flags it in real time. Traditional tools only catch known threats; AI catches novel ones too.',
   },
   {
     question: 'What is a deepfake voice call scam?',
     options: [
       'A scam where criminals call pretending to be from a bank and read out your details',
-      'A scam using AI-generated audio that sounds like someone you know — such as a family member — asking for urgent help or money',
+      'A scam using AI-generated audio that sounds like someone you know — such as a family member or your boss — asking for urgent help or money',
       'A scam where AI translates your voicemail into text and steals information',
       'A scam that only works on smartphone users, not landline users',
     ],
     correctIndex: 1,
     explanation:
-      "With a few seconds of someone's voice (scraped from a social media video, for example), AI can clone it convincingly. Criminals use this to call family members pretending to be a loved one in trouble, requesting an urgent bank transfer. Always verify via a second channel — ring back on a known number.",
+      "With a few seconds of audio from a social media video, AI can clone someone's voice convincingly. Criminals use this to call family members pretending to be a loved one in distress, or to impersonate a company executive authorising a fraudulent bank transfer (business email compromise). Always verify via a second channel — ring back on a number you already know.",
   },
   {
     question: "What does 'adversarial AI' mean in cybersecurity?",
@@ -57,19 +46,31 @@ const quizQuestions: QuizQuestion[] = [
     ],
     correctIndex: 1,
     explanation:
-      "Adversarial attacks exploit weaknesses in how AI models learn. For example, adding barely visible pixel-level noise to an image of a stop sign can make an AI vision system confidently misclassify it as a speed limit sign. Security researchers study these attacks to make AI systems more robust.",
+      "Adversarial attacks exploit weaknesses in how AI models learn. For example, adding barely visible pixel-level noise to an image of a stop sign can make an AI vision system confidently misclassify it as a yield sign. Criminals also use this technique against spam filters, tweaking scam emails until they pass AI detection.",
   },
   {
-    question: 'Which of these is a practical step to protect yourself from AI-powered scams?',
+    question: "What is endpoint detection and response (EDR)?",
     options: [
-      'Never use email — AI cannot attack you through other channels',
-      'Trust audio or video calls completely because AI cannot yet fake them convincingly',
-      'Verify unexpected urgent requests — especially for money — by calling back on a number you already know, not one given in the message',
-      'Only use passwords with more than 20 characters, as AI cannot crack those',
+      'Software that blocks internet access on devices reported stolen',
+      'AI-powered security software on individual devices that monitors behaviour and responds to threats automatically, even cutting a device off from the network',
+      'A government system for tracking and responding to cyber attacks on critical infrastructure',
+      'An antivirus program that only works on server computers, not personal laptops',
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation:
-      "The most powerful defence against AI-enabled social engineering is verification through a separate channel. If you get an urgent call, text, or email — even from someone who sounds like your bank, your boss, or a family member — hang up and call back using a number you trust independently. Don't let urgency rush you.",
+      "EDR tools (like CrowdStrike Falcon or Microsoft Defender for Endpoint) run on each individual device — laptop, server, phone — and use AI to monitor what programmes are doing. If an EDR agent detects ransomware starting to encrypt files, it can isolate that device from the rest of the network within seconds, stopping the attack from spreading, even before a human security analyst is aware of it.",
+  },
+  {
+    question: 'Which UK government body provides official guidance on AI cyber threats to organisations?',
+    options: [
+      'GCHQ (Government Communications Headquarters)',
+      'The National Cyber Security Centre (NCSC)',
+      'The Information Commissioner\'s Office (ICO)',
+      'The Cyber Security Council',
+    ],
+    correctIndex: 1,
+    explanation:
+      "The NCSC (National Cyber Security Centre), part of GCHQ, is the UK's technical authority on cybersecurity. It publishes guidance for organisations on AI threats — including how AI is being used to scale up phishing attacks, create deepfake fraud, and automate vulnerability scanning. The NCSC also issues alerts when it identifies specific AI-enabled threats targeting UK organisations.",
   },
 ]
 
@@ -93,9 +94,7 @@ export function AIAndCybersecurity() {
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full">
               <span>About 5 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Beginner</span>
-            </div>
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-cybersecurity" />
           <ShareButton lessonTitle="AI and cybersecurity" />
@@ -270,6 +269,95 @@ export function AIAndCybersecurity() {
                 icon: '&#x1F914;',
                 label: 'Slow down with urgent requests',
                 text: 'AI-generated scams are designed to panic you into acting fast. Urgency is the attack vector. If you pause and verify, you break the trap.',
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">SIEM tools: AI watching entire networks</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Large organisations use AI-powered <strong>SIEM</strong> (Security Information and Event
+            Management) tools to monitor everything happening across their network at once &mdash;
+            thousands of devices, millions of events per minute.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F916;',
+                label: 'Darktrace',
+                text: "Darktrace, a Cambridge-based company, uses AI to learn what 'normal' looks like on a network. When an employee account starts behaving oddly — logging in from a new country, accessing unusual files — Darktrace flags it. It has detected early-stage ransomware attacks before they spread.",
+              },
+              {
+                icon: '&#x1F4CA;',
+                label: 'Splunk',
+                text: "Splunk collects logs from every device and system in an organisation and uses AI to find patterns that suggest a breach. Security analysts use its dashboards to investigate alerts. It's widely used in banks, hospitals, and government departments.",
+              },
+              {
+                icon: '&#x2601;&#xFE0F;',
+                label: 'Microsoft Sentinel',
+                text: 'Microsoft Sentinel is a cloud-based SIEM that uses AI to correlate signals across email, devices, and identity systems. It can automatically block a suspicious account or isolate a compromised device while a human analyst investigates.',
+              },
+            ].map(({ icon, label, text }) => (
+              <div key={label} className="flex gap-3 items-start">
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
+                <div>
+                  <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Endpoint detection and response (EDR)</h2>
+          <p className="text-gray-600 leading-relaxed">
+            SIEM tools watch the network from above. <strong>EDR</strong> tools live on each individual
+            device — laptops, servers, phones — and watch what software is doing from the inside.
+          </p>
+          <div className="bg-red-50 rounded-xl p-4 space-y-2">
+            <p className="font-semibold text-red-800 text-sm">How EDR stops ransomware</p>
+            <p className="text-red-700 text-sm leading-relaxed">
+              When ransomware starts encrypting files, an EDR agent (like CrowdStrike Falcon or
+              Microsoft Defender for Endpoint) can detect the unusual file activity within seconds,
+              automatically quarantine the device, and cut it off from the rest of the network &mdash;
+              all before a human has even seen an alert. The faster the isolation, the less data is lost.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-sky-100 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">NCSC: UK guidance on AI cyber threats</h2>
+          <p className="text-gray-600 leading-relaxed">
+            The <strong>National Cyber Security Centre (NCSC)</strong>, part of GCHQ, is the UK
+            government body responsible for cybersecurity. It publishes free, practical guidance for
+            individuals and organisations.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                icon: '&#x1F4E2;',
+                label: 'AI is supercharging phishing',
+                text: "The NCSC has warned that AI is dramatically lowering the skill barrier for cyberattacks. Criminals who previously couldn't write convincing English can now use AI to generate polished, personalised phishing messages at scale.",
+              },
+              {
+                icon: '&#x1F3A5;',
+                label: 'Deepfake fraud warnings',
+                text: "The NCSC and GCHQ have both issued warnings about AI-generated deepfake video and voice calls being used to commit fraud, particularly in business email compromise (BEC) attacks — where criminals impersonate executives to authorise payments.",
+              },
+              {
+                icon: '&#x1F6E1;&#xFE0F;',
+                label: 'Guidance for businesses',
+                text: "The NCSC's Cyber Essentials scheme and AI-specific guidance help organisations implement the basic technical controls that block the majority of AI-assisted attacks. Following official guidance is the clearest evidence an organisation takes security seriously.",
               },
             ].map(({ icon, label, text }) => (
               <div key={label} className="flex gap-3 items-start">

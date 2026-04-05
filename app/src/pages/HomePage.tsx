@@ -1114,32 +1114,122 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-education-technology',
-        title: 'AI and education technology — AI tutors, adaptive learning, personalised feedback, and the UK EdTech landscape',
-        description: 'How AI is changing the classroom — from platforms that adapt to each student in real time to the debate about ChatGPT and academic integrity.',
+        id: 'ai-and-small-businesses',
+        title: 'AI and small businesses — AI bookkeeping, chatbots, inventory management, and the future of the high street',
+        description: 'How AI is helping independent shops and small businesses compete — from Xero and QuickBooks to customer chatbots and stock prediction tools.',
         readingTime: '7 min',
-        icon: '💻',
-        to: '/learn/ai-and-education-technology',
+        icon: '🛍️',
+        to: '/learn/ai-and-small-businesses',
+        color: 'green',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-local-government',
+        title: 'AI and local government — pothole detection, planning AI, social services prediction, and your rights',
+        description: 'How UK councils are using AI to fix roads faster, speed up planning applications, optimise bin collections — and the serious questions about algorithmic accountability.',
+        readingTime: '7 min',
+        icon: '🏛️',
+        to: '/learn/ai-and-local-government',
         color: 'blue',
         difficulty: 'Intermediate',
       },
       {
-        id: 'ai-and-personal-assistants',
-        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, how they work, and privacy concerns',
-        description: 'The AI voice assistants already in your home and phone — how they understand you, what data they collect, and how the new generation of conversational AI compares.',
-        readingTime: '6 min',
-        icon: '🎙️',
-        to: '/learn/ai-and-personal-assistants',
-        color: 'violet',
+        id: 'ai-and-education-technology',
+        title: 'AI and education technology — AI tutors, adaptive learning, essay feedback, and UK EdTech',
+        description: 'How AI is changing the way we learn — from adaptive platforms like Sparx Maths to AI tutors like Khanmigo, and the risks of over-reliance on algorithmic teaching.',
+        readingTime: '7 min',
+        icon: '📚',
+        to: '/lessons/ai-and-education-technology',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-wildlife-conservation',
+        title: 'AI and wildlife conservation — camera traps, acoustic monitoring, anti-poaching AI, and satellite deforestation tracking',
+        description: 'How AI is helping scientists identify species, detect illegal logging in real time, track deforestation from space, and predict where poachers will strike — and the ethical questions this raises.',
+        readingTime: '7 min',
+        icon: '🦏',
+        to: '/learn/ai-and-wildlife-conservation',
+        color: 'emerald',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-addiction-and-recovery',
+        title: 'AI and addiction and recovery — NHS screening tools, recovery chatbots, relapse prediction, and privacy',
+        description: 'How AI is helping the NHS identify addiction earlier, support people in recovery between appointments, personalise treatment, and predict relapse — with important questions about data privacy.',
+        readingTime: '7 min',
+        icon: '💚',
+        to: '/learn/ai-and-addiction-and-recovery',
+        color: 'purple',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-sport-betting',
+        title: 'AI and sport betting — algorithmic odds, trading bots, in-play AI, addiction profiling, and UK regulation',
+        description: 'How AI transforms the gambling industry — from odds-making and Betfair trading bots to personalised promotions that target vulnerable gamblers, and how the UK Gambling Commission is responding.',
+        readingTime: '7 min',
+        icon: '🎰',
+        to: '/learn/ai-and-sport-betting',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-prisons-and-criminal-justice',
+        title: 'AI and prisons and criminal justice — risk assessment, facial recognition, licence monitoring, and bias',
+        description: 'How AI tools are used in UK criminal justice — from OGRS risk scores to facial recognition at courts — and the serious concerns about racial bias and algorithmic accountability.',
+        readingTime: '7 min',
+        icon: '⚖️',
+        to: '/learn/ai-and-prisons-and-criminal-justice',
+        color: 'slate',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-space-exploration',
+        title: 'AI and space exploration — Mars rovers, satellite constellations, exoplanet discovery, and UK space',
+        description: 'From Perseverance navigating Mars autonomously to AI discovering new planets — how artificial intelligence is transforming what we can explore beyond Earth.',
+        readingTime: '7 min',
+        icon: '🚀',
+        to: '/learn/ai-and-space-exploration',
+        color: 'indigo',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-logistics-and-delivery',
+        title: 'AI and logistics and delivery — route planning, parcel sorting, drone delivery, and algorithmic management',
+        description: 'How Amazon, Royal Mail, DPD, and Ocado use AI to plan routes, sort millions of parcels, predict orders, and trial drone delivery — and what this means for delivery workers.',
+        readingTime: '7 min',
+        icon: '📦',
+        to: '/learn/ai-and-logistics-and-delivery',
+        color: 'orange',
         difficulty: 'Beginner',
       },
       {
-        id: 'ai-and-legal-system',
-        title: 'AI and the legal system — contract review, legal research, predictive sentencing, and access to justice',
-        description: 'AI is transforming law — speeding up research, reviewing contracts in seconds, and raising serious questions about bias in criminal justice.',
+        id: 'ai-and-the-home',
+        title: 'AI and the home — smart thermostats, AI cameras, voice assistants, energy management, and privacy',
+        description: 'From Hive and Nest thermostats to Ring doorbells and Alexa — how AI is changing the home, what it is doing with your data, and what your rights are.',
+        readingTime: '7 min',
+        icon: '🏠',
+        to: '/learn/ai-and-the-home',
+        color: 'teal',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-personal-assistants',
+        title: 'AI and personal assistants — Siri, Alexa, Google Assistant, privacy, and limitations',
+        description: 'How voice assistants work, what they can and cannot do, and the privacy questions that come with a device that is always listening for your wake word.',
+        readingTime: '6 min',
+        icon: '🎙️',
+        to: '/lessons/ai-and-personal-assistants',
+        color: 'indigo',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-the-legal-system',
+        title: 'AI and the legal system — contract review, legal research, access to justice, and UK courts',
+        description: 'How AI is transforming law firms, helping ordinary people access legal advice, and the serious concerns about algorithmic tools used in criminal justice.',
         readingTime: '7 min',
         icon: '⚖️',
-        to: '/learn/ai-and-legal-system',
+        to: '/lessons/ai-and-the-legal-system',
         color: 'slate',
         difficulty: 'Intermediate',
       },
@@ -1578,7 +1668,7 @@ export function HomePage() {
 
         {/* Learning streak */}
         {streak > 0 && (
-          <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4">
+          <Link to="/streak" className="block bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center gap-4 hover:bg-orange-100 transition-colors">
             <span className="text-3xl flex-shrink-0">&#x1F525;</span>
             <div className="flex-1 min-w-0">
               <p className="font-bold text-orange-800 text-base leading-tight">
@@ -1592,9 +1682,10 @@ export function HomePage() {
                 {bestStreak === streak && streak > 1 && (
                   <span className="ml-1 text-orange-500">That is your best yet!</span>
                 )}
+                <span className="ml-1 text-orange-500 text-xs">View your streak &rarr;</span>
               </p>
             </div>
-          </div>
+          </Link>
         )}
 
         {/* Weekly learning goal ring */}
@@ -1822,6 +1913,32 @@ export function HomePage() {
             </div>
           </div>
         )}
+
+        {/* Not sure where to start? */}
+        <div className="bg-violet-600 dark:bg-violet-800 rounded-2xl p-5 text-white space-y-3">
+          <p className="font-bold text-lg leading-tight">Not sure where to start?</p>
+          <p className="text-violet-100 text-sm leading-relaxed">Answer 5 quick questions and we will suggest the perfect lessons for you based on your interests and experience.</p>
+          <Link
+            to="/quiz/what-next"
+            className="inline-flex items-center gap-2 bg-white text-violet-700 rounded-xl px-5 py-2.5 font-semibold text-sm hover:bg-violet-50 transition-colors"
+          >
+            Find my perfect lesson &rarr;
+          </Link>
+        </div>
+
+        {/* True or False quiz game */}
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-amber-800 mb-0.5">&#x2753; True or False?</p>
+            <p className="text-sm text-amber-700">15 statements about AI — can you tell fact from fiction?</p>
+          </div>
+          <Link
+            to="/quiz/true-or-false"
+            className="flex-shrink-0 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          >
+            Play &rarr;
+          </Link>
+        </div>
 
         {/* Recently completed */}
         {recentlyCompletedModules.length > 0 && (
@@ -2164,12 +2281,12 @@ export function HomePage() {
             </Link>
             <Link
               to="/quiz/sort-it-out"
-              className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 hover:bg-indigo-100 transition-colors flex items-center gap-3"
+              className="bg-violet-50 border border-violet-200 rounded-xl p-4 hover:bg-violet-100 transition-colors flex items-center gap-3"
             >
               <span className="text-2xl flex-shrink-0">&#x1F500;</span>
               <div>
-                <p className="font-semibold text-indigo-800 text-sm">Sort it out</p>
-                <p className="text-indigo-600 text-xs">Drag AI concepts into the right categories across 3 rounds.</p>
+                <p className="font-semibold text-violet-800 text-sm">Sort it out</p>
+                <p className="text-violet-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
               </div>
             </Link>
           </div>

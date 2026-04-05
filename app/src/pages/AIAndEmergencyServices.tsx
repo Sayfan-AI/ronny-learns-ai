@@ -10,6 +10,7 @@ import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
+import { DifficultyBadge } from '../components/DifficultyBadge'
 
 const LESSON_TITLE = 'AI and emergency services'
 
@@ -96,9 +97,7 @@ export function AIAndEmergencyServices() {
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
               <span>About 7 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
+            <DifficultyBadge level="Intermediate" />
           </div>
           <CompletedBadge lessonId="ai-and-emergency-services" />
           <ShareButton lessonTitle={LESSON_TITLE} />

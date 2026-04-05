@@ -1,227 +1,167 @@
-import { Quiz } from '../components/Quiz'
-import type { QuizQuestion } from '../components/Quiz'
-import { useMarkVisited } from '../hooks/useMarkVisited'
-import { NextLesson } from '../components/NextLesson'
-import { LessonNote } from '../components/LessonNote'
-import { CompletedBadge } from '../components/CompletedBadge'
-import { RelatedLessons } from '../components/RelatedLessons'
-import { LessonRating } from '../components/LessonRating'
-import { LessonFeedback } from '../components/LessonFeedback'
-import { ReviewLaterButton } from '../components/ReviewLaterButton'
-import { ShareButton } from '../components/ShareButton'
-import { KeyTakeaways } from '../components/KeyTakeaways'
-
-const LESSON_TITLE = 'AI and the legal system'
+import { useState } from 'react'
+import { Link } from '@tanstack/react-router'
 
 const KEY_TAKEAWAYS = [
-  'AI is being used to review contracts, research case law, predict the likely outcome of litigation, and flag risk in legal documents — tasks that once took lawyers hundreds of hours and cost clients thousands of pounds.',
-  'Predictive sentencing tools like COMPAS in the United States assign defendants a "risk score" that is used in sentencing and parole decisions — critics argue this bakes racial bias into the justice system and removes judicial discretion.',
-  'AI-powered legal research tools like Harvey, Clio, and CoCounsel (Thomson Reuters) can search millions of court judgments in seconds and summarise relevant precedents — making legal research dramatically faster and potentially cheaper.',
-  'Access to justice is a serious problem in the UK: over 60% of people who need legal help cannot afford a solicitor. AI chatbots and free legal tools could help — but only if they are accurate and safe enough to rely on.',
-  'The UK legal sector is cautiously adopting AI, but courts have not yet accepted AI-generated legal arguments as a substitute for qualified lawyers — and regulators are watching closely to ensure AI does not undermine the fairness of justice.',
+  'AI tools are increasingly used in UK legal practice for contract review, legal research, and document analysis',
+  'Predictive tools used in bail and sentencing decisions (mainly in the US) have raised serious bias and transparency concerns',
+  'The UK Supreme Court has confirmed AI cannot be a legal person — only humans can be authors, inventors, or parties in court',
+  'AI could dramatically improve access to justice for people who cannot afford a solicitor — but only if it is accurate and trustworthy',
+  'Lawyers using AI remain responsible for the work they produce — they cannot blame the AI if it makes an error',
 ]
 
-const quizQuestions: QuizQuestion[] = [
+const quizQuestions = [
   {
-    question: 'What is one of the most common uses of AI in commercial legal work today?',
+    question: 'How are UK law firms currently using AI tools?',
     options: [
-      'AI judges that automatically decide the outcome of small claims court cases without any human involvement',
-      'AI contract review tools that scan large volumes of legal documents for risk clauses, inconsistencies, and missing provisions far faster than a human lawyer',
-      'AI systems that automatically issue legal proceedings on behalf of clients when they have a strong case, without needing a solicitor to sign off',
-      'AI translation tools that convert court judgments from English into every language spoken in England and Wales simultaneously',
+      'AI is completely banned from legal practice in the UK',
+      'AI is used for reviewing contracts, conducting legal research, summarising documents, and identifying relevant case law — tasks that previously took junior solicitors many hours',
+      'AI is only used for billing and scheduling',
+      'AI drafts all court submissions without human review',
     ],
     correctIndex: 1,
-    explanation:
-      'Contract review is one of the most established uses of AI in law. Large deals — mergers, acquisitions, commercial leases, employment contracts — involve hundreds or thousands of documents. AI tools like Kira Systems, Luminance, and Diligence Engine can read every document and flag specific clause types (indemnity clauses, change-of-control provisions, data protection obligations) in a fraction of the time it would take a team of junior lawyers to do manually. This dramatically reduces the cost of due diligence for clients and frees up lawyers to focus on judgment calls rather than document-reading. Law firms that adopted these tools early have a significant competitive advantage.',
-    hint: 'Think about the type of legal work that involves reading huge volumes of text quickly.',
+    explanation: 'Major UK law firms including Clifford Chance, Allen & Overy, and Linklaters have deployed AI tools for document review and contract analysis. AI can review hundreds of contracts for specific clauses in the time it would take a human to review one. This is changing the economics of legal work, particularly at the junior level.',
   },
   {
-    question: 'What is COMPAS and why has it been controversial in the United States?',
+    question: 'What was the COMPAS controversy in the US, and why does it matter for UK AI policy?',
     options: [
-      'A GPS navigation app used by police forces to direct officers to the scene of crimes more quickly, reducing response times',
-      'A risk assessment algorithm used in sentencing and parole decisions that assigns defendants a score predicting likelihood of reoffending — critics argue it is racially biased and removes judicial discretion',
-      'An AI system that automatically processes guilty pleas and standard offences to clear court backlogs, without requiring a judge to review each case',
-      'A computer program that generates standardised sentencing guidelines so that all judges apply the law consistently, regardless of who is in the dock',
+      'COMPAS was a UK court case about AI copyright',
+      'COMPAS was a US risk assessment tool used in sentencing that was found to produce racially biased scores — more likely to label Black defendants as high risk. It became a landmark case for AI accountability in justice',
+      'COMPAS was a successful AI legal assistant with no controversies',
+      'COMPAS is the name of the UK AI legal framework',
     ],
     correctIndex: 1,
-    explanation:
-      'COMPAS (Correctional Offender Management Profiling for Alternative Sanctions) assigns defendants a score from 1 to 10 predicting their likelihood of reoffending. Judges in some US states consider this score when deciding sentences and parole. A 2016 ProPublica investigation found that COMPAS incorrectly flagged Black defendants as higher risk at nearly twice the rate of white defendants, and vice versa for lower risk. The algorithm\'s creators said it was equally accurate across racial groups in a technical sense — but the error modes were not equal. This case has become the central example in the debate about algorithmic bias in criminal justice. The UK is watching closely as it considers similar tools.',
-    hint: 'Think about a tool that predicts future behaviour and is used to determine sentences.',
+    explanation: 'COMPAS (Correctional Offender Management Profiling for Alternative Sanctions) was used to predict reoffending risk and inform bail and sentencing decisions. A 2016 ProPublica investigation found it was twice as likely to falsely flag Black defendants as future criminals compared to white defendants. This case is now central to debates about algorithmic accountability, transparency, and bias in criminal justice.',
   },
   {
-    question: 'How are AI legal research tools like Harvey and CoCounsel changing legal work?',
+    question: 'What did the UK Supreme Court rule about AI in the DABUS case?',
     options: [
-      'They replace solicitors entirely for most consumer legal matters, providing binding legal advice and filing documents with courts autonomously',
-      'They can search millions of court judgments, statutory instruments, and legal texts in seconds and produce summarised briefings of relevant precedents — work that previously took junior lawyers many hours',
-      'They automatically check whether a client has a strong enough case before allowing them to proceed, filtering out weak claims to reduce court backlogs',
-      'They translate legal jargon into plain English for members of the public, but cannot perform any legal analysis or research beyond simplifying existing documents',
+      'AI can be listed as an inventor on a UK patent',
+      'AI cannot be a legal person, inventor, or author — only a human can hold legal rights or be a party in legal proceedings in the UK',
+      'AI-generated inventions automatically belong to the public domain',
+      'The UK Supreme Court has not considered any AI cases',
     ],
     correctIndex: 1,
-    explanation:
-      'Legal research has traditionally been one of the most time-consuming — and therefore expensive — parts of legal work. Finding relevant case law, checking whether precedents have been overturned, and summarising arguments from hundreds of judgments can take a junior lawyer days. AI tools trained on legal databases (Harvey AI uses GPT-4, CoCounsel uses OpenAI models trained on Westlaw data) can do this in seconds. A lawyer can ask "find cases where a court found a duty of care existed between an employer and a remote worker" and get a synthesised summary of relevant cases immediately. This does not replace lawyers — judgment, strategy, and client relationships still require human expertise — but it radically changes how junior legal work is done.',
-    hint: 'Think about what takes junior lawyers the most time in preparing a case.',
+    explanation: 'The DABUS case (2023) involved an AI system that its creator claimed had independently invented two products. The Supreme Court ruled that under current UK law, only a human can be an inventor, and a patent application must name a human inventor. This has significant implications for AI-generated creative and intellectual work more broadly.',
   },
   {
-    question: 'What is the "access to justice" problem and how might AI help — or hinder — it?',
+    question: 'How could AI improve access to justice for ordinary people?',
     options: [
-      'Access to justice refers to the speed of court proceedings; AI could slow this down by generating more paperwork and appeals',
-      'Access to justice refers to the fact that legal advice is expensive and most people cannot afford a solicitor; AI tools could make basic legal information free and accessible, but there are risks if advice is inaccurate',
-      'Access to justice is a problem exclusively affecting businesses, not individuals — AI tools are being developed to help corporations navigate international law more efficiently',
-      'Access to justice refers to courtrooms being physically inaccessible to disabled people; AI is being used to provide remote hearings via video call as an alternative',
+      'By replacing all solicitors so legal services become free',
+      'By providing accessible, accurate legal information and document assistance to people who cannot afford a solicitor — for example, helping with tenancy disputes, employment rights, or small claims',
+      'By making court proceedings faster by removing the right to appeal',
+      'AI cannot help with legal matters at any level',
     ],
     correctIndex: 1,
-    explanation:
-      "Over 60% of people in the UK who face a legal problem receive no professional legal help — because they cannot afford a solicitor (legal aid has been cut significantly since 2013), do not know where to find help, or find the legal system too intimidating. AI-powered legal chatbots — like DoNotPay (a US app) or Citizens Advice's online tools — can help people understand their rights, draft letters, and navigate processes like small claims court or employment tribunals without paying a lawyer. The promise is significant. The risk is also significant: if AI gives wrong legal advice, a person could lose their home, their job, or their freedom. Getting the accuracy and safety of these tools right is not a minor technical problem — it is a matter of justice.",
-    hint: 'Think about who can and cannot afford a lawyer and what the implications are.',
+    explanation: 'Only 20% of people with a legal problem get professional help, largely because of cost. AI tools could bridge this gap: tools like DoNotPay and Citizens Advice AI chatbots can help people understand their rights, draft letters to landlords, or prepare for small claims court. The challenge is ensuring these tools are accurate enough to trust — a poorly informed user taking the wrong legal step can make their situation worse.',
   },
   {
-    question: 'How is the UK legal sector currently approaching AI adoption in courts and legal practice?',
+    question: 'Who is responsible when an AI legal tool gives wrong advice and a client suffers harm?',
     options: [
-      'The UK has fully embraced AI judges for civil cases under £100,000, allowing cases to be decided by algorithm without a human judge to speed up the court system',
-      'The UK is cautiously exploring AI tools for legal research and document review, but courts have not accepted AI-generated arguments as a substitute for qualified lawyers, and regulators are monitoring for risks to fairness',
-      'The UK has banned AI from all legal contexts until a national regulatory framework is in place, meaning no AI tools are legally permitted in law firms',
-      'The UK requires all legal AI tools to be open-source so that both parties in a dispute can inspect the algorithm before it is used in their case',
+      'The AI company is entirely responsible',
+      'The lawyer or solicitor who used the AI tool remains professionally responsible for the work — they cannot use AI as a defence for professional negligence',
+      'No one is responsible when AI is involved',
+      'The client bears all responsibility for trusting AI',
     ],
     correctIndex: 1,
-    explanation:
-      "The UK legal sector is adopting AI tools relatively quickly in commercial law firms — contract review, legal research, and document management — but the courts themselves are more cautious. The Solicitors Regulation Authority (SRA) has published guidance warning that solicitors remain personally responsible for any advice they give, even if AI assisted in producing it. Courts have seen cases where lawyers submitted AI-generated arguments containing fabricated case citations (hallucinations), leading to embarrassing retractions. The judiciary is watching closely. The UK government's AI strategy emphasises a light-touch, sector-by-sector approach rather than blanket AI regulation — meaning legal AI is largely self-regulated at the moment, with professional bodies setting the rules.",
-    hint: 'Think about who is responsible when AI gives wrong legal advice.',
+    explanation: 'The Solicitors Regulation Authority (SRA) has made clear that AI does not alter a solicitor\'s professional obligations. A solicitor who relies on AI-generated research or drafting that turns out to be wrong remains responsible. This is why law firms using AI still require human review of AI outputs — and why "hallucinations" (AI confidently stating false case law) are a serious professional risk.',
   },
 ]
 
 export function AIAndLegalSystem() {
-  useMarkVisited('ai-and-legal-system')
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [showExplanation, setShowExplanation] = useState(false)
+  const [score, setScore] = useState(0)
+  const [quizComplete, setQuizComplete] = useState(false)
+  const [quizStarted, setQuizStarted] = useState(false)
+
+  function handleAnswer(index: number) {
+    if (selectedAnswer !== null) return
+    setSelectedAnswer(index)
+    setShowExplanation(true)
+    if (index === quizQuestions[currentQuestion].correctIndex) setScore(s => s + 1)
+  }
+
+  function handleNext() {
+    if (currentQuestion + 1 >= quizQuestions.length) setQuizComplete(true)
+    else { setCurrentQuestion(c => c + 1); setSelectedAnswer(null); setShowExplanation(false) }
+  }
+
+  const q = quizQuestions[currentQuestion]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
       <div className="max-w-2xl w-full space-y-8">
-
-        <div className="text-center space-y-4">
-          <div className="text-6xl">&#x2696;&#xFE0F;</div>
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
-            AI and the legal system
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI in courts, contract review, legal research, predictive sentencing tools,
-            access to justice, and UK legal AI.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
-              <span>About 7 min read</span>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-sm px-4 py-2 rounded-full font-semibold">
-              <span>Intermediate</span>
-            </div>
-          </div>
-          <CompletedBadge lessonId="ai-and-legal-system" />
-          <ShareButton lessonTitle={LESSON_TITLE} />
+        <div className="text-center space-y-3">
+          <span className="text-5xl" aria-hidden="true">&#x2696;&#xFE0F;</span>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">AI and the legal system</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">7 min read &middot; Intermediate</p>
         </div>
-
-        <KeyTakeaways points={KEY_TAKEAWAYS} />
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Why law is ripe for AI</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Law is fundamentally a text-based profession. Lawyers read cases, draft documents, search for precedents, and construct arguments from words. AI language models are exceptionally good at text — which is why law is one of the sectors most significantly affected by the AI revolution.
-          </p>
-          <div className="space-y-2">
-            {[
-              'A major commercial deal can involve thousands of contracts — each needing careful review for risk, inconsistency, and missing terms',
-              'There are over 10 million published legal judgments in England and Wales alone, going back hundreds of years',
-              'The average UK solicitor charges £200–£400 per hour; a complex case easily costs tens of thousands of pounds',
-              'Legal aid funding in England and Wales has been cut by over £1 billion since 2013, leaving millions unable to afford representation',
-              'The Law Society estimates AI tools could automate up to 67% of tasks currently performed by UK paralegals and junior solicitors',
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-slate-600 dark:text-slate-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
-              </div>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p>The law touches every part of life — contracts, tenancies, employment, family disputes, criminal justice. AI is changing how legal work is done, how courts make decisions, and potentially who can afford legal help. Understanding these changes matters whether you are a tenant challenging a landlord, someone facing a criminal charge, or just curious about how justice is evolving.</p>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 pt-2">AI in legal practice</h2>
+          <p>UK law firms are deploying AI tools for three main purposes. Contract review AI can scan hundreds of documents and flag non-standard clauses, missing protections, or terms that deviate from agreed templates. Legal research AI can find relevant case law, regulations, and precedents far faster than a human researcher. Document analysis tools can summarise complex court bundles or extract key facts from witness statements.</p>
+          <p>This is changing the economics of legal work. Tasks that once occupied junior solicitors for hours can be done in minutes. Major firms like Allen & Overy (which partnered with Harvey AI) and Clifford Chance have integrated AI deeply into their workflows. This raises questions about the future of legal training — if AI handles research and drafting, how do junior lawyers develop those skills?</p>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 pt-2">Predictive tools in criminal justice</h2>
+          <p>The most controversial application of AI in the legal system is using algorithms to inform bail, sentencing, and parole decisions. In the US, tools like COMPAS became notorious after a 2016 investigation by ProPublica found that they were twice as likely to incorrectly classify Black defendants as high risk compared to white defendants. This sparked global debate about algorithmic accountability in justice.</p>
+          <p>UK courts currently do not use automated risk scores in the same way US courts do. However, tools like OASys (used in probation) and OGRS (reoffending prediction) incorporate statistical models. The Ministry of Justice has been cautious about AI in sentencing, but the direction of travel — towards more data-driven decisions — raises the same bias and transparency concerns seen in the US.</p>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 pt-2">AI and legal personhood — the DABUS case</h2>
+          <p>Can an AI be an inventor? This question reached the UK Supreme Court in 2023 in the DABUS case. An AI system had allegedly invented two products independently. The Court ruled that only a human can be named as an inventor in a UK patent application — AI has no legal personality and cannot hold rights.</p>
+          <p>This ruling has broader implications. Copyright law similarly requires a human author. As AI generates more creative and inventive output, fundamental questions about who owns AI-generated work — and who bears liability if it causes harm — are being actively litigated across multiple jurisdictions.</p>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 pt-2">Access to justice</h2>
+          <p>Perhaps the most positive potential of AI in law is democratising access to legal help. Most people with a legal problem do not consult a solicitor — cost is the primary barrier. AI tools could help people understand their rights, draft letters to landlords or employers, prepare for small claims court, or navigate the benefits system.</p>
+          <p>Tools like DoNotPay have demonstrated that AI can handle simple legal tasks. Citizens Advice and other charities are developing AI-assisted services. But accuracy is critical — poorly calibrated AI giving wrong legal advice could cause real harm. The challenge is building tools that are reliable enough to trust while remaining accessible enough to help people who cannot afford professional legal advice.</p>
+        </div>
+        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-5 space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Key takeaways</p>
+          <ul className="space-y-1.5">
+            {KEY_TAKEAWAYS.map((t, i) => (
+              <li key={i} className="flex gap-2 text-sm text-gray-700 dark:text-gray-300">
+                <span className="text-amber-600 flex-shrink-0 mt-0.5">&#x2713;</span>{t}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI in legal practice — what it actually does</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI tools are already embedded in many law firms, though most clients are unaware of it.
-          </p>
-          <div className="space-y-3">
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4C4;</span>
-              <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Contract review and due diligence</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Tools like Luminance and Kira Systems read thousands of legal documents and flag specific clause types — indemnity provisions, data protection obligations, change-of-control clauses. A task that once took a team of junior lawyers weeks can now be done in hours. This is where law firms have adopted AI fastest, because the cost savings are enormous.</p>
-              </div>
+        {!quizStarted && (
+          <div className="text-center">
+            <button onClick={() => setQuizStarted(true)} className="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl transition-colors">Test yourself &rarr;</button>
+          </div>
+        )}
+        {quizStarted && !quizComplete && (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+            <p className="text-xs text-gray-400">Question {currentQuestion + 1} of {quizQuestions.length}</p>
+            <p className="font-semibold text-gray-800 dark:text-gray-100 leading-snug">{q.question}</p>
+            <div className="space-y-2">
+              {q.options.map((opt, idx) => {
+                let style = 'border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20'
+                if (selectedAnswer !== null) {
+                  if (idx === q.correctIndex) style = 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300'
+                  else if (idx === selectedAnswer) style = 'border-rose-400 bg-rose-50 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300'
+                  else style = 'border-gray-200 dark:border-gray-600 text-gray-400 dark:text-gray-500'
+                }
+                return <button key={idx} onClick={() => handleAnswer(idx)} disabled={selectedAnswer !== null} className={`w-full text-left px-4 py-3 rounded-xl border-2 text-sm font-medium transition-colors ${style}`}>{opt}</button>
+              })}
             </div>
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F50D;</span>
-              <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Legal research</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Harvey AI and CoCounsel (Thomson Reuters) allow lawyers to ask natural language questions — "find cases where a court found misrepresentation in a software contract" — and receive a synthesised summary of relevant precedents within seconds. Hallucination is a serious risk: AI has fabricated plausible-sounding but non-existent case citations in real court filings, leading to sanctions against lawyers in the US.</p>
+            {showExplanation && (
+              <div className={`rounded-xl p-4 text-sm ${selectedAnswer === q.correctIndex ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800'}`}>
+                <p className={`font-semibold mb-1 ${selectedAnswer === q.correctIndex ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-700 dark:text-rose-400'}`}>{selectedAnswer === q.correctIndex ? 'Correct!' : 'Not quite.'}</p>
+                <p className="text-gray-600 dark:text-gray-300">{q.explanation}</p>
               </div>
-            </div>
-            <div className="flex gap-3 items-start bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4CA;</span>
-              <div>
-                <p className="font-semibold text-blue-800 dark:text-blue-200 text-sm mb-0.5">Litigation prediction</p>
-                <p className="text-blue-700 dark:text-blue-300 text-sm leading-relaxed">Premonition and Lex Machina analyse years of court data to predict how likely a particular judge is to rule in favour of a certain type of claim. Some firms use this data when deciding whether to settle or go to trial. Critics argue this gives wealthy clients (who can afford these tools) an unfair advantage in understanding judicial tendencies.</p>
-              </div>
-            </div>
+            )}
+            {showExplanation && <button onClick={handleNext} className="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl transition-colors">{currentQuestion + 1 >= quizQuestions.length ? 'See results' : 'Next question'}</button>}
           </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Predictive sentencing — the most controversial use</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            In the United States, AI tools are used to predict the likelihood that a defendant will reoffend — and those predictions influence sentences and parole decisions. The UK is watching this debate closely.
-          </p>
-          <div className="space-y-3">
-            {[
-              { icon: '&#x2696;&#xFE0F;', title: 'How it works', text: 'Tools like COMPAS score defendants on factors like criminal history, age, education, and family background to produce a "risk score" from 1 to 10. Judges are given this score before sentencing. High-scoring defendants may receive longer sentences or be denied parole.' },
-              { icon: '&#x26A0;&#xFE0F;', title: 'The bias problem', text: "A ProPublica investigation in 2016 found COMPAS scored Black defendants as higher risk at nearly twice the rate of white defendants who went on not to reoffend. The algorithm was making racially unequal errors — even if its overall accuracy was similar across groups. The question of what 'fair' means for an algorithm turns out to be philosophically and mathematically complex." },
-              { icon: '&#x2753;', title: 'The discretion problem', text: "If a judge knows a defendant's risk score, can they really ignore it? Critics argue that even when judges are told scores are advisory, they anchor on them. The algorithm's output subtly replaces judicial judgment — but the algorithm cannot be cross-examined, does not know the defendant personally, and cannot respond to mitigating circumstances." },
-              { icon: '&#x1F1EC;&#x1F1E7;', title: 'The UK position', text: 'The UK has not adopted predictive sentencing tools in the way the US has. However, police forces use algorithmic tools for predicting where crime will occur (PredPol) and some parole decisions use structured assessment tools. Civil liberties groups like Liberty are monitoring these closely.' },
-            ].map((item) => (
-              <div key={item.title} className="flex gap-3 items-start bg-red-50 dark:bg-red-950 rounded-xl p-3">
-                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: item.icon }} />
-                <div>
-                  <p className="font-semibold text-red-800 dark:text-red-200 text-sm mb-0.5">{item.title}</p>
-                  <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">{item.text}</p>
-                </div>
-              </div>
-            ))}
+        )}
+        {quizComplete && (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 text-center space-y-3">
+            <p className="text-4xl">&#x1F3C6;</p>
+            <p className="text-xl font-bold text-gray-800 dark:text-gray-100">Quiz complete!</p>
+            <p className="text-gray-600 dark:text-gray-300">You scored <span className="font-bold text-amber-600 dark:text-amber-400">{score} out of {quizQuestions.length}</span></p>
+            <Link to="/" className="inline-block mt-2 px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl transition-colors">Back to home</Link>
           </div>
+        )}
+        <div className="text-center pt-4">
+          <Link to="/" className="text-amber-600 dark:text-amber-400 text-sm hover:underline">&larr; Back to home</Link>
         </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Access to justice — AI as a leveller?</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            One of the most hopeful applications of AI in law is making legal help available to people who cannot afford a solicitor.
-          </p>
-          <div className="space-y-2">
-            {[
-              "DoNotPay, a US app, has helped hundreds of thousands of people fight parking tickets, cancel subscriptions, and claim compensation for delayed flights — tasks that are legitimate but felt too small or too complex to bother a solicitor about",
-              "Citizens Advice in the UK uses AI-assisted tools to help people understand their housing rights, employment rights, and benefit entitlements without needing a face-to-face appointment",
-              "The AI lawyer is not a replacement for a real solicitor in complex matters — but for understanding your rights in a standard situation, it can be transformative",
-              "The risk: if an AI tool gives wrong advice and someone acts on it — losing their home, their job, or their case — who is responsible? The company? The platform? The user who chose to rely on free AI advice?",
-              "UK regulators are developing a framework for 'lawtech' — legal technology tools — that aims to ensure AI legal tools are safe without stifling innovation",
-            ].map((item) => (
-              <div key={item} className="flex gap-2 items-start">
-                <span className="text-green-600 dark:text-green-400 font-bold mt-0.5 flex-shrink-0">&#x2192;</span>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <Quiz lessonId="ai-and-legal-system" questions={quizQuestions} />
-
-        <ReviewLaterButton lessonId="ai-and-legal-system" />
-        <LessonNote lessonId="ai-and-legal-system" />
-        <LessonRating lessonId="ai-and-legal-system" />
-        <LessonFeedback lessonId="ai-and-legal-system" />
-        <RelatedLessons currentId="ai-and-legal-system" />
-        <NextLesson currentId="ai-and-legal-system" />
       </div>
     </div>
   )

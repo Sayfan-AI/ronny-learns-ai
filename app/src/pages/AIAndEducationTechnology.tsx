@@ -14,78 +14,65 @@ import { KeyTakeaways } from '../components/KeyTakeaways'
 const LESSON_TITLE = 'AI and education technology'
 
 const KEY_TAKEAWAYS = [
-  'AI tutors and adaptive learning platforms adjust the difficulty and pace of lessons in real time based on how you are doing — meaning every student gets a personalised path through the material rather than one-size-fits-all teaching.',
-  "Tools like Grammarly, Turnitin, and Khanmigo (Khan Academy's AI tutor) are already used in millions of classrooms — helping students improve writing, detecting plagiarism, and answering curriculum questions with detailed explanations.",
-  'AI can detect when a student is struggling before a human teacher notices — using data from typing speed, number of retries, and time spent on a question to flag who needs extra support.',
-  'Critics worry that AI in education encourages over-reliance: students who use AI to write their essays may never develop the writing skills themselves, and schools in the UK are still working out where the lines should be drawn.',
-  'The UK EdTech sector is worth over £3.5 billion and growing fast — but access is unequal. Students in well-funded schools are far more likely to benefit from AI learning tools than those in under-resourced areas.',
+  'Adaptive learning platforms use AI to adjust the difficulty and pace of lessons to match each individual student — if you struggle with fractions, the system gives you more practice on fractions before moving on.',
+  "Khan Academy's Khanmigo and Duolingo's AI features are real examples of AI tutors available now — they explain concepts, answer questions, and give personalised feedback.",
+  'AI can mark written essays and give detailed feedback almost instantly, which would take a teacher hours — but AI marking raises concerns about what it might miss.',
+  'The biggest risk with EdTech AI is over-reliance: students who use AI tools as shortcuts rather than learning aids may develop surface knowledge without deep understanding.',
+  'UK data protection law applies strictly to EdTech tools used with children — schools must check that any AI tool they use handles pupil data lawfully under UK GDPR.',
 ]
 
 const quizQuestions: QuizQuestion[] = [
   {
-    question: 'What does an adaptive learning platform do that a traditional textbook cannot?',
+    question: 'What does an adaptive learning platform do differently from a standard online course?',
     options: [
-      'It replaces the teacher entirely, delivering all lessons and assessments automatically without any human involvement',
-      "It adjusts the difficulty, sequence, and style of content in real time based on each student's performance and learning pace",
-      'It generates printed worksheets customised to each student and posts them home automatically each week',
-      'It connects students with professional tutors in other countries via live video call, available 24 hours a day',
+      'It replaces teachers entirely and assesses students using only multiple-choice tests',
+      'It adjusts the difficulty, pace, and content of lessons in real time based on how each student is performing',
+      'It creates a standardised learning path that all students must follow in exactly the same order and at the same speed',
+      'It connects students with human tutors via video call whenever they get a question wrong',
     ],
     correctIndex: 1,
     explanation:
-      'Adaptive learning platforms like Century Tech and Knewton analyse every response a student gives — not just whether it was right or wrong, but how quickly they answered, how often they retried, and which types of questions trip them up. The system then adjusts what comes next: easier reinforcement if the student is struggling, harder challenges if they are breezing through. This is fundamentally different from a textbook, which presents the same content to everyone in the same order. Human teachers can do this too, but only for small groups — AI can do it simultaneously for thousands of students.',
-    hint: 'Think about what the word "adaptive" means.',
+      'Adaptive learning is the key distinction. Platforms like Century Tech and Sparx Maths analyse how each student answers questions — how long they take, which mistakes they make, which concepts they revisit. The AI uses this data to personalise what each student sees next. A student who quickly grasps multiplication might skip ahead to long division; one who struggles might receive additional explanation or easier stepping-stone questions. This is something a teacher with 30 students cannot realistically do for every pupil simultaneously.',
+    hint: 'Think about how the platform adjusts to each individual student.',
   },
   {
-    question: "How does Khanmigo, Khan Academy's AI tutor, differ from just giving a student the answer?",
+    question: "What is Khan Academy's Khanmigo?",
     options: [
-      'Khanmigo refuses to discuss any topic until the student has watched at least three video lessons on the subject first',
-      'Khanmigo uses the Socratic method — asking guiding questions to lead the student to figure out the answer themselves, rather than simply stating it',
-      'Khanmigo provides the correct answer immediately but requires the student to copy it out by hand three times before moving on',
-      "Khanmigo contacts the student's teacher by email whenever it detects that the student is stuck, triggering a human intervention",
+      'An AI system that automatically grades all homework and gives teachers a class performance report',
+      'An AI tutor built into Khan Academy that students can have conversations with — asking questions and working through problems with guidance',
+      'A Khan Academy tool that uses AI to write lesson plans and quiz questions for teachers',
+      'A parental monitoring system that tracks how much time children spend studying',
     ],
     correctIndex: 1,
     explanation:
-      "Khanmigo, built by Khan Academy using GPT-4, is specifically designed not to just hand students the answer. Instead it asks questions like 'What do you think the first step might be?' or 'What happens if you try multiplying both sides?' — a teaching technique known as the Socratic method. The goal is to develop the student's ability to think through problems, not just to get the right answer quickly. This is a deliberate design choice rooted in educational research showing that students retain knowledge better when they work it out themselves. Simply telling someone the answer rarely results in lasting learning.",
-    hint: 'Think about what approach helps students actually learn rather than just get answers.',
+      "Khanmigo is Khan Academy's AI-powered learning assistant. Unlike a search engine, students can have back-and-forth conversations with it — asking it to explain a concept differently, to walk them through a maths problem step by step, or to give feedback on writing. Khan Academy designed Khanmigo not to simply give the answer, but to guide students towards working it out themselves — modelling how a good human tutor would behave.",
+    hint: 'Think about a conversational AI assistant rather than a content library.',
   },
   {
-    question: 'What concern do UK schools and universities most commonly raise about AI writing tools like ChatGPT?',
+    question: 'What is one concern specifically about AI marking of essays?',
     options: [
-      'That ChatGPT is too expensive for schools to afford and the subscription costs are creating inequality between wealthy and less wealthy institutions',
-      'That students may use AI to write their assignments for them, meaning they never develop the writing, critical thinking, and research skills the work was designed to build',
-      "That ChatGPT produces content in American English, which conflicts with the UK curriculum's emphasis on British spelling and grammar conventions",
-      'That the data centres running ChatGPT consume too much electricity, and schools should not use tools with a large carbon footprint',
+      'AI markers are much slower than human markers because they have to read every word carefully',
+      'AI markers may reward essays that follow predictable patterns — potentially penalising creative, unconventional, or culturally specific writing',
+      'AI markers only work with essays written in formal academic English and cannot process colloquial language',
+      'AI markers always give higher grades than human teachers, unfairly inflating student scores',
     ],
     correctIndex: 1,
     explanation:
-      'The core worry for UK educators is academic integrity and the development of fundamental skills. When a student submits an essay written by ChatGPT, the student has bypassed the process that builds their ability to research, organise arguments, and express ideas in writing. Universities and schools are responding in different ways: some ban AI tools outright, others require students to disclose AI use, and others have redesigned assessments to focus on in-person tasks, discussions, or portfolios of work that are harder to outsource. The challenge is that AI tools are so capable and so widely available that blanket bans are very difficult to enforce.',
-    hint: 'Think about what skills the assignment was supposed to develop.',
+      "AI essay marking tools are trained on examples of essays that received high scores from human markers. They tend to reward the stylistic patterns those essays shared: clear structure, formal vocabulary, specific argumentative moves. Research has found that AI markers can give high scores to fluent-sounding nonsense and may score essays by students from non-dominant cultural backgrounds lower. Human readers bring contextual understanding that AI markers may miss.",
+    hint: 'Think about what patterns AI might have learned to reward.',
   },
   {
-    question: "What does AI-powered plagiarism detection software like Turnitin's AI detector do?",
+    question: 'What UK regulation governs how schools must handle student data when using EdTech AI tools?',
     options: [
-      'It searches every document on the internet to find the exact source a student copied from, then provides a link to the original page',
-      'It analyses patterns in the writing — such as sentence structure, word choice, and stylistic consistency — to estimate the likelihood that AI generated some or all of the text',
-      'It compares the submitted work against a database of every essay ever submitted to Turnitin by students around the world to find identical passages',
-      'It requires the student to complete a live oral examination immediately after submitting their written work to verify they understand what they wrote',
+      'The Schools Data Protection Act 2018, which sets specific rules for schools sharing pupil data with technology providers',
+      'UK GDPR, which requires schools to ensure any EdTech tool processes pupil data lawfully, fairly, and with appropriate safeguards',
+      'The Digital Education Standards Framework, a voluntary code of conduct that is not legally binding',
+      "The Children's Online Privacy Act, an American law that UK schools must comply with when using American EdTech tools",
     ],
     correctIndex: 1,
     explanation:
-      'AI detectors like Turnitin\'s look at statistical patterns in the text. AI-generated writing tends to be more predictable — it uses common words and constructions more consistently than human writing, which is more varied and sometimes deliberately unusual. The detector calculates a "perplexity" score (how surprising the word choices are) and a "burstiness" score (how much variation there is between sentences). Human writers naturally vary their sentence length and complexity; AI tends to be more uniform. However, these detectors are not perfect — they can flag human writing as AI-generated and miss well-disguised AI output — which is why most institutions use them as a starting point for a conversation, not as definitive proof of cheating.',
-    hint: 'Think about how AI writing differs statistically from human writing.',
-  },
-  {
-    question: 'Why is access to AI education technology considered an equity issue in the UK?',
-    options: [
-      'Because AI tutoring apps are only available in English, disadvantaging students who speak other languages at home',
-      "Because well-funded schools can afford AI learning platforms and tools that give their students a measurable advantage, while under-resourced schools cannot, widening the attainment gap",
-      'Because AI tools are only allowed in grammar schools and academies, not in comprehensives, due to regulatory restrictions on their use in state education',
-      'Because students in cities have faster internet connections that make AI tools load more quickly, giving them a speed advantage in timed tests',
-    ],
-    correctIndex: 1,
-    explanation:
-      'This is known as the "AI divide" in education. Schools in wealthier areas, or with larger per-pupil budgets, can subscribe to platforms like Century Tech, Educake, or Carousel Learning — tools that provide personalised practice and detailed analytics for teachers. Schools with tighter budgets cannot. Research consistently shows that personalised practice and timely feedback improve outcomes, so students with access to AI tools may advance faster than those without. This does not necessarily mean AI tools are good or bad for education overall — but it does mean that unequal access to them could widen the existing attainment gap between disadvantaged and advantaged students, which is a serious concern for UK education policy.',
-    hint: 'Think about what happens when a powerful learning tool is not available equally to everyone.',
+      "UK GDPR applies to all organisations that process personal data, including schools and the EdTech companies they work with. Because pupils are children, extra protections apply. Schools must be able to demonstrate a lawful basis for sharing the data, ensure data is not used for unexpected purposes, and confirm appropriate security measures are in place. The ICO has published specific guidance for schools on using EdTech tools.",
+    hint: 'Think about the main UK data protection law.',
   },
 ]
 
@@ -97,19 +84,19 @@ export function AIAndEducationTechnology() {
       <div className="max-w-2xl w-full space-y-8">
 
         <div className="text-center space-y-4">
-          <div className="text-6xl">&#x1F4BB;</div>
+          <div className="text-6xl">&#x1F4DA;</div>
           <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
             AI and education technology
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI tutors, adaptive learning platforms, personalised feedback, the risks of over-reliance,
-            and the UK EdTech landscape.
+            AI tutors, adaptive learning platforms, instant essay feedback, and the risks of
+            letting algorithms decide how we learn.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm px-4 py-2 rounded-full">
               <span>About 7 min read</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 text-sm px-4 py-2 rounded-full font-semibold">
+            <div className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 text-sm px-4 py-2 rounded-full font-semibold">
               <span>Intermediate</span>
             </div>
           </div>
@@ -120,17 +107,17 @@ export function AIAndEducationTechnology() {
         <KeyTakeaways points={KEY_TAKEAWAYS} />
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">The classroom is changing</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Why education is changing</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            For most of the 20th century, teaching looked the same: one teacher, thirty students, a textbook, and a chalkboard. AI is beginning to change that — and not always in the ways you might expect.
+            For most of history, education meant a teacher standing in front of a room teaching the same lesson to everyone. AI is making it possible to give every student a lesson that adapts to exactly where they are right now.
           </p>
           <div className="space-y-2">
             {[
-              'Over 60% of UK schools now use some form of EdTech tool in the classroom — up from under 30% before the pandemic',
-              'Khan Academy, which offers free courses to anyone in the world, has over 100 million registered users',
-              'GCSE students in England spend an estimated 2.5 hours per week using online learning platforms outside school',
-              'The UK EdTech sector was valued at £3.5 billion in 2023 and is projected to reach £7 billion by 2028',
-              'UNESCO estimates that 300 million children worldwide have no access to the internet — meaning AI learning tools will not reach them',
+              'The UK EdTech market is worth over £3.5 billion and growing — schools, colleges, and universities all use AI-powered tools',
+              'Duolingo has over 500 million registered users worldwide — more than the population of the United States learning a new language for free',
+              'Khan Academy serves over 150 million learners globally with free lessons in maths, science, history, and more',
+              'Century Tech, a UK-built adaptive learning platform, is used in hundreds of UK schools',
+              "The UK government's EdTech strategy explicitly encourages AI to reduce teacher workload and personalise learning",
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
                 <span className="text-blue-600 dark:text-blue-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
@@ -141,86 +128,141 @@ export function AIAndEducationTechnology() {
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-green-100 dark:border-green-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Adaptive learning — teaching that adjusts to you</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Adaptive learning — the AI that teaches to you</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            The most powerful shift in AI education is not AI tutors that talk to you — it is platforms that track exactly what you know and what you do not, then adjust every lesson accordingly.
-          </p>
-          <div className="space-y-3">
-            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F4CA;</span>
-              <div>
-                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">Century Tech</p>
-                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">Used in hundreds of UK schools, Century analyses every answer a student gives — including how long they took and how many attempts they needed. It identifies knowledge gaps and automatically adds revision material for those specific gaps. Teachers get a dashboard showing exactly which students are struggling with which concepts, so they can target their support where it is most needed.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F9E0;</span>
-              <div>
-                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">Khanmigo — the Socratic AI tutor</p>
-                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">Khan Academy's AI tutor, powered by GPT-4, deliberately refuses to just give students the answer. Instead it asks guiding questions — "What do you think happens when you add these two fractions?" — leading students to work out the answer themselves. This Socratic approach is designed to build genuine understanding, not just correct answers. It can tutor students in maths, science, history, and reading at any level.</p>
-              </div>
-            </div>
-            <div className="flex gap-3 items-start bg-green-50 dark:bg-green-950 rounded-xl p-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">&#x270F;&#xFE0F;</span>
-              <div>
-                <p className="font-semibold text-green-800 dark:text-green-200 text-sm mb-0.5">AI writing feedback</p>
-                <p className="text-green-700 dark:text-green-300 text-sm leading-relaxed">Tools like Grammarly and Hemingway App give instant feedback on writing style, grammar, and clarity. More advanced platforms like NoRedInk use AI to generate grammar exercises targeted at the specific errors each student makes most often. A student who consistently confuses "fewer" and "less" gets more practice on exactly that — not a generic worksheet covering everything.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-purple-100 dark:border-purple-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI in the UK classroom — the honest picture</h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            UK schools are at very different stages of adopting AI. Some are embracing it enthusiastically; others are cautious or outright ban it.
+            Traditional teaching assumes every student is at the same place at the same time. Adaptive learning platforms start from a different assumption: every student is different, and the lesson should fit the learner.
           </p>
           <div className="space-y-3">
             {[
-              { icon: '✅', title: 'What is working', text: 'Personalised practice platforms have strong evidence behind them. A 2023 Education Endowment Foundation review found that adaptive practice tools consistently improve outcomes in maths, particularly for students who are behind. Teachers report saving hours of marking time each week.' },
-              { icon: '⚠️', title: 'What is worrying schools', text: 'ChatGPT and similar tools have made it trivially easy for students to have AI write their essays. UK universities are redesigning assessments, adding oral examinations, and requiring in-person written work to verify that students can actually do what their assignments claim.' },
-              { icon: '💰', title: 'The inequality problem', text: 'The best AI learning platforms cost money. Schools in wealthier areas or multi-academy trusts with negotiating power can afford them. Schools in areas of deprivation often cannot. This risks widening the attainment gap that education is supposed to close.' },
-              { icon: '🇬🇧', title: 'UK policy response', text: "The Department for Education published guidance in 2023 acknowledging AI's potential in education while emphasising the need for schools to make their own judgements. Ofsted is considering how AI use will factor into inspection frameworks. There is currently no national ban on AI tools in schools." },
-            ].map((item) => (
-              <div key={item.title} className="flex gap-3 items-start bg-purple-50 dark:bg-purple-950 rounded-xl p-3">
-                <span className="text-xl flex-shrink-0 mt-0.5">{item.icon}</span>
+              {
+                icon: '&#x1F4CA;',
+                label: 'How it works',
+                text: "The platform monitors every answer — not just whether it's right or wrong, but how quickly you answer, whether you hesitate, and whether you improve after a hint. This builds a model of exactly what you know and do not know.",
+                color: 'green',
+              },
+              {
+                icon: '&#x1F3AF;',
+                label: 'What it changes',
+                text: "A student who already understands fractions does not sit through ten practice questions — the AI skips ahead. A student who struggles gets more examples and easier stepping-stone questions. Each student's path through the curriculum is unique.",
+                color: 'green',
+              },
+              {
+                icon: '&#x1F4CB;',
+                label: 'Real examples',
+                text: 'Sparx Maths assigns personalised homework to each pupil — different questions at different levels, all targeting the same curriculum objective. Century Tech does the same across multiple subjects. Both are widely used in UK secondary schools.',
+                color: 'green',
+              },
+            ].map(({ icon, label, text, color }) => (
+              <div key={label} className={`flex gap-3 items-start bg-${color}-50 dark:bg-${color}-950 rounded-xl p-3`}>
+                <span className="text-xl flex-shrink-0 mt-0.5" dangerouslySetInnerHTML={{ __html: icon }} />
                 <div>
-                  <p className="font-semibold text-purple-800 dark:text-purple-200 text-sm mb-0.5">{item.title}</p>
-                  <p className="text-purple-700 dark:text-purple-300 text-sm leading-relaxed">{item.text}</p>
+                  <p className={`font-semibold text-${color}-800 dark:text-${color}-200 text-sm mb-0.5`}>{label}</p>
+                  <p className={`text-${color}-700 dark:text-${color}-300 text-sm leading-relaxed`}>{text}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">The risk of over-reliance</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">AI tutors — having a conversation about learning</h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            AI can explain any concept, solve any maths problem, write any essay, and generate any piece of code. Which raises a serious question: if students can always ask AI, will they ever learn to think for themselves?
+            The biggest recent development in EdTech is AI tutors that students can have real conversations with. These go far beyond multiple-choice questions.
+          </p>
+          <div className="space-y-3">
+            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F916;</span>
+              <div>
+                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Khanmigo by Khan Academy</p>
+                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">
+                  Built on large language model technology, Khanmigo acts like a Socratic tutor — it does not give you the answer straight away. Instead it asks guiding questions: "What do you think the first step should be?" This approach is deliberately modelled on how good human tutors teach.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x1F426;</span>
+              <div>
+                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">Duolingo&rsquo;s AI features</p>
+                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">
+                  Duolingo uses AI to personalise when it reviews vocabulary with you — a technique called spaced repetition. It also has roleplay conversations where an AI character plays the part of a shopkeeper or friend so you can practise real-world dialogue in a new language.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-start bg-violet-50 dark:bg-violet-950 rounded-xl p-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">&#x270D;&#xFE0F;</span>
+              <div>
+                <p className="font-semibold text-violet-800 dark:text-violet-200 text-sm mb-0.5">AI writing feedback</p>
+                <p className="text-violet-700 dark:text-violet-300 text-sm leading-relaxed">
+                  Tools like Grammarly, Turnitin&rsquo;s AI writing assistant, and Microsoft Copilot can give detailed feedback on structure, argument, and language within seconds. For students who would otherwise wait days for teacher feedback, this is a significant advantage.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">What teachers think — colleague or replacement?</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Teachers have mixed views on AI in education. Many welcome the practical help. Others worry about what gets lost when algorithms take over parts of their role.
           </p>
           <div className="space-y-2">
             {[
-              'Writing an essay develops skills that are not just about the essay — organising thoughts, making arguments, and communicating clearly are skills for life. Using AI to write it skips all of that.',
-              'Working through a hard maths problem builds the ability to reason under pressure. Asking AI for the answer builds nothing except the habit of asking AI.',
-              'Some researchers argue the right comparison is not "AI vs. no AI" but "AI as scaffold" — using it for hints and feedback rather than complete answers, which can be genuinely helpful.',
-              'The best AI tutors, like Khanmigo, are specifically designed to avoid giving direct answers because the designers understand this risk.',
-              'Employers are already noticing that graduates struggle with tasks they believe AI should handle — suggesting over-reliance during education has real consequences.',
+              'AI can mark routine homework quickly, freeing teachers to spend more time on discussion, mentoring, and supporting students who need extra help',
+              'Planning lessons and writing reports are time-consuming tasks — AI writing tools can significantly reduce this burden',
+              'Concerns exist about students submitting AI-generated work as their own — the boundary between AI assistance and academic dishonesty is genuinely unclear',
+              "Teachers bring human judgement that AI lacks: recognising when a student is anxious, bored, or struggling for reasons the data does not show",
+              'The National Education Union has called for clear guidelines on AI use in schools, arguing that staff must be involved in decisions about which tools are adopted',
             ].map((item) => (
               <div key={item} className="flex gap-2 items-start">
-                <span className="text-amber-600 dark:text-amber-400 font-bold mt-0.5 flex-shrink-0">&#x2192;</span>
+                <span className="text-amber-600 dark:text-amber-400 font-bold mt-0.5 flex-shrink-0">&#x2713;</span>
                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{item}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <Quiz lessonId="ai-and-education-technology" questions={quizQuestions} />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-red-100 dark:border-red-900 p-6 space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Risks and concerns</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            EdTech AI brings genuine benefits, but there are real concerns that educators, parents, and policymakers are grappling with.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                title: 'Over-reliance',
+                detail: 'If students use AI to answer every question rather than as a tool to support thinking, they may develop surface familiarity without deep understanding. The skill of working through confusion — which builds resilience and genuine comprehension — risks being bypassed.',
+              },
+              {
+                title: 'Data privacy for children',
+                detail: "EdTech platforms collect enormous amounts of data about children's learning behaviours. This data is valuable commercially and requires careful legal safeguards. Parents often have no visibility into what is collected or how it is used.",
+              },
+              {
+                title: 'Algorithmic bias in assessments',
+                detail: 'If AI systems are trained primarily on data from certain student populations, they may perform less well for students from different backgrounds, languages, or learning styles — potentially widening attainment gaps rather than closing them.',
+              },
+              {
+                title: 'The digital divide',
+                detail: 'AI EdTech tools often require reliable broadband, up-to-date devices, and paid subscriptions. Students from lower-income households may lack access, potentially widening existing educational inequalities.',
+              },
+            ].map(({ title, detail }) => (
+              <div key={title} className="bg-red-50 dark:bg-red-950 rounded-xl p-3">
+                <p className="font-semibold text-red-800 dark:text-red-200 text-sm mb-1">{title}</p>
+                <p className="text-red-700 dark:text-red-300 text-sm leading-relaxed">{detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <LessonNote lessonId="ai-and-education-technology" lessonTitle={LESSON_TITLE} />
+
+        <Quiz questions={quizQuestions} lessonId="ai-and-education-technology" />
 
         <ReviewLaterButton lessonId="ai-and-education-technology" />
-        <LessonNote lessonId="ai-and-education-technology" />
         <LessonRating lessonId="ai-and-education-technology" />
         <LessonFeedback lessonId="ai-and-education-technology" />
+
         <RelatedLessons currentId="ai-and-education-technology" />
+
         <NextLesson currentId="ai-and-education-technology" />
       </div>
     </div>

@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { to: '/learn/neural-network', label: 'Neural networks' },
   { to: '/learn/language-models', label: 'Language models' },
   { to: '/ai-history', label: 'AI history' },
+  { to: '/ai-in-the-news', label: 'AI in the news' },
   { to: '/learn/ai-everyday-life', label: 'AI in everyday life' },
   { to: '/learn/ai-pros-and-cons', label: 'AI pros and cons' },
   { to: '/learn/what-is-api', label: 'What is an API?' },
@@ -22,9 +23,15 @@ const NAV_LINKS = [
   { to: '/glossary', label: 'Glossary' },
   { to: '/learning-recap', label: 'Learning recap' },
   { to: '/quiz-review', label: 'Quiz review' },
+  { to: '/quiz/ai-facts', label: 'AI facts quiz' },
+  { to: '/quiz/what-next', label: 'What to learn next' },
+  { to: '/quiz/guess-the-ai', label: 'Guess the AI' },
+  { to: '/quiz/sort-it-out', label: 'Sort it out' },
+  { to: '/streak', label: 'My streak' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },
   { to: '/my-progress', label: 'My progress' },
+  { to: '/series', label: 'Series' },
   { to: '/bookmarks', label: 'Bookmarks' },
 ]
 
@@ -72,9 +79,11 @@ export function NavBar() {
           {[
             { to: '/', label: 'Home' },
             { to: '/learning-path', label: 'Learning path' },
+            { to: '/series', label: 'Series' },
             { to: '/collections', label: 'Collections' },
             { to: '/ask', label: 'Ask' },
             { to: '/my-progress', label: 'My progress' },
+            { to: '/streak', label: 'My streak' },
           ].map((link) => (
             <Link
               key={link.to}
