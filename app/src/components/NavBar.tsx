@@ -28,6 +28,8 @@ const NAV_LINKS = [
   { to: '/quiz/guess-the-ai', label: 'Guess the AI' },
   { to: '/quiz/sort-it-out', label: 'Sort it out' },
   { to: '/quiz/true-or-false', label: 'True or False' },
+  { to: '/quiz/ai-timeline', label: 'AI timeline' },
+  { to: '/quiz/jargon-match', label: 'Jargon match' },
   { to: '/streak', label: 'My streak' },
   { to: '/ask', label: 'Ask a question' },
   { to: '/feedback', label: 'Give feedback' },

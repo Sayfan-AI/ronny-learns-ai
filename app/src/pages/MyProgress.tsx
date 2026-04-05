@@ -131,6 +131,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-personal-assistants',            title: 'AI and personal assistants',               to: '/learn/ai-and-personal-assistants' },
   { id: 'ai-and-the-legal-system',               title: 'AI and the legal system',                  to: '/learn/ai-and-the-legal-system' },
   { id: 'ai-and-education-technology',           title: 'AI and education technology',              to: '/learn/ai-and-education-technology' },
+  { id: 'ai-and-the-benefits-system',            title: 'AI and the benefits system',               to: '/learn/ai-and-the-benefits-system' },
+  { id: 'ai-and-pregnancy-and-baby-care',        title: 'AI and pregnancy and baby care',           to: '/learn/ai-and-pregnancy-and-baby-care' },
   { id: 'ai-and-content-moderation',             title: 'AI and content moderation',                to: '/learn/ai-and-content-moderation' },
 ]
 
