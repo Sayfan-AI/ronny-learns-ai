@@ -1,166 +1,156 @@
 import { useState } from 'react'
+import { Link } from '@tanstack/react-router'
+import { useMarkVisited } from '../hooks/useMarkVisited'
 
-type Quote = {
+interface Round {
   id: string
   quote: string
-  author: string
-  year: string
-  context: string
+  correctAnswer: string
   options: string[]
+  context: string
 }
 
-const QUOTES: Quote[] = [
+const ROUNDS: Round[] = [
   {
-    id: 'q1',
-    quote: `"I think it's fair to say that personal computers have become the most empowering tool we've ever created. They're tools of communication, they're tools of creativity, and they can be shaped by their user."`,
-    author: 'Bill Gates',
-    year: '2004',
-    context: 'Bill Gates, co-founder of Microsoft, said this while discussing the role of personal computers. He has since become a prominent voice on AI, warning about both its promise (for healthcare, climate) and risk.',
-    options: ['Alan Turing', 'Bill Gates', 'Elon Musk', 'Steve Jobs'],
+    id: 'r1',
+    quote: '"We can only see a short distance ahead, but we can see plenty there that needs to be done."',
+    correctAnswer: 'Alan Turing',
+    options: ['Alan Turing', 'Marvin Minsky', 'John McCarthy', 'Claude Shannon'],
+    context: 'Alan Turing wrote this in his 1950 paper "Computing Machinery and Intelligence" — the same paper that proposed what became known as the Turing Test. Turing is widely regarded as the father of theoretical computer science and artificial intelligence.',
   },
   {
-    id: 'q2',
-    quote: '"The development of full artificial intelligence could spell the end of the human race… It would take off on its own, and re-design itself at an ever increasing rate."',
-    author: 'Stephen Hawking',
-    year: '2014',
-    context: 'Stephen Hawking said this in a BBC interview in 2014, expressing concern about superintelligent AI. He was one of the first major public figures to prominently warn about existential AI risk.',
-    options: ['Nick Bostrom', 'Stephen Hawking', 'Elon Musk', 'Yoshua Bengio'],
+    id: 'r2',
+    quote: '"The development of full artificial intelligence could spell the end of the human race."',
+    correctAnswer: 'Stephen Hawking',
+    options: ['Elon Musk', 'Nick Bostrom', 'Stephen Hawking', 'Bill Gates'],
+    context: 'Stephen Hawking said this in a 2014 BBC interview. The theoretical physicist warned that AI could outpace human evolution and eventually supersede humanity. He advocated for research into making AI beneficial and avoiding an arms race.',
   },
   {
-    id: 'q3',
-    quote: '"We need to be super careful with AI. It is potentially more dangerous than nukes."',
-    author: 'Elon Musk',
-    year: '2014',
-    context: 'Elon Musk has consistently warned about AI risk, while simultaneously co-founding OpenAI and later founding xAI. His public warnings about AI are among the most widely quoted.',
-    options: ['Sam Altman', 'Elon Musk', 'Stephen Hawking', 'Geoffrey Hinton'],
+    id: 'r3',
+    quote: '"AI is probably the most important thing humanity has ever worked on. I think of it as something more profound than electricity or fire."',
+    correctAnswer: 'Sundar Pichai',
+    options: ['Sam Altman', 'Sundar Pichai', 'Jensen Huang', 'Jeff Bezos'],
+    context: "Sundar Pichai, CEO of Google and Alphabet, made this statement in 2020. It reflects Google's strategic bet on AI as fundamental to the company's future across search, cloud computing, healthcare, and autonomous vehicles.",
   },
   {
-    id: 'q4',
-    quote: '"Artificial intelligence is one of the most profound things we\'re working on as humanity. It\'s more profound than fire or electricity."',
-    author: 'Sundar Pichai',
-    year: '2018',
-    context: "Sundar Pichai, CEO of Google (now Alphabet), said this at the World Economic Forum, arguing that AI is a fundamental technological shift rather than just another product category.",
-    options: ['Jeff Bezos', 'Sundar Pichai', 'Sam Altman', 'Demis Hassabis'],
+    id: 'r4',
+    quote: '"The question is not whether intelligent machines can have any emotions, but whether machines can be intelligent without any emotions."',
+    correctAnswer: 'Marvin Minsky',
+    options: ['Alan Turing', 'Marvin Minsky', 'Yann LeCun', 'Geoffrey Hinton'],
+    context: "Marvin Minsky, one of the founders of AI as an academic discipline at MIT, argued throughout his career that emotion was not separate from intelligence but central to it. His book 'The Emotion Machine' (2006) explored this idea in depth.",
   },
   {
-    id: 'q5',
-    quote: '"I visualize a time when we will be to robots what dogs are to humans, and I\'m rooting for the machines."',
-    author: 'Claude Shannon',
-    year: '1987',
-    context: "Claude Shannon, the founder of information theory, made this remark humorously in 1987. His foundational work on information and communication underpins all of digital computing and AI.",
-    options: ['Alan Turing', 'Claude Shannon', 'Marvin Minsky', 'John McCarthy'],
+    id: 'r5',
+    quote: '"We\'re making something that is either the most amazing thing that has ever happened, or the most catastrophic."',
+    correctAnswer: 'Sam Altman',
+    options: ['Elon Musk', 'Sam Altman', 'Dario Amodei', 'Demis Hassabis'],
+    context: 'Sam Altman, CEO of OpenAI, has repeatedly described AI development in these existential terms while continuing to develop it. His position — that AI could be transformative for good or catastrophically harmful — is sometimes called the "e/acc vs safety" tension within the AI industry.',
   },
   {
-    id: 'q6',
-    quote: '"The question of whether machines can think is about as relevant as the question of whether submarines can swim."',
-    author: 'Edsger Dijkstra',
-    year: '1984',
-    context: "Edsger Dijkstra, the computer scientist famous for Dijkstra's algorithm, made this remark to challenge the framing of AI debates. The point: just because machines don't think the way humans do doesn't mean they can't do remarkable things.",
-    options: ['Alan Turing', 'Marvin Minsky', 'Edsger Dijkstra', 'John von Neumann'],
+    id: 'r6',
+    quote: '"Machines take me by surprise with great frequency."',
+    correctAnswer: 'Alan Turing',
+    options: ['Alan Turing', 'John von Neumann', 'Norbert Wiener', 'Claude Shannon'],
+    context: "Alan Turing wrote this in 'Computing Machinery and Intelligence' (1950), arguing against the view that machines cannot think because they only do what they are programmed to do. He suggested that a machine's outputs can surprise even its creator.",
   },
   {
-    id: 'q7',
-    quote: '"Algorithms are not objective. They are opinions embedded in code."',
-    author: 'Cathy O\'Neil',
-    year: '2016',
-    context: "Cathy O'Neil, data scientist and author of 'Weapons of Math Destruction', coined this phrase to challenge the popular idea that algorithmic systems are inherently neutral. Her book was one of the first mainstream warnings about AI bias.",
-    options: ['Joy Buolamwini', "Cathy O'Neil", 'Kate Crawford', 'Timnit Gebru'],
+    id: 'r7',
+    quote: '"I\'m increasingly inclined to think that there should be some regulatory oversight, maybe at the national and international level, just to make sure that we don\'t do something very foolish."',
+    correctAnswer: 'Elon Musk',
+    options: ['Sam Altman', 'Bill Gates', 'Elon Musk', 'Tim Cook'],
+    context: 'Elon Musk said this in 2014 at the MIT Aeronautics and Astronautics department\'s centennial symposium, calling AI "our biggest existential threat". Musk later co-founded OpenAI (then left its board) and subsequently founded xAI, his own AI company.',
   },
   {
-    id: 'q8',
-    quote: '"I\'ve come to believe that we should not call them "AI" at all. We should call them "systems that consume data and produce probabilistic outputs", because that\'s what they are."',
-    author: 'Gary Marcus',
-    year: '2022',
-    context: "Gary Marcus, AI researcher and cognitive scientist, has been a prominent critic of hype around large language models, arguing that they do not achieve genuine understanding or reasoning — only pattern matching.",
-    options: ['Yann LeCun', 'Gary Marcus', 'Geoffrey Hinton', 'Andrew Ng'],
+    id: 'r8',
+    quote: '"The question of whether a computer can think is no more interesting than the question of whether a submarine can swim."',
+    correctAnswer: 'Edsger Dijkstra',
+    options: ['Alan Turing', 'Edsger Dijkstra', 'John McCarthy', 'Marvin Minsky'],
+    context: 'Edsger Dijkstra, the Dutch computer scientist famous for shortest path algorithms and structured programming, was sceptical of AI claims. He argued that debating whether computers "think" was a category error — like asking if submarines "swim".',
   },
   {
-    id: 'q9',
-    quote: '"I look at AlphaFold and I see one of the most beautiful things I\'ve ever seen. But I also wonder what it will mean to be a biologist in 20 years."',
-    author: 'Jennifer Doudna',
-    year: '2022',
-    context: "Jennifer Doudna, co-developer of CRISPR gene editing and a Nobel Prize winner, expressed both wonder and concern about AI's impact on biology — specifically after AlphaFold solved the protein folding problem.",
-    options: ['Frances Arnold', 'Jennifer Doudna', 'Katalin Karikó', 'Elizabeth Blackburn'],
+    id: 'r9',
+    quote: '"I don\'t want to be too precise, but I\'d say we might have AGI within the next three to five years."',
+    correctAnswer: 'Sam Altman',
+    options: ['Demis Hassabis', 'Sam Altman', 'Yann LeCun', 'Ilya Sutskever'],
+    context: 'Sam Altman of OpenAI has made increasingly aggressive AGI timeline predictions. His estimates have prompted significant pushback from AI researchers who argue that defining AGI is itself contested and that timelines of this kind are not supported by current evidence.',
   },
   {
-    id: 'q10',
-    quote: '"Race and bias are not technical problems. They are political problems that have been outsourced to tech companies."',
-    author: 'Joy Buolamwini',
-    year: '2019',
-    context: "Joy Buolamwini, computer scientist and founder of the Algorithmic Justice League, said this while discussing her landmark research on facial recognition bias. Her work showed that commercial facial recognition systems were significantly less accurate for darker-skinned women.",
-    options: ['Timnit Gebru', 'Joy Buolamwini', "Cathy O'Neil", 'Kate Crawford'],
+    id: 'r10',
+    quote: '"There is no reason and no way that a human mind can keep up with an artificial intelligence machine by 2035."',
+    correctAnswer: 'Gray Scott',
+    options: ['Ray Kurzweil', 'Nick Bostrom', 'Gray Scott', 'Max Tegmark'],
+    context: 'Gray Scott is a futurist and researcher who has spoken widely about AI and technology trends. This quote reflects a strand of futurist thinking about the pace of AI development, though many AI researchers consider such precise timeline predictions to be speculative.',
   },
 ]
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
 export function WhoSaidItQuiz() {
-  const [quotes] = useState<Quote[]>(() => shuffle([...QUOTES]))
-  const [current, setCurrent] = useState(0)
+  useMarkVisited('who-said-it')
+  const [round, setRound] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
-  const [scores, setScores] = useState<boolean[]>([])
-  const [finished, setFinished] = useState(false)
+  const [scores, setScores] = useState<Record<string, boolean>>({})
+  const [done, setDone] = useState(false)
 
-  const quote = quotes[current]
+  const current = ROUNDS[round]
   const isAnswered = selected !== null
-  const totalCorrect = scores.filter(Boolean).length
+  const isCorrect = selected === current.correctAnswer
+  const totalScore = Object.values(scores).filter(Boolean).length
 
-  function handleSelect(option: string) {
+  function handleGuess(option: string) {
     if (isAnswered) return
     setSelected(option)
-    setScores((prev) => [...prev, option === quote.author])
+    setScores(prev => ({ ...prev, [current.id]: option === current.correctAnswer }))
   }
 
   function handleNext() {
-    if (current < quotes.length - 1) {
-      setCurrent((c) => c + 1)
-      setSelected(null)
+    if (round + 1 >= ROUNDS.length) {
+      setDone(true)
     } else {
-      setFinished(true)
+      setRound(r => r + 1)
+      setSelected(null)
     }
   }
 
   function handleRestart() {
-    setCurrent(0)
+    setRound(0)
     setSelected(null)
-    setScores([])
-    setFinished(false)
+    setScores({})
+    setDone(false)
   }
 
-  if (finished) {
-    const pct = Math.round((totalCorrect / quotes.length) * 100)
+  if (done) {
+    const pct = Math.round((totalScore / ROUNDS.length) * 100)
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
-        <div className="max-w-lg w-full space-y-6 text-center">
-          <div className="text-7xl">&#x1F4AC;</div>
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Who said it? Complete!</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            You got <span className="font-bold text-amber-600 dark:text-amber-400">{totalCorrect} / {quotes.length}</span> correct ({pct}%)
-          </p>
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            {pct >= 80
-              ? 'Excellent — you know your AI thinkers!'
-              : pct >= 50
-              ? 'Good effort! There are some fascinating people in the AI world.'
-              : 'Nice try — the context snippets are a great way to get to know these voices.'}
-          </p>
-          <button
-            onClick={handleRestart}
-            className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            &#x1F504; Play again
-          </button>
-          <div>
-            <a href="#/" className="text-amber-600 dark:text-amber-400 text-sm hover:underline">
-              Back to home
-            </a>
+      <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+        <div className="max-w-2xl w-full space-y-8">
+          <div className="text-center space-y-3">
+            <div className="text-5xl mb-2">&#x1F3C6;</div>
+            <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">All done!</h1>
+            <p className="text-2xl font-bold text-purple-600">{totalScore} / {ROUNDS.length} correct</p>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              {pct >= 80 ? 'Excellent — you know who said what in AI.' : pct >= 50 ? 'Good effort! A few tricky ones.' : 'Keep reading — the quotes will start to click.'}
+            </p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-5 space-y-3">
+            <h2 className="font-bold text-gray-800 dark:text-gray-100">Round breakdown</h2>
+            {ROUNDS.map((r) => (
+              <div key={r.id} className="flex justify-between items-center text-sm">
+                <span className="text-gray-600 dark:text-gray-300 truncate flex-1 mr-2">"{r.quote.substring(0, 50)}..."</span>
+                <span className={`font-bold flex-shrink-0 ${scores[r.id] ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {scores[r.id] ? '&#x2713; ' : '&#x2715; '}{r.correctAnswer}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-3 justify-center">
+            <button
+              onClick={handleRestart}
+              className="px-6 py-3 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-colors"
+            >
+              Play again
+            </button>
+            <Link to="/" className="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+              Home
+            </Link>
           </div>
         </div>
       </div>
@@ -168,77 +158,64 @@ export function WhoSaidItQuiz() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
-      <div className="max-w-lg w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-950 px-4 py-10 flex flex-col items-center">
+      <div className="max-w-2xl w-full space-y-6">
 
         <div className="text-center space-y-2">
-          <div className="text-5xl">&#x1F4AC;</div>
+          <div className="text-4xl mb-1">&#x1F4AC;</div>
           <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Who said it?</h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            Round {current + 1} of {quotes.length} — who made this quote about AI?
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Famous quotes about AI — can you identify who said each one?</p>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Round {round + 1} of {ROUNDS.length}</span>
+          <span className="text-sm font-bold text-purple-600">Score: {totalScore}</span>
+        </div>
+
+        <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-full bg-purple-500 transition-all" style={{ width: `${(round / ROUNDS.length) * 100}%` }} />
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-purple-100 dark:border-purple-900 p-6">
+          <p className="text-gray-700 dark:text-gray-200 text-lg leading-relaxed italic text-center">
+            {current.quote}
           </p>
-          <div className="flex justify-center gap-1.5 pt-1">
-            {quotes.map((_, i) => (
-              <div
-                key={i}
-                className={`h-2 w-5 rounded-full transition-all ${
-                  i < scores.length
-                    ? scores[i] ? 'bg-amber-500' : 'bg-red-400'
-                    : i === current
-                    ? 'bg-amber-300'
-                    : 'bg-gray-200 dark:bg-gray-700'
-                }`}
-              />
+        </div>
+
+        {!isAnswered ? (
+          <div className="grid grid-cols-1 gap-3">
+            {current.options.map(opt => (
+              <button
+                key={opt}
+                onClick={() => handleGuess(opt)}
+                className="py-3 px-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-purple-50 hover:border-purple-300 dark:hover:bg-purple-900/20 dark:hover:border-purple-600 transition-colors text-left"
+              >
+                {opt}
+              </button>
             ))}
           </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-amber-100 dark:border-amber-900 p-6">
-          <p className="text-xs text-amber-600 dark:text-amber-400 font-semibold uppercase tracking-wide mb-3">The quote</p>
-          <p className="text-gray-700 dark:text-gray-200 text-base leading-relaxed italic">{quote.quote}</p>
-          <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">{quote.year}</p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          {quote.options.map((option) => {
-            let color = 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950'
-            if (isAnswered) {
-              if (option === quote.author) color = 'bg-green-100 dark:bg-green-900 border-green-400 dark:border-green-600 text-green-800 dark:text-green-200'
-              else if (selected === option) color = 'bg-red-100 dark:bg-red-900 border-red-400 dark:border-red-600 text-red-800 dark:text-red-200'
-              else color = 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500'
-            }
-            return (
-              <button
-                key={option}
-                onClick={() => handleSelect(option)}
-                disabled={isAnswered}
-                className={`border-2 rounded-xl p-3 text-sm font-medium text-center transition-all ${color} ${!isAnswered ? 'cursor-pointer' : 'cursor-default'}`}
-              >
-                {option}
-              </button>
-            )
-          })}
-        </div>
-
-        {isAnswered && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-4 space-y-2">
-            <p className="font-semibold text-gray-700 dark:text-gray-200 text-sm">
-              {scores[scores.length - 1] ? `✓ Correct — ${quote.author}!` : `✗ That was ${quote.author}`}
-            </p>
-            <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{quote.context}</p>
+        ) : (
+          <div className={`rounded-2xl p-5 space-y-3 ${isCorrect ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700' : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700'}`}>
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{isCorrect ? '&#x2705;' : '&#x274C;'}</span>
+              <p className={`font-bold ${isCorrect ? 'text-emerald-700 dark:text-emerald-300' : 'text-red-700 dark:text-red-300'}`}>
+                {isCorrect ? `Correct! That was ${current.correctAnswer}.` : `Not quite — this was said by ${current.correctAnswer}.`}
+              </p>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{current.context}</p>
             <button
               onClick={handleNext}
-              className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2 rounded-xl transition-colors text-sm mt-1"
+              className="w-full py-3 bg-purple-500 text-white rounded-xl font-semibold hover:bg-purple-600 transition-colors text-sm"
             >
-              {current < quotes.length - 1 ? 'Next quote →' : 'See results 🏆'}
+              {round + 1 >= ROUNDS.length ? 'See final score' : 'Next quote'}
             </button>
           </div>
         )}
 
-        <div className="text-center">
-          <a href="#/" className="text-amber-600 dark:text-amber-400 text-sm hover:underline">
-            Back to home
-          </a>
+        <div className="text-center pt-2">
+          <Link to="/" className="text-indigo-600 dark:text-indigo-400 text-sm hover:underline">
+            &larr; Back to home
+          </Link>
         </div>
 
       </div>

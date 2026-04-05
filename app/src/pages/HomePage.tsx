@@ -1139,7 +1139,7 @@ const MODULE_GROUPS: ModuleGroup[] = [
         description: 'How AI is changing the way we learn — from adaptive platforms like Sparx Maths to AI tutors like Khanmigo, and the risks of over-reliance on algorithmic teaching.',
         readingTime: '7 min',
         icon: '📚',
-        to: '/lessons/ai-and-education-technology',
+        to: '/learn/ai-and-education-technology',
         color: 'blue',
         difficulty: 'Intermediate',
       },
@@ -1294,6 +1294,16 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-welfare-benefits',
+        title: 'AI and welfare benefits — DWP fraud detection, Universal Credit algorithms, SyRI case, and claimant rights',
+        description: 'How AI is used in the UK benefits system — from DWP IRIS fraud detection to algorithmic UC sanctions — and what claimants can do to challenge automated decisions.',
+        readingTime: '7 min',
+        icon: '💰',
+        to: '/learn/ai-and-welfare-benefits',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-dentistry',
         title: 'AI and dentistry — AI diagnosis, dental imaging, NHS waiting lists, and the future of the dentist',
         description: 'How AI is changing dental care in the UK — from AI that spots tooth decay in X-rays to tools helping overstretched NHS dentists manage patient lists.',
@@ -1434,26 +1444,6 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Beginner',
       },
       {
-        id: 'ai-and-the-benefits-system',
-        title: 'AI and the benefits system — DWP, Universal Credit, fraud detection, and algorithmic decisions',
-        description: 'How the DWP uses AI to detect benefit fraud, what algorithmic decision-making means for claimants, and your rights when AI affects your Universal Credit.',
-        readingTime: '8 min',
-        icon: '&#x1F3DB;&#xFE0F;',
-        to: '/learn/ai-and-the-benefits-system',
-        color: 'orange',
-        difficulty: 'Intermediate',
-      },
-      {
-        id: 'ai-and-pregnancy-and-baby-care',
-        title: 'AI and pregnancy and baby care — apps, ultrasound AI, smart monitors, and sleep trackers',
-        description: 'How AI is used in pregnancy apps, ultrasound scanning, newborn monitoring, and the questions every parent should ask about data and safety.',
-        readingTime: '6 min',
-        icon: '&#x1F476;',
-        to: '/learn/ai-and-pregnancy-and-baby-care',
-        color: 'pink',
-        difficulty: 'Beginner',
-      },
-      {
         id: 'ai-and-content-moderation',
         title: 'AI and social media content moderation — hate speech, misinformation, false positives, and the Online Safety Act',
         description: 'How AI polices what billions of people post online, why it often gets it wrong, the human cost of content moderation, and what new laws require.',
@@ -1464,13 +1454,93 @@ const MODULE_GROUPS: ModuleGroup[] = [
         difficulty: 'Intermediate',
       },
       {
+        id: 'ai-and-the-benefits-system',
+        title: 'AI and the benefits system — DWP, Universal Credit, fraud detection, and algorithmic decisions',
+        description: "How AI is being used inside the UK benefits system to detect fraud, assess claims, and make decisions that affect some of the most vulnerable people in society.",
+        readingTime: '8 min',
+        icon: '🏛️',
+        to: '/learn/ai-and-the-benefits-system',
+        color: 'orange',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-pregnancy-and-baby-care',
+        title: 'AI and pregnancy and baby care — ultrasound AI, baby monitors, smart sleep trackers, and pregnancy apps',
+        description: 'How AI is entering maternity care — from AI that spots complications in baby scans to smart monitors that track breathing and sleep in newborns.',
+        readingTime: '6 min',
+        icon: '👶',
+        to: '/learn/ai-and-pregnancy-and-baby-care',
+        color: 'pink',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-cybercrime',
+        title: 'AI and cybercrime — AI-powered fraud, deepfake scams, automated attacks, and how to stay safe',
+        description: 'How criminals use AI to launch more sophisticated cyberattacks — and what individuals and organisations can do to protect themselves.',
+        readingTime: '6 min',
+        icon: '&#x1F9A0;',
+        to: '/learn/ai-and-cybercrime',
+        color: 'red',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-autonomous-vehicles',
+        title: 'AI and autonomous vehicles — self-driving cars, UK trials, safety challenges, and the road ahead',
+        description: 'How self-driving cars work, what is stopping full autonomy, who is liable when they crash, and the state of driverless technology in the UK.',
+        readingTime: '7 min',
+        icon: '&#x1F697;',
+        to: '/learn/ai-and-autonomous-vehicles',
+        color: 'blue',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-financial-advice',
+        title: 'AI and financial advice — robo-advisors, FCA rules, investment AI, and the democratisation of wealth management',
+        description: 'How AI is making financial advice more accessible, what robo-advisors can and cannot do, and the regulatory framework governing AI in UK financial services.',
+        readingTime: '7 min',
+        icon: '&#x1F4B9;',
+        to: '/learn/ai-and-financial-advice',
+        color: 'green',
+        difficulty: 'Intermediate',
+      },
+      {
+        id: 'ai-and-shopping',
+        title: 'AI and shopping — recommendation engines, dynamic pricing, Amazon Go, and your data',
+        description: 'How AI shapes what you see when you shop online, how prices change in real time, what Amazon Go cashierless stores use, and the data retailers collect.',
+        readingTime: '6 min',
+        icon: '&#x1F6D2;',
+        to: '/learn/ai-and-shopping',
+        color: 'orange',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-translation',
+        title: 'AI and translation — DeepL, Google Translate, neural machine translation, and what AI still gets wrong',
+        description: 'How AI translation works, how good it has become, what professional translators still do better, and the risks of trusting AI with important translations.',
+        readingTime: '6 min',
+        icon: '&#x1F30D;',
+        to: '/learn/ai-and-translation',
+        color: 'teal',
+        difficulty: 'Beginner',
+      },
+      {
+        id: 'ai-and-gig-economy',
+        title: 'AI and the gig economy — Uber, Deliveroo, algorithmic management, and worker rights',
+        description: 'How AI controls gig workers through ratings, route assignments, and deactivations — and the legal battles over transparency and worker rights.',
+        readingTime: '7 min',
+        icon: '&#x1F6F5;',
+        to: '/learn/ai-and-gig-economy',
+        color: 'yellow',
+        difficulty: 'Intermediate',
+      },
+      {
         id: 'ai-and-welfare-benefits',
         title: 'AI and welfare benefits — DWP fraud detection, Universal Credit algorithms, SyRI case, and claimant rights',
-        description: 'How AI is used inside the UK benefits system — and the serious questions it raises about automated decisions, fairness, and your rights as a claimant.',
+        description: 'How AI is used in the UK benefits system, the landmark SyRI court ruling on AI welfare surveillance, and what claimants can do to challenge automated decisions.',
         readingTime: '8 min',
-        icon: '&#x1F3DB;&#xFE0F;',
+        icon: '&#x1F4B0;',
         to: '/learn/ai-and-welfare-benefits',
-        color: 'orange',
+        color: 'yellow',
         difficulty: 'Intermediate',
       },
     ],
@@ -2540,6 +2610,26 @@ export function HomePage() {
               </div>
             </Link>
             <Link
+              to="/quiz/true-or-false"
+              className="bg-teal-50 border border-teal-200 rounded-xl p-4 hover:bg-teal-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x2714;&#xFE0F;</span>
+              <div>
+                <p className="font-semibold text-teal-800 text-sm">True or False?</p>
+                <p className="text-teal-600 text-xs">15 AI statements — decide what is true and what is a myth.</p>
+              </div>
+            </Link>
+            <Link
+              to="/quiz/ai-timeline"
+              className="bg-purple-50 border border-purple-200 rounded-xl p-4 hover:bg-purple-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x23F3;</span>
+              <div>
+                <p className="font-semibold text-purple-800 text-sm">AI Timeline</p>
+                <p className="text-purple-600 text-xs">Put 10 real AI milestones in chronological order.</p>
+              </div>
+            </Link>
+            <Link
               to="/quiz/jargon-match"
               className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 hover:bg-emerald-100 transition-colors flex items-center gap-3"
             >
@@ -2551,12 +2641,12 @@ export function HomePage() {
             </Link>
             <Link
               to="/quiz/who-said-it"
-              className="bg-amber-50 border border-amber-200 rounded-xl p-4 hover:bg-amber-100 transition-colors flex items-center gap-3"
+              className="bg-purple-50 border border-purple-200 rounded-xl p-4 hover:bg-purple-100 transition-colors flex items-center gap-3"
             >
               <span className="text-2xl flex-shrink-0">&#x1F4AC;</span>
               <div>
-                <p className="font-semibold text-amber-800 text-sm">Who said it?</p>
-                <p className="text-amber-600 text-xs">Guess who made 10 famous quotes about AI — scientists, critics, and tech leaders.</p>
+                <p className="font-semibold text-purple-800 text-sm">Who said it?</p>
+                <p className="text-purple-600 text-xs">Famous AI quotes — can you name who said them?</p>
               </div>
             </Link>
           </div>
