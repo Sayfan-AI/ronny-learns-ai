@@ -2499,6 +2499,16 @@ export function HomePage() {
                 <p className="text-emerald-600 text-xs">Sort AI concepts into categories across 3 rounds.</p>
               </div>
             </Link>
+            <Link
+              to="/quiz/true-or-false"
+              className="bg-teal-50 border border-teal-200 rounded-xl p-4 hover:bg-teal-100 transition-colors flex items-center gap-3"
+            >
+              <span className="text-2xl flex-shrink-0">&#x2714;&#xFE0F;</span>
+              <div>
+                <p className="font-semibold text-teal-800 text-sm">True or False?</p>
+                <p className="text-teal-600 text-xs">15 AI statements — decide what is true and what is a myth.</p>
+              </div>
+            </Link>
           </div>
         </div>
 
