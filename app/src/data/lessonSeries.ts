@@ -85,6 +85,8 @@ export const LESSON_SERIES: LessonSeries[] = [
       'ai-and-disability',
       'ai-for-accessibility',
       'ai-and-mental-health-care',
+      'ai-and-mental-health-chatbots',
+      'ai-and-sport-nutrition',
     ],
   },
   {

@@ -144,6 +144,8 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-prisons-and-criminal-justice', title: 'AI and prisons and criminal justice', to: '/learn/ai-and-prisons-and-criminal-justice' },
   { id: 'ai-and-climate-tech',            title: 'AI and climate tech',               to: '/learn/ai-and-climate-tech' },
   { id: 'ai-and-creative-economy',        title: 'AI and the creative economy',       to: '/learn/ai-and-creative-economy' },
+  { id: 'ai-and-sport-nutrition',         title: 'AI and sport nutrition',            to: '/learn/ai-and-sport-nutrition' },
+  { id: 'ai-and-mental-health-chatbots',  title: 'AI and mental health chatbots',     to: '/learn/ai-and-mental-health-chatbots' },
 ]
 
 interface QuizScoreEntry {

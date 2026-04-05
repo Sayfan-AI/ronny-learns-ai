@@ -155,6 +155,9 @@ const AIAndCreativeEconomy = lazy(() => import('./pages/AIAndCreativeEconomy').t
 const AIAndGigWorkers = lazy(() => import('./pages/AIAndGigWorkers').then(m => ({ default: m.AIAndGigWorkers })))
 const AIAndAgeingAndElderCare = lazy(() => import('./pages/AIAndAgeingAndElderCare').then(m => ({ default: m.AIAndAgeingAndElderCare })))
 const AIAndCriticalThinking = lazy(() => import('./pages/AIAndCriticalThinking').then(m => ({ default: m.AIAndCriticalThinking })))
+const AIAndSportNutrition = lazy(() => import('./pages/AIAndSportNutrition').then(m => ({ default: m.AIAndSportNutrition })))
+const AIAndMentalHealthChatbots = lazy(() => import('./pages/AIAndMentalHealthChatbots').then(m => ({ default: m.AIAndMentalHealthChatbots })))
+const GuessTheAIGame = lazy(() => import('./pages/GuessTheAIGame').then(m => ({ default: m.GuessTheAIGame })))
 
 // Loading fallback shown while a page chunk is being fetched
 function PageLoader() {
@@ -1070,6 +1073,24 @@ const aiAndGigWorkersRoute = createRoute({ getParentRoute: () => rootRoute, path
 const aiAndAgeingAndElderCareRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-ageing-and-elder-care', component: withSuspense(AIAndAgeingAndElderCare) })
 const aiAndCriticalThinkingRoute = createRoute({ getParentRoute: () => rootRoute, path: '/learn/ai-and-critical-thinking', component: withSuspense(AIAndCriticalThinking) })
 
+const aiAndSportNutritionRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-sport-nutrition',
+  component: withSuspense(AIAndSportNutrition),
+})
+
+const aiAndMentalHealthChatbotsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/ai-and-mental-health-chatbots',
+  component: withSuspense(AIAndMentalHealthChatbots),
+})
+
+const guessTheAIGameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quiz/guess-the-ai',
+  component: withSuspense(GuessTheAIGame),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -1218,6 +1239,9 @@ const routeTree = rootRoute.addChildren([
   aiAndGigWorkersRoute,
   aiAndAgeingAndElderCareRoute,
   aiAndCriticalThinkingRoute,
+  aiAndSportNutritionRoute,
+  aiAndMentalHealthChatbotsRoute,
+  guessTheAIGameRoute,
 ])
 
 const hashHistory = createHashHistory()
