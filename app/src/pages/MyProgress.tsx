@@ -15,6 +15,7 @@ import { useLearningCalendar } from '../hooks/useLearningCalendar'
 import { LearningStatsCard } from '../components/LearningStatsCard'
 import { TopicCompletionTracker } from '../components/TopicCompletionTracker'
 import { EstimatedCompletion } from '../components/EstimatedCompletion'
+import { LESSON_SERIES } from '../data/lessonSeries'
 
 // Lessons that have quizzes (ordered as they appear in the curriculum)
 const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
@@ -118,7 +119,7 @@ const LESSONS_WITH_QUIZZES: Array<{ id: string; title: string; to: string }> = [
   { id: 'ai-and-social-media-algorithms', title: 'AI and social media algorithms',  to: '/learn/ai-and-social-media-algorithms' },
   { id: 'ai-and-climate-activism',     title: 'AI and climate activism',             to: '/learn/ai-and-climate-activism' },
   { id: 'ai-and-sports-medicine',      title: 'AI and sports medicine',              to: '/learn/ai-and-sports-medicine' },
-  { id: 'ai-and-fraud',                title: 'AI and fraud and identity theft',     to: '/learn/ai-and-fraud' },
+  { id: 'ai-and-fraud-and-identity-theft', title: 'AI and fraud and identity theft', to: '/learn/ai-and-fraud-and-identity-theft' },
 ]
 
 interface QuizScoreEntry {
@@ -839,6 +840,46 @@ export function MyProgress() {
 
         {/* Topic completion tracker */}
         <TopicCompletionTracker />
+
+        {/* Learning series overview */}
+        {(() => {
+          const completedIds = new Set(quizScoreData.attempted.map(e => e.id))
+          return (
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-violet-100 dark:border-violet-900 p-5 space-y-4">
+              <p className="font-semibold text-gray-800 dark:text-gray-100 text-base">Learning series</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                Lessons are grouped into themed series. Complete all lessons in a series to master a topic area.
+              </p>
+              <div className="space-y-3">
+                {LESSON_SERIES.map(series => {
+                  const done = series.lessonIds.filter(id => completedIds.has(id)).length
+                  const total = series.lessonIds.length
+                  const pct = Math.round((done / total) * 100)
+                  return (
+                    <div key={series.slug} className="space-y-1.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span dangerouslySetInnerHTML={{ __html: series.icon }} className="text-base flex-shrink-0" />
+                          <p className="font-medium text-gray-800 dark:text-gray-100 text-sm truncate">{series.name}</p>
+                        </div>
+                        <span className="text-gray-500 dark:text-gray-400 text-xs flex-shrink-0">{done}/{total}</span>
+                      </div>
+                      <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all ${done === total ? 'bg-emerald-500' : 'bg-violet-500'}`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      {done === total && (
+                        <p className="text-emerald-600 dark:text-emerald-400 text-xs">&#x2713; Series complete!</p>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })()}
 
         {/* Achievements summary + name change */}
         <div className="flex flex-col sm:flex-row gap-3">

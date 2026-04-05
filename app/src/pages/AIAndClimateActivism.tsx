@@ -10,6 +10,7 @@ import { LessonFeedback } from '../components/LessonFeedback'
 import { ReviewLaterButton } from '../components/ReviewLaterButton'
 import { ShareButton } from '../components/ShareButton'
 import { KeyTakeaways } from '../components/KeyTakeaways'
+import { LessonSeriesBadge } from '../components/LessonSeriesBadge'
 
 const LESSON_TITLE = 'AI and climate activism'
 
@@ -116,6 +117,8 @@ export function AIAndClimateActivism() {
           <CompletedBadge lessonId="ai-and-climate-activism" />
           <ShareButton lessonTitle={LESSON_TITLE} />
         </div>
+
+        <LessonSeriesBadge lessonId="ai-and-climate-activism" />
 
         <KeyTakeaways points={KEY_TAKEAWAYS} />
 
