@@ -76,18 +76,6 @@ const QUESTION_BANK: ChallengeQuestion[] = [
     lessonId: 'what-is-ai', lessonTitle: 'What is AI?', lessonPath: '/learn/what-is-ai',
   },
   {
-    question: 'What was AlphaFold and why was it significant?',
-    options: [
-      'A robot that folds laundry, showing AI can handle domestic tasks',
-      'An AI that predicted the 3D structure of nearly every known protein, a major breakthrough for medicine and biology',
-      'A game-playing AI that beat world champions at origami design',
-      'A weather prediction system that improved hurricane forecasting',
-    ],
-    correctIndex: 1,
-    explanation: "AlphaFold, created by Google DeepMind, solved a 50-year-old challenge in biology: predicting how a protein folds into its 3D shape from its amino acid sequence. It has predicted the structures of over 200 million proteins, potentially accelerating drug discovery by years.",
-    lessonId: 'ai-and-scientific-research', lessonTitle: 'AI and scientific research', lessonPath: '/learn/ai-and-scientific-research',
-  },
-  {
     question: 'What does a "neural network" try to imitate?',
     options: [
       'The structure of the internet, with interconnected servers',
@@ -110,30 +98,6 @@ const QUESTION_BANK: ChallengeQuestion[] = [
     correctIndex: 1,
     explanation: "The EU AI Act (passed in 2024) is the world's first comprehensive AI law. It categorises AI systems by risk: minimal risk (most AI), limited risk (chatbots must disclose they're AI), high risk (AI used in hiring, loans, policing — strict rules apply), and unacceptable risk (certain uses banned entirely, like social scoring).",
     lessonId: 'ai-laws-and-rights', lessonTitle: 'AI, laws, and your rights', lessonPath: '/learn/ai-laws-and-rights',
-  },
-  {
-    question: 'What is a "deepfake"?',
-    options: [
-      'A very realistic-looking painting created by an AI art generator',
-      'AI-generated video or audio that convincingly shows a real person saying or doing something they never actually did',
-      'A type of AI that dives deep into the internet to find hidden information',
-      'A fake social media profile run by a bot',
-    ],
-    correctIndex: 1,
-    explanation: 'Deepfakes use generative AI to create convincing video or audio of real people. They can make it look and sound like a person said or did something they never did. Deepfakes are used in entertainment but also for misinformation and fraud.',
-    lessonId: 'ai-and-misinformation', lessonTitle: 'AI and misinformation', lessonPath: '/learn/ai-and-misinformation',
-  },
-  {
-    question: 'What is a "cobot"?',
-    options: [
-      'A robot that works in a coffee shop — named after a combination of coffee and robot',
-      'A collaborative robot designed to work safely alongside humans, rather than behind safety cages',
-      'A robot controlled remotely by a human operator at all times',
-      'A robot that can only perform one specific task, like welding',
-    ],
-    correctIndex: 1,
-    explanation: "Cobots (collaborative robots) are designed to share a workspace with humans. Unlike traditional industrial robots that work behind safety cages, cobots move more slowly, have force sensors that detect unexpected contact and stop immediately, and can be easily re-programmed. They're used in small businesses that couldn't afford full robot automation.",
-    lessonId: 'ai-and-robotics', lessonTitle: 'AI and robotics', lessonPath: '/learn/ai-and-robotics',
   },
   {
     question: 'How does Spotify decide which songs to recommend to you?',
@@ -172,42 +136,6 @@ const QUESTION_BANK: ChallengeQuestion[] = [
     lessonId: 'language-models', lessonTitle: 'How do language models like Claude work?', lessonPath: '/learn/language-models',
   },
   {
-    question: 'What is a "smart traffic light" powered by AI?',
-    options: [
-      'A traffic light that changes colour based on what colour cars are most common at that time of day',
-      'A traffic light connected to GPS satellites so it always knows exactly how many cars are on the road',
-      'A traffic light that uses cameras and AI to measure traffic flow in real time and adjust its timing to reduce congestion — rather than following a fixed timed programme',
-      'A traffic light that turns green for emergency vehicles by detecting their sirens',
-    ],
-    correctIndex: 2,
-    explanation: "Traditional traffic lights follow fixed timed cycles regardless of actual traffic. Smart traffic lights use cameras and AI to count vehicles, estimate queue lengths, and dynamically adjust green-light durations. Google's Project Green Light (now deployed in cities globally) has reduced stops at intersections by up to 30%, cutting fuel consumption and emissions.",
-    lessonId: 'ai-and-transport', lessonTitle: 'AI and transport', lessonPath: '/learn/ai-and-transport',
-  },
-  {
-    question: 'What is "GDPR" and what does it have to do with AI?',
-    options: [
-      'A programming language used to build AI systems in Europe',
-      'A European law that gives people rights over their personal data — including the right to know when AI makes decisions about them and to challenge those decisions',
-      'A standard that certifies AI systems as safe to use in the European Union',
-      'A trade agreement that allows European AI companies to sell software globally',
-    ],
-    correctIndex: 1,
-    explanation: "GDPR (General Data Protection Regulation) is a European law covering personal data. It applies to AI in several ways: AI systems that make automated decisions about people (loan approvals, job screening) must be explainable, people can request human review of automated decisions, and companies must have a legal basis to use personal data for AI training.",
-    lessonId: 'ai-and-privacy', lessonTitle: 'AI and privacy', lessonPath: '/learn/ai-and-privacy',
-  },
-  {
-    question: 'What is "procedural generation" in video games?',
-    options: [
-      'The process of writing the storyline for a video game step by step',
-      'Using algorithms or AI to generate game content — levels, terrain, items — automatically rather than designing everything by hand',
-      'The order in which a game developer releases updates and patches',
-      'A system that records how a player moves through a game level',
-    ],
-    correctIndex: 1,
-    explanation: "Procedural generation uses algorithms to create content automatically. Minecraft generates its infinite worlds procedurally — every biome, cave, and mountain is created by an algorithm seeded with a random value, not designed by hand. No Man's Sky used the same technique to generate over 18 quintillion unique planets. AI is making procedural generation smarter, producing more varied and coherent results.",
-    lessonId: 'ai-and-gaming', lessonTitle: 'AI and gaming', lessonPath: '/learn/ai-and-gaming',
-  },
-  {
     question: 'What was the Turing Test?',
     options: [
       'A test that measures how fast a computer can solve mathematical problems',
@@ -218,30 +146,6 @@ const QUESTION_BANK: ChallengeQuestion[] = [
     correctIndex: 1,
     explanation: "Alan Turing proposed the 'imitation game' in 1950: if a human evaluator cannot reliably tell whether they're talking to a machine or a human via text, the machine passes the test. It was a landmark idea that shaped AI research for decades, though researchers now debate whether passing the Turing Test is truly equivalent to intelligence.",
     lessonId: 'ai-history', lessonTitle: 'The history of AI', lessonPath: '/ai-history',
-  },
-  {
-    question: 'How does AI help farmers use fewer pesticides?',
-    options: [
-      'AI tells farmers which days are best for spraying based on the weather forecast',
-      'AI uses computer vision on drones or cameras to identify exactly which plants are affected by pests, so chemicals are applied only where needed rather than sprayed across entire fields',
-      'AI automatically orders more pesticide before stocks run low to ensure continuous coverage',
-      'AI calculates the minimum amount of pesticide that is legally required by agricultural regulations',
-    ],
-    correctIndex: 1,
-    explanation: "John Deere's See & Spray system uses computer vision cameras on tractors that can identify individual weeds among crops. Rather than spraying the entire field, it targets only the weeds — reducing herbicide use by up to 77%. Similar systems detect disease or pest infestations early, allowing targeted treatment rather than blanket application.",
-    lessonId: 'ai-and-food', lessonTitle: 'AI and food', lessonPath: '/learn/ai-and-food',
-  },
-  {
-    question: 'What is "virtual try-on" in fashion?',
-    options: [
-      'A system that lets customers video-call a personal stylist for advice',
-      'AI that uses your body measurements and a photo to show how clothes would look on you without physically trying them on',
-      'A 3D scanner in changing rooms that suggests what size to buy',
-      'An AI chatbot that recommends outfits based on your previous purchases',
-    ],
-    correctIndex: 1,
-    explanation: 'Virtual try-on uses AI to detect body landmarks from a photo and overlay clothing onto your image — so you can see how a garment would look on your body shape without visiting a shop. Zalando and Amazon both offer this to reduce returns, which are a major cost and environmental problem in online fashion.',
-    lessonId: 'ai-and-fashion', lessonTitle: 'AI and fashion', lessonPath: '/learn/ai-and-fashion',
   },
 ]
 

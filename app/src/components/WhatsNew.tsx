@@ -12,27 +12,6 @@ interface NewLesson {
 // Update this list each milestone when new lessons are added.
 // Most recently added lesson should be first.
 const RECENT_LESSONS: NewLesson[] = [
-  {
-    id: 'ai-and-architecture',
-    title: 'AI and architecture',
-    icon: '🏛️',
-    to: '/learn/ai-and-architecture',
-    difficulty: 'Intermediate',
-  },
-  {
-    id: 'ai-and-the-arts',
-    title: 'AI and the arts',
-    icon: '🎭',
-    to: '/learn/ai-and-the-arts',
-    difficulty: 'Beginner',
-  },
-  {
-    id: 'ai-and-volunteering',
-    title: 'AI and volunteering',
-    icon: '🙋',
-    to: '/learn/ai-and-volunteering',
-    difficulty: 'Intermediate',
-  },
 ]
 
 export function WhatsNew() {

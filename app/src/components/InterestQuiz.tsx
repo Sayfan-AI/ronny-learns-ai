@@ -23,22 +23,16 @@ function getRecommendations(
   if (topic === 'health') {
     return [
       { id: 'ai-in-healthcare', title: 'AI in healthcare', icon: '&#x1FA7A;', to: '/learn/ai-in-healthcare' },
-      { id: 'ai-and-mental-health-apps', title: 'AI and mental health apps', icon: '&#x1F9E0;', to: '/learn/ai-and-mental-health-apps' },
-      { id: 'ai-and-fitness-apps', title: 'AI and fitness apps', icon: '&#x1F3C3;', to: '/learn/ai-and-fitness-apps' },
     ]
   }
   if (topic === 'work' || goal === 'career') {
     return [
-      { id: 'ai-and-jobs', title: 'AI and jobs', icon: '&#x1F4BC;', to: '/learn/ai-and-jobs' },
-      { id: 'ai-and-hiring', title: 'AI and hiring', icon: '&#x1F91D;', to: '/learn/ai-and-hiring' },
       { id: 'ai-productivity-tools', title: 'AI productivity tools', icon: '&#x26A1;', to: '/learn/ai-productivity-tools' },
     ]
   }
   if (topic === 'society') {
     return [
       { id: 'ai-bias', title: 'AI bias', icon: '&#x2696;&#xFE0F;', to: '/learn/ai-bias' },
-      { id: 'ai-and-elections', title: 'AI and elections', icon: '&#x1F5F3;&#xFE0F;', to: '/learn/ai-and-elections' },
-      { id: 'ai-and-policing', title: 'AI and policing', icon: '&#x1F46E;', to: '/learn/ai-and-policing' },
     ]
   }
   if (topic === 'technology' && (comfort === 'comfortable' || comfort === 'confident')) {
@@ -51,7 +45,6 @@ function getRecommendations(
   if (goal === 'practical') {
     return [
       { id: 'how-to-use-ai-safely', title: 'How to use AI safely', icon: '&#x1F512;', to: '/learn/how-to-use-ai-safely' },
-      { id: 'ai-and-scams', title: 'AI and scams', icon: '&#x26A0;&#xFE0F;', to: '/learn/ai-and-scams' },
       { id: 'ai-productivity-tools', title: 'AI productivity tools', icon: '&#x26A1;', to: '/learn/ai-productivity-tools' },
     ]
   }
@@ -59,7 +52,6 @@ function getRecommendations(
   return [
     { id: 'what-is-ai', title: 'What is AI?', icon: '&#x1F916;', to: '/learn/what-is-ai' },
     { id: 'ai-everyday-life', title: 'AI in everyday life', icon: '&#x1F3E0;', to: '/learn/ai-everyday-life' },
-    { id: 'ai-and-scams', title: 'AI and scams', icon: '&#x26A0;&#xFE0F;', to: '/learn/ai-and-scams' },
   ]
 }
 

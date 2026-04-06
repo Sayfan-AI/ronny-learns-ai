@@ -105,51 +105,6 @@ const KC_QUESTIONS: KCQuestion[] = [
   },
   {
     id: 'q7',
-    topic: 'AI and jobs',
-    question: 'Based on what most economists currently think, what is AI most likely to do to jobs?',
-    options: [
-      'Eliminate all jobs within 10 years',
-      'Have no effect on jobs at all',
-      'Automate specific tasks within many jobs, requiring workers to adapt, while also creating new types of work — as previous waves of technology have done',
-      'Only create new jobs, with no negative effects for anyone',
-    ],
-    correctIndex: 2,
-    explanation: 'Most economists predict AI will automate tasks rather than entire jobs, and that adaptation will be needed. History shows waves of automation (looms, computers, the internet) typically created more jobs than they destroyed — but not always the same jobs or for the same people.',
-    lessonPath: '/learn/ai-and-jobs',
-    lessonTitle: 'AI and jobs',
-  },
-  {
-    id: 'q8',
-    topic: 'AI and misinformation',
-    question: 'What is the most effective thing individuals can do to reduce the spread of misinformation?',
-    options: [
-      'Only follow verified accounts on social media',
-      'Pause before sharing anything — check whether the claim is from a credible source and whether it has been confirmed elsewhere',
-      'Share breaking news immediately so others can see it before it is taken down',
-      'Trust content that has many likes and shares, as popularity indicates accuracy',
-    ],
-    correctIndex: 1,
-    explanation: 'Research consistently shows that pausing before sharing is the single most effective personal action. Emotional reactions — outrage, surprise, fear — are what cause misinformation to spread. Taking 30 seconds to check dramatically reduces the chance of sharing something false.',
-    lessonPath: '/learn/ai-and-misinformation',
-    lessonTitle: 'AI and misinformation',
-  },
-  {
-    id: 'q9',
-    topic: 'AI and privacy',
-    question: 'When you use a free AI tool or app, what is the most important thing to be aware of regarding your privacy?',
-    options: [
-      'Free tools are always less accurate than paid ones',
-      'Free tools cannot access the internet',
-      'Your conversations may be used to train future AI models, stored on company servers, and potentially seen by employees — the tool is free because you, your data, or your attention is the product',
-      'Free tools automatically delete your data after each session',
-    ],
-    correctIndex: 2,
-    explanation: 'When a product is free, the business model is usually built around your data, your attention, or both. AI tools may store your conversations to improve their models. Always check privacy settings and avoid sharing sensitive personal information in free AI tools.',
-    lessonPath: '/learn/ai-and-privacy',
-    lessonTitle: 'AI and privacy',
-  },
-  {
-    id: 'q10',
     topic: 'Future of AI',
     question: 'What do most mainstream AI researchers currently believe about Artificial General Intelligence (AGI) — AI that can do anything a human can do?',
     options: [
@@ -348,7 +303,7 @@ export function KnowledgeCheck() {
         <div className="text-center space-y-2">
           <div className="text-5xl">&#x1F9E0;</div>
           <h1 className="text-3xl font-bold text-gray-800">How much have you learned?</h1>
-          <p className="text-gray-600">10 questions across the whole course &mdash; one per topic</p>
+          <p className="text-gray-600">7 questions across the whole course &mdash; one per topic</p>
           {previousResult && (
             <p className="text-sm text-indigo-600 font-medium">
               Your best: {previousResult.score} / {previousResult.total} &mdash; {previousResult.date}

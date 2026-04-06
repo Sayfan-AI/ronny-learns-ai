@@ -67,123 +67,43 @@ function getRecommendations(answers: number[]): Recommendation[] {
   const [q0, q1, q2, q3] = answers
 
   const all: Recommendation[] = [
-    // Job-related
-    {
-      title: 'AI and jobs',
-      to: '/learn/ai-and-jobs',
-      reason: 'Since you are thinking about how AI affects employment, this lesson explains which jobs are most at risk and how to adapt.',
-    },
-    {
-      title: 'AI and the workplace',
-      to: '/learn/ai-and-the-workplace',
-      reason: 'This lesson covers how AI is changing everyday office work — from writing assistants to meeting summaries.',
-    },
-    // Health
-    {
-      title: 'AI in healthcare',
-      to: '/learn/ai-in-healthcare',
-      reason: 'This lesson explains how AI is being used in diagnosis, drug discovery, and NHS waiting lists.',
-    },
-    {
-      title: 'AI and the NHS',
-      to: '/learn/ai-and-the-nhs',
-      reason: 'A focused look at how the NHS is using AI — and what it means for patients and staff.',
-    },
-    // Money
-    {
-      title: 'AI and personal finance',
-      to: '/learn/ai-and-personal-finance',
-      reason: 'This lesson covers robo-advisors, budgeting apps, and how AI is changing the way we manage money.',
-    },
-    {
-      title: 'AI and banking',
-      to: '/learn/ai-and-banking',
-      reason: 'Covers fraud detection, open banking AI, and how banks use algorithms to make decisions about you.',
-    },
-    // Tech/apps
+    // 0: Tech/apps
     {
       title: 'What is AI?',
       to: '/learn/what-is-ai',
       reason: 'The perfect starting point — a friendly explanation of what AI actually is and how it works.',
     },
+    // 1: Tech/apps
     {
       title: 'AI in your apps',
       to: '/learn/ai-in-your-apps',
       reason: 'Explores the AI already built into the apps you use every day — from maps to music streaming.',
     },
-    // Society
+    // 2: Health
     {
-      title: 'AI and policing',
-      to: '/learn/ai-and-policing',
-      reason: 'Covers facial recognition, predictive policing, and the debate about AI in law enforcement.',
+      title: 'AI in healthcare',
+      to: '/learn/ai-in-healthcare',
+      reason: 'This lesson explains how AI is being used in diagnosis, drug discovery, and NHS waiting lists.',
     },
-    {
-      title: 'AI and elections',
-      to: '/learn/ai-and-elections',
-      reason: 'How AI is being used in political campaigns — and the risks it poses to democracy.',
-    },
-    // Privacy
-    {
-      title: 'AI and privacy',
-      to: '/learn/ai-and-privacy',
-      reason: 'Explains how AI systems collect and use personal data, and what your rights are.',
-    },
+    // 3: Rights
     {
       title: 'AI laws and rights',
       to: '/learn/ai-laws-and-rights',
       reason: 'A guide to your rights when AI makes decisions that affect you — including how to challenge them.',
     },
-    // Children
-    {
-      title: 'AI and children',
-      to: '/learn/ai-and-children',
-      reason: 'Covers how AI affects children online — from social media algorithms to AI tutors and age verification.',
-    },
-    {
-      title: 'AI and education',
-      to: '/learn/ai-and-education',
-      reason: 'How AI is changing schools and learning — including ChatGPT in classrooms and AI tutoring tools.',
-    },
-    // Misinformation
-    {
-      title: 'AI and misinformation',
-      to: '/learn/ai-and-misinformation',
-      reason: 'How AI is being used to create and spread false information — and how to spot it.',
-    },
+    // 4: Misinformation
     {
       title: 'Trusting AI',
       to: '/learn/trusting-ai',
       reason: 'A thoughtful exploration of when to trust AI outputs and when to question them.',
     },
-    // Environment
-    {
-      title: 'AI and the environment',
-      to: '/learn/ai-and-the-environment',
-      reason: 'Covers the energy cost of AI and how it is being used to tackle environmental problems.',
-    },
-    {
-      title: 'AI and climate change',
-      to: '/learn/ai-and-climate-change',
-      reason: 'How AI is being used to model climate, optimise energy use, and support the green transition.',
-    },
-    // Public sector
-    {
-      title: 'AI and local government',
-      to: '/learn/ai-and-local-government',
-      reason: 'Covers pothole detection, planning AI, social services prediction, and your rights as a citizen.',
-    },
-    {
-      title: 'AI and smart cities',
-      to: '/learn/ai-and-smart-cities',
-      reason: 'How AI is being used to manage transport, energy, and public services in urban areas.',
-    },
-    // Beginners
+    // 5: Beginners
     {
       title: 'How does AI training work?',
       to: '/learn/how-ai-training-works',
       reason: 'A clear, jargon-free explanation of how AI systems learn from data.',
     },
-    // Bias
+    // 6: Bias
     {
       title: 'AI bias',
       to: '/learn/ai-bias',
@@ -194,39 +114,39 @@ function getRecommendations(answers: number[]): Recommendation[] {
   const selected: Recommendation[] = []
 
   // Q0: What brings you here
-  if (q0 === 0) selected.push(all[0], all[1]) // jobs
-  else if (q0 === 1) selected.push(all[6], all[7]) // daily life
-  else if (q0 === 2) selected.push(all[12], all[13]) // children
-  else if (q0 === 3) selected.push(all[18], all[19]) // public sector
-  else if (q0 === 4) selected.push(all[10], all[11]) // rights
+  if (q0 === 0) selected.push(all[0], all[5]) // jobs -> general AI + training
+  else if (q0 === 1) selected.push(all[0], all[1]) // daily life
+  else if (q0 === 2) selected.push(all[0], all[4]) // children -> AI basics + trusting AI
+  else if (q0 === 3) selected.push(all[3], all[6]) // public sector -> rights + bias
+  else if (q0 === 4) selected.push(all[3], all[6]) // rights -> laws + bias
 
   // Q1: Which area
   if (q1 === 0 && !selected.find(r => r.to === '/learn/ai-in-healthcare')) selected.push(all[2])
-  else if (q1 === 1 && !selected.find(r => r.to === '/learn/ai-and-personal-finance')) selected.push(all[4])
-  else if (q1 === 2 && !selected.find(r => r.to === '/learn/what-is-ai')) selected.push(all[6])
-  else if (q1 === 3 && !selected.find(r => r.to === '/learn/ai-and-policing')) selected.push(all[8])
-  else if (q1 === 4 && !selected.find(r => r.to === '/learn/ai-and-jobs')) selected.push(all[0])
+  else if (q1 === 1 && !selected.find(r => r.to === '/learn/what-is-ai')) selected.push(all[0])
+  else if (q1 === 2 && !selected.find(r => r.to === '/learn/what-is-ai')) selected.push(all[0])
+  else if (q1 === 3 && !selected.find(r => r.to === '/learn/ai-bias')) selected.push(all[6])
+  else if (q1 === 4 && !selected.find(r => r.to === '/learn/what-is-ai')) selected.push(all[0])
 
   // Q2: Experience level
   if (q2 === 0 && selected.length < 3) {
-    const beginner = all[20] // How does AI training work
+    const beginner = all[5] // How does AI training work
     if (!selected.find(r => r.to === beginner.to)) selected.push(beginner)
   }
 
   // Q3: Concerns
   if (q3 === 2) { // misinformation
-    const m = all[14]
+    const m = all[4] // Trusting AI
     if (!selected.find(r => r.to === m.to)) selected.push(m)
   } else if (q3 === 3) { // bias
-    const b = all[21]
+    const b = all[6]
     if (!selected.find(r => r.to === b.to)) selected.push(b)
   } else if (q3 === 4) { // environment
-    const e = all[16]
+    const e = all[0] // What is AI (general fallback)
     if (!selected.find(r => r.to === e.to)) selected.push(e)
   }
 
   // Ensure we always have exactly 3 recommendations
-  const defaults = [all[6], all[0], all[2]]
+  const defaults = [all[0], all[2], all[5]]
   let i = 0
   while (selected.length < 3 && i < defaults.length) {
     if (!selected.find(r => r.to === defaults[i].to)) {
