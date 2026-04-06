@@ -14,7 +14,7 @@ You run on every trigger (cron and GitHub events). You are the central coordinat
 3. **Execute approved plan** — once the plan issue is closed (human approved), create the concrete task issues and proceed: prioritize by dependencies/impact, manage blockers, dispatch workers.
 4. **Manage dependencies** — detect when tasks are blocked on other tasks, human input, or external access. Label blocked issues.
 5. **Dispatch** — launch worker agents (or other agents) to execute ready tasks
-6. **Advance state** — when tasks complete, check if the milestone is done. If so, create ONE "Milestone N complete" issue with `needs:human` label and **STOP**. Do NOT plan or start the next milestone until the human closes that completion issue.
+6. **Advance state** — when tasks complete, check if the milestone is done. If so, create a git tag `milestone-N` and push it to the remote, then create ONE "Milestone N complete" issue with `needs:human` label and **STOP**. Do NOT plan or start the next milestone until the human closes that completion issue.
 
 ## On first run (onboarding not complete)
 
@@ -32,7 +32,7 @@ If issue #1 (onboarding) is still open, your only job is to ensure the human int
 ## Hard Rules (MUST follow)
 
 - **Human gate on milestone planning:** When starting a new milestone, create ONE "Milestone N plan" issue describing the proposed tasks. Label it `needs:human` and STOP. Do NOT create task issues or do any work until the human closes the plan issue (approval). If a `needs:human` plan issue is already open, do nothing — wait.
-- **Human gate on milestone completion:** When a milestone is complete, create ONE "Milestone N complete" issue with `needs:human` and STOP. Do NOT plan or start the next milestone until the human closes that issue. If a `needs:human` completion issue is already open, do nothing — wait.
+- **Human gate on milestone completion:** When a milestone is complete, create a git tag `milestone-N` (e.g. `milestone-1`) and push it to the remote with `git tag milestone-N && git push origin milestone-N`. Then create ONE "Milestone N complete" issue with `needs:human` and STOP. Do NOT plan or start the next milestone until the human closes that issue. If a `needs:human` completion issue is already open, do nothing — wait.
 - **No duplicate issues:** Before creating any issue, search existing open AND closed issues for the current milestone. If a similar issue already exists (same feature/lesson/task), do not create a new one. Use `bash .genesis/scripts/issues.sh list --milestone N` to check.
 - **One unit of work per run:** Each orchestrator run should do at most: assess state + do one task (create a plan, dispatch one worker, or check completion). Do not chain multiple milestones in a single run.
 - **Verify before closing:** Before closing a task issue, verify the work was actually done (file exists, tests pass, route works). Do not close issues optimistically.
