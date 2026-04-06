@@ -490,6 +490,43 @@ const whoSaidItQuizRoute = createRoute({
   component: withSuspense(WhoSaidItQuiz),
 })
 
+// Milestone 2: Terminal & Tools
+const TerminalAndTools = lazy(() => import('./pages/TerminalAndTools').then(m => ({ default: m.TerminalAndTools })))
+const Chocolatey = lazy(() => import('./pages/Chocolatey').then(m => ({ default: m.Chocolatey })))
+const WSL2Setup = lazy(() => import('./pages/WSL2Setup').then(m => ({ default: m.WSL2Setup })))
+const ShellBasics = lazy(() => import('./pages/ShellBasics').then(m => ({ default: m.ShellBasics })))
+const GeminiCLI = lazy(() => import('./pages/GeminiCLI').then(m => ({ default: m.GeminiCLI })))
+
+const terminalAndToolsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/terminal-and-tools',
+  component: withSuspense(TerminalAndTools),
+})
+
+const chocolateyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/chocolatey',
+  component: withSuspense(Chocolatey),
+})
+
+const wsl2Route = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/wsl2',
+  component: withSuspense(WSL2Setup),
+})
+
+const shellBasicsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/shell-basics',
+  component: withSuspense(ShellBasics),
+})
+
+const geminiCLIRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/gemini-cli',
+  component: withSuspense(GeminiCLI),
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   githubSignupRoute,
@@ -553,6 +590,12 @@ const routeTree = rootRoute.addChildren([
   aiTimelineRoute,
   jargonMatchRoute,
   whoSaidItQuizRoute,
+  // Milestone 2: Terminal & Tools
+  terminalAndToolsRoute,
+  chocolateyRoute,
+  wsl2Route,
+  shellBasicsRoute,
+  geminiCLIRoute,
 ])
 
 const hashHistory = createHashHistory()

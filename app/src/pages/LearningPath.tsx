@@ -46,6 +46,17 @@ const STAGES: Stage[] = [
     ],
   },
   {
+    name: 'Terminal &amp; Tools',
+    description: 'Set up a real developer environment on Windows — terminal, Linux, and AI tools.',
+    color: 'slate',
+    lessons: [
+      { id: 'chocolatey',          icon: '&#x1F36B;', title: 'Installing Chocolatey',           path: '/lessons/chocolatey',              difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'wsl2-setup',          icon: '&#x1F427;', title: 'Setting up WSL2 (Linux on Windows)', path: '/lessons/wsl2',                 difficulty: 'Beginner',     readingTime: '10 min' },
+      { id: 'shell-basics',        icon: '&#x1F5A5;', title: 'Basic shell commands',             path: '/lessons/shell-basics',            difficulty: 'Beginner',     readingTime: '8 min' },
+      { id: 'gemini-cli',          icon: '&#x2728;',  title: 'Using Gemini CLI',                 path: '/lessons/gemini-cli',              difficulty: 'Intermediate', readingTime: '15 min' },
+    ],
+  },
+  {
     name: 'Deep dives',
     description: 'Going further: critical thinking, ethics, software, and this project.',
     color: 'violet',
