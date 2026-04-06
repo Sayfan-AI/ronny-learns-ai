@@ -46,7 +46,7 @@ const STAGES: Stage[] = [
     ],
   },
   {
-    name: 'Terminal &amp; Tools',
+    name: 'Terminal & Tools',
     description: 'Set up a real developer environment on Windows — terminal, Linux, and AI tools.',
     color: 'slate',
     lessons: [
@@ -97,6 +97,7 @@ const STAGE_COLOURS: Record<string, { bg: string; border: string; heading: strin
   emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', heading: 'text-emerald-800', progress: 'bg-emerald-500', stageBadge: 'bg-emerald-100 text-emerald-700' },
   amber:   { bg: 'bg-amber-50',   border: 'border-amber-200',  heading: 'text-amber-800',  progress: 'bg-amber-500',  stageBadge: 'bg-amber-100 text-amber-700' },
   violet:  { bg: 'bg-violet-50',  border: 'border-violet-200', heading: 'text-violet-800', progress: 'bg-violet-500', stageBadge: 'bg-violet-100 text-violet-700' },
+  slate:   { bg: 'bg-slate-50',   border: 'border-slate-200',  heading: 'text-slate-800',  progress: 'bg-slate-500',  stageBadge: 'bg-slate-100 text-slate-700' },
 }
 
 const QUIZ_KEY = 'ronny-quiz-completed'
@@ -265,8 +266,6 @@ export function LearningPath() {
                           ? 'bg-emerald-500 border-emerald-500 text-white'
                           : 'border-gray-300 bg-white text-gray-300'
                       }`}>
-                        {isDone ? '&#x2713;' : ''}
-                        {!isDone && <span dangerouslySetInnerHTML={{ __html: '' }} />}
                         {isDone && <span>&#x2713;</span>}
                       </div>
 
