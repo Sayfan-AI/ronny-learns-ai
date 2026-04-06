@@ -2,14 +2,15 @@ name: Genesis Orchestrator (Scheduled)
 
 on:
   schedule:
-    # Run every 10 minutes
-    - cron: '*/10 * * * *'
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
   workflow_dispatch: {}
 
 permissions:
   contents: write
   issues: write
   pull-requests: write
+  workflows: write
 
 jobs:
   orchestrate:
@@ -17,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/create-github-app-token@v1
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           app-id: ${{ secrets.GENESIS_APP_ID }}
@@ -25,6 +26,7 @@ jobs:
           permission-contents: write
           permission-issues: write
           permission-pull-requests: write
+          permission-workflows: write
 
       - uses: anthropics/claude-code-action@v1
         with:
