@@ -51,3 +51,18 @@ Defaults (override as needed):
 - **Database:** Neon (serverless Postgres)
 - **Deployment:** Cloudflare, cloud free-tier
 - **Local dev:** Tilt + kind (K8s), LocalStack (AWS)
+
+## App Architecture
+
+- App code lives in `/app/` (Vite + React + TypeScript + Tailwind CSS).
+- Pages are in `app/src/pages/` — one file per lesson or module, PascalCase filename.
+- Routes are registered in `app/src/router.tsx`. Every new page needs a route here.
+- Module index pages (e.g. `TerminalAndTools.tsx`) group related lessons with a card layout.
+- Learning path data is in `app/src/data/` — new modules must be registered there too.
+- Deployed via Cloudflare Pages (see `.github/workflows/deploy.yml`).
+
+## Lessons Learned
+
+- **Orchestrator creates duplicate issues** — Always run `gh issue list --state all --search KEYWORDS` before creating any issue. Milestone 2 produced 10 issues for 5 tasks because this step was skipped.
+- **Stale labels accumulate** — Strip `in-progress` and `blocked` labels before closing issues: `gh issue edit N --remove-label "in-progress" --remove-label "blocked"`.
+- **settings.json gates agent capabilities** — The `permissions.allow` list in `.claude/settings.json` controls which tools/commands agents can use. If an agent can't write files, add `Edit(*)` and `Write(*)` to the allow list.

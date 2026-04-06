@@ -7,7 +7,14 @@
       "Bash(gh workflow*)",
       "Bash(gh issue*)",
       "Bash(gh label*)",
-      "Bash(gh run*)"
+      "Bash(gh run*)",
+      "Edit(*)",
+      "Write(*)",
+      "Bash(git tag*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git status*)",
+      "Bash(git add*)"
     ]
   },
   "hooks": {
