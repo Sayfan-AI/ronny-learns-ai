@@ -26,6 +26,45 @@ for i in issues:
 }
 
 case "$CMD" in
+    check-duplicate)
+        # Check if an issue with a similar title already exists (open or closed).
+        # Returns: prints matching issues if found; exits 1 if duplicates found, 0 if safe to create.
+        # Usage: issues.sh check-duplicate --title "Task: something" [--milestone N]
+        TITLE="" MILESTONE=""
+        while [[ $# -gt 0 ]]; do
+            case "$1" in
+                --title) TITLE="$2"; shift 2 ;;
+                --milestone) MILESTONE="$2"; shift 2 ;;
+                *) shift ;;
+            esac
+        done
+        if [ -z "$TITLE" ]; then
+            echo "Usage: issues.sh check-duplicate --title TITLE [--milestone N]" >&2
+            exit 1
+        fi
+        # Strip common prefixes and suffixes to get core topic words
+        CORE_WORDS=$(echo "$TITLE" | sed 's/^Task: //i' | sed "s/ (milestone:$MILESTONE)//i" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' ' ' | tr -s ' ')
+        # Search all issues (open and closed) with the first few significant words
+        SEARCH_QUERY=$(echo "$CORE_WORDS" | awk '{for(i=1;i<=NF && i<=4;i++) printf "%s ", $i}' | xargs)
+        if [ -z "$SEARCH_QUERY" ]; then
+            echo "No searchable words in title" >&2
+            exit 0
+        fi
+        RESULTS=$(gh issue list --state all --search "$SEARCH_QUERY" --json number,title,state --limit 20)
+        COUNT=$(echo "$RESULTS" | python3 -c "import sys, json; print(len(json.load(sys.stdin)))")
+        if [ "$COUNT" -gt 0 ]; then
+            echo "WARNING: Found $COUNT potentially duplicate issue(s) for: $TITLE"
+            echo "$RESULTS" | python3 -c "
+import sys, json
+for i in json.load(sys.stdin):
+    print(f\"  #{i['number']} [{i['state']}] {i['title']}\")
+"
+            exit 1
+        fi
+        echo "OK: No duplicate found for: $TITLE"
+        exit 0
+        ;;
+
     create)
         TITLE="" LABELS="" BODY="" MILESTONE="" ASSIGNEE=""
         while [[ $# -gt 0 ]]; do
@@ -221,6 +260,7 @@ json.dump(filtered, sys.stdout)
 Usage: issues.sh COMMAND [OPTIONS]
 
 Commands:
+  check-duplicate  Check if a similar issue already exists (exits 1 if found)
   create    Create a new issue
   list      List issues with filtering
   blocked   List all blocked issues
