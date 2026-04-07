@@ -57,6 +57,17 @@ const STAGES: Stage[] = [
     ],
   },
   {
+    name: 'Hands-on GitHub',
+    description: 'Stop reading about GitHub and start using it. Create issues, leave comments, and build your developer profile.',
+    color: 'emerald',
+    lessons: [
+      { id: 'your-first-issue',  icon: '&#x1F4DD;', title: 'Your first issue',                      path: '/lessons/your-first-issue',    difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'leave-a-comment',   icon: '&#x1F4AC;', title: 'Leave a comment',                        path: '/lessons/leave-a-comment',     difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'pull-request',      icon: '&#x1F501;', title: 'Understanding a pull request (interactive)', path: '/learn/what-is-a-pull-request', difficulty: 'Intermediate', readingTime: '6 min' },
+      { id: 'github-profile',    icon: '&#x1F464;', title: 'Polish your GitHub profile',              path: '/lessons/github-profile',      difficulty: 'Beginner',     readingTime: '6 min' },
+    ],
+  },
+  {
     name: 'Deep dives',
     description: 'Going further: critical thinking, ethics, software, and this project.',
     color: 'violet',

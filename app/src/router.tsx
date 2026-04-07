@@ -490,6 +490,29 @@ const whoSaidItQuizRoute = createRoute({
   component: withSuspense(WhoSaidItQuiz),
 })
 
+// Milestone 3: Hands-on GitHub
+const YourFirstIssue = lazy(() => import('./pages/YourFirstIssue').then(m => ({ default: m.YourFirstIssue })))
+const LeaveAComment = lazy(() => import('./pages/LeaveAComment').then(m => ({ default: m.LeaveAComment })))
+const GitHubProfile = lazy(() => import('./pages/GitHubProfile').then(m => ({ default: m.GitHubProfile })))
+
+const yourFirstIssueRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/your-first-issue',
+  component: withSuspense(YourFirstIssue),
+})
+
+const leaveACommentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/leave-a-comment',
+  component: withSuspense(LeaveAComment),
+})
+
+const gitHubProfileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/lessons/github-profile',
+  component: withSuspense(GitHubProfile),
+})
+
 // Milestone 2: Terminal & Tools
 const TerminalAndTools = lazy(() => import('./pages/TerminalAndTools').then(m => ({ default: m.TerminalAndTools })))
 const Chocolatey = lazy(() => import('./pages/Chocolatey').then(m => ({ default: m.Chocolatey })))
@@ -590,6 +613,10 @@ const routeTree = rootRoute.addChildren([
   aiTimelineRoute,
   jargonMatchRoute,
   whoSaidItQuizRoute,
+  // Milestone 3: Hands-on GitHub
+  yourFirstIssueRoute,
+  leaveACommentRoute,
+  gitHubProfileRoute,
   // Milestone 2: Terminal & Tools
   terminalAndToolsRoute,
   chocolateyRoute,
