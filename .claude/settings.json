@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(git *)",
-      "Bash(gh *)"
+      "Bash(gh *)",
+      "Bash(npm *)",
+      "Bash(ls *)",
+      "Edit(*)",
+      "Write(*)"
     ]
   },
   "hooks": {

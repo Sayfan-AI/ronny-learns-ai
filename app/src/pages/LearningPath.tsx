@@ -57,6 +57,17 @@ const STAGES: Stage[] = [
     ],
   },
   {
+    name: 'Hands-on GitHub',
+    description: 'Stop reading, start doing. Create issues, leave comments, and understand pull requests.',
+    color: 'teal',
+    lessons: [
+      { id: 'your-first-issue',  icon: '&#x1F4DD;', title: 'Create your first issue',               path: '/learn/your-first-issue',       difficulty: 'Beginner',     readingTime: '6 min' },
+      { id: 'leave-a-comment',   icon: '&#x1F4AC;', title: 'Leave a comment',                        path: '/learn/leave-a-comment',        difficulty: 'Beginner',     readingTime: '5 min' },
+      { id: 'pr-walkthrough',    icon: '&#x1F500;', title: 'How a pull request works (interactive)', path: '/learn/what-is-a-pull-request', difficulty: 'Intermediate', readingTime: '8 min' },
+      { id: 'github-profile',    icon: '&#x1F194;', title: 'Polish your GitHub profile',             path: '/learn/github-profile',         difficulty: 'Beginner',     readingTime: '5 min' },
+    ],
+  },
+  {
     name: 'Deep dives',
     description: 'Going further: critical thinking, ethics, software, and this project.',
     color: 'violet',
@@ -98,6 +109,7 @@ const STAGE_COLOURS: Record<string, { bg: string; border: string; heading: strin
   amber:   { bg: 'bg-amber-50',   border: 'border-amber-200',  heading: 'text-amber-800',  progress: 'bg-amber-500',  stageBadge: 'bg-amber-100 text-amber-700' },
   violet:  { bg: 'bg-violet-50',  border: 'border-violet-200', heading: 'text-violet-800', progress: 'bg-violet-500', stageBadge: 'bg-violet-100 text-violet-700' },
   slate:   { bg: 'bg-slate-50',   border: 'border-slate-200',  heading: 'text-slate-800',  progress: 'bg-slate-500',  stageBadge: 'bg-slate-100 text-slate-700' },
+  teal:    { bg: 'bg-teal-50',    border: 'border-teal-200',   heading: 'text-teal-800',   progress: 'bg-teal-500',   stageBadge: 'bg-teal-100 text-teal-700' },
 }
 
 const QUIZ_KEY = 'ronny-quiz-completed'

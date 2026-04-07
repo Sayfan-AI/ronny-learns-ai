@@ -521,10 +521,34 @@ const shellBasicsRoute = createRoute({
   component: withSuspense(ShellBasics),
 })
 
+
+// Milestone 3: Hands-on GitHub
+const YourFirstIssue = lazy(() => import('./pages/YourFirstIssue').then(m => ({ default: m.YourFirstIssue })))
+const LeaveAComment = lazy(() => import('./pages/LeaveAComment').then(m => ({ default: m.LeaveAComment })))
+const GitHubProfile = lazy(() => import('./pages/GitHubProfile').then(m => ({ default: m.GitHubProfile })))
 const geminiCLIRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/lessons/gemini-cli',
   component: withSuspense(GeminiCLI),
+})
+
+
+const yourFirstIssueRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/your-first-issue',
+  component: withSuspense(YourFirstIssue),
+})
+
+const leaveACommentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/leave-a-comment',
+  component: withSuspense(LeaveAComment),
+})
+
+const gitHubProfileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/learn/github-profile',
+  component: withSuspense(GitHubProfile),
 })
 
 const routeTree = rootRoute.addChildren([
@@ -596,6 +620,10 @@ const routeTree = rootRoute.addChildren([
   wsl2Route,
   shellBasicsRoute,
   geminiCLIRoute,
+  // Milestone 3: Hands-on GitHub
+  yourFirstIssueRoute,
+  leaveACommentRoute,
+  gitHubProfileRoute,
 ])
 
 const hashHistory = createHashHistory()
