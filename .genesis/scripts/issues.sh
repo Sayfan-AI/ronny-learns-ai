@@ -191,6 +191,8 @@ json.dump(filtered, sys.stdout)
             echo "Usage: issues.sh close --id ID [--reason REASON]" >&2
             exit 1
         fi
+        # Strip transient labels before closing to avoid tracker noise on closed issues
+        gh issue edit "$ID" --remove-label "in-progress" --remove-label "blocked" 2>/dev/null || true
         ARGS=(issue close "$ID")
         [ -n "$REASON" ] && ARGS+=(--reason "$REASON")
         gh "${ARGS[@]}"

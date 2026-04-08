@@ -64,5 +64,5 @@ Defaults (override as needed):
 ## Lessons Learned
 
 - **Orchestrator creates duplicate issues** — The prompt rule alone is insufficient. Milestone 2 AND Milestone 3 both created duplicate task issues (10 issues for 5 tasks each time). The problem: title searches miss near-duplicates when titles change between runs. Use the deterministic tool: `bash .genesis/scripts/issues.sh check-duplicate --title "EXACT_TITLE" --milestone N` before every `gh issue create`. This script strips common prefixes and searches by core topic words.
-- **Stale labels accumulate** — Strip `in-progress` and `blocked` labels before closing issues: `gh issue edit N --remove-label "in-progress" --remove-label "blocked"`. Issues #594 and #600 from Milestone 2 were closed with stale labels — this was not fixed even after the lesson was added here.
+- **Stale labels accumulate** — The `issues.sh close` command now auto-strips `in-progress` and `blocked` before closing (fixed 2026-04-08). Always use `bash .genesis/scripts/issues.sh close --id N` rather than raw `gh issue close` to get this behavior. Issues #594 and #600 were manually cleaned up on 2026-04-08.
 - **settings.json gates agent capabilities** — The `permissions.allow` list in `.claude/settings.json` controls which tools/commands agents can use. If an agent can't write files, add `Edit(*)` and `Write(*)` to the allow list.
