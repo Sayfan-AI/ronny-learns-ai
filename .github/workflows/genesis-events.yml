@@ -13,6 +13,15 @@ permissions:
   issues: write
   pull-requests: write
 
+# Prevent concurrent event runs — the main source of duplicate issue creation.
+# When multiple events fire at once (e.g. closing a milestone issue triggers both
+# "issues: closed" and "issue_comment: created"), both runs check-duplicate before
+# either has created anything, so both create the same issues.
+# queue: true ensures only one event run executes at a time; the next waits.
+concurrency:
+  group: genesis-events
+  cancel-in-progress: false
+
 jobs:
   orchestrate:
     runs-on: ubuntu-latest
@@ -43,4 +52,4 @@ jobs:
             - Event: ${{ github.event_name }} / ${{ github.event.action }}
 
             Assess this event in context of the project state and take appropriate action.
-          claude_args: "--max-turns 10 --allowedTools Read,Edit,Write,Bash,Glob,Grep,Agent"
+          claude_args: "--max-turns 20 --allowedTools Read,Edit,Write,Bash,Glob,Grep,Agent"
