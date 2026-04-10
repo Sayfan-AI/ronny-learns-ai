@@ -13,6 +13,9 @@ permissions:
   issues: write
   pull-requests: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Prevent concurrent event runs — the main source of duplicate issue creation.
 # When multiple events fire at once (e.g. closing a milestone issue triggers both
 # "issues: closed" and "issue_comment: created"), both runs check-duplicate before

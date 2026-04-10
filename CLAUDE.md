@@ -49,7 +49,7 @@ Defaults (override as needed):
 - **Auth:** Ory stack (K8s), Rust crates (simple apps), Clerk (managed fallback)
 - **Observability:** OpenTelemetry + Grafana Cloud free tier
 - **Database:** Neon (serverless Postgres)
-- **Deployment:** Cloudflare, cloud free-tier
+- **Deployment:** GitHub Pages (this project uses GitHub Pages, not Cloudflare)
 - **Local dev:** Tilt + kind (K8s), LocalStack (AWS)
 
 ## App Architecture
@@ -59,7 +59,7 @@ Defaults (override as needed):
 - Routes are registered in `app/src/router.tsx`. Every new page needs a route here.
 - Module index pages (e.g. `TerminalAndTools.tsx`) group related lessons with a card layout.
 - Learning path data is in `app/src/data/` — new modules must be registered there too.
-- Deployed via Cloudflare Pages (see `.github/workflows/deploy.yml`).
+- Deployed via GitHub Pages (see `.github/workflows/deploy.yml`). The `vite.config.ts` uses `base: '/ronny-learns-ai/'` which is required for GitHub Pages sub-path hosting.
 
 ## Lessons Learned
 
@@ -67,4 +67,4 @@ Defaults (override as needed):
 - **Stale labels accumulate** — The `issues.sh close` command now auto-strips `in-progress` and `blocked` before closing (fixed 2026-04-08). Always use `bash .genesis/scripts/issues.sh close --id N` rather than raw `gh issue close` to get this behavior. Issues #594 and #600 were manually cleaned up on 2026-04-08.
 - **settings.json gates agent capabilities** — The `permissions.allow` list in `.claude/settings.json` controls which tools/commands agents can use. If an agent can't write files, add `Edit(*)` and `Write(*)` to the allow list.
 - **Concurrent event runs cause duplicate issues** — When a human closes a milestone issue, GitHub fires multiple events simultaneously (issues:closed, issue_comment:created, etc.). Without concurrency control, multiple orchestrator runs start at the same moment, all check-duplicate before any creates, then all create duplicates. Fixed 2026-04-09 by adding `concurrency: genesis-events` (cancel-in-progress: false) to the events workflow. This serializes event runs so each waits for the previous to finish before starting.
-- **Node.js 20 deprecation in Actions** — GitHub Actions runners will stop supporting Node.js 20 actions by September 2026. Deprecation warnings appear in logs for `actions/checkout@v4` and `oven-sh/setup-bun`. These are not failures yet but should be tracked. When upgrading, set `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` or wait for updated action versions. No immediate action required as of 2026-04-09.
+- **Node.js 20 deprecation in Actions** — GitHub Actions will force Node.js 24 as default starting June 2, 2026 (only ~7 weeks from 2026-04-10). Deprecation warnings appear in logs for `actions/checkout@v4` and `oven-sh/setup-bun`. All genesis workflows have been proactively updated to set `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` as a workflow-level env var (2026-04-10) to opt in early and avoid surprise failures at the June 2 deadline. Node.js 20 removal from runners entirely: September 16, 2026.
