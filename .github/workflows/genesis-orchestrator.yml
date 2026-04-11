@@ -23,14 +23,37 @@ jobs:
       - uses: actions/create-github-app-token@v3
         id: app-token
         with:
-          app-id: ${{ secrets.GENESIS_APP_ID }}
+          client-id: ${{ secrets.GENESIS_APP_ID }}
           private-key: ${{ secrets.GENESIS_APP_PRIVATE_KEY }}
           permission-contents: write
           permission-issues: write
           permission-pull-requests: write
           permission-workflows: write
 
+      # Skip LLM invocation if a needs:human gate is currently open.
+      # When the orchestrator is waiting for human approval (milestone plan or
+      # milestone completion issue), there is nothing for it to do — every
+      # scheduled run would read state, confirm the gate is open, and exit.
+      # This pre-flight check avoids that ~$0.13/run waste.
+      # NOTE: This check only applies to scheduled runs. The events workflow
+      # does NOT have this guard because a human closing an issue IS the signal
+      # to advance, and that trigger fires via genesis-events.yml instead.
+      - name: Check for open needs:human gate
+        id: gate-check
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          COUNT=$(gh issue list --label "needs:human" --state open --json number --jq length)
+          if [ "$COUNT" -gt 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Skipping LLM run: $COUNT open needs:human issue(s) require human action before proceeding."
+            gh issue list --label "needs:human" --state open --json number,title --jq '.[] | "  #\(.number) \(.title)"'
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: anthropics/claude-code-action@v1
+        if: steps.gate-check.outputs.skip != 'true'
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ steps.app-token.outputs.token }}
