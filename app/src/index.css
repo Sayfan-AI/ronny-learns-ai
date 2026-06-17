@@ -93,6 +93,18 @@ body {
   overflow-x: hidden;
 }
 
+/*
+ * Long-form content reads left-aligned. #root defaults the whole app to
+ * centered text, which is fine for short headers and banners but
+ * uncomfortable for full lesson articles. The lesson/content wrapper
+ * (.max-w-2xl) opts its text back to the left; elements that genuinely
+ * want centering (headers, badges) keep their own `text-center` class,
+ * which overrides this inherited value.
+ */
+.max-w-2xl {
+  text-align: left;
+}
+
 h1,
 h2 {
   font-family: var(--heading);
